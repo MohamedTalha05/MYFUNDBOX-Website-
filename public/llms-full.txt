@@ -1,0 +1,1787 @@
+# MYFUNDBOX — Full Machine-Readable Product & Compliance Knowledge Base
+
+> MYFUNDBOX is EU-based revenue management software built in Germany for CFOs, controllers, and RevOps teams to track, recognize, forecast, and report recurring revenue.
+
+- **Base URL**: https://myfundbox.example
+- **Jurisdiction**: Germany [ADD: City & Street Address]
+- **EU Data Residency**: [CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)]
+- **Core Capabilities**: Revenue recognition (IFRS 15 / HGB), Deferred revenue & accruals, MRR/ARR/NRR/cohort reporting, Revenue forecasting, Audit trail & reconciliation, EU ERP/accounting exports (DATEV, SAP, Exact, Xero, NetSuite [CONFIRM]), REST API.
+- **Explicit Exclusion**: MYFUNDBOX is NOT a payment processor, payment gateway, or billing/invoicing engine.
+
+---
+
+# Revenue management software built for European finance teams
+
+- **Canonical URL**: https://myfundbox.example/en
+- **Title**: MYFUNDBOX | EU Revenue Management & IFRS 15 Software
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX is EU-based revenue management software engineered in Germany for CFOs, financial controllers, and RevOps teams. It tracks, recognizes, forecasts, and reconciles recurring revenue under IFRS 15 and German HGB/GoBD—connecting to existing billing and ERP tools without processing payments or issuing customer invoices.
+
+## At a Glance
+- **What it is**: Standalone EU revenue management software (sub-ledger, recognition, analytics & forecasting). Not a payment gateway or billing engine.
+- **Who it is for**: CFOs, controllers, accountants, and RevOps teams at European SaaS, digital services, membership, and agency businesses.
+- **Key capabilities**: IFRS 15 & HGB revenue recognition rules; Deferred revenue & accrual roll-forwards; MRR, ARR, NRR, churn & cohort reporting; Contract-level revenue forecasting & audit trail
+- **Pricing model**: [ADD: Tiered EUR plans / Custom quote based on annual recurring revenue]
+- **Region & compliance**: Built in Germany · GDPR-compliant · EU data residency [CONFIRM Frankfurt] · EU VAT separation
+- **Integrations**: DATEV, SAP, Xero, Exact, NetSuite, Stripe Billing, Chargebee, HubSpot, Salesforce, REST API [CONFIRM list]
+
+## What is MYFUNDBOX and why does spreadsheet revenue tracking break?
+
+MYFUNDBOX replaces manual spreadsheet revenue waterfalls with an automated, audit-ready revenue sub-ledger. As subscription businesses add annual prepayments, mid-term upgrades, credit notes, and SEPA enterprise invoices across multiple tools, Excel models introduce cutoff errors and slow month-end close.
+
+- Eliminates manual pro-rata date formulas and broken spreadsheet VLOOKUPs across billing exports.
+- Separates gross cash collected (including EU VAT) from net recognized revenue and deferred liability.
+- Maintains an immutable, user-attributed audit trail ready for IFRS 15 and HGB/GoBD statutory reviews.
+
+## How does MYFUNDBOX automate revenue management in 3 steps?
+
+MYFUNDBOX ingests contract and invoice events from your billing, CRM, and ERP systems, applies deterministic IFRS 15 recognition rules in EUR, and exports clean period-close journals and live executive forecasts.
+
+1. **Connect billing, CRM, and ERP data sources**: Sync subscriptions, enterprise contracts, credit notes, and FX rates in read-only mode via native connectors or the REST API.
+2. **Apply IFRS 15 & HGB recognition rules automatically**: Assign performance obligations, daily or monthly straight-line schedules, and accrual cutoffs without altering customer invoicing.
+3. **Close the month and publish board-ready forecasts**: Export balanced deferred-to-recognized journals (DATEV / ERP) alongside unified MRR, ARR, NRR, and cash vs. revenue projections.
+
+## Frequently Asked Questions
+
+### Is MYFUNDBOX a payment processor or billing system?
+No. MYFUNDBOX never processes card or SEPA payments and does not replace your billing/invoicing engine. It sits above your billing and CRM tools as a dedicated revenue accounting, analytics, and forecasting sub-ledger.
+
+### Does MYFUNDBOX support IFRS 15 and German HGB/GoBD?
+Yes. Recognition schedules follow IFRS 15 performance-obligation principles and support German HGB period-end accrual structures with immutable audit logs [CONFIRM external GoBD attestation status].
+
+### Where is customer financial data hosted?
+MYFUNDBOX operates with EU-first GDPR compliance and EU data residency [CONFIRM: Frankfurt am Main, Germany]. No third-party trackers load before explicit cookie consent.
+
+### How does MYFUNDBOX handle EU VAT in revenue reports?
+EU VAT (USt/TVA) is stripped from gross invoiced totals before calculating recognized revenue, deferred revenue liabilities, MRR, and ARR.
+
+### Which accounting and ERP systems can receive exports?
+MYFUNDBOX supports structured journal exports and connectors for European and global ERPs including DATEV, SAP, Exact, Xero, and NetSuite [CONFIRM exact active connectors].
+
+### What currency and date formats are used by default?
+EUR is the default reporting currency alongside European date and number formatting, with multi-currency contract conversion supported.
+
+---
+
+# Automated IFRS 15 revenue recognition software for European finance teams
+
+- **Canonical URL**: https://myfundbox.example/en/product/revenue-recognition
+- **Title**: IFRS 15 Revenue Recognition Software | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX Revenue Recognition translates raw subscription, contract, and credit note events into IFRS 15 and HGB-compliant recognition schedules. Finance controllers configure rule-based performance obligations once and generate immutable monthly journal entries without manual spreadsheet waterfalls.
+
+## At a Glance
+- **What it is**: Rule-based IFRS 15 & HGB revenue recognition engine built for recurring and contract-based businesses.
+- **Who it is for**: Controllers, Chief Accountants, and CFOs preparing monthly closes and annual statutory audits.
+- **Key capabilities**: Daily exact-day and monthly straight-line recognition; Performance obligation bundling & standalone selling price (SSP) splits; Mid-term contract upgrades, downgrades, pauses & credit notes; Immutable audit trail linked to source invoice IDs
+- **Pricing model**: Included in MYFUNDBOX platform plans [ADD: Tier pricing]
+- **Region & compliance**: IFRS 15 · German HGB · GoBD-aligned immutability · EU VAT separation
+- **Integrations**: DATEV, SAP, Xero, Exact, NetSuite, Stripe Billing, Chargebee, HubSpot, Salesforce
+
+## How does MYFUNDBOX handle the 5-step IFRS 15 model?
+
+MYFUNDBOX operationalizes the five-step IFRS 15 framework by linking CRM deal terms and billing line items to standardized performance obligations, transaction prices net of EU VAT, and automated over-time or point-in-time recognition schedules.
+
+| IFRS 15 Step | Accounting Requirement | How MYFUNDBOX Automates It |
+| --- | --- | --- |
+| 1. Identify Contract | Approve commercial terms and collectability | Ingests signed CRM/ERP contract and subscription records with effective dates |
+| 2. Performance Obligations | Separate distinct SaaS, onboarding, and support services | Maps SKU and line-item rules to distinct recognition templates |
+| 3. Transaction Price | Determine consideration net of discounts and VAT | Strips EU VAT, applies credit notes, and isolates net consideration in EUR |
+| 4. Allocate Price | Distribute transaction price across obligations | Applies configurable SSP allocation rules across bundled line items |
+| 5. Recognize Revenue | Recognize as obligations are satisfied over time or point-in-time | Generates daily/monthly pro-rata schedules and period-close GL journals |
+
+## How are contract modifications and cancellations processed?
+
+When a customer upgrades seats, switches from monthly to annual billing, or receives a partial credit note, MYFUNDBOX recalculates remaining unrecognized revenue prospectively or via catch-up adjustment while preserving locked historical periods.
+
+- Closed accounting periods remain strictly locked to protect GoBD and statutory audit integrity.
+- Prospective adjustments flow transparently into future months without retroactively rewriting past trial balances.
+- Every rule override requires role-based permission and records user ID, timestamp, and reason code.
+
+## Frequently Asked Questions
+
+### Can MYFUNDBOX split onboarding fees from recurring SaaS subscriptions?
+Yes. Distinct line items can follow separate recognition schedules—for example, recognizing implementation milestones upon delivery while amortizing the software subscription straight-line over 12 months.
+
+### Does MYFUNDBOX support daily exact-day proration as well as monthly?
+Yes. Controllers can select exact daily proration (e.g., 28/30/31-day or 365-day conventions) or standard 1/12th monthly recognition per entity policy.
+
+### How does the system protect closed months during an audit?
+Once a period is closed in MYFUNDBOX, journal entries are locked; any subsequent invoice backdating posts as a documented adjustment in the current open period.
+
+### Does MYFUNDBOX generate customer invoices?
+No. MYFUNDBOX reads invoice data from your billing or ERP system and never sends invoices or processes customer payments.
+
+### Is US GAAP ASC 606 supported for EU subsidiaries with US parents?
+Yes. The underlying five-step contract and performance obligation framework aligns closely with both IFRS 15 and ASC 606 reporting needs.
+
+---
+
+# Recurring revenue reporting and SaaS analytics reconciled to your ledger
+
+- **Canonical URL**: https://myfundbox.example/en/product/revenue-reporting
+- **Title**: Recurring Revenue Reporting & MRR/ARR Analytics | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX Revenue Reporting unifies board-level SaaS KPIs—MRR, ARR, Net Revenue Retention, churn, and cohorts—with your GAAP/IFRS recognized revenue sub-ledger. Unlike standalone dashboard tools, every movement traces down to verified invoices, contract dates, and net-of-VAT amounts.
+
+## At a Glance
+- **What it is**: Finance-grade recurring revenue analytics bridging RevOps KPIs and statutory accounting.
+- **Who it is for**: CFOs, FP&A leads, RevOps managers, and board-reporting finance teams.
+- **Key capabilities**: MRR & ARR waterfall bridges (New, Expansion, Contraction, Churn); Gross and Net Revenue Retention (GRR / NRR) by cohort; Billings vs. Bookings vs. Recognized Revenue reconciliation; Role-based board and investor CSV/PDF/API exports
+- **Pricing model**: Included in MYFUNDBOX plans [ADD: Tier details]
+- **Region & compliance**: EUR default · European number/date conventions · EU VAT excluded from MRR/ARR
+- **Integrations**: HubSpot, Salesforce, Stripe Billing, Chargebee, ERP invoice feeds
+
+## Why do RevOps MRR dashboards often disagree with Accounting revenue?
+
+CRM and payment-gateway dashboards frequently mix gross invoiced amounts (including VAT), one-time setup fees, and cash collection dates with recurring run-rate. MYFUNDBOX normalizes contracts cleanly so RevOps and Controllers report from one reconciled definition.
+
+- Excludes one-time implementation fees and EU VAT from MRR/ARR calculations automatically.
+- Links every MRR bridge movement directly to customer IDs and underlying contract modifications.
+- Provides side-by-side reconciliation between Bookings, Billings, Cash Collected, and IFRS 15 Recognized Revenue.
+
+## Frequently Asked Questions
+
+### Which recurring revenue metrics are tracked natively?
+MYFUNDBOX tracks MRR, ARR, New Business, Expansion, Contraction, Logo Churn, Revenue Churn, GRR, NRR, ARPA, and time-based cohort retention.
+
+### Can we segment cohorts by customer tier, country, or sales channel?
+Yes. Dimensions synced from your CRM or ERP (region, plan, segment, billing cadence) filter all waterfalls and cohort tables.
+
+### Are one-time fees excluded from MRR and ARR?
+Yes. Non-recurring implementation or setup items are categorized separately from recurring subscription MRR/ARR.
+
+### Can stakeholders view read-only dashboards without editing accounting rules?
+Yes. Role-based permissions separate controller/admin rule-editing rights from executive and RevOps read-only analytics access.
+
+### Does MYFUNDBOX replace our payment gateway analytics?
+It consolidates recurring revenue across all payment gateways and manual SEPA/ERP invoices into one finance-approved view.
+
+---
+
+# Revenue forecasting grounded in contracted schedules and cohort retention
+
+- **Canonical URL**: https://myfundbox.example/en/product/revenue-forecasting
+- **Title**: SaaS & Subscription Revenue Forecasting Software | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX Revenue Forecasting projects future recognized revenue, deferred revenue burn-down, and renewal cash inflows directly from active customer contracts. Finance teams model conservative, base, and expansion scenarios without rebuilding fragile multi-tab spreadsheet forecasts every month.
+
+## At a Glance
+- **What it is**: Contract-driven recognized revenue and recurring renewal forecasting engine.
+- **Who it is for**: CFOs, FP&A managers, and finance leaders running rolling 12–36 month plans.
+- **Key capabilities**: Contracted backlog & deferred revenue burn-down projections; Renewal, churn, and expansion scenario assumptions; Actuals vs. forecast variance tracking by month; Separation of contracted committed revenue vs. pipeline upside
+- **Pricing model**: Included / Add-on module [ADD: tier specification]
+- **Region & compliance**: EUR consolidated forecasting · EU multi-entity support [CONFIRM]
+- **Integrations**: CRM pipeline (HubSpot/Salesforce) + live sub-ledger schedules
+
+## How is revenue forecasting different from cash flow forecasting?
+
+Cash flow forecasting estimates when invoices are paid in the bank, whereas revenue forecasting projects when contracted obligations become earned P&L revenue under IFRS 15. MYFUNDBOX separates committed deferred burn-down from renewal and new-business assumptions.
+
+1. **Lock committed backlog from deferred revenue**: Automatically project guaranteed future recognition from signed, non-cancellable contracts already in your sub-ledger.
+2. **Layer empirical cohort retention and expansion**: Apply historical GRR/NRR benchmarks or custom renewal probabilities to upcoming contract end dates.
+3. **Compare forecast vs. actual close monthly**: Track P&L variance between prior forecast snapshots and actual closed IFRS 15 recognized revenue.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX separate committed revenue from projected renewals?
+Yes. Forecasts clearly distinguish locked contracted backlog from assumption-based renewals and CRM pipeline scenarios.
+
+### Can we run sensitivity scenarios for churn or annual billing mix?
+Yes. Finance teams can adjust churn, expansion, and annual-prepaid mix drivers to compare upside and downside P&L cases.
+
+### How far ahead can MYFUNDBOX project deferred revenue burn-down?
+Schedules project across the full remaining life of active contracts (12, 24, or 36+ months).
+
+### Are forecast snapshots archived for board comparisons?
+Yes. Monthly forecast baselines can be saved to compare actual close performance against prior budget versions.
+
+### Can forecast tables be exported for FP&A consolidation?
+Yes, monthly P&L and balance-sheet roll-forward projections export cleanly to CSV/Excel or via API.
+
+---
+
+# Automated deferred revenue schedules and period-end accruals
+
+- **Canonical URL**: https://myfundbox.example/en/product/deferred-revenue-accruals
+- **Title**: Deferred Revenue & Accruals Automation Software | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX automates deferred revenue (passive Rechnungsabgrenzungsposten / PRAP) and accrued unbilled revenue schedules at customer and contract level. Controllers eliminate manual month-end cutoff spreadsheets and reconcile opening-to-closing balance sheet movements down to every individual invoice.
+
+## At a Glance
+- **What it is**: Sub-ledger engine for deferred revenue liabilities, contract assets, and monthly accruals.
+- **Who it is for**: Financial controllers, senior accountants, and external auditors.
+- **Key capabilities**: Opening + Billings - Recognized = Closing roll-forward reports; Short-term (<12m) vs. long-term (>12m) deferred split; Unbilled revenue (accrued assets) when delivery precedes invoicing; Customer-level balance sheet tie-out for year-end audits
+- **Pricing model**: Included in core MYFUNDBOX platform [ADD: tier details]
+- **Region & compliance**: IFRS 15 contract liabilities/assets · German HGB PRAP/ARAP · DATEV-ready structure
+- **Integrations**: DATEV, SAP, Exact, Xero, NetSuite, Stripe Billing, Chargebee
+
+## How does the deferred revenue roll-forward tie out to your balance sheet?
+
+Every euro billed in advance enters the deferred revenue liability account (net of VAT) and amortizes cleanly into recognized revenue over the service period. MYFUNDBOX generates an auditable waterfall connecting opening balance, new billings, adjustments, recognized revenue, and ending balance.
+
+- Separates current (≤12 months) and non-current (>12 months) deferred revenue for multi-year prepayments.
+- Tracks accrued/unbilled receivables when service delivery starts before the billing run.
+- Drill down from any general ledger balance directly to the underlying contracts and invoices.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX distinguish short-term and long-term deferred revenue?
+Yes. Multi-year prepaid contracts automatically split recognition schedules between current (<12 months) and non-current (>12 months) liabilities.
+
+### What happens if a service begins before an invoice is issued?
+MYFUNDBOX records accrued (unbilled) revenue for the delivered period and reverses it automatically once the invoice posts.
+
+### How does this align with German HGB Rechnungsabgrenzungsposten (PRAP)?
+Prepaid annual or multi-year fees collected before the balance-sheet date are systematically deferred across future periods in line with HGB accrual principles.
+
+### Can auditors inspect individual contract schedules in read-only mode?
+Yes. Role-based permissions allow external auditors or tax advisors read-only access to schedules and audit logs.
+
+### How are credit notes handled in deferred revenue?
+Credit notes reduce remaining unrecognized deferred revenue or post documented catch-up reversals depending on your policy configuration.
+
+---
+
+# Integrations and API for your existing billing, CRM, and EU accounting stack
+
+- **Canonical URL**: https://myfundbox.example/en/product/integrations-api
+- **Title**: Revenue Management Integrations & REST API | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX connects in read-only mode to your upstream billing and CRM tools while exporting balanced revenue journals to your European accounting or ERP system. Keep your existing payment gateways and invoicing workflows intact while unifying revenue accounting through native connectors, webhooks, and REST APIs.
+
+## At a Glance
+- **What it is**: Non-intrusive integration layer linking upstream revenue data with downstream EU accounting.
+- **Who it is for**: Finance Systems Leads, Controllers, RevOps Engineers, and CTOs.
+- **Key capabilities**: Upstream billing & payment data sync (read-only); CRM contract & amendment ingestion; Downstream GL journal exports (DATEV, ERP, CSV); REST API & idempotent webhooks for custom pipelines
+- **Pricing model**: Standard connectors included; custom API volume [ADD: tier details]
+- **Region & compliance**: EU-hosted API endpoints · Encrypted transit/rest · Role-scoped API keys
+- **Integrations**: DATEV [CONFIRM], SAP [CONFIRM], Xero, Exact, NetSuite, Stripe Billing, Chargebee, HubSpot, Salesforce
+
+## Which systems integrate with MYFUNDBOX?
+
+MYFUNDBOX bridges upstream commercial systems (where deals and invoices originate) with downstream general ledgers (where statutory books live). Integration scopes below mark items requiring confirmation against your specific tenant configuration.
+
+| Stack Layer | Systems | Direction & Purpose | Status |
+| --- | --- | --- | --- |
+| Accounting & ERP | DATEV, SAP, Exact Online, Xero, NetSuite | Outbound journal entries (recognized, deferred, VAT-netted) | [CONFIRM specific connector availability] |
+| Billing & Subscriptions | Stripe Billing, Chargebee, custom ERP invoices | Inbound invoices, credit notes, subscriptions, proration events | [CONFIRM active billing sources] |
+| CRM & Contracts | HubSpot, Salesforce | Inbound deal dates, contract terms, expansion amendments | [CONFIRM CRM mapping scope] |
+| Custom Data Pipeline | REST API, Webhooks, CSV / SFTP Batch | Programmatic contract & usage-invoice ingestion | [CONFIRM OpenAPI documentation access] |
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX write changes back into our billing system or charge customers?
+Never. Upstream billing integrations are strictly read-only. MYFUNDBOX never triggers charges, modifies customer payment methods, or sends invoices.
+
+### How does DATEV export work for German tax advisors (Steuerberater)?
+MYFUNDBOX structures monthly recognition, deferral, and reversal entries mapped to SKR03/SKR04-style account structures [CONFIRM exact DATEV Buchungsstapel CSV/API spec].
+
+### Can we push custom enterprise contracts via REST API?
+Yes. Custom back-office or proprietary billing systems can stream contract and invoice events into MYFUNDBOX via authenticated REST endpoints.
+
+### How are duplicate events prevented?
+Ingestion pipelines enforce idempotency keys on invoice and contract event IDs so retries never double-count recognized revenue.
+
+### Can we import historical CSV data during onboarding?
+Yes. Historical open contracts and opening deferred revenue balances can be imported via validated CSV templates.
+
+---
+
+# Revenue management for European B2B SaaS companies
+
+- **Canonical URL**: https://myfundbox.example/en/solutions/saas
+- **Title**: Revenue Management Software for B2B SaaS | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+European B2B SaaS companies use MYFUNDBOX to reconcile self-serve subscription billing with sales-led annual SEPA contracts in one sub-ledger. Automate IFRS 15 recognition across seat upgrades, ramp deals, and multi-year prepayments while tracking unified MRR, ARR, and Net Revenue Retention.
+
+## What SaaS revenue challenges does MYFUNDBOX solve?
+
+Hybrid B2B SaaS businesses outgrow gateway-only metrics the moment enterprise deals are closed via CRM contracts and SEPA bank transfers. MYFUNDBOX unifies PLG subscriptions and enterprise orders into a single IFRS 15 recognition and ARR analytics engine.
+
+- Handles mid-cycle seat upgrades, downgrades, and annual-to-multi-year switches without manual spreadsheets.
+- Separates one-time implementation fees from recurring SaaS licenses under IFRS 15.
+- Delivers investor-grade ARR bridges and NRR cohorts in EUR.
+
+## Frequently Asked Questions
+
+### Can MYFUNDBOX handle ramped multi-year SaaS contracts?
+Yes. Custom contract schedules accommodate stepped pricing, free trial months, and multi-year upfront prepayments.
+
+### How does it combine Stripe self-serve and SEPA enterprise invoices?
+Both streams normalize into one customer-level revenue ledger without changing how customers pay.
+
+### Does MYFUNDBOX calculate Net Revenue Retention (NRR)?
+Yes, NRR and GRR are computed automatically across monthly and annual customer cohorts.
+
+### Is MYFUNDBOX suited for Seed to Series C European SaaS?
+Yes, particularly once annual prepayments, multi-entity audits, or hybrid billing break manual Excel models.
+
+### Can we track EUR alongside USD or GBP contracts?
+Yes, multi-currency agreements convert cleanly to EUR for consolidated SaaS reporting [CONFIRM FX policy].
+
+---
+
+# Revenue recognition and analytics for digital services and media
+
+- **Canonical URL**: https://myfundbox.example/en/solutions/digital-services
+- **Title**: Revenue Management for Digital Services & Media | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Digital publishers, software marketplaces, and media platforms rely on MYFUNDBOX to amortize prepaid annual passes, isolate cross-border EU VAT rates before recognizing revenue, and track subscriber cohort retention across European markets without touching checkout or payment processing.
+
+## Why is EU VAT separation critical in digital media revenue reporting?
+
+Digital services sold across EU member states carry varying local VAT rates (OSS/MOSS). Reporting gross checkout totals as MRR distorts unit economics and violates IFRS 15; MYFUNDBOX isolates net revenue per jurisdiction automatically.
+
+- Tracks high-volume consumer and prosumer prepaid subscriptions without slowing down close.
+- Separates promotional discount periods and partial refunds cleanly.
+- Forecasts renewal cohorts by acquisition period and billing cadence.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX strip varying EU VAT rates automatically?
+Yes. Tax amounts on ingested invoices are mapped to VAT liability accounts so recognized revenue and MRR always reflect net consideration.
+
+### Can it handle high-volume annual digital passes?
+Yes. Prepaid annual subscriptions amortize automatically over 12 months with consolidated monthly GL journal summaries.
+
+### Does MYFUNDBOX replace our paywall or payment gateway?
+No. You keep your existing paywall, app store, or payment provider and feed finalized billing events into MYFUNDBOX.
+
+### How are refunds and chargebacks reflected?
+Refunds and credit notes adjust deferred liabilities or recognized periods cleanly with full audit linkage.
+
+### Can media teams forecast subscription renewals?
+Yes, cohort retention models project expected renewal revenue across monthly and annual subscriber groups.
+
+---
+
+# Deferred revenue and retention clarity for membership organizations
+
+- **Canonical URL**: https://myfundbox.example/en/solutions/memberships
+- **Title**: Deferred Revenue Software for Memberships & Associations | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Membership organizations, B2B networks, and professional associations collect annual dues upfront while delivering member benefits over twelve months. MYFUNDBOX automates straight-line dues recognition, tracks deferred liabilities cleanly for year-end audits, and forecasts member renewal retention.
+
+## How should annual membership dues be recognized?
+
+Under IFRS 15 and European accrual accounting (HGB), annual membership fees collected upfront represent deferred revenue (a liability) on day one and must be recognized proportionally across the twelve-month membership term.
+
+- Separates recurring membership dues from point-in-time event tickets or sponsorships.
+- Eliminates year-end audit scrambling over active vs. expired member periods.
+- Provides clear renewal rate and cohort retention tracking by member tier.
+
+## Frequently Asked Questions
+
+### Can MYFUNDBOX separate annual dues from one-off conference fees?
+Yes. Dues amortize over the membership term while event fees recognize on the event delivery date.
+
+### What if members join mid-month?
+Daily proration options recognize exact service days in the joining and expiring months.
+
+### Does MYFUNDBOX collect membership payments?
+No. It connects to your existing membership or billing platform purely for revenue accounting and forecasting.
+
+### Is it compliant with German HGB accrual rules?
+Yes, automated PRAP schedules align with period-accurate accrual accounting.
+
+### Can finance committees view renewal forecasts?
+Yes, read-only forecast and retention dashboards export cleanly for board and committee reviews.
+
+---
+
+# Retainer and milestone revenue tracking for modern agencies
+
+- **Canonical URL**: https://myfundbox.example/en/solutions/agencies
+- **Title**: Retainer & Milestone Revenue Management for Agencies | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Digital, consulting, and creative agencies run on a blend of monthly retainers, quarterly prepayments, and milestone-based projects. MYFUNDBOX gives agency finance leads accurate recognized revenue schedules, accrued unbilled tracking, and forward-looking retainer forecasts without spreadsheet reconciliation.
+
+## How does MYFUNDBOX unify retainers and milestone projects?
+
+Agencies often invoice quarterly in advance for retainers while billing projects upon completion. MYFUNDBOX smooths quarterly retainers into monthly earned revenue and surfaces unbilled accruals when project work finishes ahead of invoicing.
+
+- Distinguishes guaranteed recurring retainer revenue from one-off project scopes.
+- Tracks client retention, retainer expansion, and contraction across service lines.
+- Exports period-end accrual and deferral journals directly to your accounting system.
+
+## Frequently Asked Questions
+
+### Can MYFUNDBOX handle quarterly or annual prepaid retainers?
+Yes. Upfront retainer invoices automatically spread monthly across the contracted service period.
+
+### What if a client project is delivered before the invoice is issued?
+Accrued (unbilled) revenue rules recognize earned work in the delivery month and clear once invoiced.
+
+### Does MYFUNDBOX track agency retainer churn and expansion?
+Yes. Retainer MRR bridges highlight upgraded scopes, paused retainers, and lost accounts.
+
+### Do we need to stop invoicing from our current ERP or PSA tool?
+No. MYFUNDBOX ingests invoice and contract data from your existing systems.
+
+### Can we forecast committed retainer revenue for the next 6–12 months?
+Yes, active retainer contracts populate committed forward revenue automatically.
+
+---
+
+# Built for European CFOs, financial controllers, and accounting teams
+
+- **Canonical URL**: https://myfundbox.example/en/solutions/finance-teams-cfo
+- **Title**: Revenue Management for CFOs & Controllers | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+CFOs and controllers face growing audit scrutiny over deferred revenue, EU VAT separation, and SaaS KPI accuracy. MYFUNDBOX delivers an immutable, role-governed revenue sub-ledger in EUR that cuts manual close time, satisfies external auditors, and aligns finance with RevOps.
+
+## How does MYFUNDBOX reduce month-end close risk for controllers?
+
+Instead of auditing 500-row Excel schedules under time pressure every month, controllers review automated exception alerts, verify period-close roll-forwards, lock the accounting period, and export balanced journals ready for statutory review.
+
+- Enforces period locks and role-based approval permissions across finance staff.
+- Provides invoice-to-GL lineage for every euro of recognized and deferred revenue.
+- Supports German HGB/GoBD expectations and IFRS 15 disclosures [CONFIRM exact export templates].
+
+## Frequently Asked Questions
+
+### How does MYFUNDBOX help during annual statutory audits?
+Auditors can verify opening-to-closing deferred revenue roll-forwards and trace any journal line back to source contract and invoice records.
+
+### Are permissions separated between RevOps viewers and Controllers?
+Yes. Role-based access controls restrict period closing, rule editing, and journal approvals to authorized finance roles.
+
+### Does MYFUNDBOX require IT engineering to run monthly closes?
+No. After initial connector setup, controllers manage rules, period locks, and exports directly in the finance UI.
+
+### Can CFOs track forecast variance over time?
+Yes, saved forecast baselines compare directly against closed IFRS 15 actuals.
+
+### Is a Data Processing Agreement (DPA) available?
+Yes, GDPR-compliant DPAs with EU hosting details are available for legal review.
+
+---
+
+# Transparent EUR pricing built around revenue complexity—never payment volume
+
+- **Canonical URL**: https://myfundbox.example/en/pricing
+- **Title**: Pricing & Plans | MYFUNDBOX Revenue Management
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX prices strictly as dedicated revenue management software in EUR, never taking a percentage of payment processing volume. Plans scale with annual recurring revenue (ARR) managed, entity count, and ERP integration depth. [ADD: Final tier EUR figures or confirm custom quote policy].
+
+## How do MYFUNDBOX plans compare across growth stages?
+
+Every tier includes core IFRS 15 / HGB revenue recognition, deferred revenue roll-forwards, EU VAT separation, and GDPR-compliant EU hosting. Higher tiers expand multi-entity consolidation, custom ERP connectors, and dedicated accounting onboarding.
+
+| Capability / Limit | Growth | Scale | Enterprise |
+| --- | --- | --- | --- |
+| Target Profile | Seed – Series A SaaS & Agencies | Series B+ & Multi-Source Teams | Multi-Entity European Groups |
+| Indicative Pricing (EUR) | [ADD: € / month billed annually] | [ADD: € / month billed annually] | Custom Quote |
+| Payment Processing Cut | 0% (Not a payment processor) | 0% (Not a payment processor) | 0% (Not a payment processor) |
+| IFRS 15 & HGB Recognition Engine | Included | Included | Included |
+| Deferred Revenue & Accruals | Included | Included (+ Multi-Year Split) | Included (+ Custom Rules) |
+| MRR / ARR / Cohort Analytics | Included | Included | Included |
+| Revenue Forecasting | Baseline Backlog Forecast | Scenario & Cohort Modeling | Multi-Entity Rolling Scenarios |
+| Accounting / ERP Exports | CSV / DATEV-ready Export | Native ERP Connectors [CONFIRM] | Custom ERP & Multi-Book API |
+| Entity Count | 1 Legal Entity | Up to [ADD: N] Entities | Unlimited Entities |
+| Support & SLA | Email & Onboarding Guide | Priority EU Finance Support | Dedicated Account Manager & SLA |
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX charge a percentage of our GMV or payment volume?
+No. Because MYFUNDBOX does not process payments or act as a billing gateway, pricing is never a hidden tax on your transaction volume.
+
+### Are prices quoted in EUR excluding VAT?
+Yes. Standard commercial pricing is denominated in EUR excluding statutory VAT (with reverse-charge handling for eligible EU B2B entities).
+
+### Is onboarding or historical migration included?
+Guided historical deferred-balance migration and rule validation are scoped during your demo [ADD: confirm whether included or one-time fee].
+
+### Can we add read-only seats for auditors or board members?
+Yes [ADD: confirm exact read-only/auditor seat allowance per tier].
+
+### Do you offer a trial or guided sandbox evaluation?
+Book a demo to walk through your sample contract structures inside a dedicated evaluation environment.
+
+---
+
+# MYFUNDBOX vs Zuora (Zuora Revenue): Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-zuora
+- **Title**: MYFUNDBOX vs Zuora (Zuora Revenue) (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Zuora Revenue is an enterprise-grade revenue recognition engine built primarily for large global corporations running multi-product quote-to-cash ecosystems. MYFUNDBOX focuses on European finance teams that need IFRS 15, HGB/GoBD, and recurring revenue forecasting without multi-quarter enterprise ERP implementation cycles.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Zuora (Zuora Revenue) |
+| --- | --- | --- |
+| Primary Focus | EU-first revenue management & sub-ledger | Enterprise quote-to-revenue suite |
+| Payment Processing / Billing | No (connects to existing billing tools) | Yes (via Zuora Billing) |
+| IFRS 15 / Deferred Revenue Rules | Included in core platform | Included via Zuora Revenue |
+| EU Compliance (HGB / GoBD / DATEV focus) | Designed for EU & DACH controllers [CONFIRM exports] | Configured via enterprise SI partners |
+| MRR / ARR / Cohort Analytics | Unified with recognized revenue ledger | Available across Zuora Analytics |
+| Typical Implementation Footprint | Finance-led onboarding [ADD: typical timeline] | Multi-month enterprise deployment |
+
+## Migration Steps
+1. Export historical contract schedules, open deferred revenue balances, and active performance obligations as of your cutoff period.
+2. Connect your upstream billing and CRM data sources to MYFUNDBOX via native connectors or API.
+3. Map general ledger revenue, deferred revenue, and EU VAT accounts to match your chart of accounts.
+4. Run a parallel month-end close reconciliation comparing opening deferred balances before locking the live period.
+
+## Frequently Asked Questions
+
+### Is MYFUNDBOX a replacement for Zuora Billing?
+No. MYFUNDBOX is revenue management software, not a billing engine or payment gateway. It compares directly with Zuora Revenue by ingesting data from your existing billing tools.
+
+### How does MYFUNDBOX differ from Zuora Revenue for German companies?
+MYFUNDBOX is engineered in Germany with EU data residency, EUR defaults, EU VAT separation, and HGB/GoBD-aligned audit trails built for European controllers.
+
+### Can we migrate open deferred revenue balances from Zuora to MYFUNDBOX?
+Yes. During onboarding, opening deferred revenue balances and active contract schedules are imported at a clean cutoff date and reconciled before going live.
+
+### Does MYFUNDBOX charge a percentage of payment volume?
+No. Because MYFUNDBOX does not process payments, pricing is never tied to payment gateway transaction fees [ADD: confirm exact billing tier basis].
+
+### Which platform is better for a 3-person finance team?
+MYFUNDBOX is built so lean CFO and controller teams can configure recognition rules and close books without a full-time systems administrator.
+
+---
+
+# Zuora (Zuora Revenue) alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/zuora-alternatives
+- **Title**: Top Zuora (Zuora Revenue) Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Zuora Revenue is an enterprise-grade revenue recognition engine built primarily for large global corporations running multi-product quote-to-cash ecosystems. MYFUNDBOX focuses on European finance teams that need IFRS 15, HGB/GoBD, and recurring revenue forecasting without multi-quarter enterprise ERP implementation cycles.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Zuora (Zuora Revenue) |
+| --- | --- | --- |
+| Primary Focus | EU-first revenue management & sub-ledger | Enterprise quote-to-revenue suite |
+| Payment Processing / Billing | No (connects to existing billing tools) | Yes (via Zuora Billing) |
+| IFRS 15 / Deferred Revenue Rules | Included in core platform | Included via Zuora Revenue |
+| EU Compliance (HGB / GoBD / DATEV focus) | Designed for EU & DACH controllers [CONFIRM exports] | Configured via enterprise SI partners |
+| MRR / ARR / Cohort Analytics | Unified with recognized revenue ledger | Available across Zuora Analytics |
+| Typical Implementation Footprint | Finance-led onboarding [ADD: typical timeline] | Multi-month enterprise deployment |
+
+## Migration Steps
+1. Export historical contract schedules, open deferred revenue balances, and active performance obligations as of your cutoff period.
+2. Connect your upstream billing and CRM data sources to MYFUNDBOX via native connectors or API.
+3. Map general ledger revenue, deferred revenue, and EU VAT accounts to match your chart of accounts.
+4. Run a parallel month-end close reconciliation comparing opening deferred balances before locking the live period.
+
+## Frequently Asked Questions
+
+### Is MYFUNDBOX a replacement for Zuora Billing?
+No. MYFUNDBOX is revenue management software, not a billing engine or payment gateway. It compares directly with Zuora Revenue by ingesting data from your existing billing tools.
+
+### How does MYFUNDBOX differ from Zuora Revenue for German companies?
+MYFUNDBOX is engineered in Germany with EU data residency, EUR defaults, EU VAT separation, and HGB/GoBD-aligned audit trails built for European controllers.
+
+### Can we migrate open deferred revenue balances from Zuora to MYFUNDBOX?
+Yes. During onboarding, opening deferred revenue balances and active contract schedules are imported at a clean cutoff date and reconciled before going live.
+
+### Does MYFUNDBOX charge a percentage of payment volume?
+No. Because MYFUNDBOX does not process payments, pricing is never tied to payment gateway transaction fees [ADD: confirm exact billing tier basis].
+
+### Which platform is better for a 3-person finance team?
+MYFUNDBOX is built so lean CFO and controller teams can configure recognition rules and close books without a full-time systems administrator.
+
+---
+
+# MYFUNDBOX vs Chargebee RevRec: Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-chargebee-revrec
+- **Title**: MYFUNDBOX vs Chargebee RevRec (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Chargebee RevRec (formerly RevLock) is a revenue recognition product closely aligned with the Chargebee subscription billing ecosystem and US/global ASC 606 workflows. MYFUNDBOX is a standalone, billing-agnostic EU revenue management platform built in Germany for IFRS 15, HGB/GoBD accounting workflows, and integrated SaaS revenue forecasting.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Chargebee RevRec |
+| --- | --- | --- |
+| Independence from Billing Vendor | 100% billing-agnostic across sources | Tightly aligned with Chargebee ecosystem |
+| EU Residency & German HGB/GoBD Focus | Built in Germany; EU-first compliance | Global SaaS compliance focus |
+| IFRS 15 Recognition & Waterfalls | Core capability with full audit trail | Core capability (ASC 606 / IFRS 15) |
+| Revenue Forecasting & Scenario Planning | Integrated contract & cohort forecasting | Primarily focused on historical & scheduled rec |
+| MRR / ARR / NRR / Cohort Reporting | Unified with recognized ledger | Requires Chargebee Billing / Metrics pairing |
+| Payment Processing Role | None (pure revenue management) | Part of Chargebee billing/payment suite |
+
+## Migration Steps
+1. Keep Chargebee Billing running if you use it for invoicing—MYFUNDBOX does not replace your billing engine.
+2. Connect your billing source and CRM contract data into MYFUNDBOX in read-only mode.
+3. Configure IFRS 15 / HGB recognition rules and reconcile one historical period against your existing waterfall.
+4. Enable automated monthly journal exports to your EU accounting or ERP system.
+
+## Frequently Asked Questions
+
+### Do I have to leave Chargebee Billing to use MYFUNDBOX?
+No. MYFUNDBOX is not a billing engine. You can continue invoicing in Chargebee or any other billing system while managing revenue recognition and forecasting in MYFUNDBOX.
+
+### How does MYFUNDBOX compare to Chargebee RevRec on forecasting?
+MYFUNDBOX combines backward-looking IFRS 15 revenue recognition with forward-looking contract backlog and cohort revenue forecasting in one workspace.
+
+### Does Chargebee RevRec support German HGB and DATEV?
+Chargebee RevRec focuses primarily on ASC 606 and IFRS 15 journal exports for global ERPs; MYFUNDBOX is designed specifically around European compliance and accounting exports [CONFIRM exact DATEV spec].
+
+### Can MYFUNDBOX consolidate revenue from both Chargebee and custom enterprise invoices?
+Yes. Multi-source ingestion allows self-serve subscriptions and sales-led enterprise PDFs/ERP invoices to flow into one unified revenue sub-ledger.
+
+### Which option avoids billing vendor lock-in?
+MYFUNDBOX keeps your revenue sub-ledger independent from your billing and payment providers, making future billing changes non-disruptive to audit history.
+
+---
+
+# Chargebee RevRec alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/chargebee-revrec-alternatives
+- **Title**: Top Chargebee RevRec Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Chargebee RevRec (formerly RevLock) is a revenue recognition product closely aligned with the Chargebee subscription billing ecosystem and US/global ASC 606 workflows. MYFUNDBOX is a standalone, billing-agnostic EU revenue management platform built in Germany for IFRS 15, HGB/GoBD accounting workflows, and integrated SaaS revenue forecasting.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Chargebee RevRec |
+| --- | --- | --- |
+| Independence from Billing Vendor | 100% billing-agnostic across sources | Tightly aligned with Chargebee ecosystem |
+| EU Residency & German HGB/GoBD Focus | Built in Germany; EU-first compliance | Global SaaS compliance focus |
+| IFRS 15 Recognition & Waterfalls | Core capability with full audit trail | Core capability (ASC 606 / IFRS 15) |
+| Revenue Forecasting & Scenario Planning | Integrated contract & cohort forecasting | Primarily focused on historical & scheduled rec |
+| MRR / ARR / NRR / Cohort Reporting | Unified with recognized ledger | Requires Chargebee Billing / Metrics pairing |
+| Payment Processing Role | None (pure revenue management) | Part of Chargebee billing/payment suite |
+
+## Migration Steps
+1. Keep Chargebee Billing running if you use it for invoicing—MYFUNDBOX does not replace your billing engine.
+2. Connect your billing source and CRM contract data into MYFUNDBOX in read-only mode.
+3. Configure IFRS 15 / HGB recognition rules and reconcile one historical period against your existing waterfall.
+4. Enable automated monthly journal exports to your EU accounting or ERP system.
+
+## Frequently Asked Questions
+
+### Do I have to leave Chargebee Billing to use MYFUNDBOX?
+No. MYFUNDBOX is not a billing engine. You can continue invoicing in Chargebee or any other billing system while managing revenue recognition and forecasting in MYFUNDBOX.
+
+### How does MYFUNDBOX compare to Chargebee RevRec on forecasting?
+MYFUNDBOX combines backward-looking IFRS 15 revenue recognition with forward-looking contract backlog and cohort revenue forecasting in one workspace.
+
+### Does Chargebee RevRec support German HGB and DATEV?
+Chargebee RevRec focuses primarily on ASC 606 and IFRS 15 journal exports for global ERPs; MYFUNDBOX is designed specifically around European compliance and accounting exports [CONFIRM exact DATEV spec].
+
+### Can MYFUNDBOX consolidate revenue from both Chargebee and custom enterprise invoices?
+Yes. Multi-source ingestion allows self-serve subscriptions and sales-led enterprise PDFs/ERP invoices to flow into one unified revenue sub-ledger.
+
+### Which option avoids billing vendor lock-in?
+MYFUNDBOX keeps your revenue sub-ledger independent from your billing and payment providers, making future billing changes non-disruptive to audit history.
+
+---
+
+# MYFUNDBOX vs Maxio: Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-maxio
+- **Title**: MYFUNDBOX vs Maxio (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Maxio (formed from Chargify and SaaSOptics) combines B2B subscription billing, SaaS metrics, and GAAP revenue recognition primarily for North American B2B SaaS companies. MYFUNDBOX focuses strictly on pure-play EU revenue management—delivering IFRS 15, HGB/GoBD alignment, and European data residency without bundling billing.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Maxio |
+| --- | --- | --- |
+| Geographic & Regulatory Center of Gravity | EU / Germany (IFRS 15, HGB, GDPR) | US-first (ASC 606, GAAP) |
+| Billing Engine Included | No (non-intrusive overlay) | Yes (Chargify billing heritage) |
+| MRR / ARR / Churn / Expansion Bridges | Included in EUR & multi-currency | Included (SaaSOptics heritage) |
+| Deferred Revenue & Accruals | Automated schedules & roll-forwards | Automated schedules & waterfalls |
+| EU VAT Separation in Revenue Reports | Native net revenue vs. VAT handling | Requires tax/ERP configuration |
+| Data Residency | EU-based hosting [CONFIRM Frankfurt] | US / multi-region hosting |
+
+## Migration Steps
+1. Export active contract and ARR bridge schedules from your existing metrics or billing tool.
+2. Connect CRM and billing feeds into MYFUNDBOX without altering customer invoicing.
+3. Validate IFRS 15 recognition mappings and reconcile MRR/ARR definitions.
+4. Publish board-ready ARR bridges and period-close journal entries from MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX replace Chargify/Maxio billing?
+No. MYFUNDBOX never issues invoices or processes payments; it serves as your revenue recognition, analytics, and forecasting layer.
+
+### Why do European SaaS CFOs choose MYFUNDBOX over US-first tools like Maxio?
+EU data residency, GDPR alignment, native EUR reporting, EU VAT separation, and IFRS 15 / German HGB compliance reduce friction with European auditors.
+
+### Can MYFUNDBOX generate SaaSOptics-style ARR bridges and cohorts?
+Yes. MYFUNDBOX tracks New, Expansion, Contraction, Churn, and Net Revenue Retention alongside recognized revenue.
+
+### How does audit trail documentation work?
+Every recognition adjustment, contract modification, and period close entry is logged with user attribution and timestamps.
+
+### Can MYFUNDBOX handle multi-currency contracts alongside EUR?
+Yes, multi-currency contracts are supported with EUR consolidated reporting [CONFIRM FX rate source].
+
+---
+
+# Maxio alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/maxio-alternatives
+- **Title**: Top Maxio Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Maxio (formed from Chargify and SaaSOptics) combines B2B subscription billing, SaaS metrics, and GAAP revenue recognition primarily for North American B2B SaaS companies. MYFUNDBOX focuses strictly on pure-play EU revenue management—delivering IFRS 15, HGB/GoBD alignment, and European data residency without bundling billing.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Maxio |
+| --- | --- | --- |
+| Geographic & Regulatory Center of Gravity | EU / Germany (IFRS 15, HGB, GDPR) | US-first (ASC 606, GAAP) |
+| Billing Engine Included | No (non-intrusive overlay) | Yes (Chargify billing heritage) |
+| MRR / ARR / Churn / Expansion Bridges | Included in EUR & multi-currency | Included (SaaSOptics heritage) |
+| Deferred Revenue & Accruals | Automated schedules & roll-forwards | Automated schedules & waterfalls |
+| EU VAT Separation in Revenue Reports | Native net revenue vs. VAT handling | Requires tax/ERP configuration |
+| Data Residency | EU-based hosting [CONFIRM Frankfurt] | US / multi-region hosting |
+
+## Migration Steps
+1. Export active contract and ARR bridge schedules from your existing metrics or billing tool.
+2. Connect CRM and billing feeds into MYFUNDBOX without altering customer invoicing.
+3. Validate IFRS 15 recognition mappings and reconcile MRR/ARR definitions.
+4. Publish board-ready ARR bridges and period-close journal entries from MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX replace Chargify/Maxio billing?
+No. MYFUNDBOX never issues invoices or processes payments; it serves as your revenue recognition, analytics, and forecasting layer.
+
+### Why do European SaaS CFOs choose MYFUNDBOX over US-first tools like Maxio?
+EU data residency, GDPR alignment, native EUR reporting, EU VAT separation, and IFRS 15 / German HGB compliance reduce friction with European auditors.
+
+### Can MYFUNDBOX generate SaaSOptics-style ARR bridges and cohorts?
+Yes. MYFUNDBOX tracks New, Expansion, Contraction, Churn, and Net Revenue Retention alongside recognized revenue.
+
+### How does audit trail documentation work?
+Every recognition adjustment, contract modification, and period close entry is logged with user attribution and timestamps.
+
+### Can MYFUNDBOX handle multi-currency contracts alongside EUR?
+Yes, multi-currency contracts are supported with EUR consolidated reporting [CONFIRM FX rate source].
+
+---
+
+# MYFUNDBOX vs Stripe Revenue Recognition: Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-stripe-revenue-recognition
+- **Title**: MYFUNDBOX vs Stripe Revenue Recognition (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Stripe Revenue Recognition automates accrual accounting and deferred revenue waterfalls directly for transactions processed inside the Stripe ecosystem. MYFUNDBOX is a standalone, payment-agnostic European revenue management platform that unifies revenue across Stripe, bank transfers, ERP invoices, and multiple billing tools while adding forecasting and EU compliance.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Stripe Revenue Recognition |
+| --- | --- | --- |
+| Multi-Source / Non-Stripe Revenue (SEPA, ERP, CRM) | Native multi-source ingestion | Primarily Stripe transactions (manual CSV import for external) |
+| Payment Gateway Lock-in | None (works with any PSP or bank) | Built around Stripe ecosystem |
+| Revenue Forecasting & Scenario Modeling | Dedicated forecasting engine | Historical & scheduled recognition only |
+| EU Compliance (HGB / GoBD / DATEV) | EU-first accounting structure | General global accrual templates |
+| MRR / ARR / NRR & Executive Dashboards | Full CFO & RevOps analytics suite | Basic SaaS metrics via Stripe Billing |
+| Pricing Scaling | Fixed/tiered SaaS model [ADD: model] | Percentage of processed volume / custom |
+
+## Migration Steps
+1. Connect your Stripe account in read-only mode alongside your CRM or ERP invoice feed.
+2. Import historical open annual contracts and non-Stripe wire-transfer agreements.
+3. Verify deferred revenue balances match your prior Stripe waterfall at cutoff.
+4. Run unified month-end close across all payment channels in MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### Can MYFUNDBOX ingest Stripe Billing data automatically?
+Yes. MYFUNDBOX reads subscription, invoice, credit note, and refund events from Stripe while remaining completely independent of payment processing.
+
+### Why do companies outgrow Stripe Revenue Recognition?
+Once B2B teams close enterprise deals via SEPA bank transfer, multi-year CRM contracts, or external invoicing, Stripe no longer sees 100% of revenue—creating manual spreadsheet gaps.
+
+### Does MYFUNDBOX handle Stripe credit notes and partial refunds?
+Yes. Credit notes, proration, and partial refunds adjust future recognition and deferred revenue schedules automatically with an audit trail.
+
+### Is MYFUNDBOX a Stripe competitor for payments?
+No. MYFUNDBOX does not process payments or act as a PSP. You keep Stripe (or Adyen, Mollie, GoCardless) for payments.
+
+### Does MYFUNDBOX offer revenue forecasting beyond scheduled recognition?
+Yes, MYFUNDBOX includes forward-looking revenue and retention forecasting beyond existing contracted schedules.
+
+---
+
+# Stripe Revenue Recognition alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/stripe-revenue-recognition-alternatives
+- **Title**: Top Stripe Revenue Recognition Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Stripe Revenue Recognition automates accrual accounting and deferred revenue waterfalls directly for transactions processed inside the Stripe ecosystem. MYFUNDBOX is a standalone, payment-agnostic European revenue management platform that unifies revenue across Stripe, bank transfers, ERP invoices, and multiple billing tools while adding forecasting and EU compliance.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Stripe Revenue Recognition |
+| --- | --- | --- |
+| Multi-Source / Non-Stripe Revenue (SEPA, ERP, CRM) | Native multi-source ingestion | Primarily Stripe transactions (manual CSV import for external) |
+| Payment Gateway Lock-in | None (works with any PSP or bank) | Built around Stripe ecosystem |
+| Revenue Forecasting & Scenario Modeling | Dedicated forecasting engine | Historical & scheduled recognition only |
+| EU Compliance (HGB / GoBD / DATEV) | EU-first accounting structure | General global accrual templates |
+| MRR / ARR / NRR & Executive Dashboards | Full CFO & RevOps analytics suite | Basic SaaS metrics via Stripe Billing |
+| Pricing Scaling | Fixed/tiered SaaS model [ADD: model] | Percentage of processed volume / custom |
+
+## Migration Steps
+1. Connect your Stripe account in read-only mode alongside your CRM or ERP invoice feed.
+2. Import historical open annual contracts and non-Stripe wire-transfer agreements.
+3. Verify deferred revenue balances match your prior Stripe waterfall at cutoff.
+4. Run unified month-end close across all payment channels in MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### Can MYFUNDBOX ingest Stripe Billing data automatically?
+Yes. MYFUNDBOX reads subscription, invoice, credit note, and refund events from Stripe while remaining completely independent of payment processing.
+
+### Why do companies outgrow Stripe Revenue Recognition?
+Once B2B teams close enterprise deals via SEPA bank transfer, multi-year CRM contracts, or external invoicing, Stripe no longer sees 100% of revenue—creating manual spreadsheet gaps.
+
+### Does MYFUNDBOX handle Stripe credit notes and partial refunds?
+Yes. Credit notes, proration, and partial refunds adjust future recognition and deferred revenue schedules automatically with an audit trail.
+
+### Is MYFUNDBOX a Stripe competitor for payments?
+No. MYFUNDBOX does not process payments or act as a PSP. You keep Stripe (or Adyen, Mollie, GoCardless) for payments.
+
+### Does MYFUNDBOX offer revenue forecasting beyond scheduled recognition?
+Yes, MYFUNDBOX includes forward-looking revenue and retention forecasting beyond existing contracted schedules.
+
+---
+
+# MYFUNDBOX vs NetSuite Advanced Revenue Management (ARM): Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-netsuite-arm
+- **Title**: MYFUNDBOX vs NetSuite Advanced Revenue Management (ARM) (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+NetSuite Advanced Revenue Management (ARM) embeds IFRS 15 and ASC 606 revenue rules directly inside the Oracle NetSuite ERP environment. MYFUNDBOX gives European finance teams a faster, dedicated revenue management layer that works with any accounting/ERP system—including DATEV, Exact, Xero, SAP, or NetSuite—while adding modern SaaS KPIs and forecasting.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | NetSuite Advanced Revenue Management (ARM) |
+| --- | --- | --- |
+| ERP Lock-in | Works alongside DATEV, SAP, Xero, Exact, or NetSuite | Requires Oracle NetSuite ERP |
+| IFRS 15 Performance Obligations | Rule-based sub-ledger schedules | NetSuite ARM rule engine |
+| SaaS Metrics (MRR, ARR, NRR, Cohorts) | Built-in natively | Requires custom reports or SuiteApps |
+| Revenue Forecasting | Built-in scenario & backlog forecasting | Limited outside NetSuite Planning/PBCS |
+| Deployment Effort | Focused finance onboarding [ADD: timeline] | ERP + ARM consultant implementation |
+| German HGB / DATEV Readiness | Built for European accounting stacks | Requires NetSuite DACH localization |
+
+## Migration Steps
+1. Connect your billing and CRM systems to MYFUNDBOX without touching your underlying general ledger vendor.
+2. Map MYFUNDBOX revenue and deferred revenue accounts to your existing ERP chart of accounts.
+3. Reconcile historical deferred balances and generate clean monthly summary or detail journal exports.
+
+## Frequently Asked Questions
+
+### Do I need to replace my accounting software to use MYFUNDBOX?
+No. MYFUNDBOX acts as a specialized revenue sub-ledger that exports clean journal entries into DATEV, SAP, Xero, Exact, or NetSuite.
+
+### Can MYFUNDBOX work alongside NetSuite?
+Yes. Some finance teams use MYFUNDBOX to normalize multi-source SaaS contracts, calculate MRR/ARR cohorts, and feed summarized IFRS 15 journals into NetSuite.
+
+### Does NetSuite ARM include MRR, NRR, and churn dashboards out of the box?
+NetSuite ARM focuses on general-ledger accounting schedules; SaaS operational metrics typically require separate SuiteApps or BI tools, whereas MYFUNDBOX includes both.
+
+### Is MYFUNDBOX suitable for German GmbHs using DATEV?
+Yes. MYFUNDBOX is designed in Germany with European chart-of-accounts structures and DATEV-compatible export workflows [CONFIRM exact DATEV format].
+
+### How long does onboarding take compared to NetSuite ARM?
+Because MYFUNDBOX does not replace your core ERP or banking feeds, onboarding focuses solely on revenue data and accounting rules [ADD: typical onboarding weeks].
+
+---
+
+# NetSuite Advanced Revenue Management (ARM) alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/netsuite-arm-alternatives
+- **Title**: Top NetSuite Advanced Revenue Management (ARM) Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+NetSuite Advanced Revenue Management (ARM) embeds IFRS 15 and ASC 606 revenue rules directly inside the Oracle NetSuite ERP environment. MYFUNDBOX gives European finance teams a faster, dedicated revenue management layer that works with any accounting/ERP system—including DATEV, Exact, Xero, SAP, or NetSuite—while adding modern SaaS KPIs and forecasting.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | NetSuite Advanced Revenue Management (ARM) |
+| --- | --- | --- |
+| ERP Lock-in | Works alongside DATEV, SAP, Xero, Exact, or NetSuite | Requires Oracle NetSuite ERP |
+| IFRS 15 Performance Obligations | Rule-based sub-ledger schedules | NetSuite ARM rule engine |
+| SaaS Metrics (MRR, ARR, NRR, Cohorts) | Built-in natively | Requires custom reports or SuiteApps |
+| Revenue Forecasting | Built-in scenario & backlog forecasting | Limited outside NetSuite Planning/PBCS |
+| Deployment Effort | Focused finance onboarding [ADD: timeline] | ERP + ARM consultant implementation |
+| German HGB / DATEV Readiness | Built for European accounting stacks | Requires NetSuite DACH localization |
+
+## Migration Steps
+1. Connect your billing and CRM systems to MYFUNDBOX without touching your underlying general ledger vendor.
+2. Map MYFUNDBOX revenue and deferred revenue accounts to your existing ERP chart of accounts.
+3. Reconcile historical deferred balances and generate clean monthly summary or detail journal exports.
+
+## Frequently Asked Questions
+
+### Do I need to replace my accounting software to use MYFUNDBOX?
+No. MYFUNDBOX acts as a specialized revenue sub-ledger that exports clean journal entries into DATEV, SAP, Xero, Exact, or NetSuite.
+
+### Can MYFUNDBOX work alongside NetSuite?
+Yes. Some finance teams use MYFUNDBOX to normalize multi-source SaaS contracts, calculate MRR/ARR cohorts, and feed summarized IFRS 15 journals into NetSuite.
+
+### Does NetSuite ARM include MRR, NRR, and churn dashboards out of the box?
+NetSuite ARM focuses on general-ledger accounting schedules; SaaS operational metrics typically require separate SuiteApps or BI tools, whereas MYFUNDBOX includes both.
+
+### Is MYFUNDBOX suitable for German GmbHs using DATEV?
+Yes. MYFUNDBOX is designed in Germany with European chart-of-accounts structures and DATEV-compatible export workflows [CONFIRM exact DATEV format].
+
+### How long does onboarding take compared to NetSuite ARM?
+Because MYFUNDBOX does not replace your core ERP or banking feeds, onboarding focuses solely on revenue data and accounting rules [ADD: typical onboarding weeks].
+
+---
+
+# MYFUNDBOX vs Sage Intacct: Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-sage-intacct
+- **Title**: MYFUNDBOX vs Sage Intacct (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Sage Intacct is a full cloud financial management ERP popular in the US and UK that offers an add-on Contracts & Revenue Management module for ASC 606 and IFRS 15. MYFUNDBOX delivers dedicated EU-first revenue recognition, recurring revenue analytics, and forecasting as a lightweight layer over your existing continental European accounting stack.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Sage Intacct |
+| --- | --- | --- |
+| Core Scope | Dedicated revenue management sub-ledger | Full cloud ERP + optional Contracts module |
+| EU Data Residency & Continental Compliance | German-built, GDPR & HGB/GoBD aligned | Strongest in US/UK GAAP markets |
+| IFRS 15 Recognition & Schedules | Included in core product | Available via Contracts add-on |
+| MRR / ARR / Churn / Expansion | Native real-time dashboards | Via Sage Intacct SaaS Intelligence / Board Book |
+| Works with DATEV / Exact / Xero | Yes (exports clean journals) | Replaces your existing GL |
+| Revenue Forecasting | Contract backlog + scenario modeling | Basic contract forecasts; advanced via Sage Planning |
+
+## Migration Steps
+1. Keep your statutory GL intact and connect billing/CRM data into MYFUNDBOX.
+2. Establish IFRS 15 recognition templates and deferred revenue account mappings.
+3. Reconcile historical periods and automate monthly journal exports into your GL.
+
+## Frequently Asked Questions
+
+### Is MYFUNDBOX an accounting ERP like Sage Intacct?
+No. MYFUNDBOX focuses exclusively on revenue management—tracking, recognizing, forecasting, and reporting revenue—and integrates with your accounting ERP.
+
+### Why might a DACH or EU team choose MYFUNDBOX over Sage Intacct?
+In Germany and continental Europe, tax advisors and auditors often require keeping DATEV, Exact, or local statutory GLs. MYFUNDBOX automates revenue without forcing a GL switch.
+
+### Does MYFUNDBOX provide SaaS board metrics like ARR and NRR?
+Yes. MYFUNDBOX links board-level SaaS KPIs directly to underlying recognized and contracted ledger records.
+
+### How does MYFUNDBOX handle multi-entity European groups?
+Entities can be tracked separately with consolidated EUR reporting views [CONFIRM multi-entity tier availability].
+
+### Can MYFUNDBOX integrate with Sage Intacct if we already use it?
+Journal export structures can be mapped to Sage Intacct GL accounts via CSV or API [CONFIRM native connector roadmap].
+
+---
+
+# Sage Intacct alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/sage-intacct-alternatives
+- **Title**: Top Sage Intacct Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Sage Intacct is a full cloud financial management ERP popular in the US and UK that offers an add-on Contracts & Revenue Management module for ASC 606 and IFRS 15. MYFUNDBOX delivers dedicated EU-first revenue recognition, recurring revenue analytics, and forecasting as a lightweight layer over your existing continental European accounting stack.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Sage Intacct |
+| --- | --- | --- |
+| Core Scope | Dedicated revenue management sub-ledger | Full cloud ERP + optional Contracts module |
+| EU Data Residency & Continental Compliance | German-built, GDPR & HGB/GoBD aligned | Strongest in US/UK GAAP markets |
+| IFRS 15 Recognition & Schedules | Included in core product | Available via Contracts add-on |
+| MRR / ARR / Churn / Expansion | Native real-time dashboards | Via Sage Intacct SaaS Intelligence / Board Book |
+| Works with DATEV / Exact / Xero | Yes (exports clean journals) | Replaces your existing GL |
+| Revenue Forecasting | Contract backlog + scenario modeling | Basic contract forecasts; advanced via Sage Planning |
+
+## Migration Steps
+1. Keep your statutory GL intact and connect billing/CRM data into MYFUNDBOX.
+2. Establish IFRS 15 recognition templates and deferred revenue account mappings.
+3. Reconcile historical periods and automate monthly journal exports into your GL.
+
+## Frequently Asked Questions
+
+### Is MYFUNDBOX an accounting ERP like Sage Intacct?
+No. MYFUNDBOX focuses exclusively on revenue management—tracking, recognizing, forecasting, and reporting revenue—and integrates with your accounting ERP.
+
+### Why might a DACH or EU team choose MYFUNDBOX over Sage Intacct?
+In Germany and continental Europe, tax advisors and auditors often require keeping DATEV, Exact, or local statutory GLs. MYFUNDBOX automates revenue without forcing a GL switch.
+
+### Does MYFUNDBOX provide SaaS board metrics like ARR and NRR?
+Yes. MYFUNDBOX links board-level SaaS KPIs directly to underlying recognized and contracted ledger records.
+
+### How does MYFUNDBOX handle multi-entity European groups?
+Entities can be tracked separately with consolidated EUR reporting views [CONFIRM multi-entity tier availability].
+
+### Can MYFUNDBOX integrate with Sage Intacct if we already use it?
+Journal export structures can be mapped to Sage Intacct GL accounts via CSV or API [CONFIRM native connector roadmap].
+
+---
+
+# MYFUNDBOX vs Vayu: Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-vayu
+- **Title**: MYFUNDBOX vs Vayu (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Vayu is a modern B2B revenue management and billing-automation platform focused heavily on complex usage-based pricing, contract-to-cash, and automated reconciliation. MYFUNDBOX differentiates as an EU-based, German-engineered revenue sub-ledger built explicitly around European compliance (IFRS 15, HGB/GoBD, EU VAT, GDPR residency) without functioning as a billing engine.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Vayu |
+| --- | --- | --- |
+| Primary Architecture | Pure EU revenue sub-ledger & forecasting | Usage/contract billing & revenue automation |
+| EU Data Residency & German HGB/GoBD | Core product pillar | Global SaaS compliance focus [Verify] |
+| IFRS 15 Revenue Recognition | Included with audit-ready trails | Supported for contract & usage models |
+| MRR / ARR / Cohort Analytics | Included across subscriptions & retainers | Focused on usage & B2B contract metrics |
+| DATEV & European Accounting Alignment | Designed for EU controllers [CONFIRM specs] | General ERP integrations |
+| Billing / Metering Engine Role | None (pure revenue layer) | Includes billing & rating workflows |
+
+## Migration Steps
+1. Keep your current invoicing or metering setup and connect finalized invoice/contract events to MYFUNDBOX.
+2. Define IFRS 15 / HGB recognition schedules for subscriptions, setups, and recurring retainers.
+3. Reconcile deferred revenue and unbilled accruals before locking your monthly close.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX perform usage metering and invoice generation like Vayu?
+No. MYFUNDBOX is strictly revenue management software—not a billing or metering engine. It ingests finalized contract, usage-invoice, and subscription data to manage recognition, analytics, and forecasting.
+
+### Which platform is more focused on German and EU statutory accounting?
+MYFUNDBOX is built in Germany with EUR defaults, EU VAT separation, GDPR data residency, and IFRS 15 / HGB-oriented journal workflows.
+
+### Can MYFUNDBOX recognize revenue from usage-based invoices?
+Yes. When usage charges arrive from your billing system, MYFUNDBOX recognizes them according to period-end cutoff rules alongside recurring subscriptions.
+
+### Is there an API for custom contract events?
+Yes, MYFUNDBOX provides REST API and webhook ingestion alongside native connectors [CONFIRM endpoint specs].
+
+### How should CFOs decide between Vayu and MYFUNDBOX?
+Choose Vayu if you need to rebuild usage-based billing and rating. Choose MYFUNDBOX if your billing works today and you need EU-compliant revenue recognition, forecasting, and SaaS analytics.
+
+---
+
+# Vayu alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/vayu-alternatives
+- **Title**: Top Vayu Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Vayu is a modern B2B revenue management and billing-automation platform focused heavily on complex usage-based pricing, contract-to-cash, and automated reconciliation. MYFUNDBOX differentiates as an EU-based, German-engineered revenue sub-ledger built explicitly around European compliance (IFRS 15, HGB/GoBD, EU VAT, GDPR residency) without functioning as a billing engine.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Vayu |
+| --- | --- | --- |
+| Primary Architecture | Pure EU revenue sub-ledger & forecasting | Usage/contract billing & revenue automation |
+| EU Data Residency & German HGB/GoBD | Core product pillar | Global SaaS compliance focus [Verify] |
+| IFRS 15 Revenue Recognition | Included with audit-ready trails | Supported for contract & usage models |
+| MRR / ARR / Cohort Analytics | Included across subscriptions & retainers | Focused on usage & B2B contract metrics |
+| DATEV & European Accounting Alignment | Designed for EU controllers [CONFIRM specs] | General ERP integrations |
+| Billing / Metering Engine Role | None (pure revenue layer) | Includes billing & rating workflows |
+
+## Migration Steps
+1. Keep your current invoicing or metering setup and connect finalized invoice/contract events to MYFUNDBOX.
+2. Define IFRS 15 / HGB recognition schedules for subscriptions, setups, and recurring retainers.
+3. Reconcile deferred revenue and unbilled accruals before locking your monthly close.
+
+## Frequently Asked Questions
+
+### Does MYFUNDBOX perform usage metering and invoice generation like Vayu?
+No. MYFUNDBOX is strictly revenue management software—not a billing or metering engine. It ingests finalized contract, usage-invoice, and subscription data to manage recognition, analytics, and forecasting.
+
+### Which platform is more focused on German and EU statutory accounting?
+MYFUNDBOX is built in Germany with EUR defaults, EU VAT separation, GDPR data residency, and IFRS 15 / HGB-oriented journal workflows.
+
+### Can MYFUNDBOX recognize revenue from usage-based invoices?
+Yes. When usage charges arrive from your billing system, MYFUNDBOX recognizes them according to period-end cutoff rules alongside recurring subscriptions.
+
+### Is there an API for custom contract events?
+Yes, MYFUNDBOX provides REST API and webhook ingestion alongside native connectors [CONFIRM endpoint specs].
+
+### How should CFOs decide between Vayu and MYFUNDBOX?
+Choose Vayu if you need to rebuild usage-based billing and rating. Choose MYFUNDBOX if your billing works today and you need EU-compliant revenue recognition, forecasting, and SaaS analytics.
+
+---
+
+# MYFUNDBOX vs Billwerk+: Revenue Management Comparison
+
+- **Canonical URL**: https://myfundbox.example/en/compare/myfundbox-vs-billwerk-plus
+- **Title**: MYFUNDBOX vs Billwerk+ (2026) | Comparison
+- **Last Updated**: 2026-11-18
+
+Billwerk+ is a European subscription management, recurring billing, and payment gateway platform built for automating checkout, invoicing, and dunning. MYFUNDBOX is not a billing engine or payment processor—it is specialized revenue management software for IFRS 15 revenue recognition, deferred revenue accruals, forecasting, and multi-source SaaS analytics.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Billwerk+ |
+| --- | --- | --- |
+| Core Product Category | Pure revenue management (tracking, recognition, forecasting) | Subscription billing, invoicing & payment orchestration |
+| Processes Payments / Issues Customer Invoices | No | Yes (core function) |
+| IFRS 15 / HGB Deferred Revenue Engine | Deep contract & accrual sub-ledger | Basic billing-level accounting exports |
+| Multi-Source Revenue Consolidation | Unifies billing, CRM, and ERP invoices | Scoped to transactions billed in Billwerk+ |
+| Revenue Forecasting & Scenario Modeling | Dedicated CFO forecasting module | Limited billing-side MRR reporting |
+| EU Residency & DACH Compliance | Germany-based, GDPR & HGB/GoBD aligned | European-hosted, DACH billing compliant |
+
+## Migration Steps
+1. Note: You do not need to replace Billwerk+ billing to adopt MYFUNDBOX.
+2. Export or sync subscription and invoice records from Billwerk+ (and any additional ERP/CRM sources) into MYFUNDBOX.
+3. Configure IFRS 15 recognition rules, deferred revenue accounts, and forecast assumptions inside MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### Are MYFUNDBOX and Billwerk+ direct competitors?
+Only partially. Billwerk+ is a European subscription billing and payment platform. MYFUNDBOX does not process payments or send invoices—it manages revenue recognition, deferred revenue, analytics, and forecasting.
+
+### Can we use MYFUNDBOX together with Billwerk+?
+Yes. You can continue billing customers via Billwerk+ while syncing finalized invoice data into MYFUNDBOX for IFRS 15 recognition, SaaS cohort analytics, and forecasting.
+
+### Why isn’t a billing system’s MRR report enough for financial close?
+Billing tools track cash collected and invoice dates, whereas IFRS 15 and HGB require performance-obligation schedules, deferred revenue roll-forwards, unbilled accruals, and audit trails across all revenue channels.
+
+### Does MYFUNDBOX support German DATEV workflows like DACH billing tools?
+Yes, MYFUNDBOX structures recognized and deferred journal exports for European accounting workflows including DATEV [CONFIRM exact DATEV export format].
+
+### When should a company look for a Billwerk+ alternative for revenue analytics?
+When spreadsheets are still needed at month-end to reconcile Billwerk+ invoices with enterprise contracts, deferred revenue, and board forecasts.
+
+---
+
+# Billwerk+ alternatives for European revenue management
+
+- **Canonical URL**: https://myfundbox.example/en/alternatives/billwerk-plus-alternatives
+- **Title**: Top Billwerk+ Alternatives in Europe (2026) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Billwerk+ is a European subscription management, recurring billing, and payment gateway platform built for automating checkout, invoicing, and dunning. MYFUNDBOX is not a billing engine or payment processor—it is specialized revenue management software for IFRS 15 revenue recognition, deferred revenue accruals, forecasting, and multi-source SaaS analytics.
+
+*Last reviewed: 2026-11-18. Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.*
+
+## Feature Comparison
+| Capability | MYFUNDBOX | Billwerk+ |
+| --- | --- | --- |
+| Core Product Category | Pure revenue management (tracking, recognition, forecasting) | Subscription billing, invoicing & payment orchestration |
+| Processes Payments / Issues Customer Invoices | No | Yes (core function) |
+| IFRS 15 / HGB Deferred Revenue Engine | Deep contract & accrual sub-ledger | Basic billing-level accounting exports |
+| Multi-Source Revenue Consolidation | Unifies billing, CRM, and ERP invoices | Scoped to transactions billed in Billwerk+ |
+| Revenue Forecasting & Scenario Modeling | Dedicated CFO forecasting module | Limited billing-side MRR reporting |
+| EU Residency & DACH Compliance | Germany-based, GDPR & HGB/GoBD aligned | European-hosted, DACH billing compliant |
+
+## Migration Steps
+1. Note: You do not need to replace Billwerk+ billing to adopt MYFUNDBOX.
+2. Export or sync subscription and invoice records from Billwerk+ (and any additional ERP/CRM sources) into MYFUNDBOX.
+3. Configure IFRS 15 recognition rules, deferred revenue accounts, and forecast assumptions inside MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### Are MYFUNDBOX and Billwerk+ direct competitors?
+Only partially. Billwerk+ is a European subscription billing and payment platform. MYFUNDBOX does not process payments or send invoices—it manages revenue recognition, deferred revenue, analytics, and forecasting.
+
+### Can we use MYFUNDBOX together with Billwerk+?
+Yes. You can continue billing customers via Billwerk+ while syncing finalized invoice data into MYFUNDBOX for IFRS 15 recognition, SaaS cohort analytics, and forecasting.
+
+### Why isn’t a billing system’s MRR report enough for financial close?
+Billing tools track cash collected and invoice dates, whereas IFRS 15 and HGB require performance-obligation schedules, deferred revenue roll-forwards, unbilled accruals, and audit trails across all revenue channels.
+
+### Does MYFUNDBOX support German DATEV workflows like DACH billing tools?
+Yes, MYFUNDBOX structures recognized and deferred journal exports for European accounting workflows including DATEV [CONFIRM exact DATEV export format].
+
+### When should a company look for a Billwerk+ alternative for revenue analytics?
+When spreadsheets are still needed at month-end to reconcile Billwerk+ invoices with enterprise contracts, deferred revenue, and board forecasts.
+
+---
+
+# Revenue accounting guides, glossary, and CFO resources
+
+- **Canonical URL**: https://myfundbox.example/en/resources
+- **Title**: Revenue Management Resources, Guides & Glossary | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Explore technical finance guides, statutory IFRS 15 and HGB explainers, glossary definitions, and customer workflow benchmarks authored for European CFOs, controllers, and RevOps leaders.
+
+## Frequently Asked Questions
+
+### Who authors MYFUNDBOX technical finance guides?
+All accounting and compliance guides are authored and reviewed by revenue accounting specialists and financial systems architects [ADD: verified author credentials].
+
+### Are the guides focused on IFRS 15 or US GAAP?
+Guides prioritize European IFRS 15 and German HGB/GoBD perspectives while noting where US GAAP ASC 606 parallels apply.
+
+### Can we share these definitions with our external auditor?
+Yes, every guide links to primary authoritative sources such as the IFRS Foundation and EU regulatory texts.
+
+### Where can we test deferred revenue schedules interactively?
+Use the interactive Deferred Revenue & Close-Time Estimator on our Home page.
+
+### How often are compliance articles reviewed?
+Core compliance guides include an explicit Last Updated timestamp and undergo periodic technical review.
+
+---
+
+# MYFUNDBOX Finance & Revenue Accounting Blog
+
+- **Canonical URL**: https://myfundbox.example/en/blog
+- **Title**: Finance & Revenue Accounting Blog | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Read concise, practitioner-written briefs on European recurring revenue accounting, GoBD audit readiness, DATEV journal workflows, and unifying RevOps metrics with statutory general ledgers.
+
+## Why billing exports alone fail IFRS 15 and HGB audits
+
+Billing exports capture invoice issuance and cash settlement—not the delivery of performance obligations over time. Closing books solely from Stripe or PSP CSVs leaves controllers reconciling credit notes, VAT rates, and multi-year prepayments manually.
+
+- Separate cash collection dates from revenue start and end service dates.
+- Isolate VAT liabilities across EU member states before calculating MRR.
+- Lock historical periods to preserve audit integrity.
+
+## Aligning German DATEV workflows with SaaS ARR reporting
+
+German GmbHs frequently maintain statutory books in DATEV via an external Steuerberater while investors ask for real-time ARR waterfalls. A dedicated revenue sub-ledger bridges monthly Buchungsstapel journal exports with operational cohort analytics.
+
+- Keep Steuerberater workflows consistent while automating PRAP deferred revenue schedules.
+- Maintain a clear tie-out between monthly P&L revenue and board ARR decks.
+
+---
+
+# What is revenue management software?
+
+- **Canonical URL**: https://myfundbox.example/en/guides/what-is-revenue-management-software
+- **Title**: What Is Revenue Management Software? | MYFUNDBOX Guide
+- **Last Updated**: 2026-11-18
+
+Revenue management software is a specialized financial sub-ledger that tracks, recognizes, forecasts, and reports earned revenue under standards like IFRS 15 and HGB. Unlike payment processors or billing tools, it sits between commercial systems and your general ledger to automate deferred revenue, accruals, and recurring revenue analytics.
+
+## How does revenue management software differ from billing and payment tools?
+
+Payment gateways move money, billing engines issue invoices, and general ledgers record statutory trial balances. Revenue management software translates complex contracts and invoices into compliant recognition schedules, KPIs, and forecasts.
+
+| System Layer | Primary Job | Example Outputs |
+| --- | --- | --- |
+| Payment Gateway | Collect cards, SEPA, wires | Settlement payouts, bank fees |
+| Billing Engine | Generate customer invoices & dunning | PDF invoices, tax calculation, retries |
+| Revenue Management (MYFUNDBOX) | Recognize, defer, forecast & analyze revenue | IFRS 15 waterfalls, PRAP schedules, ARR bridges, forecasts |
+| Accounting / ERP (GL) | Statutory books, AP, payroll, tax filings | Trial balance, statutory P&L and balance sheet |
+
+## Frequently Asked Questions
+
+### When should a SaaS company adopt dedicated revenue management software?
+Most teams adopt it once annual prepaid contracts, mid-term upgrades, multiple billing channels, or external audits make spreadsheet waterfalls error-prone.
+
+### Does revenue management software replace our ERP or Steuerberater?
+No. It acts as the specialized revenue sub-ledger feeding clean, summarized journal entries into your ERP or accounting package.
+
+### What standards govern revenue management in Europe?
+International and listed European groups typically follow IFRS 15 (issued by the IASB / IFRS Foundation), while local statutory entities follow national GAAP such as German HGB.
+
+### Are MRR and recognized revenue the same thing?
+No. MRR measures normalized recurring contract run-rate, while recognized revenue measures accounting revenue earned under IFRS 15/HGB during a calendar period.
+
+### Can MYFUNDBOX manage both historical close and future forecasts?
+Yes, uniting actual closed sub-ledger schedules with rolling renewal forecasts eliminates spreadsheet duplication.
+
+---
+
+# Revenue recognition for SaaS under IFRS 15
+
+- **Canonical URL**: https://myfundbox.example/en/guides/revenue-recognition-saas-ifrs-15
+- **Title**: Revenue Recognition for SaaS Under IFRS 15 | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Under IFRS 15, SaaS providers recognize subscription revenue over time as the customer simultaneously receives and consumes access to the software. Upfront annual payments create a contract liability (deferred revenue), while distinct onboarding services, discounts, and contract modifications follow the IFRS Foundation five-step allocation framework.
+
+## How do the 5 steps of IFRS 15 apply to a B2B SaaS contract?
+
+Per the IFRS Foundation standard IFRS 15 (Revenue from Contracts with Customers), entities identify enforceable contracts, separate distinct obligations (such as SaaS access vs. custom setup), determine net transaction price excluding VAT, allocate based on standalone selling price, and recognize revenue as control transfers.
+
+1. **Identify the contract with the customer**: Verify commercial substance, payment terms, and enforceable rights across signed order forms or self-serve terms.
+2. **Identify separate performance obligations**: Evaluate whether implementation or training is distinct from the core SaaS subscription or bundled as one combined obligation.
+3. **Determine the transaction price**: Exclude third-party collections such as EU VAT (USt/TVA) and account for variable consideration or volume rebates.
+4. **Allocate transaction price via SSP**: Allocate bundled discounts proportionally based on standalone selling prices of each obligation.
+5. **Recognize revenue over time or point-in-time**: Amortize continuous cloud access ratably across the subscription term.
+
+## Frequently Asked Questions
+
+### Should SaaS onboarding fees be recognized upfront under IFRS 15?
+Only if the onboarding service transfers a distinct good or service the customer could benefit from separately. Otherwise, non-refundable setup fees are often recognized over the expected customer benefit period.
+
+### How does IFRS 15 treat EU VAT on SaaS invoices?
+Amounts collected on behalf of tax authorities such as VAT are excluded from transaction price and recognized revenue.
+
+### What happens when a customer upgrades mid-year?
+Depending on whether additional seats are priced at standalone selling price, the change is accounted for either as a separate contract or a prospective modification.
+
+### Is IFRS 15 identical to US GAAP ASC 606?
+IFRS 15 and ASC 606 share a largely converged five-step model, though minor guidance differences exist around interim disclosures and specific contract cost rules.
+
+### How does MYFUNDBOX verify IFRS 15 compliance?
+MYFUNDBOX applies configurable performance-obligation rules consistently across every invoice and preserves an auditable tie-out to source contracts.
+
+---
+
+# How to calculate deferred revenue for subscription contracts
+
+- **Canonical URL**: https://myfundbox.example/en/guides/how-to-calculate-deferred-revenue
+- **Title**: How to Calculate Deferred Revenue (Formula & Example) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Deferred revenue equals upfront cash billed or collected for goods or services not yet delivered. Calculate ending deferred revenue using the roll-forward formula: Beginning Deferred Revenue + New Billings (net of VAT) − Recognized Revenue = Ending Deferred Revenue. Under IFRS 15 and HGB, it sits as a liability on the balance sheet.
+
+## What is a worked EUR example of deferred revenue recognition?
+
+Suppose a German B2B SaaS customer signs a €12.000 net annual subscription (plus 19% VAT = €14.280 gross) starting 1 January. VAT (€2.280) posts to VAT payable, €12.000 enters Deferred Revenue, and €1.000 is recognized to P&L revenue each month.
+
+| Period | Beginning Deferred | Net Billed | Recognized Revenue | Ending Deferred |
+| --- | --- | --- | --- | --- |
+| Month 1 (Jan) | €0 | €12.000 | €1.000 | €11.000 |
+| Month 2 (Feb) | €11.000 | €0 | €1.000 | €10.000 |
+| Month 6 (Jun) | €7.000 | €0 | €1.000 | €6.000 |
+| Month 12 (Dec) | €1.000 | €0 | €1.000 | €0 |
+
+## Frequently Asked Questions
+
+### Is deferred revenue an asset or a liability?
+Deferred revenue is a liability on the balance sheet because the company owes future software access or service delivery to the customer.
+
+### Does VAT enter deferred revenue?
+No. Statutory VAT is booked to a tax payable account, never into deferred or recognized revenue.
+
+### What is the difference between deferred revenue and accrued revenue?
+Deferred revenue arises when billing happens before delivery (liability). Accrued or unbilled revenue arises when delivery happens before billing (asset).
+
+### Should annual prepayments be recognized daily or monthly?
+Both are acceptable if applied consistently; daily exact-day proration is recommended when contracts start mid-month and vary materially across 28/30/31-day months.
+
+### How can I model our portfolio deferred balance right now?
+Use the interactive Deferred Revenue & Close-Time Estimator on the MYFUNDBOX Home page.
+
+---
+
+# MRR vs ARR vs recognized revenue: why finance teams track all three
+
+- **Canonical URL**: https://myfundbox.example/en/guides/mrr-vs-arr-vs-recognized-revenue
+- **Title**: MRR vs ARR vs Recognized Revenue Explained | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MRR and ARR are non-GAAP operational run-rate metrics measuring active recurring subscription value at a point in time, whereas Recognized Revenue is the statutory accounting revenue earned during a period under IFRS 15 or HGB. Confusing run-rate metrics with P&L revenue causes board and audit discrepancies.
+
+## How do Bookings, Billings, MRR, ARR, and Recognized Revenue differ?
+
+Each metric captures a distinct moment in the customer lifecycle: signed commitment (Bookings), invoice issued (Billings), normalized run-rate (MRR/ARR), and statutory service delivery (Recognized Revenue).
+
+| Metric | Type | Includes One-Time Fees? | Primary Audience |
+| --- | --- | --- | --- |
+| Bookings | Commercial commitment | Yes (total contract value) | Sales & Executive Leadership |
+| Billings | Invoiced cash claim | Yes (plus VAT on invoice) | AR & Treasury |
+| MRR / ARR | Operational recurring run-rate | No (recurring only, net of VAT) | CFO, RevOps & Investors |
+| Recognized Revenue | Statutory P&L revenue (IFRS 15 / HGB) | Yes (when obligation satisfied) | Auditors, Tax Advisors & Statutory P&L |
+
+## Frequently Asked Questions
+
+### Can ARR ever exceed annual recognized revenue?
+Yes. In a fast-growing SaaS business, year-end ARR reflects December run-rate × 12, which is typically higher than trailing twelve-month recognized revenue.
+
+### Why does a 28-day February affect daily recognized revenue but not MRR?
+Standard MRR represents a normalized monthly run-rate, whereas exact-day accounting recognition allocates 28/365ths of an annual contract to February.
+
+### Should discounts be netted out of MRR and ARR?
+Yes, recurring contractual discounts reduce net MRR/ARR; temporary one-time credits should be disclosed clearly.
+
+### How does MYFUNDBOX keep MRR and recognized revenue reconciled?
+Both metrics compute from the same normalized contract and invoice sub-ledger, guaranteeing transparent reconciliation.
+
+### Is VAT ever included in MRR or recognized revenue?
+No. Both operational recurring metrics and statutory revenue must exclude statutory VAT.
+
+---
+
+# Revenue forecasting methods for subscription businesses
+
+- **Canonical URL**: https://myfundbox.example/en/guides/revenue-forecasting-methods-subscription
+- **Title**: Revenue Forecasting Methods for Subscription Businesses | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Accurate subscription revenue forecasting combines three distinct layers: deterministic burn-down of existing deferred revenue backlog, cohort-based renewal and expansion modeling on active contracts, and probability-weighted new business from the CRM pipeline—projected separately for recognized P&L revenue and cash billings.
+
+## Which forecasting method fits each time horizon?
+
+Near-term quarter forecasts rely heavily on contracted deferred revenue burn-down, whereas 12–36 month strategic plans depend on cohort NRR assumptions and sales capacity.
+
+1. **Layer 1: Contracted Backlog (0–12 months)**: Project guaranteed recognition already sitting in deferred revenue and non-cancellable contracts.
+2. **Layer 2: Renewal & NRR Cohort Model (3–24 months)**: Apply segment-specific gross churn and expansion rates to upcoming renewal dates.
+3. **Layer 3: Pipeline & New ARR Ramp (6–36 months)**: Layer weighted CRM opportunities and billing-mix assumptions (monthly vs. annual prepaid).
+
+## Frequently Asked Questions
+
+### Why do top-down ARR growth multipliers fail at audit or board level?
+Flat percentage multipliers ignore renewal cliffs, annual billing seasonality, and the lag between new bookings and IFRS 15 revenue recognition.
+
+### How does billing cadence affect recognized revenue vs. cash?
+Switching customers from monthly to annual upfront billing accelerates cash collection immediately while recognized P&L revenue stays flat month-to-month.
+
+### What retention rate should baseline models use?
+Use trailing 4-quarter empirical segment GRR and NRR rather than aspirational targets for base-case financial plans.
+
+### Does MYFUNDBOX separate committed backlog from modeled pipeline?
+Yes, keeping deterministic backlog cleanly separated from assumption-driven upside.
+
+### How often should forecasts be re-baselined?
+Monthly after period close, saving each snapshot to measure actual variance.
+
+---
+
+# Revenue management, IFRS 15, and SaaS finance glossary
+
+- **Canonical URL**: https://myfundbox.example/en/glossary
+- **Title**: Revenue Management & IFRS 15 Glossary | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+A concise, audit-grounded glossary defining essential European recurring-revenue accounting and FP&A terms—from IFRS 15 performance obligations and German HGB Rechnungsabgrenzungsposten to MRR, ARR, NRR, and churn.
+
+## Core accounting and SaaS revenue definitions
+
+Standardized definitions prevent misalignment between Controllers, FP&A, RevOps, and external auditors when reporting recurring revenue across European entities.
+
+| Term | Definition | Accounting / Metric Category |
+| --- | --- | --- |
+| Revenue Recognition | The accounting principle governing when earned revenue is recorded on the income statement as obligations are satisfied (IFRS 15 / HGB). | Statutory Accounting |
+| Deferred Revenue | A balance sheet liability representing upfront billings or payments received before software/services are delivered (German: PRAP). | Balance Sheet Liability |
+| Accrued (Unbilled) Revenue | A balance sheet asset recorded when services have been delivered before the customer invoice is issued (German: ARAP / unfertige Leistungen). | Balance Sheet Asset |
+| Performance Obligation | A distinct promise in a customer contract to transfer a good or service under IFRS 15 Step 2. | IFRS 15 Framework |
+| Standalone Selling Price (SSP) | The price at which an entity would sell a promised good or service separately, used to allocate bundled discounts. | IFRS 15 Allocation |
+| MRR (Monthly Recurring Revenue) | Normalized monthly recurring contract value net of VAT and one-time fees. | SaaS Operational Metric |
+| ARR (Annual Recurring Revenue) | Annualized recurring revenue run-rate (MRR × 12) for active subscriptions at a measurement date. | SaaS Operational Metric |
+| NRR (Net Revenue Retention) | Percentage of recurring revenue retained from an existing cohort after accounting for expansion, contraction, and churn. | Retention Cohort KPI |
+| Revenue Churn | Recurring revenue lost from cancellations and downgrades over a measurement period. | Retention KPI |
+| GoBD | German tax authority principles for orderly electronic bookkeeping, immutability, and digital audit traceability. | German Compliance |
+
+---
+
+# Customer stories & implementation benchmarks [ADD: Verified Case Studies]
+
+- **Canonical URL**: https://myfundbox.example/en/case-studies
+- **Title**: Customer Case Studies [Placeholders] | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+In accordance with strict accuracy standards, verified customer names, quotes, and quantified outcomes are not fabricated. Below are structured case-study slots prepared for [ADD: Approved Customer Stories] across European SaaS, membership, and agency finance teams.
+
+## Case study slot 01: [ADD: European B2B SaaS Customer Name]
+
+[ADD: Customer 1-sentence profile, e.g., Berlin-based B2B workflow SaaS with €X M ARR]. Challenge: [ADD: Manual Excel deferred revenue reconciliation across Stripe and SEPA invoices]. Outcome: [ADD: Verified close-time reduction and audit outcome].
+
+- Industry: [ADD: B2B SaaS · Country]
+- Billing Stack Connected: [ADD: e.g., Stripe Billing + HubSpot → DATEV]
+- Verified Result: [ADD: e.g., Reduced close from X days to Y days]
+
+## Case study slot 02: [ADD: EU Membership / Digital Services Customer Name]
+
+[ADD: Customer profile]. Challenge: [ADD: Annual prepaid membership prorations and multi-country EU VAT separation]. Outcome: [ADD: Verified audit & reporting impact].
+
+- Industry: [ADD: Digital Services / Memberships]
+- ERP Export: [ADD: e.g., Exact Online / SAP / Xero]
+- Verified Result: [ADD: Approved metric]
+
+---
+
+# Built in Germany for European financial precision
+
+- **Canonical URL**: https://myfundbox.example/en/about
+- **Title**: About MYFUNDBOX | EU Revenue Management Software
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX is a German-based software company dedicated exclusively to revenue management for recurring-revenue businesses. Founded in [ADD: Founding Year], MYFUNDBOX focuses solely on helping CFOs and controllers track, recognize, forecast, and audit revenue—never competing as a payment gateway or billing tool.
+
+## Why we built a dedicated revenue layer separate from billing
+
+Most revenue tools force finance teams to switch payment processors or replace billing systems before automating IFRS 15 accounting. We built MYFUNDBOX so European finance leaders keep their existing commercial stack while gaining a compliant revenue sub-ledger.
+
+- Entity: [ADD: MYFUNDBOX Legal Entity GmbH]
+- Location: Germany [ADD: City & Street Address]
+- Founding Year: [ADD: Founding Year]
+- Data Residency: [CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)]
+
+---
+
+# Security, GDPR compliance, and EU data residency
+
+- **Canonical URL**: https://myfundbox.example/en/security
+- **Title**: Security, GDPR & EU Compliance | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX is engineered for European regulatory expectations: EU data residency [CONFIRM: Frankfurt, Germany], signed GDPR Data Processing Agreements (DPA), granular role-based permissions, immutable audit logging, and strict zero-tracker defaults prior to cookie consent.
+
+## How does MYFUNDBOX protect financial and personal data?
+
+Financial sub-ledger data is isolated per tenant, encrypted in transit and at rest, and hosted within the European Union. Administrative, controller, and read-only auditor roles enforce least-privilege access across every workflow.
+
+| Control Area | Implementation / Posture | Verification / Document |
+| --- | --- | --- |
+| EU Data Residency | [CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)] | Confirm region in signed DPA |
+| GDPR & DPA | Standard Art. 28 GDPR Data Processing Agreement available | View /en/legal/dpa |
+| Audit Trail & Immutability | Timestamped, user-attributed logs on rule changes & period closes | Built into sub-ledger |
+| Encryption & Access | TLS 1.2+/1.3 in transit, AES-256 at rest, RBAC & SSO [CONFIRM SSO tier] | [ADD: Pen-test / SOC 2 / ISO 27001 report status] |
+| Pre-Consent Tracking | Zero third-party analytics or advertising scripts load before consent | Enforced by CMP |
+
+## Frequently Asked Questions
+
+### Can we sign a GDPR Data Processing Agreement (DPA) before onboarding?
+Yes. Our standard Art. 28 GDPR DPA detailing EU sub-processors and hosting region is available for legal review.
+
+### Does MYFUNDBOX store raw credit card numbers (PAN)?
+No. MYFUNDBOX is not a payment processor and never handles or stores cardholder credentials or CVV data.
+
+### Are ISO 27001 or SOC 2 attestations available?
+[ADD: Insert verified ISO 27001 / SOC 2 Type II status and hosting infrastructure certifications here].
+
+### How are audit trails protected against tampering?
+Closed periods lock accounting outputs; subsequent edits record immutable adjustment entries with user ID and timestamp.
+
+### Who acts as Data Protection Officer (DPO)?
+Contact our privacy team at [ADD: privacy@myfundbox.example] [ADD: External/Internal DPO contact details].
+
+---
+
+# Book a tailored MYFUNDBOX walkthrough
+
+- **Canonical URL**: https://myfundbox.example/en/contact
+- **Title**: Book a Demo & Contact Sales | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Schedule a 30-minute session with our European revenue specialists to review your subscription and contract models, IFRS 15 / HGB recognition rules, and DATEV or ERP export requirements. Your request is processed strictly under GDPR with zero third-party data sharing.
+
+---
+
+# Product changelog and platform updates
+
+- **Canonical URL**: https://myfundbox.example/en/changelog
+- **Title**: Product Changelog & Releases | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Track verified product releases across the MYFUNDBOX revenue sub-ledger, forecasting engine, ERP exports, and audit controls. [ADD: Connect live release feed or confirm historical release milestones].
+
+## Recent platform milestones [ADD: Confirm live release dates]
+
+Release summaries below document planned and baseline capabilities for the MYFUNDBOX revenue management platform.
+
+- 18.11.2026 — Multi-source EU VAT separation and net-of-tax MRR waterfall reconciliation.
+- [ADD: Date] — Enhanced short-term vs. long-term deferred revenue split for multi-year prepayments.
+- [ADD: Date] — Read-only external auditor role and period-lock verification report.
+
+---
+
+# Help center and frequently asked questions
+
+- **Canonical URL**: https://myfundbox.example/en/help
+- **Title**: Help Center & Frequently Asked Questions | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Find direct answers on connecting billing and CRM sources, configuring IFRS 15 and HGB revenue recognition rules, migrating opening deferred balances, and managing GDPR compliance inside MYFUNDBOX.
+
+## Frequently Asked Questions
+
+### What is the fastest way to get started with MYFUNDBOX?
+Book a demo with sample contract structures; we walk through source connection, recognition rule mapping, and historical opening balance reconciliation.
+
+### Does MYFUNDBOX require changing our payment service provider?
+No. MYFUNDBOX is never in the payment flow and works alongside Stripe, Adyen, GoCardless, Mollie, or direct SEPA bank transfers.
+
+### Can we test opening deferred revenue tie-outs before switching off spreadsheets?
+Yes. Most finance teams run a parallel close for one period to confirm 100% tie-out with prior spreadsheet schedules.
+
+### How does MYFUNDBOX handle multi-currency EUR consolidation?
+Foreign-currency contracts convert using configurable monthly average or spot rates [CONFIRM ECB rate feed].
+
+### Who do we contact for DPA or security questionnaires?
+Reach out via our Contact page or email [ADD: privacy@myfundbox.example].
+
+---
+
+# Imprint (Impressum)
+
+- **Canonical URL**: https://myfundbox.example/en/legal/imprint
+- **Title**: Imprint (Impressum) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Statutory corporate disclosures pursuant to § 5 DDG (Digitale-Dienste-Gesetz) and § 18 MStV for MYFUNDBOX. Replace all bracketed [ADD: ...] fields with verified German Handelsregister and USt-IdNr. details prior to public production launch.
+
+## Mandatory Statutory Disclosures (§ 5 DDG)
+
+Complete verified German corporate registry details below prior to production go-live.
+
+- Company Name: [ADD: MYFUNDBOX Legal Entity GmbH]
+- Registered Address: Germany [ADD: City & Street Address]
+- Managing Directors (Geschäftsführer): [ADD: Full Name(s)]
+- Commercial Register (Handelsregister): [ADD: Amtsgericht & HRB Number]
+- VAT ID (USt-IdNr. pursuant to § 27a UStG): [ADD: DE XXXXXXXXX]
+- Contact Email & Phone: [ADD: finance-team@myfundbox.example] · [ADD: +49 ...]
+
+---
+
+# Privacy Policy (Datenschutzerklärung)
+
+- **Canonical URL**: https://myfundbox.example/en/legal/privacy
+- **Title**: Privacy Policy (GDPR / DSGVO) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX processes personal data strictly in compliance with the EU General Data Protection Regulation (GDPR) and German BDSG. No third-party analytics or marketing scripts are activated before explicit user consent.
+
+## Controller, legal bases, and data subject rights
+
+Personal data submitted via demo forms is processed solely under Art. 6(1)(a) / (b) GDPR to fulfill your inquiry without third-party brokerage. [ADD: Full legal review by EU counsel before launch].
+
+- Data Controller: [ADD: MYFUNDBOX Legal Entity GmbH], Germany [ADD: City & Street Address]
+- Data Protection Contact: [ADD: privacy@myfundbox.example]
+- Hosting & Sub-processors: [ADD: Verified list of EU-resident sub-processors]
+- Rights: Access (Art. 15), Rectification (Art. 16), Erasure (Art. 17), Restriction (Art. 18), Portability (Art. 20), Objection (Art. 21), Complaint to Supervisory Authority.
+
+---
+
+# Terms of Service (AGB)
+
+- **Canonical URL**: https://myfundbox.example/en/legal/terms
+- **Title**: Terms of Service | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+B2B Software-as-a-Service terms governing access to the MYFUNDBOX revenue management platform. Replace placeholder clauses with counsel-approved German/EU B2B commercial terms before customer onboarding.
+
+## Key B2B commercial placeholders
+
+All commercial subscriptions are strictly B2B (Unternehmer § 14 BGB) under German law unless otherwise agreed in writing.
+
+- 1. Scope of Software: Revenue management sub-ledger, recognition, analytics, and forecasting (non-payment, non-advisory).
+- 2. Accounting Disclaimer: MYFUNDBOX provides configurable automation tools; statutory sign-off remains with your Steuerberater / auditor.
+- 3. Service Levels & Availability: [ADD: Verified SLA uptime % and maintenance windows].
+- 4. Governing Law & Venue: [ADD: Federal Republic of Germany, City Court].
+
+---
+
+# Cookie Policy
+
+- **Canonical URL**: https://myfundbox.example/en/legal/cookies
+- **Title**: Cookie Policy (GDPR & TDDDG) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+MYFUNDBOX respects EU ePrivacy and German TDDDG (§ 25) requirements: strictly necessary local storage saves only your theme and consent preferences, and zero third-party cookies or analytics beacons execute prior to opt-in.
+
+## Cookie and local storage inventory
+
+Only essential preference storage is active by default; analytics remain disabled until explicit consent.
+
+| Key / Cookie | Purpose | Category | Duration |
+| --- | --- | --- | --- |
+| myfundbox_cookie_consent | Stores GDPR/TDDDG consent decision | Strictly Necessary | 12 months |
+| myfundbox_theme | Remembers Light/Dark display preference | Strictly Necessary | Persistent local preference |
+| [ADD: EU Analytics Tool] | Privacy-friendly aggregated usage metrics (loads only after consent) | Analytics (Opt-In) | [ADD: Duration] |
+
+---
+
+# Data Processing Agreement (GDPR Art. 28 / AVV)
+
+- **Canonical URL**: https://myfundbox.example/en/legal/dpa
+- **Title**: Data Processing Agreement (DPA / AVV) | MYFUNDBOX
+- **Last Updated**: 2026-11-18
+
+Every MYFUNDBOX commercial customer receives an Art. 28 GDPR Data Processing Agreement (Auftragsverarbeitungsvertrag / AVV) documenting EU hosting residency, technical and organizational measures (TOMs), and authorized sub-processors.
+
+## Standard DPA schedule & Technical and Organizational Measures (TOMs)
+
+This page summarizes our standard AVV structure; request the countersignable PDF copy during security review.
+
+- Processing Location: [CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)]
+- Subject Matter: Ingestion and processing of B2B subscription, contract, and invoice records for revenue accounting.
+- TOMs (Art. 32 GDPR): Encryption at rest & transit, tenant isolation, RBAC, immutable access logs [ADD: Full TOMs Annex].
+- Sub-processor List: [ADD: Verified EU infrastructure and support sub-processors].
+
+---
+
+## Competitor Positioning Reference
+Information about third-party software is compiled from publicly available documentation and vendor pages as of the review date shown. Features, pricing models, and compliance certifications may change; confirm current specifications directly with each vendor.
+
+### MYFUNDBOX vs Zuora (Zuora Revenue)
+Last reviewed: 2026-11-18
+
+Zuora Revenue is an enterprise-grade revenue recognition engine built primarily for large global corporations running multi-product quote-to-cash ecosystems. MYFUNDBOX focuses on European finance teams that need IFRS 15, HGB/GoBD, and recurring revenue forecasting without multi-quarter enterprise ERP implementation cycles.
+
+Angle: Purpose-built for EU mid-market and scaling finance teams seeking fast deployment, EU data residency, DATEV/EU ERP alignment, and transparent EUR reporting without enterprise suite bloat.
+
+### MYFUNDBOX vs Chargebee RevRec
+Last reviewed: 2026-11-18
+
+Chargebee RevRec (formerly RevLock) is a revenue recognition product closely aligned with the Chargebee subscription billing ecosystem and US/global ASC 606 workflows. MYFUNDBOX is a standalone, billing-agnostic EU revenue management platform built in Germany for IFRS 15, HGB/GoBD accounting workflows, and integrated SaaS revenue forecasting.
+
+Angle: Billing-agnostic EU revenue management uniting IFRS 15 recognition, recurring revenue metrics, forecasting, and European compliance in one GDPR-native platform.
+
+### MYFUNDBOX vs Maxio
+Last reviewed: 2026-11-18
+
+Maxio (formed from Chargify and SaaSOptics) combines B2B subscription billing, SaaS metrics, and GAAP revenue recognition primarily for North American B2B SaaS companies. MYFUNDBOX focuses strictly on pure-play EU revenue management—delivering IFRS 15, HGB/GoBD alignment, and European data residency without bundling billing.
+
+Angle: Pure EU revenue management built in Germany: get SaaS metrics, IFRS 15 recognition, and forecasting with EU data residency and without migrating off your billing tool.
+
+### MYFUNDBOX vs Stripe Revenue Recognition
+Last reviewed: 2026-11-18
+
+Stripe Revenue Recognition automates accrual accounting and deferred revenue waterfalls directly for transactions processed inside the Stripe ecosystem. MYFUNDBOX is a standalone, payment-agnostic European revenue management platform that unifies revenue across Stripe, bank transfers, ERP invoices, and multiple billing tools while adding forecasting and EU compliance.
+
+Angle: Ideal when your B2B revenue extends beyond Stripe card/checkout transactions into SEPA bank transfers, enterprise contracts, and EU ERP workflows.
+
+### MYFUNDBOX vs NetSuite Advanced Revenue Management (ARM)
+Last reviewed: 2026-11-18
+
+NetSuite Advanced Revenue Management (ARM) embeds IFRS 15 and ASC 606 revenue rules directly inside the Oracle NetSuite ERP environment. MYFUNDBOX gives European finance teams a faster, dedicated revenue management layer that works with any accounting/ERP system—including DATEV, Exact, Xero, SAP, or NetSuite—while adding modern SaaS KPIs and forecasting.
+
+Angle: Get dedicated IFRS 15 revenue recognition, SaaS metrics, and forecasting in weeks—without migrating your entire general ledger to NetSuite.
+
+### MYFUNDBOX vs Sage Intacct
+Last reviewed: 2026-11-18
+
+Sage Intacct is a full cloud financial management ERP popular in the US and UK that offers an add-on Contracts & Revenue Management module for ASC 606 and IFRS 15. MYFUNDBOX delivers dedicated EU-first revenue recognition, recurring revenue analytics, and forecasting as a lightweight layer over your existing continental European accounting stack.
+
+Angle: Purpose-built for continental European and UK finance teams that want automated revenue recognition and SaaS forecasting without ripping out their core accounting system.
+
+### MYFUNDBOX vs Vayu
+Last reviewed: 2026-11-18
+
+Vayu is a modern B2B revenue management and billing-automation platform focused heavily on complex usage-based pricing, contract-to-cash, and automated reconciliation. MYFUNDBOX differentiates as an EU-based, German-engineered revenue sub-ledger built explicitly around European compliance (IFRS 15, HGB/GoBD, EU VAT, GDPR residency) without functioning as a billing engine.
+
+Angle: Pure revenue management built for EU finance controllers: strict separation from billing/payment execution, German HGB/GoBD and IFRS 15 rigor, and GDPR-first EU residency.
+
+### MYFUNDBOX vs Billwerk+
+Last reviewed: 2026-11-18
+
+Billwerk+ is a European subscription management, recurring billing, and payment gateway platform built for automating checkout, invoicing, and dunning. MYFUNDBOX is not a billing engine or payment processor—it is specialized revenue management software for IFRS 15 revenue recognition, deferred revenue accruals, forecasting, and multi-source SaaS analytics.
+
+Angle: Complementary or alternative depending on your need: keep Billwerk+ for billing if you like it, and add MYFUNDBOX for true IFRS 15 recognition, multi-source reconciliation, and revenue forecasting.

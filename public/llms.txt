@@ -1,0 +1,61 @@
+# MYFUNDBOX
+
+> MYFUNDBOX is EU-based revenue management software built in Germany for CFOs, controllers, and RevOps teams to track, recognize, forecast, and report recurring revenue.
+
+- Entity: MYFUNDBOX ([ADD: MYFUNDBOX Legal Entity GmbH])
+- Headquarters: Germany [ADD: City & Street Address]
+- Residency & Compliance: [CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)]; IFRS 15, German HGB/GoBD, GDPR, EU VAT separation
+- Product Boundary: Revenue management sub-ledger, recognition, recurring analytics, and forecasting. NOT a payment processor, payment gateway, or billing engine.
+- Default Currency: EUR
+
+## Key Pages
+- [Revenue management software built for European finance teams](https://myfundbox.example/en): EU-based revenue management software built in Germany. Automate IFRS 15 revenue recognition, deferred revenue, MRR/ARR analytics, and forecasting.
+- [Automated IFRS 15 revenue recognition software for European finance teams](https://myfundbox.example/en/product/revenue-recognition): Automate IFRS 15 and HGB revenue recognition across subscriptions, setups, and mid-term modifications with full audit trails in EUR.
+- [Recurring revenue reporting and SaaS analytics reconciled to your ledger](https://myfundbox.example/en/product/revenue-reporting): Audit-ready MRR, ARR, NRR, churn, expansion, and cohort dashboards reconciled directly to recognized revenue in EUR.
+- [Revenue forecasting grounded in contracted schedules and cohort retention](https://myfundbox.example/en/product/revenue-forecasting): Forecast recognized revenue, deferred revenue burn-down, and recurring renewals using live contract data and retention scenarios.
+- [Automated deferred revenue schedules and period-end accruals](https://myfundbox.example/en/product/deferred-revenue-accruals): Automate deferred revenue roll-forwards, unbilled receivables, and HGB/IFRS 15 period-end accruals with full invoice traceability.
+- [Integrations and API for your existing billing, CRM, and EU accounting stack](https://myfundbox.example/en/product/integrations-api): Connect billing, CRM, and European accounting tools like DATEV, SAP, Xero, Exact, Stripe Billing, and HubSpot via connectors or REST API.
+- [Revenue management for European B2B SaaS companies](https://myfundbox.example/en/solutions/saas): Automate IFRS 15 revenue recognition, seat-upgrade proration, ARR waterfalls, and forecasts for European B2B SaaS teams.
+- [Revenue recognition and analytics for digital services and media](https://myfundbox.example/en/solutions/digital-services): Recognize prepaid digital subscriptions, bundle offers, and multi-country EU VAT-adjusted revenue accurately with MYFUNDBOX.
+- [Deferred revenue and retention clarity for membership organizations](https://myfundbox.example/en/solutions/memberships): Prorate annual membership dues, manage deferred liability schedules, and track renewal retention under European accounting rules.
+- [Retainer and milestone revenue tracking for modern agencies](https://myfundbox.example/en/solutions/agencies): Track recurring retainers, project milestones, and accrued unbilled revenue accurately across European agency operations.
+- [Built for European CFOs, financial controllers, and accounting teams](https://myfundbox.example/en/solutions/finance-teams-cfo): Close the books faster, maintain audit-ready IFRS 15 & HGB trails, and unify board metrics with MYFUNDBOX.
+- [Transparent EUR pricing built around revenue complexity—never payment volume](https://myfundbox.example/en/pricing): Transparent EUR revenue management pricing tailored to your recurring revenue volume and ERP stack—with zero payment processing fees.
+- [MYFUNDBOX vs Zuora (Zuora Revenue): Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-zuora): Neutral comparison of MYFUNDBOX vs Zuora (Zuora Revenue) on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Zuora (Zuora Revenue) alternatives for European revenue management](https://myfundbox.example/en/alternatives/zuora-alternatives): Evaluating Zuora (Zuora Revenue) alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs Chargebee RevRec: Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-chargebee-revrec): Neutral comparison of MYFUNDBOX vs Chargebee RevRec on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Chargebee RevRec alternatives for European revenue management](https://myfundbox.example/en/alternatives/chargebee-revrec-alternatives): Evaluating Chargebee RevRec alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs Maxio: Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-maxio): Neutral comparison of MYFUNDBOX vs Maxio on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Maxio alternatives for European revenue management](https://myfundbox.example/en/alternatives/maxio-alternatives): Evaluating Maxio alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs Stripe Revenue Recognition: Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-stripe-revenue-recognition): Neutral comparison of MYFUNDBOX vs Stripe Revenue Recognition on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Stripe Revenue Recognition alternatives for European revenue management](https://myfundbox.example/en/alternatives/stripe-revenue-recognition-alternatives): Evaluating Stripe Revenue Recognition alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs NetSuite Advanced Revenue Management (ARM): Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-netsuite-arm): Neutral comparison of MYFUNDBOX vs NetSuite Advanced Revenue Management (ARM) on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [NetSuite Advanced Revenue Management (ARM) alternatives for European revenue management](https://myfundbox.example/en/alternatives/netsuite-arm-alternatives): Evaluating NetSuite Advanced Revenue Management (ARM) alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs Sage Intacct: Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-sage-intacct): Neutral comparison of MYFUNDBOX vs Sage Intacct on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Sage Intacct alternatives for European revenue management](https://myfundbox.example/en/alternatives/sage-intacct-alternatives): Evaluating Sage Intacct alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs Vayu: Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-vayu): Neutral comparison of MYFUNDBOX vs Vayu on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Vayu alternatives for European revenue management](https://myfundbox.example/en/alternatives/vayu-alternatives): Evaluating Vayu alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [MYFUNDBOX vs Billwerk+: Revenue Management Comparison](https://myfundbox.example/en/compare/myfundbox-vs-billwerk-plus): Neutral comparison of MYFUNDBOX vs Billwerk+ on IFRS 15 revenue recognition, EU compliance, forecasting, and pricing models.
+- [Billwerk+ alternatives for European revenue management](https://myfundbox.example/en/alternatives/billwerk-plus-alternatives): Evaluating Billwerk+ alternatives for EU revenue recognition, IFRS 15 compliance, and forecasting? Compare capabilities and migration steps.
+- [Revenue accounting guides, glossary, and CFO resources](https://myfundbox.example/en/resources): In-depth guides on IFRS 15 SaaS revenue recognition, deferred revenue calculations, MRR vs ARR, and forecasting for European finance teams.
+- [MYFUNDBOX Finance & Revenue Accounting Blog](https://myfundbox.example/en/blog): Practical articles on European SaaS close automation, IFRS 15 audits, EU VAT treatment, and CFO forecasting.
+- [What is revenue management software?](https://myfundbox.example/en/guides/what-is-revenue-management-software): Definition, core capabilities, and architectural differences between revenue management software, billing engines, and ERPs.
+- [Revenue recognition for SaaS under IFRS 15](https://myfundbox.example/en/guides/revenue-recognition-saas-ifrs-15): Complete guide to applying IFRS 15 five-step revenue recognition for B2B SaaS contracts, onboarding fees, and modifications.
+- [How to calculate deferred revenue for subscription contracts](https://myfundbox.example/en/guides/how-to-calculate-deferred-revenue): Step-by-step deferred revenue formula, EUR journal entry example, and monthly roll-forward guide for subscription businesses.
+- [MRR vs ARR vs recognized revenue: why finance teams track all three](https://myfundbox.example/en/guides/mrr-vs-arr-vs-recognized-revenue): Understand the exact differences between Bookings, Billings, MRR, ARR, and IFRS 15 Recognized Revenue for SaaS finance teams.
+- [Revenue forecasting methods for subscription businesses](https://myfundbox.example/en/guides/revenue-forecasting-methods-subscription): Compare bottom-up contract backlog, cohort retention, and pipeline-weighted forecasting methods for recurring-revenue CFOs.
+- [Revenue management, IFRS 15, and SaaS finance glossary](https://myfundbox.example/en/glossary): Clear finance definitions for revenue recognition, deferred revenue, accruals, MRR, ARR, NRR, churn, and performance obligations.
+- [Customer stories & implementation benchmarks [ADD: Verified Case Studies]](https://myfundbox.example/en/case-studies): Structured customer case study templates awaiting verified European customer stories and quantified close metrics.
+- [Built in Germany for European financial precision](https://myfundbox.example/en/about): Built in Germany for European finance teams. Learn about MYFUNDBOX’s mission, leadership, and strict focus on revenue management.
+- [Security, GDPR compliance, and EU data residency](https://myfundbox.example/en/security): EU data residency, GDPR/DPA availability, encryption controls, role-based access, and zero pre-consent tracking at MYFUNDBOX.
+- [Book a tailored MYFUNDBOX walkthrough](https://myfundbox.example/en/contact): Schedule a tailored walkthrough of MYFUNDBOX IFRS 15 revenue recognition, deferred revenue schedules, and forecasting with our EU team.
+- [Product changelog and platform updates](https://myfundbox.example/en/changelog): Release notes covering IFRS 15 recognition rules, ERP connectors, forecasting enhancements, and audit controls.
+- [Help center and frequently asked questions](https://myfundbox.example/en/help): Answers on MYFUNDBOX setup, IFRS 15 rule configuration, billing data sync, EU compliance, and accounting exports.
+- [Imprint (Impressum)](https://myfundbox.example/en/legal/imprint): Statutory corporate information and Impressum disclosures pursuant to § 5 DDG / German law for MYFUNDBOX.
+- [Privacy Policy (Datenschutzerklärung)](https://myfundbox.example/en/legal/privacy): How MYFUNDBOX processes personal data under GDPR Art. 13/14, data subject rights, and EU hosting commitments.
+- [Terms of Service (AGB)](https://myfundbox.example/en/legal/terms): Standard B2B SaaS subscription terms placeholder for MYFUNDBOX revenue management software.
+- [Cookie Policy](https://myfundbox.example/en/legal/cookies): Transparent inventory of strictly necessary storage and optional consent-gated analytics cookies on MYFUNDBOX.
+- [Data Processing Agreement (GDPR Art. 28 / AVV)](https://myfundbox.example/en/legal/dpa): Overview of MYFUNDBOX Art. 28 GDPR Data Processing Agreement (Auftragsverarbeitungsvertrag) and EU sub-processors.
+
+## Machine-Readable Full Context
+- [Full Documentation in Markdown](https://myfundbox.example/llms-full.txt)

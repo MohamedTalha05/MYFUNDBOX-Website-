@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://myfundbox.example/en</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/product/revenue-recognition</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/product/revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/product/revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/product/revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/product/revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/product/revenue-recognition" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/product/revenue-reporting</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/product/revenue-reporting" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/product/revenue-reporting" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/product/revenue-reporting" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/product/revenue-reporting" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/product/revenue-reporting" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/product/revenue-forecasting</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/product/revenue-forecasting" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/product/revenue-forecasting" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/product/revenue-forecasting" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/product/revenue-forecasting" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/product/revenue-forecasting" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/product/deferred-revenue-accruals</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/product/deferred-revenue-accruals" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/product/deferred-revenue-accruals" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/product/deferred-revenue-accruals" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/product/deferred-revenue-accruals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/product/deferred-revenue-accruals" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/product/integrations-api</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/product/integrations-api" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/product/integrations-api" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/product/integrations-api" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/product/integrations-api" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/product/integrations-api" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/solutions/saas</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/solutions/saas" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/solutions/saas" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/solutions/saas" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/solutions/saas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/solutions/saas" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/solutions/digital-services</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/solutions/digital-services" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/solutions/digital-services" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/solutions/digital-services" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/solutions/digital-services" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/solutions/digital-services" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/solutions/memberships</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/solutions/memberships" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/solutions/memberships" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/solutions/memberships" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/solutions/memberships" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/solutions/memberships" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/solutions/agencies</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/solutions/agencies" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/solutions/agencies" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/solutions/agencies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/solutions/agencies" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/solutions/agencies" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/solutions/finance-teams-cfo</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/solutions/finance-teams-cfo" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/solutions/finance-teams-cfo" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/solutions/finance-teams-cfo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/solutions/finance-teams-cfo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/solutions/finance-teams-cfo" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/pricing</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/pricing" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/pricing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/pricing" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/pricing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/pricing" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-zuora</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-zuora" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-zuora" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-zuora" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-zuora" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-zuora" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/zuora-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/zuora-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/zuora-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/zuora-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/zuora-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/zuora-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-chargebee-revrec</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-chargebee-revrec" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-chargebee-revrec" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-chargebee-revrec" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-chargebee-revrec" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-chargebee-revrec" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/chargebee-revrec-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/chargebee-revrec-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/chargebee-revrec-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/chargebee-revrec-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/chargebee-revrec-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/chargebee-revrec-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-maxio</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-maxio" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-maxio" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-maxio" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-maxio" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-maxio" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/maxio-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/maxio-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/maxio-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/maxio-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/maxio-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/maxio-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-stripe-revenue-recognition</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-stripe-revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-stripe-revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-stripe-revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-stripe-revenue-recognition" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-stripe-revenue-recognition" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/stripe-revenue-recognition-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/stripe-revenue-recognition-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/stripe-revenue-recognition-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/stripe-revenue-recognition-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/stripe-revenue-recognition-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/stripe-revenue-recognition-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-netsuite-arm</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-netsuite-arm" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-netsuite-arm" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-netsuite-arm" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-netsuite-arm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-netsuite-arm" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/netsuite-arm-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/netsuite-arm-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/netsuite-arm-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/netsuite-arm-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/netsuite-arm-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/netsuite-arm-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-sage-intacct</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-sage-intacct" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-sage-intacct" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-sage-intacct" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-sage-intacct" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-sage-intacct" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/sage-intacct-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/sage-intacct-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/sage-intacct-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/sage-intacct-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/sage-intacct-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/sage-intacct-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-vayu</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-vayu" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-vayu" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-vayu" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-vayu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-vayu" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/vayu-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/vayu-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/vayu-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/vayu-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/vayu-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/vayu-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/compare/myfundbox-vs-billwerk-plus</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/compare/myfundbox-vs-billwerk-plus" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/compare/myfundbox-vs-billwerk-plus" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/compare/myfundbox-vs-billwerk-plus" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/compare/myfundbox-vs-billwerk-plus" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/compare/myfundbox-vs-billwerk-plus" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/alternatives/billwerk-plus-alternatives</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/alternatives/billwerk-plus-alternatives" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/alternatives/billwerk-plus-alternatives" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/alternatives/billwerk-plus-alternatives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/alternatives/billwerk-plus-alternatives" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/alternatives/billwerk-plus-alternatives" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/resources</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/resources" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/resources" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/resources" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/resources" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/blog</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/blog" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/blog" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/guides/what-is-revenue-management-software</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/guides/what-is-revenue-management-software" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/guides/what-is-revenue-management-software" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/guides/what-is-revenue-management-software" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/guides/what-is-revenue-management-software" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/guides/what-is-revenue-management-software" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/guides/revenue-recognition-saas-ifrs-15</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/guides/revenue-recognition-saas-ifrs-15" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/guides/revenue-recognition-saas-ifrs-15" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/guides/revenue-recognition-saas-ifrs-15" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/guides/revenue-recognition-saas-ifrs-15" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/guides/revenue-recognition-saas-ifrs-15" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/guides/how-to-calculate-deferred-revenue</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/guides/how-to-calculate-deferred-revenue" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/guides/how-to-calculate-deferred-revenue" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/guides/how-to-calculate-deferred-revenue" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/guides/how-to-calculate-deferred-revenue" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/guides/how-to-calculate-deferred-revenue" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/guides/mrr-vs-arr-vs-recognized-revenue</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/guides/mrr-vs-arr-vs-recognized-revenue" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/guides/mrr-vs-arr-vs-recognized-revenue" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/guides/mrr-vs-arr-vs-recognized-revenue" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/guides/mrr-vs-arr-vs-recognized-revenue" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/guides/mrr-vs-arr-vs-recognized-revenue" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/guides/revenue-forecasting-methods-subscription</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/guides/revenue-forecasting-methods-subscription" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/guides/revenue-forecasting-methods-subscription" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/guides/revenue-forecasting-methods-subscription" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/guides/revenue-forecasting-methods-subscription" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/guides/revenue-forecasting-methods-subscription" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/glossary</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/glossary" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/glossary" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/glossary" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/glossary" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/glossary" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/case-studies</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/case-studies" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/case-studies" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/case-studies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/case-studies" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/case-studies" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/about</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/about" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/about" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/about" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/security</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/security" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/security" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/security" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/security" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/security" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/contact</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/contact" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/contact" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/contact" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/changelog</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.65</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/changelog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/changelog" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/changelog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/changelog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/changelog" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/help</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/help" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/help" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/help" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/help" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/help" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/legal/imprint</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.40</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/legal/imprint" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/legal/imprint" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/legal/imprint" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/legal/imprint" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/legal/imprint" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/legal/privacy</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.40</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/legal/privacy" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/legal/terms</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.40</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/legal/terms" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/legal/cookies</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.40</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/legal/cookies" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/legal/cookies" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/legal/cookies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/legal/cookies" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/legal/cookies" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/en/legal/dpa</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.45</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en/legal/dpa" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de/legal/dpa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr/legal/dpa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es/legal/dpa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en/legal/dpa" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/de</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/fr</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en" />
+  </url>
+  <url>
+    <loc>https://myfundbox.example/es</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myfundbox.example/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://myfundbox.example/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://myfundbox.example/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://myfundbox.example/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myfundbox.example/en" />
+  </url>
+</urlset>

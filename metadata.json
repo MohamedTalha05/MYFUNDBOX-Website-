@@ -1,0 +1,6 @@
+{
+  "name": "MYFUNDBOX",
+  "description": "EU-based revenue management software for IFRS 15 revenue recognition, deferred revenue, recurring revenue analytics, and forecasting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
