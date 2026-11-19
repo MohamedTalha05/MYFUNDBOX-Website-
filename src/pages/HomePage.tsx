@@ -1,17 +1,11 @@
 import React from 'react';
 import {
-  Check,
   CreditCard,
   Globe2,
   Lock,
-  RefreshCw,
   ShieldCheck,
   Sparkles,
-  Zap,
-  Layers,
-  ChevronRight,
   Receipt,
-  Users,
 } from 'lucide-react';
 import { useRouter } from '../context/RouterContext';
 import { resolveNavHref, useLocalHref } from '../utils/navLinks';
@@ -19,6 +13,10 @@ import { HOME_COPY } from '../data/homeContent';
 import { HomeHero } from '../components/HomeHero';
 import { RevenueDashboardPreview } from '../components/RevenueDashboardPreview';
 import { IntegrationsStrip } from '../components/IntegrationsStrip';
+import { ProblemSection } from '../components/ProblemSection';
+import { PlatformIntro } from '../components/PlatformIntro';
+import { CapabilitiesSection } from '../components/CapabilitiesSection';
+import { ProductShowcase } from '../components/ProductShowcase';
 import type { PageMetadataEntry } from '../data/pagesRegistry';
 import { APP_LINKS, SITE_CONFIG } from '../data/siteConfig';
 import { COMPETITORS } from '../data/competitorsData';
@@ -62,245 +60,17 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
         </section>
       )}
 
-      {/* 4. Problem vs Solution Section */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
-            {locale === 'de' ? 'Der Unterschied' : 'The Revenue Advantage'}
-          </p>
-          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
-            {locale === 'de'
-              ? 'Schluss mit prozentualen Umsatzabzügen und Gateway-Abhängigkeit'
-              : 'Stop paying a percentage of your revenue for subscription billing'}
-          </h2>
-          <p className="mt-3 text-base text-muted">
-            {locale === 'de'
-              ? 'US-Plattformen verlangen 0,7 % bis 5 % Ihres Umsatzes und binden Sie an ein einziges Gateway. MYFUNDBOX gibt Ihnen echte Unabhängigkeit.'
-              : 'Legacy billing platforms take 0.7% to 5.0% of your gross billing volume while locking you into their processing. MYFUNDBOX charges a flat rate, letting you run your own gateway accounts with 0% revenue cut.'}
-          </p>
-        </div>
+      {/* 4. Problem section — leads into the solution section (#solution) */}
+      <ProblemSection solutionAnchor="#solution" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Legacy / US Platforms */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
-            <div className="inline-flex rounded-lg bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold">
-              {locale === 'de' ? 'Klassische Billing-Anbieter (Stripe, Paddle, Recurly)' : 'Legacy Platforms (Stripe Billing, Paddle, Recurly)'}
-            </div>
-            <ul className="space-y-3 text-sm text-muted">
-              <li className="flex items-start gap-2.5">
-                <span className="text-red-500 font-bold">✕</span>
-                <span>
-                  <strong>{locale === 'de' ? 'Prozentuale Gebühren:' : 'Percentage taxes:'}</strong>{' '}
-                  {locale === 'de'
-                    ? '0,7 % bis 5 % von jedem Euro Umsatz schmälern Ihre Marge bei jedem Wachstumsschritt.'
-                    : '0.7% to 5% of every dollar billed cuts into your gross margin as you scale.'}
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-red-500 font-bold">✕</span>
-                <span>
-                  <strong>{locale === 'de' ? 'Gateway-Lock-in:' : 'Processor lock-in:'}</strong>{' '}
-                  {locale === 'de'
-                    ? 'Oft auf einen einzigen Zahlungsabwickler beschränkt, keine freie Wahl bei Gebühren oder Auszahlungen.'
-                    : 'Locked into a single processor with zero leverage over merchant interchange fees.'}
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-red-500 font-bold">✕</span>
-                <span>
-                  <strong>{locale === 'de' ? 'Schlechter DACH-Support:' : 'Weak European payment rails:'}</strong>{' '}
-                  {locale === 'de'
-                    ? 'Umständliche SEPA-Handhabung, fehlende deutsche Buchhaltungsschnittstellen (sevDesk, Lexware).'
-                    : 'Fragile SEPA Direct Debit handling, no native sync with DACH accounting tools like sevDesk.'}
-                </span>
-              </li>
-            </ul>
-          </div>
+      {/* 4b. Platform introduction — the "solution": hub of six connected modules (flush with the problem bridge) */}
+      <PlatformIntro id="solution" exploreHref={exploreHref} className="-mt-16 md:-mt-24" />
 
-          {/* MYFUNDBOX */}
-          <div className="rounded-2xl border-2 border-accent/40 bg-surface p-6 sm:p-8 space-y-4 shadow-sm relative overflow-hidden">
-            <div className="inline-flex rounded-lg bg-accent-soft text-accent px-3 py-1 text-xs font-semibold">
-              {locale === 'de' ? 'Der MYFUNDBOX-Weg' : 'The MYFUNDBOX Advantage'}
-            </div>
-            <ul className="space-y-3 text-sm text-ink">
-              <li className="flex items-start gap-2.5">
-                <Check className="h-5 w-5 text-positive shrink-0 mt-0.5" />
-                <span>
-                  <strong>{locale === 'de' ? '0 % Umsatzabzug:' : '0% Revenue Cut:'}</strong>{' '}
-                  {locale === 'de'
-                    ? 'Feste monatliche Pauschalpreise basierend auf der Abonnentenzahl. Sie behalten 100 % Ihres Umsatzes.'
-                    : 'Predictable flat pricing based on subscriber count. You keep 100% of the money you earn.'}
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Check className="h-5 w-5 text-positive shrink-0 mt-0.5" />
-                <span>
-                  <strong>{locale === 'de' ? 'Echtes Multi-Gateway:' : 'True Multi-Gateway Orchestration:'}</strong>{' '}
-                  {locale === 'de'
-                    ? 'Verbinden Sie Stripe, GoCardless, Mollie und PayPal gleichzeitig. Gelder gehen direkt auf Ihr Bankkonto.'
-                    : 'Connect Stripe, GoCardless (SEPA), Mollie, and PayPal side-by-side. Funds deposit directly into your bank.'}
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Check className="h-5 w-5 text-positive shrink-0 mt-0.5" />
-                <span>
-                  <strong>{locale === 'de' ? 'EU-nativ & DSGVO-konform:' : 'EU-Native & Compliant:'}</strong>{' '}
-                  {locale === 'de'
-                    ? 'Hosting in Frankfurt am Main, automatische EU-MwSt.-Prüfung und nahtlose Anbindung an sevDesk & Xero.'
-                    : 'Cloud hosting in Frankfurt, automated EU VAT validation, and seamless sync with sevDesk and Xero.'}
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      {/* 5. Core capabilities — six feature cards with mini previews */}
+      <CapabilitiesSection />
 
-      {/* 5. Key Features Bento Grid */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
-            {locale === 'de' ? 'Plattformfunktionen' : 'Core Capabilities'}
-          </p>
-          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
-            {locale === 'de'
-              ? 'Alles, was Sie für Abos und wiederkehrende Zahlungen brauchen'
-              : 'Complete subscription management without the complexity'}
-          </h2>
-          <p className="mt-3 text-base text-muted">
-            {locale === 'de'
-              ? 'Von flexiblen Plänen über Pay Links bis hin zum automatischen Mahnwesen – in einer zentralen Oberfläche.'
-              : 'From flexible recurring plans and shareable Pay Links to automated dunning recovery and customer self-service.'}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Card 1 */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
-            <div className="space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-accent-soft text-accent flex items-center justify-center">
-                <CreditCard className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-ink">
-                {locale === 'de' ? 'Multi-Gateway-Zahlungen' : 'Multi-Gateway Processing'}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Verbinden Sie Stripe, GoCardless, Mollie, PayPal und Checkout.com. Bieten Sie Kunden Kreditkarten, SEPA-Lastschrift, iDEAL und mehr.'
-                  : 'Run Stripe, GoCardless, Mollie, PayPal, and Checkout.com side-by-side. Offer cards, SEPA Direct Debit, and local European payment methods.'}
-              </p>
-            </div>
-            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
-              <span>{locale === 'de' ? 'Mehr über Zahlungen' : 'Explore payments'}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
-            <div className="space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
-                <Layers className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-ink">
-                {locale === 'de' ? 'Flexible Abopläne & Testphasen' : 'Plans, Add-ons & Coupons'}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Erstellen Sie monatliche, quartalsweise oder jährliche Abos. Steuern Sie kostenlose Testphasen, Gutscheincodes und modulare Zusatzprodukte.'
-                  : 'Build monthly, quarterly, or annual subscription tiers with free trials, discount coupons, upgrade prorations, and modular add-on products.'}
-              </p>
-            </div>
-            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
-              <span>{locale === 'de' ? 'Mehr über Pläne' : 'Explore plans & trials'}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
-            <div className="space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
-                <Zap className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-ink">
-                {locale === 'de' ? 'Pay Links & Hosted Checkout' : 'Pay Links & Hosted Checkout'}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Erstellen Sie teilbare Zahlungslinks für E-Mails und Angebote oder binden Sie das responsive Checkout-Formular unter eigener Domain ein.'
-                  : 'Generate instant no-code payment links to share via email or quote, or embed mobile-responsive hosted checkout with custom domain support.'}
-              </p>
-            </div>
-            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
-              <span>{locale === 'de' ? 'Mehr über Pay Links' : 'Explore Pay Links'}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
-            <div className="space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
-                <RefreshCw className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-ink">
-                {locale === 'de' ? 'Smart Dunning & Umsatzrettung' : 'Smart Dunning & Recovery'}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Automatische Wiederholungsversuche bei fehlgeschlagenen Kartenzahlungen, Ablaufwarnungen und E-Mail-Erinnerungen retten unabsichtlich gekündigte Abos.'
-                  : 'Automated card retry schedules, pre-expiration alerts, and customer notifications prevent involuntary churn before accounts cancel.'}
-              </p>
-            </div>
-            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
-              <span>{locale === 'de' ? 'Mehr über Dunning' : 'Explore dunning'}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
-
-          {/* Card 5 */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
-            <div className="space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
-                <Users className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-ink">
-                {locale === 'de' ? 'Kunden-Self-Service ("My Portal")' : 'Customer Self-Service Portal'}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Kunden aktualisieren ihre Zahlungsdaten, laden Rechnungen herunter und wechseln Pläne selbstständig – ohne den Support zu belasten.'
-                  : 'Subscribers manage their payment cards, download past invoices, and upgrade or pause subscriptions directly in a white-labeled portal.'}
-              </p>
-            </div>
-            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
-              <span>{locale === 'de' ? 'Mehr zum Kundenportal' : 'Explore customer portal'}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
-
-          {/* Card 6 */}
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
-            <div className="space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
-                <Receipt className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-ink">
-                {locale === 'de' ? 'EU-MwSt. & Buchhaltungssync' : 'EU VAT & Accounting Sync'}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Automatische EU-Umsatzsteuer-Validierung, gesetzeskonforme PDF-Rechnungen und direkter Datenabgleich mit sevDesk, Lexware, QuickBooks und Xero.'
-                  : 'Real-time European VAT ID validation, compliant PDF invoicing, and automated sync with sevDesk, Lexware, QuickBooks, and Xero.'}
-              </p>
-            </div>
-            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
-              <span>{locale === 'de' ? 'Mehr über Integrationen' : 'Explore integrations'}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 5b. Product showcase — tabbed illustrative interface */}
+      <ProductShowcase exploreHref={exploreHref} />
 
       {/* 6. How It Works (3 Fast Steps) */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6">

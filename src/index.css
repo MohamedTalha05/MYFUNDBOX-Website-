@@ -651,6 +651,84 @@
   animation-play-state: paused;
 }
 
+/* ---------- Product showcase tab transition ---------- */
+@keyframes mfb-panel-in {
+  from { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.995); }
+  to { opacity: 1; transform: none; }
+}
+.animate-panel-in { animation: mfb-panel-in 420ms var(--ease-out) both; }
+
+/* ---------- Platform hub (modules connecting to the core) ---------- */
+@keyframes mfb-node-in {
+  from { opacity: 0; transform: scale(0.3); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes mfb-pulse-travel {
+  0% { stroke-dashoffset: 0.08; opacity: 0; }
+  12% { opacity: 0.9; }
+  88% { opacity: 0.9; }
+  100% { stroke-dashoffset: -1; opacity: 0; }
+}
+@keyframes mfb-ripple {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes mfb-spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.platform-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.platform-pulse { stroke-dasharray: 0.08 1; stroke-dashoffset: 0.08; opacity: 0; }
+.platform-node { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.platform-orbit { animation: mfb-spin-slow 60s linear infinite; }
+
+/* Lines draw outward from the core, one after another; then nodes light up. */
+.platform-hub.is-visible .platform-line {
+  animation: mfb-draw 1.1s var(--ease-out) forwards;
+  animation-delay: calc(350ms + var(--i, 0) * 130ms);
+}
+.platform-hub.is-visible .platform-node {
+  animation: mfb-node-in 500ms var(--ease-out) forwards;
+  animation-delay: calc(1100ms + var(--i, 0) * 130ms);
+}
+/* A few soft data pulses travel from the core to each module, then stop. */
+.platform-hub.is-visible .platform-pulse {
+  animation: mfb-pulse-travel 3.4s var(--ease-in-out) 4;
+  animation-delay: calc(2000ms + var(--i, 0) * 450ms);
+}
+.platform-hub.is-visible .platform-core-ripple {
+  animation: mfb-ripple 1.6s var(--ease-out) 300ms 2 both;
+}
+/* Module cards follow their line in */
+.reveal-ready .platform-hub .platform-module {
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+  transition-delay: calc(700ms + var(--i, 0) * 130ms);
+}
+.reveal-ready .platform-hub.is-visible .platform-module { opacity: 1; }
+
+/* No JS / reduced motion: everything drawn and visible */
+html:not(.reveal-ready) .platform-line { stroke-dashoffset: 0; }
+html:not(.reveal-ready) .platform-node { opacity: 1; }
+
+/* ---------- Problem → solution bridge ---------- */
+@keyframes mfb-bridge-dot {
+  0% { top: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+.reveal-ready .problem-bridge .problem-bridge-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 900ms var(--ease-out) 200ms;
+}
+.reveal-ready .problem-bridge.is-visible .problem-bridge-line { transform: scaleY(1); }
+.problem-bridge.is-visible .problem-bridge-dot,
+html:not(.reveal-ready) .problem-bridge-dot {
+  animation: mfb-bridge-dot 2.8s var(--ease-in-out) 1.1s 3;
+}
+
 /* Page entrance (hero copy). Pure CSS so it runs before hydration. */
 .animate-rise {
   animation: mfb-rise var(--dur-slow) var(--ease-out) both;
@@ -739,6 +817,9 @@ html:not(.reveal-ready) .chart-bar { transform: none; }
   .chart-line { stroke-dashoffset: 0; }
   .chart-area { opacity: 1; }
   .chart-bar, .chart-bar-x { transform: none; }
+  .platform-line { stroke-dashoffset: 0; }
+  .platform-node { opacity: 1; }
+  .platform-orbit { animation: none; }
   /* Static, swipeable logo row instead of the moving marquee */
   .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
   .marquee-track { animation: none !important; }

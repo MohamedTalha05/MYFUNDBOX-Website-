@@ -232,91 +232,133 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
 
-  // 2. PRODUCT PAGES (5)
+  // 2. PRODUCT PAGES (9)
   {
-    path: '/product/revenue-recognition',
+    path: '/subscription-management',
     category: 'product',
     locale: 'en',
-    title: 'IFRS 15 Revenue Recognition Software | MYFUNDBOX',
+    title: 'Subscription Management Software | MYFUNDBOX',
     description:
-      'Automate IFRS 15 and HGB revenue recognition across subscriptions, setups, and mid-term modifications with full audit trails in EUR.',
-    h1: 'Automated IFRS 15 revenue recognition software for European finance teams',
+      'Automate subscriber lifecycles, tiered recurring plans, upgrades, downgrades, and renewals across multiple payment gateways with zero revenue fees.',
+    h1: 'Subscription management built for scale, without the revenue tax',
     aeoSummary:
-      'MYFUNDBOX Revenue Recognition translates raw subscription, contract, and credit note events into IFRS 15 and HGB-compliant recognition schedules. Finance controllers configure rule-based performance obligations once and generate immutable monthly journal entries without manual spreadsheet waterfalls.',
+      'MYFUNDBOX Subscription Management automates the entire subscriber lifecycle—from signup and trial conversions to mid-cycle upgrades, pauses, and cancellations. It coordinates recurring billing across Stripe, GoCardless, Mollie, and PayPal with zero percentage-based volume fees.',
     breadcrumbs: [
       { label: 'Home', href: '/' },
-      { label: 'Product', href: '/product/revenue-recognition' },
-      { label: 'Revenue Recognition', href: '/product/revenue-recognition' },
+      { label: 'Product', href: '/product' },
+      { label: 'Subscription Management', href: '/subscription-management' },
     ],
-    lastUpdated: '2026-11-18',
+    lastUpdated: '2026-11-19',
     authorId: DEFAULT_AUTHOR,
-    priority: 0.95,
+    priority: 0.9,
     atAGlance: {
-      whatItIs: 'Rule-based IFRS 15 & HGB revenue recognition engine built for recurring and contract-based businesses.',
-      whoItIsFor: 'Controllers, Chief Accountants, and CFOs preparing monthly closes and annual statutory audits.',
+      whatItIs: 'Unified subscription lifecycle orchestration engine for SaaS and recurring businesses.',
+      whoItIsFor: 'Product, billing, and finance teams managing recurring memberships and SaaS tiers.',
       keyCapabilities: [
-        'Daily exact-day and monthly straight-line recognition',
-        'Performance obligation bundling & standalone selling price (SSP) splits',
-        'Mid-term contract upgrades, downgrades, pauses & credit notes',
-        'Immutable audit trail linked to source invoice IDs',
+        'Tiered subscription plans & custom billing cycles',
+        'Prorated upgrades, downgrades & plan switches',
+        'Free trials with automated payment method validation',
+        'Modular add-on products and discount coupons',
+        'Multi-gateway routing (Stripe, GoCardless, PayPal, Mollie)',
       ],
-      pricingModel: 'Included in MYFUNDBOX platform plans [ADD: Tier pricing]',
-      regionAndCompliance: 'IFRS 15 · German HGB · GoBD-aligned immutability · EU VAT separation',
-      integrations: 'DATEV, SAP, Xero, Exact, NetSuite, Stripe Billing, Chargebee, HubSpot, Salesforce',
+      pricingModel: 'Free up to 25 subscribers; Professional €199/mo; Advanced €399/mo. 0% volume fees.',
+      regionAndCompliance: 'Frankfurt, Germany · GDPR compliant · 2FA & 3D Secure 2',
+      integrations: 'Stripe, GoCardless, Mollie, PayPal, sevDesk, Lexware, QuickBooks, Xero, REST API & Webhooks',
     },
     sections: [
       {
-        heading: 'How does MYFUNDBOX handle the 5-step IFRS 15 model?',
+        heading: 'How does MYFUNDBOX handle subscription lifecycle transitions?',
         directAnswer:
-          'MYFUNDBOX operationalizes the five-step IFRS 15 framework by linking CRM deal terms and billing line items to standardized performance obligations, transaction prices net of EU VAT, and automated over-time or point-in-time recognition schedules.',
-        table: {
-          caption: 'IFRS 15 workflow mapping inside MYFUNDBOX',
-          headers: ['IFRS 15 Step', 'Accounting Requirement', 'How MYFUNDBOX Automates It'],
-          rows: [
-            ['1. Identify Contract', 'Approve commercial terms and collectability', 'Ingests signed CRM/ERP contract and subscription records with effective dates'],
-            ['2. Performance Obligations', 'Separate distinct SaaS, onboarding, and support services', 'Maps SKU and line-item rules to distinct recognition templates'],
-            ['3. Transaction Price', 'Determine consideration net of discounts and VAT', 'Strips EU VAT, applies credit notes, and isolates net consideration in EUR'],
-            ['4. Allocate Price', 'Distribute transaction price across obligations', 'Applies configurable SSP allocation rules across bundled line items'],
-            ['5. Recognize Revenue', 'Recognize as obligations are satisfied over time or point-in-time', 'Generates daily/monthly pro-rata schedules and period-close GL journals'],
-          ],
-        },
+          'From initial sign-up to renewal, MYFUNDBOX manages subscriber state transitions automatically. Upgrades calculate exact pro-rata balances, failed payments trigger smart dunning, and pause requests preserve customer data until reactivation.',
+        bullets: [
+          'Automatic proration for mid-term upgrades, downgrades, and add-on attachments.',
+          'Configurable trial periods with automated pre-charge reminder notifications.',
+          'Flexible pause, resume, and cancellation workflows that reduce permanent churn.',
+        ],
       },
       {
-        heading: 'How are contract modifications and cancellations processed?',
+        heading: 'Why choose flat subscription management over percentage-fee platforms?',
         directAnswer:
-          'When a customer upgrades seats, switches from monthly to annual billing, or receives a partial credit note, MYFUNDBOX recalculates remaining unrecognized revenue prospectively or via catch-up adjustment while preserving locked historical periods.',
+          'US-centric platforms take 0.7% to 5.0% of your gross billing volume for managing subscription records. MYFUNDBOX charges a flat, predictable tier based on active subscribers so your software margin expands as your revenue grows.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How are mid-cycle plan upgrades and downgrades calculated?',
+        answer:
+          'MYFUNDBOX automatically calculates the unused portion of the current plan and applies it toward the new plan tier, either issuing an immediate prorated invoice or crediting the next renewal run.',
+      },
+      {
+        question: 'Can subscribers pause their subscription instead of cancelling?',
+        answer:
+          'Yes. Administrators or subscribers (via the Customer Portal) can pause recurring billing for a specified number of cycles, automatically resuming charges when the pause period expires.',
+      },
+      {
+        question: 'Does MYFUNDBOX charge a fee when subscriptions renew?',
+        answer:
+          'No. MYFUNDBOX takes 0% commission on renewals or transaction volume. You pay only the flat monthly fee for your active subscriber tier.',
+      },
+    ],
+  },
+  {
+    path: '/recurring-billing',
+    category: 'product',
+    locale: 'en',
+    title: 'Automated Recurring Billing Software | MYFUNDBOX',
+    description:
+      'Automate recurring billing schedules, one-time fees, EU VAT invoices, and renewal charges with multi-gateway freedom and 0% transaction cut.',
+    h1: 'Automated recurring billing and invoicing across Europe',
+    aeoSummary:
+      'MYFUNDBOX Recurring Billing automates recurring invoices, scheduled renewal charges, and one-time fees. It connects directly with Stripe, GoCardless SEPA, and Mollie to collect payments, calculate European VAT, and sync records to accounting software without manual effort.',
+    breadcrumbs: [
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product' },
+      { label: 'Recurring Billing', href: '/recurring-billing' },
+    ],
+    lastUpdated: '2026-11-19',
+    authorId: DEFAULT_AUTHOR,
+    priority: 0.9,
+    atAGlance: {
+      whatItIs: 'Multi-rail recurring billing and invoice automation platform.',
+      whoItIsFor: 'European and global businesses billing clients on recurring schedules.',
+      keyCapabilities: [
+        'Automated recurring billing cycles (weekly, monthly, annual)',
+        'One-time setup charges, deposits & milestones',
+        'Compliant European PDF invoice generation',
+        'Automatic EU VAT rate calculation and reverse charge',
+        'Two-way accounting sync with sevDesk and Lexware',
+      ],
+      pricingModel: 'Included in all MYFUNDBOX plans. Flat subscriber pricing with 0% cut.',
+      regionAndCompliance: 'Frankfurt data residency · EU VAT Directive compliant · GoBD ready',
+      integrations: 'Stripe, GoCardless (SEPA), Mollie, PayPal, sevDesk, Lexware, QuickBooks, Xero',
+    },
+    sections: [
+      {
+        heading: 'How does automated recurring billing operate across multiple payment methods?',
+        directAnswer:
+          'MYFUNDBOX executes recurring billing runs according to customer schedules, dispatching charges to credit cards, SEPA Direct Debit mandates, or alternative payment rails while generating compliant PDF invoices automatically.',
         bullets: [
-          'Closed accounting periods remain strictly locked to protect GoBD and statutory audit integrity.',
-          'Prospective adjustments flow transparently into future months without retroactively rewriting past trial balances.',
-          'Every rule override requires role-based permission and records user ID, timestamp, and reason code.',
+          'Unified billing runs across credit cards, direct debit, and digital wallets.',
+          'Automated VAT calculation based on customer country and validated VAT ID.',
+          'Automatic synchronization with German accounting software like sevDesk and Lexware.',
         ],
       },
     ],
     faqs: [
       {
-        question: 'Can MYFUNDBOX split onboarding fees from recurring SaaS subscriptions?',
+        question: 'Can I mix recurring subscriptions and one-time charges on a single invoice?',
         answer:
-          'Yes. Distinct line items can follow separate recognition schedules—for example, recognizing implementation milestones upon delivery while amortizing the software subscription straight-line over 12 months.',
+          'Yes. MYFUNDBOX supports hybrid invoicing that combines recurring plan dues with one-time onboarding fees, setup charges, or professional service hours.',
       },
       {
-        question: 'Does MYFUNDBOX support daily exact-day proration as well as monthly?',
+        question: 'How are European VAT rates applied to recurring invoices?',
         answer:
-          'Yes. Controllers can select exact daily proration (e.g., 28/30/31-day or 365-day conventions) or standard 1/12th monthly recognition per entity policy.',
+          'The platform automatically validates the customer VAT ID via the European VIES database, applying statutory domestic VAT, standard intra-EU reverse-charge zero-rating, or export exemptions.',
       },
       {
-        question: 'How does the system protect closed months during an audit?',
+        question: 'What happens when a recurring charge succeeds?',
         answer:
-          'Once a period is closed in MYFUNDBOX, journal entries are locked; any subsequent invoice backdating posts as a documented adjustment in the current open period.',
-      },
-      {
-        question: 'Does MYFUNDBOX generate customer invoices?',
-        answer:
-          'No. MYFUNDBOX reads invoice data from your billing or ERP system and never sends invoices or processes customer payments.',
-      },
-      {
-        question: 'Is US GAAP ASC 606 supported for EU subsidiaries with US parents?',
-        answer:
-          'Yes. The underlying five-step contract and performance obligation framework aligns closely with both IFRS 15 and ASC 606 reporting needs.',
+          'A compliant PDF receipt is generated and emailed to the customer, the subscriber renewal date is advanced, and invoice line items sync to your connected accounting ledger.',
       },
     ],
   },

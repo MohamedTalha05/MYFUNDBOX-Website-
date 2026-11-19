@@ -19,6 +19,12 @@ export const LIVE_SITE_REDIRECTS: Readonly<Record<string, string>> = {
   '/pricing-pages/subscription-billing': '/pricing',
   '/security-compliance': '/security',
   '/integrations': '/integrations/payments',
+  // Retired legacy rev-rec sub-ledger paths redirected to matching billing pages
+  '/product/revenue-recognition': '/subscription-management',
+  '/product/revenue-reporting': '/revenue-analytics',
+  '/product/revenue-forecasting': '/revenue-analytics',
+  '/product/deferred-revenue-accruals': '/recurring-billing',
+  '/product/integrations-api': '/payment-management',
 };
 
 /**

@@ -4,7 +4,7 @@ import { useRouter } from '../context/RouterContext';
 import { useLocalHref } from '../utils/navLinks';
 import { ALL_PAGES, type PageMetadataEntry } from '../data/pagesRegistry';
 import { COMPETITORS } from '../data/competitorsData';
-import { SITE_CONFIG } from '../data/siteConfig';
+import { APP_LINKS, SITE_CONFIG } from '../data/siteConfig';
 import {
   AppLink,
   AtAGlanceCard,
@@ -31,16 +31,22 @@ export function GenericContentPage({ page }: { page: PageMetadataEntry }) {
         actions={
           page.category !== 'contact' && page.category !== 'legal' ? (
             <>
+              <a
+                href={APP_LINKS.signUp}
+                className="btn-primary px-5 py-3 text-sm inline-flex items-center gap-2"
+              >
+                <span>{locale === 'de' ? 'Kostenlos starten' : 'Start free (up to 25 subscribers)'}</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
               <button
                 type="button"
-                onClick={() => navigate(localHref(`/contact`))}
-                className="btn-primary px-5 py-3 text-sm"
+                onClick={() => navigate(localHref(`/book-a-demo`))}
+                className="btn-secondary px-5 py-3 text-sm cursor-pointer"
               >
-                <span>Book a demo</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                {locale === 'de' ? 'Demo buchen' : 'Book a demo'}
               </button>
               <AppLink href={localHref(`/pricing`)} className="btn-ghost px-5 py-3 text-sm">
-                View EUR pricing
+                {locale === 'de' ? 'Preise ansehen' : 'View EUR pricing'}
               </AppLink>
             </>
           ) : undefined

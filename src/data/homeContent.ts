@@ -23,6 +23,236 @@ export const VERIFIED_TESTIMONIALS: { quote: string; name: string; role: string;
 
 export type FeatureVisual = 'billing' | 'payments' | 'checkout' | 'dunning';
 
+/**
+ * Homepage product showcase (tabbed, illustrative interface). No real app screenshots exist
+ * in the repo yet, so previews are HTML components with clearly labelled sample data that
+ * describe a fictional business — never MYFUNDBOX performance figures.
+ */
+export type ShowcaseTabKey = 'overview' | 'subscriptions' | 'payments' | 'customers' | 'analytics';
+
+export const PRODUCT_SHOWCASE_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    tabs: Record<ShowcaseTabKey, string>;
+    badge: string;
+    disclaimer: string;
+    cta: string;
+  }
+> = {
+  en: {
+    eyebrow: 'Product tour',
+    heading: 'Your Revenue Operations. Beautifully Connected.',
+    body: 'Get a clearer view of your business through a unified revenue management experience.',
+    tabs: {
+      overview: 'Revenue Overview',
+      subscriptions: 'Subscriptions',
+      payments: 'Payments',
+      customers: 'Customers',
+      analytics: 'Analytics',
+    },
+    badge: 'Illustrative preview',
+    disclaimer: 'Illustrative interface with sample data for a fictional business. Not real customer data or product performance figures.',
+    cta: 'Explore MYFUNDBOX',
+  },
+  de: {
+    eyebrow: 'Produkttour',
+    heading: 'Ihr Revenue Management. Elegant vernetzt.',
+    body: 'Behalten Sie Ihr Geschäft im Blick – mit einer einheitlichen Revenue-Management-Oberfläche.',
+    tabs: {
+      overview: 'Umsatzübersicht',
+      subscriptions: 'Abonnements',
+      payments: 'Zahlungen',
+      customers: 'Kunden',
+      analytics: 'Analysen',
+    },
+    badge: 'Illustrative Vorschau',
+    disclaimer: 'Illustrative Oberfläche mit Beispieldaten eines fiktiven Unternehmens. Keine echten Kundendaten oder Leistungskennzahlen.',
+    cta: 'MYFUNDBOX entdecken',
+  },
+};
+
+/**
+ * Homepage core capabilities grid. Copy supplied by the MYFUNDBOX team (2026-11-19).
+ * Links go to each feature's planned page and fall back to /product until it exists.
+ * NOTE: instalments and quantity-based pricing were not found on the live site when it was
+ * checked (PROJECT_PROGRESS §3); confirm in the app before launch.
+ */
+export type CapabilityKey = 'subscriptions' | 'billing' | 'payments' | 'customers' | 'dunning' | 'analytics';
+
+export const CAPABILITY_LINKS: Record<CapabilityKey, { href: string; fallbackHref: string }> = {
+  subscriptions: { href: '/subscription-management', fallbackHref: '/product' },
+  billing: { href: '/recurring-billing', fallbackHref: '/product' },
+  payments: { href: '/payment-management', fallbackHref: '/product' },
+  customers: { href: '/customer-portal', fallbackHref: '/product' },
+  dunning: { href: '/dunning-management', fallbackHref: '/product' },
+  analytics: { href: '/revenue-analytics', fallbackHref: '/product' },
+};
+
+export const CAPABILITIES_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    linkLabel: string;
+    sample: string;
+    cards: { key: CapabilityKey; title: string; body: string }[];
+  }
+> = {
+  en: {
+    eyebrow: 'Core capabilities',
+    heading: 'Everything You Need to Manage Revenue, In One Place.',
+    body: 'From subscription creation to payment recovery, manage essential revenue operations through one connected platform.',
+    linkLabel: 'Explore Feature',
+    sample: 'Sample',
+    cards: [
+      { key: 'subscriptions', title: 'Subscription Management', body: 'Manage recurring subscriptions, one-time plans, instalments and quantity-based pricing.' },
+      { key: 'billing', title: 'Billing Management', body: 'Organise billing schedules, recurring payments and billing operations.' },
+      { key: 'payments', title: 'Payment Management', body: 'Connect supported payment gateways and manage payment activity.' },
+      { key: 'customers', title: 'Customer Management', body: 'Manage customer information, subscriptions and payment history.' },
+      { key: 'dunning', title: 'Dunning Management', body: 'Monitor failed payments and manage recovery workflows.' },
+      { key: 'analytics', title: 'Revenue Analytics', body: 'Understand revenue trends, subscription performance and payment activity.' },
+    ],
+  },
+  de: {
+    eyebrow: 'Kernfunktionen',
+    heading: 'Alles, was Sie für Ihr Revenue Management brauchen – an einem Ort.',
+    body: 'Von der Abo-Erstellung bis zur Zahlungswiederherstellung: Steuern Sie zentrale Umsatzprozesse über eine vernetzte Plattform.',
+    linkLabel: 'Funktion entdecken',
+    sample: 'Beispiel',
+    cards: [
+      { key: 'subscriptions', title: 'Abo-Verwaltung', body: 'Wiederkehrende Abonnements, einmalige Tarife, Ratenzahlungen und mengenbasierte Preise verwalten.' },
+      { key: 'billing', title: 'Abrechnungsmanagement', body: 'Abrechnungspläne, wiederkehrende Zahlungen und Abrechnungsvorgänge organisieren.' },
+      { key: 'payments', title: 'Zahlungsmanagement', body: 'Unterstützte Zahlungsanbieter verbinden und Zahlungsaktivitäten verwalten.' },
+      { key: 'customers', title: 'Kundenverwaltung', body: 'Kundendaten, Abonnements und Zahlungshistorie verwalten.' },
+      { key: 'dunning', title: 'Mahnwesen', body: 'Fehlgeschlagene Zahlungen überwachen und Wiederherstellungsabläufe steuern.' },
+      { key: 'analytics', title: 'Umsatzanalysen', body: 'Umsatzentwicklung, Abo-Performance und Zahlungsaktivität verstehen.' },
+    ],
+  },
+};
+
+/** Homepage platform introduction (hub diagram with six modules). */
+export type PlatformModuleKey = 'subscriptions' | 'billing' | 'payments' | 'customers' | 'dunning' | 'analytics';
+
+export const PLATFORM_INTRO_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    coreLabel: string;
+    modules: { key: PlatformModuleKey; title: string; body: string }[];
+    cta: string;
+  }
+> = {
+  en: {
+    eyebrow: 'The MYFUNDBOX platform',
+    heading: 'One Platform. Every Part of Your Revenue Operations.',
+    body: 'Bring subscriptions, billing, payments, customers and revenue insights together through one connected platform.',
+    coreLabel: 'Revenue platform',
+    modules: [
+      { key: 'subscriptions', title: 'Subscription Management', body: 'Plans, trials, upgrades and renewals.' },
+      { key: 'billing', title: 'Billing Operations', body: 'One-time and recurring invoicing.' },
+      { key: 'payments', title: 'Payment Management', body: 'Multiple gateways and payment methods.' },
+      { key: 'customers', title: 'Customer Management', body: 'Customer records and self-service portal.' },
+      { key: 'dunning', title: 'Dunning Management', body: 'Automatic retries and reminders.' },
+      { key: 'analytics', title: 'Revenue Analytics', body: 'Revenue, subscription and payment insights.' },
+    ],
+    cta: 'Explore the Platform',
+  },
+  de: {
+    eyebrow: 'Die MYFUNDBOX-Plattform',
+    heading: 'Eine Plattform. Ihr gesamtes Revenue Management.',
+    body: 'Abonnements, Abrechnung, Zahlungen, Kunden und Umsatz-Insights – vereint auf einer vernetzten Plattform.',
+    coreLabel: 'Revenue-Plattform',
+    modules: [
+      { key: 'subscriptions', title: 'Abo-Verwaltung', body: 'Tarife, Testphasen, Upgrades und Verlängerungen.' },
+      { key: 'billing', title: 'Abrechnung', body: 'Einmalige und wiederkehrende Rechnungen.' },
+      { key: 'payments', title: 'Zahlungsmanagement', body: 'Mehrere Zahlungsanbieter und Zahlarten.' },
+      { key: 'customers', title: 'Kundenverwaltung', body: 'Kundendaten und Self-Service-Portal.' },
+      { key: 'dunning', title: 'Mahnwesen', body: 'Automatische Wiederholungen und Erinnerungen.' },
+      { key: 'analytics', title: 'Umsatzanalysen', body: 'Einblicke in Umsatz, Abos und Zahlungen.' },
+    ],
+    cta: 'Plattform entdecken',
+  },
+};
+
+/** Homepage problem section ("Growing Revenue Shouldn't Mean Managing More Complexity."). */
+export type ProblemIcon = 'subscriptions' | 'payments' | 'visibility' | 'systems';
+
+export const PROBLEM_SECTION_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    cards: { icon: ProblemIcon; title: string; body: string }[];
+    transition: string;
+  }
+> = {
+  en: {
+    eyebrow: 'The challenge',
+    heading: 'Growing Revenue Shouldn’t Mean Managing More Complexity.',
+    body:
+      'As businesses grow, managing subscriptions, billing, payments and customer relationships across disconnected systems becomes increasingly complicated.',
+    cards: [
+      {
+        icon: 'subscriptions',
+        title: 'Complex Subscriptions',
+        body: 'Managing multiple plans, renewals, pricing models and billing cycles.',
+      },
+      {
+        icon: 'payments',
+        title: 'Payment Challenges',
+        body: 'Handling multiple gateways, failed transactions and international payment methods.',
+      },
+      {
+        icon: 'visibility',
+        title: 'Limited Revenue Visibility',
+        body: 'Understanding recurring revenue, customer activity and subscription performance.',
+      },
+      {
+        icon: 'systems',
+        title: 'Disconnected Systems',
+        body: 'Managing customer information, payments and billing across different platforms.',
+      },
+    ],
+    transition: 'There’s a simpler way',
+  },
+  de: {
+    eyebrow: 'Die Herausforderung',
+    heading: 'Wachsender Umsatz sollte nicht mehr Komplexität bedeuten.',
+    body:
+      'Mit dem Wachstum wird es immer aufwendiger, Abonnements, Abrechnung, Zahlungen und Kundenbeziehungen über getrennte Systeme hinweg zu verwalten.',
+    cards: [
+      {
+        icon: 'subscriptions',
+        title: 'Komplexe Abonnements',
+        body: 'Mehrere Tarife, Verlängerungen, Preismodelle und Abrechnungszyklen verwalten.',
+      },
+      {
+        icon: 'payments',
+        title: 'Zahlungsprobleme',
+        body: 'Mehrere Zahlungsanbieter, fehlgeschlagene Transaktionen und internationale Zahlarten im Griff behalten.',
+      },
+      {
+        icon: 'visibility',
+        title: 'Wenig Umsatztransparenz',
+        body: 'Wiederkehrende Umsätze, Kundenaktivität und Abo-Entwicklung verstehen.',
+      },
+      {
+        icon: 'systems',
+        title: 'Getrennte Systeme',
+        body: 'Kundendaten, Zahlungen und Abrechnung über verschiedene Plattformen hinweg verwalten.',
+      },
+    ],
+    transition: 'Es geht auch einfacher',
+  },
+};
+
 export interface HomeCopy {
   /** `highlight` is the phrase inside the page H1 that gets the violet-to-cyan gradient. */
   hero: { eyebrow: string; highlight: string; subtitle: string; primaryCta: string; secondaryCta: string; note: string; previewLabel: string };
