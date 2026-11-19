@@ -1,7 +1,18 @@
-import { ALL_PAGES, type PageMetadataEntry } from '../data/pagesRegistry';
+import { ALL_PAGES, pageExists, pathForLocale, splitLocale, type PageMetadataEntry } from '../data/pagesRegistry';
 import { SITE_CONFIG } from '../data/siteConfig';
 import { COMPETITORS, COMPETITOR_DISCLAIMER } from '../data/competitorsData';
 import { SUPPORTED_LOCALES } from './formatting';
+
+/** Factual product summary shared by llms.txt and llms-full.txt. Sourced from the live myfundbox.com (2026-11-19). */
+const PRODUCT_FACTS = [
+  '- Category: Subscription billing and revenue management platform (SaaS, web-based)',
+  '- Core capabilities: one-time and recurring billing, subscription and plan management (add-ons, coupons, trials), hosted checkout and embeddable iFrame, pay links, smart dunning and automated card retries, customer self-service portal, invoicing, tax management with EU VAT validation, refunds, custom domain, multi-language checkout, REST API and webhooks',
+  '- Payment gateways: Stripe, GoCardless, Mollie, PayPal, Checkout.com; payment methods include cards, SEPA and ACH direct debit, bank transfer and open banking',
+  '- Accounting and tax integrations: QuickBooks, Xero, sevDesk, Lexware, Avalara',
+  '- Data location: Frankfurt, EU',
+  '- Pricing: Free plan (up to 25 active subscribers), Professional and Advanced plans in EUR; see the pricing page',
+  '- Developer documentation: https://docs.myfundbox.com/',
+].join('\n');
 
 function escapeXml(str: string): string {
   return str
@@ -17,32 +28,38 @@ function escapeHtmlAttr(str: string): string {
 }
 
 export function getCanonicalBaseUrl(envUrl?: string): string {
-  const cleaned = (envUrl || 'https://myfundbox.example').replace(/\/+$/, '');
+  const cleaned = (envUrl || 'https://www.myfundbox.com').replace(/\/+$/, '');
   return cleaned;
 }
 
-export function getLocaleSuffix(path: string): string {
-  const match = path.match(/^\/(?:en|de|fr|es)(\/.*)?$/);
-  if (!match) return path === '/' ? '' : path;
-  return match[1] || '';
+/** Root-relative URL for SEO output: '/' becomes '' so the home URL has no trailing slash. */
+function absolute(baseUrl: string, path: string): string {
+  return path === '/' ? baseUrl : `${baseUrl}${path}`;
 }
 
+/**
+ * hreflang alternates for a page: only language versions that actually exist.
+ * A page with no translation gets no alternates at all, which is valid and avoids
+ * pointing search engines at German URLs that 404.
+ */
 export function buildHreflangLinks(path: string, baseUrl: string): Array<{ hreflang: string; href: string }> {
-  const suffix = getLocaleSuffix(path);
-  const links: Array<{ hreflang: string; href: string }> = SUPPORTED_LOCALES.map((loc) => ({
-    hreflang: loc,
-    href: `${baseUrl}/${loc}${suffix}`,
+  const { suffix } = splitLocale(path);
+  const existing = SUPPORTED_LOCALES.map((loc) => ({ loc, path: pathForLocale(loc, suffix) })).filter((v) =>
+    pageExists(v.path)
+  );
+  if (existing.length < 2) return [];
+  const links: Array<{ hreflang: string; href: string }> = existing.map((v) => ({
+    hreflang: v.loc,
+    href: absolute(baseUrl, v.path),
   }));
-  links.push({
-    hreflang: 'x-default',
-    href: `${baseUrl}/en${suffix}`,
-  });
+  const en = existing.find((v) => v.loc === 'en');
+  if (en) links.push({ hreflang: 'x-default', href: absolute(baseUrl, en.path) });
   return links;
 }
 
 export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Record<string, unknown> {
   const author = SITE_CONFIG.authors.find((a) => a.id === page.authorId) ?? SITE_CONFIG.authors[0];
-  const canonicalUrl = `${baseUrl}${page.path}`;
+  const canonicalUrl = absolute(baseUrl, page.path);
 
   const graph: Record<string, unknown>[] = [
     {
@@ -73,14 +90,14 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
       '@id': `${baseUrl}/#software`,
       name: SITE_CONFIG.brandName,
       applicationCategory: 'BusinessApplication',
-      applicationSubCategory: 'Revenue Management Software',
+      applicationSubCategory: 'Subscription Billing and Revenue Management Software',
       operatingSystem: 'Web',
       description: SITE_CONFIG.oneLineDescription,
       offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'EUR',
         availability: 'https://schema.org/OnlineOnly',
-        url: `${baseUrl}/en/pricing`,
+        url: `${baseUrl}/pricing`,
       },
       publisher: { '@id': `${baseUrl}/#organization` },
     },
@@ -90,7 +107,7 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
         '@type': 'ListItem',
         position: idx + 1,
         name: crumb.label,
-        item: `${baseUrl}${crumb.href}`,
+        item: absolute(baseUrl, crumb.href),
       })),
     },
     {
@@ -137,7 +154,7 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
 }
 
 export function renderHeadTagsHtml(page: PageMetadataEntry, baseUrl: string): string {
-  const canonical = `${baseUrl}${page.path}`;
+  const canonical = absolute(baseUrl, page.path);
   const hreflangs = buildHreflangLinks(page.path, baseUrl);
   const jsonLd = JSON.stringify(buildJsonLdGraph(page, baseUrl)).replace(/</g, '\\u003c');
 
@@ -164,7 +181,7 @@ export function generateSitemapXml(baseUrl: string): string {
       .join('\n');
 
     return `  <url>
-    <loc>${escapeXml(baseUrl + page.path)}</loc>
+    <loc>${escapeXml(absolute(baseUrl, page.path))}</loc>
     <lastmod>${escapeXml(page.lastUpdated)}</lastmod>
     <priority>${page.priority.toFixed(2)}</priority>
 ${alternates}
@@ -217,18 +234,14 @@ Sitemap: ${baseUrl}/sitemap.xml
 
 export function generateLlmsTxt(baseUrl: string): string {
   const coreLinks = ALL_PAGES.filter((p) => p.locale === 'en')
-    .map((p) => `- [${p.h1}](${baseUrl}${p.path}): ${p.description}`)
+    .map((p) => `- [${p.h1}](${absolute(baseUrl, p.path)}): ${p.description}`)
     .join('\n');
 
   return `# MYFUNDBOX
 
 > ${SITE_CONFIG.oneLineDescription}
 
-- Entity: ${SITE_CONFIG.brandName} (${SITE_CONFIG.legalEntityName})
-- Headquarters: ${SITE_CONFIG.headquartersLocation}
-- Residency & Compliance: ${SITE_CONFIG.euDataResidency}; IFRS 15, German HGB/GoBD, GDPR, EU VAT separation
-- Product Boundary: Revenue management sub-ledger, recognition, recurring analytics, and forecasting. NOT a payment processor, payment gateway, or billing engine.
-- Default Currency: EUR
+${PRODUCT_FACTS}
 
 ## Key Pages
 ${coreLinks}
@@ -251,11 +264,8 @@ export function generateLlmsFullTxt(baseUrl: string): string {
 
 > ${SITE_CONFIG.oneLineDescription}
 
-- **Base URL**: ${baseUrl}
-- **Jurisdiction**: ${SITE_CONFIG.headquartersLocation}
-- **EU Data Residency**: ${SITE_CONFIG.euDataResidency}
-- **Core Capabilities**: Revenue recognition (IFRS 15 / HGB), Deferred revenue & accruals, MRR/ARR/NRR/cohort reporting, Revenue forecasting, Audit trail & reconciliation, EU ERP/accounting exports (DATEV, SAP, Exact, Xero, NetSuite [CONFIRM]), REST API.
-- **Explicit Exclusion**: MYFUNDBOX is NOT a payment processor, payment gateway, or billing/invoicing engine.
+- Base URL: ${baseUrl}
+${PRODUCT_FACTS}
 
 ---
 
@@ -274,7 +284,7 @@ export function generatePageMarkdown(page: PageMetadataEntry, baseUrl: string): 
   const lines: string[] = [
     `# ${page.h1}`,
     '',
-    `- **Canonical URL**: ${baseUrl}${page.path}`,
+    `- **Canonical URL**: ${absolute(baseUrl, page.path)}`,
     `- **Title**: ${page.title}`,
     `- **Last Updated**: ${page.lastUpdated}`,
     '',

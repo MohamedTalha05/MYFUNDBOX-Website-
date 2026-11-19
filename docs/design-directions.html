@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MYFUNDBOX Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root { --page: #f4f4f5; --ink: #18181b; --muted: #52525b; --line: #e4e4e7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.55 Inter, system-ui, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 16px 80px; }
+  h1.page { font: 700 28px/1.2 Geist, Inter, sans-serif; margin: 0 0 6px; }
+  .lede { color: var(--muted); margin: 0 0 32px; max-width: 70ch; }
+  .dir { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 40px; background: #fff; }
+  .meta { padding: 20px 24px; border-bottom: 1px solid var(--line); display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 820px) { .meta { grid-template-columns: 1.1fr 1fr; } }
+  .meta h2 { margin: 0 0 4px; font: 600 18px/1.3 Geist, Inter, sans-serif; }
+  .meta p { margin: 0; color: var(--muted); font-size: 14px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #dcfce7; color: #166534; margin-left: 8px; vertical-align: middle; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sw { width: 92px; font-size: 11px; color: var(--muted); }
+  .sw i { display: block; height: 40px; border-radius: 8px; border: 1px solid rgba(0,0,0,.08); margin-bottom: 4px; }
+  /* preview */
+  .pv { padding: 0; }
+  .pv nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 24px; flex-wrap: wrap; }
+  .pv .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: .02em; }
+  .pv .mark { width: 22px; height: 22px; transform: rotate(45deg); border-radius: 4px; position: relative; }
+  .pv .mark::after { content: ""; position: absolute; inset: 6px; border-radius: 2px; background: #3a9b4a; }
+  .pv .links { display: none; gap: 22px; font-size: 14px; }
+  @media (min-width: 720px) { .pv .links { display: flex; } }
+  .pv .btn { display: inline-block; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; border: 1px solid transparent; }
+  .pv .hero { padding: 56px 24px 40px; display: grid; gap: 32px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .pv .hero { grid-template-columns: 1.05fr 1fr; align-items: center; } }
+  .pv .eyebrow { font-size: 13px; font-weight: 600; margin: 0 0 12px; }
+  .pv h3 { margin: 0 0 16px; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.08; letter-spacing: -.02em; }
+  .pv .sub { margin: 0 0 24px; font-size: 17px; max-width: 46ch; }
+  .pv .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pv .panel { border-radius: 12px; padding: 18px; }
+  .pv .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  .pv .kpi { border-radius: 8px; padding: 10px 12px; }
+  .pv .kpi b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .pv .kpi span { font-size: 11px; }
+  .pv .bars { display: flex; align-items: flex-end; gap: 6px; height: 90px; }
+  .pv .bars i { flex: 1; border-radius: 3px 3px 0 0; }
+  .pv .cards { padding: 8px 24px 40px; display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .pv .cards { grid-template-columns: repeat(3, 1fr); } }
+  .pv .card { padding: 18px; border-radius: 10px; }
+  .pv .card h4 { margin: 0 0 6px; font-size: 16px; }
+  .pv .card p { margin: 0; font-size: 14px; }
+  .note { font-size: 12px; color: var(--muted); padding: 10px 24px 18px; margin: 0; }
+  .rec { border: 2px solid #16a34a; }
+
+  /* ---------- Direction A: Modern Minimal ---------- */
+  .A { --bg: #FAFAF9; --surface: #FFFFFF; --ink: #1C1C1E; --muted: #57534E; --line: #E7E5E4; --soft: #F5F5F4; --accent: #C8372D; --accent-ink: #FFFFFF; --pos: #2F8A3E; }
+  .A .pv { background: var(--bg); color: var(--ink); font-family: Inter, sans-serif; }
+  .A h3, .A h4, .A .brand { font-family: Geist, Inter, sans-serif; }
+  .A nav { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .A .mark { background: var(--accent); }
+  .A .links { color: var(--muted); }
+  .A .btn-p { background: var(--ink); color: #fff; }
+  .A .btn-s { border-color: var(--line); color: var(--ink); background: var(--surface); }
+  .A .eyebrow { color: var(--accent); }
+  .A .sub { color: var(--muted); }
+  .A .panel { background: var(--surface); border: 1px solid var(--line); }
+  .A .kpi { background: var(--soft); } .A .kpi span { color: var(--muted); }
+  .A .bars i { background: #D6D3D1; } .A .bars i:last-child { background: var(--accent); }
+  .A .card { background: var(--surface); border: 1px solid var(--line); } .A .card p { color: var(--muted); }
+
+  /* ---------- Direction B: Premium Technology ---------- */
+  .B { --bg: #0B1B3F; --surface: #102552; --ink: #FFFFFF; --muted: #B4C0DC; --line: #233A70; --accent: #3B7BFF; --violet: #8B6CFF; }
+  .B .pv { background: var(--bg); color: var(--ink); font-family: Inter, sans-serif; }
+  .B h3, .B h4, .B .brand { font-family: Sora, Inter, sans-serif; }
+  .B nav { border-bottom: 1px solid var(--line); }
+  .B .mark { background: #E5483B; }
+  .B .links { color: var(--muted); }
+  .B .btn-p { background: var(--accent); color: #fff; }
+  .B .btn-s { border-color: var(--line); color: #fff; }
+  .B .eyebrow { color: var(--violet); }
+  .B .sub { color: var(--muted); }
+  .B .panel { background: var(--surface); border: 1px solid var(--line); }
+  .B .kpi { background: #0B1B3F; } .B .kpi span { color: var(--muted); }
+  .B .bars i { background: #2A4686; } .B .bars i:last-child { background: linear-gradient(180deg, var(--violet), var(--accent)); }
+  .B .card { background: var(--surface); border: 1px solid var(--line); } .B .card p { color: var(--muted); }
+
+  /* ---------- Direction C: Contemporary SaaS ---------- */
+  .C { --bg: #FBF8F4; --surface: #FFFFFF; --ink: #23201D; --muted: #625A52; --line: #EADFD4; --accent: #B8432F; --accent-fill: #D2553F; --peach: #F6E7DF; --sage: #E6EEE3; --sky: #E4ECF4; }
+  .C .pv { background: var(--bg); color: var(--ink); font-family: Inter, sans-serif; }
+  .C h3, .C h4, .C .brand { font-family: Manrope, Inter, sans-serif; font-weight: 800; }
+  .C nav { background: var(--bg); }
+  .C .mark { background: #E5483B; }
+  .C .links { color: var(--muted); }
+  .C .btn-p { background: var(--accent); color: #fff; border-radius: 999px; }
+  .C .btn-s { border-color: var(--ink); color: var(--ink); border-radius: 999px; }
+  .C .eyebrow { color: var(--accent); }
+  .C .sub { color: var(--muted); }
+  .C .panel { background: var(--peach); }
+  .C .kpi { background: var(--surface); } .C .kpi span { color: var(--muted); }
+  .C .bars i { background: #E9CBBE; } .C .bars i:last-child { background: var(--accent-fill); }
+  .C .card:nth-child(1) { background: var(--peach); } .C .card:nth-child(2) { background: var(--sage); } .C .card:nth-child(3) { background: var(--sky); }
+  .C .card p { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page">MYFUNDBOX — three visual directions</h1>
+  <p class="lede">The same navbar, hero, dashboard preview and feature cards, shown in each direction. Recommended direction: <strong>A, Modern Minimal</strong> (reasons below). The logo mark is drawn as a placeholder here; the real site needs a dark-text logo, because the current wordmark is white.</p>
+
+  <!-- ================= A ================= -->
+  <section class="dir A rec">
+    <div class="meta">
+      <div>
+        <h2>A · Modern Minimal <span class="tag">Recommended</span></h2>
+        <p><strong>Type:</strong> Geist (headings) + Inter (body). Precise, neutral, very legible at small dashboard sizes.</p>
+        <p><strong>Feel:</strong> Paddle-level restraint. The colour comes from the logo's red, used sparingly; near-black primary buttons; one accent per screen.</p>
+        <p><strong>Why it wins:</strong> it reuses the existing brand red, so there's no rebrand. It reads as trustworthy money software in the EU market. It also scales cleanly to a data-dense app UI and needs no gradients or decoration.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><i style="background:#FAFAF9"></i>Off-white #FAFAF9</div>
+        <div class="sw"><i style="background:#1C1C1E"></i>Charcoal #1C1C1E</div>
+        <div class="sw"><i style="background:#C8372D"></i>Muted red #C8372D</div>
+        <div class="sw"><i style="background:#E7E5E4"></i>Light grey #E7E5E4</div>
+        <div class="sw"><i style="background:#F5F5F4"></i>Soft #F5F5F4</div>
+        <div class="sw"><i style="background:#2F8A3E"></i>Positive #2F8A3E</div>
+      </div>
+    </div>
+    <div class="pv">
+      <nav><span class="brand"><span class="mark"></span>MYFUNDBOX</span><span class="links"><span>Product</span><span>Solutions</span><span>Pricing</span><span>Developers</span><span>Resources</span></span><span class="ctas"><a class="btn btn-s" href="#">Log in</a><a class="btn btn-p" href="#">Get started</a></span></nav>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Revenue management platform</p>
+          <h3>Take control of your revenue. Grow without limits.</h3>
+          <p class="sub">Manage subscriptions, billing, payments and revenue operations through one platform built for growing businesses.</p>
+          <div class="ctas"><a class="btn btn-p" href="#">Get started free</a><a class="btn btn-s" href="#">Book a demo</a></div>
+        </div>
+        <div class="panel">
+          <div class="kpis"><div class="kpi"><span>MRR</span><b>€—</b></div><div class="kpi"><span>Active subs</span><b>—</b></div><div class="kpi"><span>Recovered</span><b>—</b></div></div>
+          <div class="bars"><i style="height:35%"></i><i style="height:42%"></i><i style="height:48%"></i><i style="height:55%"></i><i style="height:61%"></i><i style="height:70%"></i><i style="height:82%"></i></div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>Recurring billing</h4><p>One-time, recurring and instalment plans on your own gateways.</p></div>
+        <div class="card"><h4>Smart dunning</h4><p>Automatic retries and reminders recover failed payments.</p></div>
+        <div class="card"><h4>Customer portal</h4><p>Customers update cards, view invoices and manage plans themselves.</p></div>
+      </div>
+    </div>
+    <p class="note">Contrast: red #C8372D on white ≈ 5.2:1 (meets WCAG AA for text). Charcoal on off-white ≈ 16:1.</p>
+  </section>
+
+  <!-- ================= B ================= -->
+  <section class="dir B">
+    <div class="meta">
+      <div>
+        <h2>B · Premium Technology</h2>
+        <p><strong>Type:</strong> Sora (headings) + Inter (body). Geometric and techy.</p>
+        <p><strong>Feel:</strong> Deep navy, electric blue and a violet accent. Developer- and enterprise-coded.</p>
+        <p><strong>Trade-off:</strong> it clashes with the red-and-green logo, and blue-on-navy is visually close to Stripe and Maxio, so MYFUNDBOX would blend in. Dark pages are also heavier for long-form SEO content.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><i style="background:#0B1B3F"></i>Navy #0B1B3F</div>
+        <div class="sw"><i style="background:#3B7BFF"></i>Electric #3B7BFF</div>
+        <div class="sw"><i style="background:#8B6CFF"></i>Violet #8B6CFF</div>
+        <div class="sw"><i style="background:#FFFFFF"></i>White</div>
+        <div class="sw"><i style="background:#B4C0DC"></i>Mist #B4C0DC</div>
+      </div>
+    </div>
+    <div class="pv">
+      <nav><span class="brand"><span class="mark"></span>MYFUNDBOX</span><span class="links"><span>Product</span><span>Solutions</span><span>Pricing</span><span>Developers</span><span>Resources</span></span><span class="ctas"><a class="btn btn-s" href="#">Log in</a><a class="btn btn-p" href="#">Get started</a></span></nav>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Revenue management platform</p>
+          <h3>Take control of your revenue. Grow without limits.</h3>
+          <p class="sub">Manage subscriptions, billing, payments and revenue operations through one platform built for growing businesses.</p>
+          <div class="ctas"><a class="btn btn-p" href="#">Get started free</a><a class="btn btn-s" href="#">Book a demo</a></div>
+        </div>
+        <div class="panel">
+          <div class="kpis"><div class="kpi"><span>MRR</span><b>€—</b></div><div class="kpi"><span>Active subs</span><b>—</b></div><div class="kpi"><span>Recovered</span><b>—</b></div></div>
+          <div class="bars"><i style="height:35%"></i><i style="height:42%"></i><i style="height:48%"></i><i style="height:55%"></i><i style="height:61%"></i><i style="height:70%"></i><i style="height:82%"></i></div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>Recurring billing</h4><p>One-time, recurring and instalment plans on your own gateways.</p></div>
+        <div class="card"><h4>Smart dunning</h4><p>Automatic retries and reminders recover failed payments.</p></div>
+        <div class="card"><h4>Customer portal</h4><p>Customers update cards, view invoices and manage plans themselves.</p></div>
+      </div>
+    </div>
+    <p class="note">Contrast: electric blue #3B7BFF with white text ≈ 3.9:1, which fails WCAG AA for small text, so buttons would need a darker blue.</p>
+  </section>
+
+  <!-- ================= C ================= -->
+  <section class="dir C">
+    <div class="meta">
+      <div>
+        <h2>C · Contemporary SaaS</h2>
+        <p><strong>Type:</strong> Manrope (headings) + Inter (body). Friendly, rounded.</p>
+        <p><strong>Feel:</strong> Warm white, deep graphite, terracotta and soft pastel blocks. Approachable, aimed at SMBs.</p>
+        <p><strong>Trade-off:</strong> terracotta sits close to the logo red without matching it, so the two colours compete. The pastel tiles get repetitive across 20+ pages and feel less "finance-grade".</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><i style="background:#FBF8F4"></i>Warm white #FBF8F4</div>
+        <div class="sw"><i style="background:#23201D"></i>Graphite #23201D</div>
+        <div class="sw"><i style="background:#B8432F"></i>Terracotta #B8432F</div>
+        <div class="sw"><i style="background:#F6E7DF"></i>Peach #F6E7DF</div>
+        <div class="sw"><i style="background:#E6EEE3"></i>Sage #E6EEE3</div>
+        <div class="sw"><i style="background:#E4ECF4"></i>Sky #E4ECF4</div>
+      </div>
+    </div>
+    <div class="pv">
+      <nav><span class="brand"><span class="mark"></span>MYFUNDBOX</span><span class="links"><span>Product</span><span>Solutions</span><span>Pricing</span><span>Developers</span><span>Resources</span></span><span class="ctas"><a class="btn btn-s" href="#">Log in</a><a class="btn btn-p" href="#">Get started</a></span></nav>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Revenue management platform</p>
+          <h3>Take control of your revenue. Grow without limits.</h3>
+          <p class="sub">Manage subscriptions, billing, payments and revenue operations through one platform built for growing businesses.</p>
+          <div class="ctas"><a class="btn btn-p" href="#">Get started free</a><a class="btn btn-s" href="#">Book a demo</a></div>
+        </div>
+        <div class="panel">
+          <div class="kpis"><div class="kpi"><span>MRR</span><b>€—</b></div><div class="kpi"><span>Active subs</span><b>—</b></div><div class="kpi"><span>Recovered</span><b>—</b></div></div>
+          <div class="bars"><i style="height:35%"></i><i style="height:42%"></i><i style="height:48%"></i><i style="height:55%"></i><i style="height:61%"></i><i style="height:70%"></i><i style="height:82%"></i></div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>Recurring billing</h4><p>One-time, recurring and instalment plans on your own gateways.</p></div>
+        <div class="card"><h4>Smart dunning</h4><p>Automatic retries and reminders recover failed payments.</p></div>
+        <div class="card"><h4>Customer portal</h4><p>Customers update cards, view invoices and manage plans themselves.</p></div>
+      </div>
+    </div>
+    <p class="note">Contrast: terracotta #B8432F on white ≈ 5.4:1 (AA). The lighter #D2553F is only ≈ 4:1, so it's for fills, not text.</p>
+  </section>
+
+  <p class="lede">Dashboard values show "—" on purpose: the brief forbids fabricated metrics, and the real figures will come from the application once it is connected.</p>
+</div>
+</body>
+</html>

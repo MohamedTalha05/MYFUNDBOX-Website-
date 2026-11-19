@@ -1,533 +1,639 @@
 import React from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import {
+  Check,
+  CreditCard,
+  Globe2,
+  Lock,
+  RefreshCw,
+  ShieldCheck,
+  Sparkles,
+  Zap,
+  Layers,
+  ChevronRight,
+  Receipt,
+  Users,
+} from 'lucide-react';
 import { useRouter } from '../context/RouterContext';
+import { resolveNavHref, useLocalHref } from '../utils/navLinks';
+import { HOME_COPY } from '../data/homeContent';
+import { HomeHero } from '../components/HomeHero';
+import { RevenueDashboardPreview } from '../components/RevenueDashboardPreview';
+import { IntegrationsStrip } from '../components/IntegrationsStrip';
 import type { PageMetadataEntry } from '../data/pagesRegistry';
-import { LOCALE_UI_COPY, SITE_CONFIG } from '../data/siteConfig';
+import { APP_LINKS, SITE_CONFIG } from '../data/siteConfig';
 import { COMPETITORS } from '../data/competitorsData';
 import {
   AppLink,
   AtAGlanceCard,
-  AuthorMetaLine,
   FAQSection,
-  SafeEditorialImage,
 } from '../components/ReusableBlocks';
-import { HeroLedgerPreview } from '../components/HeroLedgerPreview';
-import { DeferredRevenueEstimator } from '../components/DeferredRevenueEstimator';
+import { SubscriptionSavingsCalculator } from '../components/SubscriptionSavingsCalculator';
 
 export function HomePage({ page }: { page: PageMetadataEntry }) {
   const { locale, navigate } = useRouter();
-  const copy = LOCALE_UI_COPY[locale] ?? LOCALE_UI_COPY.en;
-  const prefix = `/${locale}`;
+  const localHref = useLocalHref();
+  const heroCopy = (HOME_COPY[locale] ?? HOME_COPY.en).hero;
+  // "Explore the Platform" follows the existing product navigation (product overview page);
+  // if that page isn't available it scrolls to the at-a-glance summary below the hero.
+  const productHref = resolveNavHref({ href: '/product' });
+  const exploreHref = productHref ? localHref(productHref) : '#at-a-glance-heading';
 
   return (
     <div className="space-y-16 md:space-y-24 pb-20">
-      {/* 1. Eye-Catching Atmospheric Carbon-Obsidian & Coral-Amber Hero Section */}
-      <section className="relative overflow-hidden hero-aurora-bg text-white border-b border-slate-800/80">
-        <div className="pointer-events-none absolute inset-0 hero-grid-pattern" aria-hidden="true" />
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-14 md:pt-16 md:pb-18">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-            <div className="lg:col-span-6 flex flex-col justify-center gap-6">
-              <div>
-                <p className="text-xs font-medium text-amber-300">
-                  {copy.heroEyebrow}
-                </p>
-                <h1 className="mt-3 font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold tracking-tight text-white leading-[1.1]">
-                  {page.h1}
-                </h1>
-                <p className="mt-4 max-w-2xl text-base md:text-lg leading-relaxed text-slate-200">
-                  {page.aeoSummary}
-                </p>
-                <div className="mt-4 [&_div]:text-slate-300/90">
-                  <AuthorMetaLine authorId={page.authorId} lastUpdated={page.lastUpdated} />
-                </div>
-              </div>
+      {/* 1. Hero — dark midnight canvas, revenue dashboard preview */}
+      <HomeHero
+        eyebrow={heroCopy.eyebrow}
+        title={page.h1}
+        highlight={heroCopy.highlight}
+        description={heroCopy.subtitle}
+        primary={{ label: heroCopy.primaryCta, href: APP_LINKS.signUp }}
+        secondary={{ label: heroCopy.secondaryCta, href: exploreHref }}
+        note={heroCopy.note}
+        visual={<RevenueDashboardPreview previewLabel={heroCopy.previewLabel} />}
+      />
 
-              <div className="flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => navigate(`${prefix}/contact`)}
-                  className="btn-gradient-primary inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold cursor-pointer whitespace-nowrap"
-                >
-                  <span>{copy.nav.bookDemo}</span>
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </button>
-                <a
-                  href="#calculator"
-                  className="inline-flex items-center rounded-lg border border-slate-500/40 bg-white/10 px-5 py-3 text-sm font-medium text-white hover:bg-white/15 transition-colors whitespace-nowrap backdrop-blur-sm"
-                >
-                  {copy.secondaryCta}
-                </a>
-              </div>
-
-              <dl className="grid grid-cols-3 gap-4 border-t border-slate-800 pt-5 text-xs">
-                <div>
-                  <dt className="text-slate-400">Accounting</dt>
-                  <dd className="mt-0.5 font-semibold text-white">IFRS 15 &amp; HGB</dd>
-                </div>
-                <div>
-                  <dt className="text-slate-400">Data Residency</dt>
-                  <dd className="mt-0.5 font-semibold text-white">EU / Germany</dd>
-                </div>
-                <div>
-                  <dt className="text-slate-400">Gateway Lock-in</dt>
-                  <dd className="mt-0.5 font-semibold text-white">0% Payment Cut</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="lg:col-span-6 flex flex-col justify-between gap-4">
-              <HeroLedgerPreview />
-              <div className="hidden sm:block">
-                <SafeEditorialImage
-                  src="/src/assets/images/hero_finance_architecture_1794994736085.jpg"
-                  alt="Minimalist European financial headquarters interior representing MYFUNDBOX German engineering and precision"
-                  className="h-44"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* 2. Honest Customer Logo Bar Placeholder */}
-          <div className="mt-12 border-t border-slate-800 pt-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="text-xs font-medium text-slate-300">
-                Built for European SaaS, membership, and agency finance teams
-              </span>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs font-mono text-slate-400">
-                <span>[ADD: EU Logo 01]</span>
-                <span>[ADD: EU Logo 02]</span>
-                <span>[ADD: EU Logo 03]</span>
-                <span>[ADD: EU Logo 04]</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 2. Integrations & technology ecosystem strip (full width, flush with the hero) */}
+      <IntegrationsStrip className="-mt-16 md:-mt-24" />
 
       {/* 3. At A Glance GEO Fact Box */}
       {page.atAGlance && (
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
           <AtAGlanceCard data={page.atAGlance} />
-        </div>
+        </section>
       )}
 
       {/* 4. Problem vs Solution Section */}
-      <section aria-labelledby="problem-solution-heading" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          <div className="lg:col-span-7 space-y-6">
-            <div>
-              <h2
-                id="problem-solution-heading"
-                className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100"
-              >
-                {page.sections[0].heading}
-              </h2>
-              <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                {page.sections[0].directAnswer}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                  Spreadsheet revenue tracking
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                  <li>· Broken pro-rata date formulas across mid-term upgrades</li>
-                  <li>· Manual CSV reconciliations between Stripe, SEPA, and CRM</li>
-                  <li>· Gross VAT totals leaking into MRR/ARR board decks</li>
-                  <li>· Slow month-end close and painful statutory audit sampling</li>
-                </ul>
-              </div>
-
-              <div className="rounded-xl border border-rose-200 dark:border-rose-900/70 bg-rose-50/45 dark:bg-rose-950/25 p-6">
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                  MYFUNDBOX revenue sub-ledger
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
-                  <li>· Deterministic IFRS 15 &amp; HGB schedules in EUR</li>
-                  <li>· Automated multi-source billing + CRM ingestion</li>
-                  <li>· Native EU VAT separation between tax liability and net revenue</li>
-                  <li>· Locked periods with invoice-to-GL audit lineage</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5">
-            <SafeEditorialImage
-              src="/src/assets/images/eu_compliance_ledger_1794994737059.jpg"
-              alt="Stepped brushed aluminum and smoked glass architectural blocks symbolizing structured deferred revenue tiers"
-              caption="Structured deferred-to-recognized ledger schedules without altering customer billing."
-              className="h-72 lg:h-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Key Features Asymmetric Bento Grid */}
-      <section aria-labelledby="capabilities-heading" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-3xl mb-10">
-          <h2
-            id="capabilities-heading"
-            className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100"
-          >
-            What can finance teams automate inside MYFUNDBOX?
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
+            {locale === 'de' ? 'Der Unterschied' : 'The Revenue Advantage'}
+          </p>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
+            {locale === 'de'
+              ? 'Schluss mit prozentualen Umsatzabzügen und Gateway-Abhängigkeit'
+              : 'Stop paying a percentage of your revenue for subscription billing'}
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">
-            MYFUNDBOX covers the complete revenue lifecycle—from IFRS 15 performance obligations and deferred revenue roll-forwards to recurring revenue metrics, contract forecasting, and DATEV/ERP exports—while leaving payment processing and customer invoicing to your existing stack.
+          <p className="mt-3 text-base text-muted">
+            {locale === 'de'
+              ? 'US-Plattformen verlangen 0,7 % bis 5 % Ihres Umsatzes und binden Sie an ein einziges Gateway. MYFUNDBOX gibt Ihnen echte Unabhängigkeit.'
+              : 'Legacy billing platforms take 0.7% to 5.0% of your gross billing volume while locking you into their processing. MYFUNDBOX charges a flat rate, letting you run your own gateway accounts with 0% revenue cut.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <article className="md:col-span-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 flex flex-col justify-between hover:border-rose-500/40 transition-colors">
-            <div>
-              <div className="text-xs font-semibold text-rose-700 dark:text-rose-400">01. Core Accounting Engine</div>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                IFRS 15 &amp; HGB Revenue Recognition
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300 max-w-2xl">
-                Configure performance obligations, daily or monthly straight-line schedules, and mid-term upgrade rules once. Closed periods lock permanently while prospective adjustments flow cleanly into open months.
-              </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Legacy / US Platforms */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
+            <div className="inline-flex rounded-lg bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold">
+              {locale === 'de' ? 'Klassische Billing-Anbieter (Stripe, Paddle, Recurly)' : 'Legacy Platforms (Stripe Billing, Paddle, Recurly)'}
             </div>
-            <div className="mt-6">
-              <AppLink
-                href={`${prefix}/product/revenue-recognition`}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
-              >
-                <span>Explore Revenue Recognition</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </AppLink>
-            </div>
-          </article>
+            <ul className="space-y-3 text-sm text-muted">
+              <li className="flex items-start gap-2.5">
+                <span className="text-red-500 font-bold">✕</span>
+                <span>
+                  <strong>{locale === 'de' ? 'Prozentuale Gebühren:' : 'Percentage taxes:'}</strong>{' '}
+                  {locale === 'de'
+                    ? '0,7 % bis 5 % von jedem Euro Umsatz schmälern Ihre Marge bei jedem Wachstumsschritt.'
+                    : '0.7% to 5% of every dollar billed cuts into your gross margin as you scale.'}
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-red-500 font-bold">✕</span>
+                <span>
+                  <strong>{locale === 'de' ? 'Gateway-Lock-in:' : 'Processor lock-in:'}</strong>{' '}
+                  {locale === 'de'
+                    ? 'Oft auf einen einzigen Zahlungsabwickler beschränkt, keine freie Wahl bei Gebühren oder Auszahlungen.'
+                    : 'Locked into a single processor with zero leverage over merchant interchange fees.'}
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-red-500 font-bold">✕</span>
+                <span>
+                  <strong>{locale === 'de' ? 'Schlechter DACH-Support:' : 'Weak European payment rails:'}</strong>{' '}
+                  {locale === 'de'
+                    ? 'Umständliche SEPA-Handhabung, fehlende deutsche Buchhaltungsschnittstellen (sevDesk, Lexware).'
+                    : 'Fragile SEPA Direct Debit handling, no native sync with DACH accounting tools like sevDesk.'}
+                </span>
+              </li>
+            </ul>
+          </div>
 
-          <article className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 flex flex-col justify-between hover:border-rose-500/40 transition-colors">
-            <div>
-              <div className="text-xs font-semibold text-rose-700 dark:text-rose-400">02. Balance Sheet Control</div>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                Deferred Revenue &amp; Accruals
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                Track short-term and long-term deferred liabilities (PRAP) and unbilled accruals with one-click opening-to-closing roll-forwards.
-              </p>
+          {/* MYFUNDBOX */}
+          <div className="rounded-2xl border-2 border-accent/40 bg-surface p-6 sm:p-8 space-y-4 shadow-sm relative overflow-hidden">
+            <div className="inline-flex rounded-lg bg-accent-soft text-accent px-3 py-1 text-xs font-semibold">
+              {locale === 'de' ? 'Der MYFUNDBOX-Weg' : 'The MYFUNDBOX Advantage'}
             </div>
-            <div className="mt-6">
-              <AppLink
-                href={`${prefix}/product/deferred-revenue-accruals`}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
-              >
-                <span>Explore Deferred Revenue</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </AppLink>
-            </div>
-          </article>
-
-          <article className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 flex flex-col justify-between hover:border-rose-500/40 transition-colors">
-            <div>
-              <div className="text-xs font-semibold text-rose-700 dark:text-rose-400">03. Board &amp; RevOps KPIs</div>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                MRR, ARR &amp; Cohort Reporting
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                Unify New, Expansion, Contraction, Churn, and Net Revenue Retention in EUR—100% reconciled to recognized P&amp;L revenue.
-              </p>
-            </div>
-            <div className="mt-6">
-              <AppLink
-                href={`${prefix}/product/revenue-reporting`}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
-              >
-                <span>Explore Reporting</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </AppLink>
-            </div>
-          </article>
-
-          <article className="md:col-span-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 flex flex-col justify-between hover:border-rose-500/40 transition-colors">
-            <div>
-              <div className="text-xs font-semibold text-rose-700 dark:text-rose-400">04. Forward Visibility &amp; Stack Sync</div>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                Contract-Level Revenue Forecasting &amp; EU ERP Exports
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300 max-w-2xl">
-                Project deferred revenue burn-down, empirical cohort renewals, and weighted CRM pipeline across 12–36 months, while exporting clean monthly journal entries to DATEV, SAP, Exact, Xero, or NetSuite.
-              </p>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-6">
-              <AppLink
-                href={`${prefix}/product/revenue-forecasting`}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
-              >
-                <span>Explore Forecasting</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </AppLink>
-              <AppLink
-                href={`${prefix}/product/integrations-api`}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:underline"
-              >
-                <span>Explore Integrations &amp; API</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </AppLink>
-            </div>
-          </article>
+            <ul className="space-y-3 text-sm text-ink">
+              <li className="flex items-start gap-2.5">
+                <Check className="h-5 w-5 text-positive shrink-0 mt-0.5" />
+                <span>
+                  <strong>{locale === 'de' ? '0 % Umsatzabzug:' : '0% Revenue Cut:'}</strong>{' '}
+                  {locale === 'de'
+                    ? 'Feste monatliche Pauschalpreise basierend auf der Abonnentenzahl. Sie behalten 100 % Ihres Umsatzes.'
+                    : 'Predictable flat pricing based on subscriber count. You keep 100% of the money you earn.'}
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Check className="h-5 w-5 text-positive shrink-0 mt-0.5" />
+                <span>
+                  <strong>{locale === 'de' ? 'Echtes Multi-Gateway:' : 'True Multi-Gateway Orchestration:'}</strong>{' '}
+                  {locale === 'de'
+                    ? 'Verbinden Sie Stripe, GoCardless, Mollie und PayPal gleichzeitig. Gelder gehen direkt auf Ihr Bankkonto.'
+                    : 'Connect Stripe, GoCardless (SEPA), Mollie, and PayPal side-by-side. Funds deposit directly into your bank.'}
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Check className="h-5 w-5 text-positive shrink-0 mt-0.5" />
+                <span>
+                  <strong>{locale === 'de' ? 'EU-nativ & DSGVO-konform:' : 'EU-Native & Compliant:'}</strong>{' '}
+                  {locale === 'de'
+                    ? 'Hosting in Frankfurt am Main, automatische EU-MwSt.-Prüfung und nahtlose Anbindung an sevDesk & Xero.'
+                    : 'Cloud hosting in Frankfurt, automated EU VAT validation, and seamless sync with sevDesk and Xero.'}
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* 6. How It Works (3 numbered steps) */}
-      <section aria-labelledby="how-it-works-heading" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-10">
-          <div className="max-w-3xl">
-            <h2
-              id="how-it-works-heading"
-              className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100"
-            >
-              {page.sections[1].heading}
-            </h2>
-            <p className="mt-3 text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-              {page.sections[1].directAnswer}
+      {/* 5. Key Features Bento Grid */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
+            {locale === 'de' ? 'Plattformfunktionen' : 'Core Capabilities'}
+          </p>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
+            {locale === 'de'
+              ? 'Alles, was Sie für Abos und wiederkehrende Zahlungen brauchen'
+              : 'Complete subscription management without the complexity'}
+          </h2>
+          <p className="mt-3 text-base text-muted">
+            {locale === 'de'
+              ? 'Von flexiblen Plänen über Pay Links bis hin zum automatischen Mahnwesen – in einer zentralen Oberfläche.'
+              : 'From flexible recurring plans and shareable Pay Links to automated dunning recovery and customer self-service.'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Card 1 */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
+            <div className="space-y-3">
+              <div className="h-10 w-10 rounded-xl bg-accent-soft text-accent flex items-center justify-center">
+                <CreditCard className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-ink">
+                {locale === 'de' ? 'Multi-Gateway-Zahlungen' : 'Multi-Gateway Processing'}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Verbinden Sie Stripe, GoCardless, Mollie, PayPal und Checkout.com. Bieten Sie Kunden Kreditkarten, SEPA-Lastschrift, iDEAL und mehr.'
+                  : 'Run Stripe, GoCardless, Mollie, PayPal, and Checkout.com side-by-side. Offer cards, SEPA Direct Debit, and local European payment methods.'}
+              </p>
+            </div>
+            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
+              <span>{locale === 'de' ? 'Mehr über Zahlungen' : 'Explore payments'}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
+            <div className="space-y-3">
+              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
+                <Layers className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-ink">
+                {locale === 'de' ? 'Flexible Abopläne & Testphasen' : 'Plans, Add-ons & Coupons'}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Erstellen Sie monatliche, quartalsweise oder jährliche Abos. Steuern Sie kostenlose Testphasen, Gutscheincodes und modulare Zusatzprodukte.'
+                  : 'Build monthly, quarterly, or annual subscription tiers with free trials, discount coupons, upgrade prorations, and modular add-on products.'}
+              </p>
+            </div>
+            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
+              <span>{locale === 'de' ? 'Mehr über Pläne' : 'Explore plans & trials'}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
+            <div className="space-y-3">
+              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
+                <Zap className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-ink">
+                {locale === 'de' ? 'Pay Links & Hosted Checkout' : 'Pay Links & Hosted Checkout'}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Erstellen Sie teilbare Zahlungslinks für E-Mails und Angebote oder binden Sie das responsive Checkout-Formular unter eigener Domain ein.'
+                  : 'Generate instant no-code payment links to share via email or quote, or embed mobile-responsive hosted checkout with custom domain support.'}
+              </p>
+            </div>
+            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
+              <span>{locale === 'de' ? 'Mehr über Pay Links' : 'Explore Pay Links'}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
+            <div className="space-y-3">
+              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
+                <RefreshCw className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-ink">
+                {locale === 'de' ? 'Smart Dunning & Umsatzrettung' : 'Smart Dunning & Recovery'}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Automatische Wiederholungsversuche bei fehlgeschlagenen Kartenzahlungen, Ablaufwarnungen und E-Mail-Erinnerungen retten unabsichtlich gekündigte Abos.'
+                  : 'Automated card retry schedules, pre-expiration alerts, and customer notifications prevent involuntary churn before accounts cancel.'}
+              </p>
+            </div>
+            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
+              <span>{locale === 'de' ? 'Mehr über Dunning' : 'Explore dunning'}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+
+          {/* Card 5 */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
+            <div className="space-y-3">
+              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
+                <Users className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-ink">
+                {locale === 'de' ? 'Kunden-Self-Service ("My Portal")' : 'Customer Self-Service Portal'}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Kunden aktualisieren ihre Zahlungsdaten, laden Rechnungen herunter und wechseln Pläne selbstständig – ohne den Support zu belasten.'
+                  : 'Subscribers manage their payment cards, download past invoices, and upgrade or pause subscriptions directly in a white-labeled portal.'}
+              </p>
+            </div>
+            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
+              <span>{locale === 'de' ? 'Mehr zum Kundenportal' : 'Explore customer portal'}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+
+          {/* Card 6 */}
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:border-line-strong transition-colors">
+            <div className="space-y-3">
+              <div className="h-10 w-10 rounded-xl bg-soft text-ink flex items-center justify-center">
+                <Receipt className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-display font-bold text-ink">
+                {locale === 'de' ? 'EU-MwSt. & Buchhaltungssync' : 'EU VAT & Accounting Sync'}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Automatische EU-Umsatzsteuer-Validierung, gesetzeskonforme PDF-Rechnungen und direkter Datenabgleich mit sevDesk, Lexware, QuickBooks und Xero.'
+                  : 'Real-time European VAT ID validation, compliant PDF invoicing, and automated sync with sevDesk, Lexware, QuickBooks, and Xero.'}
+              </p>
+            </div>
+            <div className="pt-2 text-xs font-medium text-accent flex items-center gap-1">
+              <span>{locale === 'de' ? 'Mehr über Integrationen' : 'Explore integrations'}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. How It Works (3 Fast Steps) */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
+            {locale === 'de' ? 'In 3 Schritten live' : 'Fast Setup'}
+          </p>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
+            {locale === 'de'
+              ? 'Startklar in unter 30 Minuten'
+              : 'Live in under 30 minutes without developer headaches'}
+          </h2>
+          <p className="mt-3 text-base text-muted">
+            {locale === 'de'
+              ? 'Verbinden Sie Ihre Zahlungsdienste und starten Sie ohne wochenlange Integration.'
+              : 'Connect your existing merchant gateways and start billing subscribers today.'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-3">
+            <div className="font-mono text-xs font-bold text-accent">01</div>
+            <h3 className="text-lg font-display font-bold text-ink">
+              {locale === 'de' ? 'Gateways verknüpfen' : 'Connect Your Gateways'}
+            </h3>
+            <p className="text-sm text-muted leading-relaxed">
+              {locale === 'de'
+                ? 'Verbinden Sie Ihre Konten bei Stripe, GoCardless, Mollie oder PayPal mit wenigen Klicks.'
+                : 'Connect your existing accounts at Stripe, GoCardless, Mollie, or PayPal in a couple of clicks. No new bank accounts required.'}
             </p>
           </div>
 
-          <ol className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {page.sections[1].numberedSteps?.map((step, idx) => (
-              <li key={step.title} className="border-t border-slate-200 dark:border-slate-800 pt-5">
-                <div className="text-xs font-mono font-semibold text-rose-700 dark:text-rose-400">
-                  0{idx + 1}
-                </div>
-                <h3 className="mt-2 text-base font-semibold text-slate-900 dark:text-slate-100">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                  {step.detail}
-                </p>
-              </li>
-            ))}
-          </ol>
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-3">
+            <div className="font-mono text-xs font-bold text-accent">02</div>
+            <h3 className="text-lg font-display font-bold text-ink">
+              {locale === 'de' ? 'Pläne & Checkout erstellen' : 'Create Plans & Checkout'}
+            </h3>
+            <p className="text-sm text-muted leading-relaxed">
+              {locale === 'de'
+                ? 'Legen Sie Abostufen fest, definieren Sie Testphasen und generieren Sie Pay Links oder Hosted Checkout.'
+                : 'Define pricing tiers, configure free trials and coupon codes, and generate embeddable checkout or instant Pay Links.'}
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-3">
+            <div className="font-mono text-xs font-bold text-accent">03</div>
+            <h3 className="text-lg font-display font-bold text-ink">
+              {locale === 'de' ? 'Abrechnung automatisieren' : 'Automate & Collect'}
+            </h3>
+            <p className="text-sm text-muted leading-relaxed">
+              {locale === 'de'
+                ? 'MYFUNDBOX übernimmt Verlängerungen, Dunning-Retries, MwSt.-Rechnungen und Kunden-Self-Service.'
+                : 'MYFUNDBOX handles renewals, card retries, VAT invoices, and customer portal self-service automatically.'}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 7. Interactive Deferred Revenue & Close-Time Estimator */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <DeferredRevenueEstimator />
-      </div>
+      {/* 7. Interactive Savings Calculator */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SubscriptionSavingsCalculator />
+      </section>
 
-      {/* 8. EU Compliance & Security Section */}
-      <section aria-labelledby="eu-compliance-heading" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          <div className="lg:col-span-5">
-            <SafeEditorialImage
-              src="/src/assets/images/cfo_boardroom_review_1794994737088.jpg"
-              alt="European finance director and controller reviewing audit schedules in a sunlit Berlin boardroom"
-              caption="Audit-ready documentation engineered for German and EU statutory reviews."
-              className="h-72 lg:h-full"
-            />
-          </div>
-
-          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-            <div>
-              <h2
-                id="eu-compliance-heading"
-                className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100"
-              >
-                How does MYFUNDBOX address IFRS 15, HGB/GoBD, and GDPR?
+      {/* 8. EU Compliance, Security & Data Sovereignty */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-positive">
+                <ShieldCheck className="h-4 w-4" />
+                <span>{locale === 'de' ? 'Deutsches Hosting & DSGVO' : 'Frankfurt Hosting & GDPR'}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight">
+                {locale === 'de'
+                  ? 'Höchste europäische Sicherheits- und Datenschutzstandards'
+                  : 'European security, compliance, and data residency by design'}
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                MYFUNDBOX is engineered in Germany with EU data residency, GDPR Art. 28 Data Processing Agreements, and accounting schedules aligned with{' '}
-                <a
-                  href="https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-rose-700 dark:text-rose-400 underline underline-offset-2"
-                >
-                  IFRS 15 (IFRS Foundation)
-                </a>{' '}
-                and{' '}
-                <a
-                  href="https://eur-lex.europa.eu/eli/reg/2016/679/oj"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-rose-700 dark:text-rose-400 underline underline-offset-2"
-                >
-                  EU GDPR (EUR-Lex 2016/679)
-                </a>
-                .
+              <p className="text-sm sm:text-base text-muted leading-relaxed">
+                {locale === 'de'
+                  ? 'Alle Kundendaten werden ausschließlich in nach ISO 27001 zertifizierten Rechenzentren in Frankfurt am Main gehostet. Volle DSGVO-Konformität, Auftragsverarbeitungsvertrag (AVV) auf Knopfdruck und Unterstützung für 3D Secure 2 sowie Zwei-Faktor-Authentifizierung (2FA).'
+                  : 'Customer and payment token records are hosted strictly in ISO-certified data centers in Frankfurt am Main, Germany. Full GDPR compliance, automated Data Processing Agreements (DPA), and 2-Factor Authentication (2FA) with 3D Secure 2 (3DS2) protection.'}
               </p>
             </div>
-
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-              <table className="w-full text-left text-xs sm:text-sm border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400">
-                    <th className="py-3 px-4 font-semibold">Standard / Control</th>
-                    <th className="py-3 px-4 font-semibold">Scope</th>
-                    <th className="py-3 px-4 font-semibold">Verification Status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-                  {SITE_CONFIG.complianceStandards.map((item) => (
-                    <tr key={item.name}>
-                      <td className="py-3 px-4 font-medium text-slate-900 dark:text-slate-100">{item.name}</td>
-                      <td className="py-3 px-4 text-slate-600 dark:text-slate-300">{item.scope}</td>
-                      <td className="py-3 px-4 text-slate-500 dark:text-slate-400 font-mono text-xs">{item.status}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div>
-              <AppLink
-                href={`${prefix}/security`}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
-              >
-                <span>Review Security, DPA &amp; EU Residency details</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </AppLink>
+            <div className="lg:col-span-5 grid grid-cols-2 gap-4 text-xs">
+              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
+                <div className="font-semibold text-ink">Frankfurt am Main</div>
+                <div className="text-subtle">ISO 27001 Cloud</div>
+              </div>
+              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
+                <div className="font-semibold text-ink">DSGVO / GDPR</div>
+                <div className="text-subtle">AVV / DPA inklusive</div>
+              </div>
+              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
+                <div className="font-semibold text-ink">3D Secure 2</div>
+                <div className="text-subtle">SCA-konforme Karten</div>
+              </div>
+              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
+                <div className="font-semibold text-ink">2FA Schutz</div>
+                <div className="text-subtle">Zwei-Faktor-Login</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 9. Integrations Matrix */}
-      <section aria-labelledby="integrations-heading" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-          <div className="max-w-2xl">
-            <h2
-              id="integrations-heading"
-              className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100"
-            >
-              Connects to your billing, CRM, and European ERP stack
-            </h2>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              Confirm specific connector availability for your tenant during onboarding.
-            </p>
-          </div>
-          <AppLink
-            href={`${prefix}/product/integrations-api`}
-            className="text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline whitespace-nowrap"
-          >
-            View Integration &amp; API matrix →
-          </AppLink>
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
+            {locale === 'de' ? 'Offenes Ökosystem' : 'Integrations'}
+          </p>
+          <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight">
+            {locale === 'de'
+              ? 'Verbindet Zahlungs-Gateways und Buchhaltungssoftware'
+              : 'Connected with your payment processors and accounting tools'}
+          </h2>
+          <p className="mt-3 text-base text-muted">
+            {locale === 'de'
+              ? 'Kein Austausch Ihrer bestehenden Bankverbindungen erforderlich. Nutzen Sie Ihre gewohnten Gateways.'
+              : 'Bring your existing processor accounts. Funds settle directly to your corporate bank account.'}
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {SITE_CONFIG.supportedIntegrations.map((integ) => (
-            <div
-              key={integ.name}
-              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 hover:border-rose-500/40 transition-colors"
-            >
-              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{integ.name}</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{integ.category}</div>
-              <div className="mt-2 text-[11px] font-mono text-slate-500 dark:text-slate-400">{integ.status}</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
+            <h3 className="text-base font-semibold text-ink flex items-center gap-2">
+              <CreditCard className="h-4 w-4 text-accent" />
+              <span>{locale === 'de' ? 'Zahlungs-Gateways' : 'Payment Gateways'}</span>
+            </h3>
+            <div className="space-y-3 text-xs sm:text-sm">
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">Stripe</span>
+                <span className="text-muted">Kreditkarten, Apple Pay, Google Pay</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">GoCardless</span>
+                <span className="text-muted">SEPA Lastschrift, Bacs, ACH</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">Mollie</span>
+                <span className="text-muted">iDEAL, Bancontact, EPS, Cartes Bancaires</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">PayPal</span>
+                <span className="text-muted">Weltweite PayPal-Zahlungen</span>
+              </div>
+              <div className="flex justify-between items-center py-2">
+                <span className="font-medium text-ink">Checkout.com</span>
+                <span className="text-muted">Enterprise Card Processing</span>
+              </div>
             </div>
-          ))}
+          </div>
+
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
+            <h3 className="text-base font-semibold text-ink flex items-center gap-2">
+              <Receipt className="h-4 w-4 text-accent" />
+              <span>{locale === 'de' ? 'Buchhaltung & Steuern' : 'Accounting & Invoicing'}</span>
+            </h3>
+            <div className="space-y-3 text-xs sm:text-sm">
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">QuickBooks Online</span>
+                <span className="text-muted">Automatischer Rechnungsabgleich</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">Xero</span>
+                <span className="text-muted">Synchronisation von Debitoren &amp; Zahlungen</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">sevDesk</span>
+                <span className="text-muted">Deutsche Rechnungsstellung &amp; GoBD</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-line">
+                <span className="font-medium text-ink">Lexware</span>
+                <span className="text-muted">Buchungssätze für die DACH-Finanz</span>
+              </div>
+              <div className="flex justify-between items-center py-2">
+                <span className="font-medium text-ink">Avalara</span>
+                <span className="text-muted">Automatisierte globale Steuerberechnung</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 10. Pricing Teaser & Testimonials Placeholder */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 flex flex-col justify-between">
-          <div>
-            <h2 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-slate-100">
-              EUR pricing with zero payment processing cut
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              MYFUNDBOX never takes a percentage of your customer payments. Plans scale transparently based on annual recurring revenue managed and ERP integration scope [ADD: Final EUR tiers].
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
-              <li className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-rose-700 dark:text-rose-400 shrink-0" aria-hidden="true" />
-                <span>IFRS 15 &amp; HGB recognition engine included across all tiers</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-rose-700 dark:text-rose-400 shrink-0" aria-hidden="true" />
-                <span>EU hosting residency &amp; GDPR DPA included</span>
-              </li>
-            </ul>
-          </div>
-          <div className="mt-6">
-            <AppLink
-              href={`${prefix}/pricing`}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
-            >
-              <span>Compare Growth, Scale &amp; Enterprise plans</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+      {/* 10. Transparent Flat Pricing Teaser */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-line pb-8">
+            <div>
+              <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
+                {locale === 'de' ? 'Transparente Tarife' : 'Predictable Flat Pricing'}
+              </p>
+              <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight">
+                {locale === 'de'
+                  ? 'Feste Preise. Keine versteckten Umsatzabzüge.'
+                  : 'Flat pricing by subscriber count. Zero percentage fees.'}
+              </h2>
+            </div>
+            <AppLink href={localHref('/pricing')} className="btn-secondary px-5 py-2.5 text-sm shrink-0">
+              {locale === 'de' ? 'Alle Tarife & Details ansehen' : 'View full pricing & feature matrix'}
             </AppLink>
           </div>
-        </div>
 
-        <div className="lg:col-span-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 flex flex-col justify-between">
-          <div>
-            <h2 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-slate-100">
-              Customer outcomes [ADD: Verified Testimonials]
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              &ldquo;[ADD: Attributable customer quote describing spreadsheet replacement, IFRS 15 audit readiness, and month-end close hours saved.]&rdquo;
-            </p>
-            <p className="mt-4 text-xs font-medium text-slate-500 dark:text-slate-400">
-              [ADD: Full Name, CFO / Head of Finance, European Customer Company]
-            </p>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-6 text-sm">
-            <AppLink href={`${prefix}/case-studies`} className="font-semibold text-rose-700 dark:text-rose-400 hover:underline">
-              View case study templates →
-            </AppLink>
-            <AppLink href={`${prefix}/compare/myfundbox-vs-stripe-revenue-recognition`} className="font-medium text-slate-700 dark:text-slate-300 hover:underline">
-              Compare alternatives →
-            </AppLink>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-xl border border-line bg-canvas p-6 space-y-4">
+              <div>
+                <h3 className="font-display font-bold text-lg text-ink">Free</h3>
+                <p className="text-xs text-muted mt-1">
+                  {locale === 'de' ? 'Bis zu 25 Abonnenten' : 'Up to 25 active subscribers'}
+                </p>
+                <div className="mt-4 text-3xl font-display font-extrabold text-ink">0 €</div>
+              </div>
+              <ul className="space-y-2 text-xs text-muted">
+                <li>✓ Multi-Gateway Unterstützung</li>
+                <li>✓ Hosted Checkout &amp; Pay Links</li>
+                <li>✓ Standard Support</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border-2 border-accent bg-surface p-6 space-y-4 relative shadow-sm">
+              <span className="absolute -top-3 right-4 rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
+                Beliebt
+              </span>
+              <div>
+                <h3 className="font-display font-bold text-lg text-ink">Professional</h3>
+                <p className="text-xs text-muted mt-1">
+                  {locale === 'de' ? 'Bis zu 500 Abonnenten' : 'Up to 500 active subscribers'}
+                </p>
+                <div className="mt-4 text-3xl font-display font-extrabold text-ink">
+                  199 € <span className="text-xs font-normal text-muted">/ Monat</span>
+                </div>
+              </div>
+              <ul className="space-y-2 text-xs text-ink">
+                <li>✓ Eigene Checkout-Domain</li>
+                <li>✓ Smart Dunning &amp; Mahnwesen</li>
+                <li>✓ Kunden-Self-Service-Portal</li>
+                <li>✓ Prioritäts-Support</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-line bg-canvas p-6 space-y-4">
+              <div>
+                <h3 className="font-display font-bold text-lg text-ink">Advanced</h3>
+                <p className="text-xs text-muted mt-1">
+                  {locale === 'de' ? 'Unbegrenzte Abonnenten' : 'Unlimited active subscribers'}
+                </p>
+                <div className="mt-4 text-3xl font-display font-extrabold text-ink">
+                  399 € <span className="text-xs font-normal text-muted">/ Monat</span>
+                </div>
+              </div>
+              <ul className="space-y-2 text-xs text-muted">
+                <li>✓ Alle Buchhaltungs-Integrationen</li>
+                <li>✓ Umfassender API- &amp; Webhook-Zugang</li>
+                <li>✓ Dedizierter Onboarding-Support</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 11. Competitor Comparison Directory Strip */}
-      <section aria-labelledby="compare-strip-heading" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8">
-          <h2 id="compare-strip-heading" className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-            Evaluating MYFUNDBOX against US or billing-bundled alternatives?
-          </h2>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            Review neutral feature, pricing-model, and EU-compliance comparisons compiled from public documentation.
+      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
+            {locale === 'de' ? 'Marktvergleich' : 'Comparisons'}
           </p>
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-            {COMPETITORS.map((c) => (
+          <h2 className="mt-1 text-2xl font-display font-bold text-ink">
+            {locale === 'de' ? 'Wie schneidet MYFUNDBOX im Vergleich ab?' : 'How MYFUNDBOX compares'}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {COMPETITORS.slice(0, 5).map((comp) => (
+            <div
+              key={comp.slug}
+              className="rounded-xl border border-line bg-surface p-4 text-center hover:border-line-strong transition-colors"
+            >
+              <div className="text-xs font-semibold text-ink">vs. {comp.competitorName.split(' (')[0]}</div>
+              <p className="mt-1 text-[11px] text-muted line-clamp-2">{comp.targetSegment}</p>
               <AppLink
-                key={c.slug}
-                href={`${prefix}/compare/${c.slug}`}
-                className="rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3.5 py-2.5 font-medium text-slate-800 dark:text-slate-200 hover:border-rose-600 dark:hover:border-rose-500 transition-colors"
+                href={localHref(`/compare/${comp.slug}`)}
+                className="mt-3 inline-block text-xs font-medium text-accent hover:underline"
               >
-                vs {c.competitorName.split(' (')[0]}
+                Vergleich ansehen →
               </AppLink>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 12. FAQ Section */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <FAQSection faqs={page.faqs} />
-      </div>
+      <section className="mx-auto max-w-4xl px-4 sm:px-6">
+        <FAQSection
+          heading={locale === 'de' ? 'Häufig gestellte Fragen zu MYFUNDBOX' : 'Frequently asked questions'}
+          intro={
+            locale === 'de'
+              ? 'Transparente Antworten zu Gateways, Gebühren, Datenhosting und Kündigungsfristen.'
+              : 'Direct answers about gateway connections, fees, data hosting, and migration.'
+          }
+          faqs={page.faqs}
+        />
+      </section>
 
-      {/* 13. Final CTA with Matching Carbon-Obsidian Backdrop & Gradient Button */}
+      {/* 13. Final CTA Banner */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-xl border border-slate-800 hero-aurora-bg text-white p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="pointer-events-none absolute inset-0 hero-grid-pattern opacity-60" aria-hidden="true" />
-          <div className="relative max-w-xl">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white">
-              Ready for an audit-ready month-end close in EUR?
-            </h2>
-            <p className="mt-2 text-sm md:text-base text-slate-200 leading-relaxed">
-              Walk through your subscription contracts, IFRS 15 recognition rules, and DATEV/ERP exports with our Germany-based product specialists.
-            </p>
-          </div>
-          <div className="relative flex flex-wrap items-center gap-3 shrink-0">
+        <div className="rounded-3xl border border-line bg-surface p-8 sm:p-12 md:p-16 text-center space-y-6 shadow-sm">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight max-w-2xl mx-auto">
+            {locale === 'de'
+              ? 'Bereit für vollautomatisierte Abrechnung ohne Umsatzabzug?'
+              : 'Ready to automate subscription billing without giving up a cut of your revenue?'}
+          </h2>
+          <p className="max-w-xl mx-auto text-base text-muted">
+            {locale === 'de'
+              ? 'Starten Sie heute kostenlos mit bis zu 25 Abonnenten oder vereinbaren Sie eine geführte 30-Minuten-Demo.'
+              : 'Start free with up to 25 subscribers or book a guided 30-minute product tour with our European team.'}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <a
+              href={APP_LINKS.signUp}
+              className="btn-primary px-6 py-3 text-sm font-semibold"
+            >
+              {locale === 'de' ? 'Kostenlos starten (bis 25 Kunden)' : 'Start free with up to 25 subscribers'}
+            </a>
             <button
               type="button"
-              onClick={() => navigate(`${prefix}/contact`)}
-              className="btn-gradient-primary inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold cursor-pointer whitespace-nowrap"
+              onClick={() => navigate(localHref('/book-a-demo'))}
+              className="btn-secondary px-6 py-3 text-sm font-semibold cursor-pointer"
             >
-              <span>{copy.nav.bookDemo}</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              {locale === 'de' ? 'Produkttour anfordern' : 'Schedule a walkthrough'}
             </button>
+          </div>
+          <div className="pt-2 text-xs text-subtle">
+            Keine Kreditkarte erforderlich · In 30 Minuten startklar · DSGVO-konform in Frankfurt gehostet
           </div>
         </div>
       </section>

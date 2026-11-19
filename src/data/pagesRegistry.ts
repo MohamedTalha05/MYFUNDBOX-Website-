@@ -48,7 +48,7 @@ export interface PageSection {
 }
 
 export interface PageMetadataEntry {
-  path: string; // canonical path e.g. '/en/product/revenue-recognition'
+  path: string; // canonical path e.g. '/product/revenue-recognition'
   category: PageCategory;
   locale: LocaleCode;
   title: string;
@@ -72,100 +72,169 @@ const TECH_AUTHOR = SITE_CONFIG.authors[1].id;
 const CORE_PAGES: PageMetadataEntry[] = [
   // 1. HOME (EN)
   {
-    path: '/en',
+    path: '/',
     category: 'home',
     locale: 'en',
-    title: 'MYFUNDBOX | EU Revenue Management & IFRS 15 Software',
+    title: 'MYFUNDBOX | Subscription Billing & Revenue Management Platform',
     description:
-      'EU-based revenue management software built in Germany. Automate IFRS 15 revenue recognition, deferred revenue, MRR/ARR analytics, and forecasting.',
-    h1: 'Revenue management software built for European finance teams',
+      'Manage subscriptions, recurring billing, payments, dunning and revenue reporting in one platform. Works with Stripe, GoCardless, Mollie, PayPal and Checkout.com.',
+    h1: 'Take Control of Your Revenue. Focus on Growing Your Business.',
     aeoSummary:
-      'MYFUNDBOX is EU-based revenue management software engineered in Germany for CFOs, financial controllers, and RevOps teams. It tracks, recognizes, forecasts, and reconciles recurring revenue under IFRS 15 and German HGB/GoBD—connecting to existing billing and ERP tools without processing payments or issuing customer invoices.',
-    breadcrumbs: [{ label: 'Home', href: '/en' }],
-    lastUpdated: '2026-11-18',
+      'MYFUNDBOX is a revenue management platform for subscription businesses. It brings plans, one-time and recurring billing, payments through Stripe, GoCardless, Mollie, PayPal and Checkout.com, automatic failed-payment recovery, a customer self-service portal and revenue reporting into one place, with data stored in Frankfurt.',
+    breadcrumbs: [{ label: 'Home', href: '/' }],
+    lastUpdated: '2026-11-19',
     authorId: DEFAULT_AUTHOR,
     priority: 1.0,
     atAGlance: {
-      whatItIs: 'Standalone EU revenue management software (sub-ledger, recognition, analytics & forecasting). Not a payment gateway or billing engine.',
-      whoItIsFor: 'CFOs, controllers, accountants, and RevOps teams at European SaaS, digital services, membership, and agency businesses.',
+      whatItIs: 'A subscription billing and revenue management platform: plans, billing, payments, dunning, customer portal and reporting in one place.',
+      whoItIsFor: 'SaaS companies, subscription and membership businesses, digital businesses and agencies with recurring revenue.',
       keyCapabilities: [
-        'IFRS 15 & HGB revenue recognition rules',
-        'Deferred revenue & accrual roll-forwards',
-        'MRR, ARR, NRR, churn & cohort reporting',
-        'Contract-level revenue forecasting & audit trail',
+        'One-time and recurring billing with plans, add-ons, coupons and trials',
+        'Payments through multiple gateways and methods',
+        'Smart dunning with automatic retries and reminders',
+        'Hosted checkout, pay links and a customer portal',
       ],
-      pricingModel: '[ADD: Tiered EUR plans / Custom quote based on annual recurring revenue]',
-      regionAndCompliance: 'Built in Germany · GDPR-compliant · EU data residency [CONFIRM Frankfurt] · EU VAT separation',
-      integrations: 'DATEV, SAP, Xero, Exact, NetSuite, Stripe Billing, Chargebee, HubSpot, Salesforce, REST API [CONFIRM list]',
+      pricingModel: 'Free plan for up to 25 subscribers; paid plans billed monthly or annually. See the pricing page for current plans.',
+      regionAndCompliance: 'Data stored in Frankfurt, Germany · GDPR Data Processing Agreement · Two-factor authentication',
+      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevdesk, Lexware, Avalara, REST API & webhooks',
     },
     sections: [
       {
-        heading: 'What is MYFUNDBOX and why does spreadsheet revenue tracking break?',
+        heading: 'Why does subscription revenue get hard to manage?',
         directAnswer:
-          'MYFUNDBOX replaces manual spreadsheet revenue waterfalls with an automated, audit-ready revenue sub-ledger. As subscription businesses add annual prepayments, mid-term upgrades, credit notes, and SEPA enterprise invoices across multiple tools, Excel models introduce cutoff errors and slow month-end close.',
+          'As a subscription business grows, plans, invoices, payments and customer changes end up spread across separate tools. Failed payments slip through, customers wait on support for simple changes, and revenue figures have to be rebuilt by hand. MYFUNDBOX brings all of it into one platform.',
         bullets: [
-          'Eliminates manual pro-rata date formulas and broken spreadsheet VLOOKUPs across billing exports.',
-          'Separates gross cash collected (including EU VAT) from net recognized revenue and deferred liability.',
-          'Maintains an immutable, user-attributed audit trail ready for IFRS 15 and HGB/GoBD statutory reviews.',
+          'Plans, billing and payments are managed in one place instead of several tools.',
+          'Failed payments are retried and followed up automatically.',
+          'Customers update cards, plans and details themselves in a self-service portal.',
         ],
       },
       {
-        heading: 'How does MYFUNDBOX automate revenue management in 3 steps?',
+        heading: 'How does MYFUNDBOX work?',
         directAnswer:
-          'MYFUNDBOX ingests contract and invoice events from your billing, CRM, and ERP systems, applies deterministic IFRS 15 recognition rules in EUR, and exports clean period-close journals and live executive forecasts.',
+          'Set up your plans, connect the payment gateways you already use, and MYFUNDBOX runs billing, collection and reporting automatically from then on.',
         numberedSteps: [
           {
-            title: 'Connect billing, CRM, and ERP data sources',
-            detail: 'Sync subscriptions, enterprise contracts, credit notes, and FX rates in read-only mode via native connectors or the REST API.',
+            title: 'Create your plans and checkout',
+            detail: 'Define one-time or recurring products with add-ons, coupons and trials, then publish a hosted checkout or pay link.',
           },
           {
-            title: 'Apply IFRS 15 & HGB recognition rules automatically',
-            detail: 'Assign performance obligations, daily or monthly straight-line schedules, and accrual cutoffs without altering customer invoicing.',
+            title: 'Connect your payment gateways',
+            detail: 'Link Stripe, GoCardless, Mollie, PayPal or Checkout.com and offer cards, SEPA, ACH, bank transfer or open banking.',
           },
           {
-            title: 'Close the month and publish board-ready forecasts',
-            detail: 'Export balanced deferred-to-recognized journals (DATEV / ERP) alongside unified MRR, ARR, NRR, and cash vs. revenue projections.',
+            title: 'Automate billing and track revenue',
+            detail: 'Renewals, invoices and failed-payment recovery run on their own while you follow revenue, subscriptions and payments live.',
           },
         ],
       },
     ],
     faqs: [
       {
-        question: 'Is MYFUNDBOX a payment processor or billing system?',
+        question: 'What is MYFUNDBOX?',
         answer:
-          'No. MYFUNDBOX never processes card or SEPA payments and does not replace your billing/invoicing engine. It sits above your billing and CRM tools as a dedicated revenue accounting, analytics, and forecasting sub-ledger.',
+          'MYFUNDBOX is a revenue management platform for subscription businesses. It handles plans, one-time and recurring billing, payments, failed-payment recovery, a customer portal and revenue reporting in one place.',
       },
       {
-        question: 'Does MYFUNDBOX support IFRS 15 and German HGB/GoBD?',
+        question: 'Which payment gateways does MYFUNDBOX work with?',
         answer:
-          'Yes. Recognition schedules follow IFRS 15 performance-obligation principles and support German HGB period-end accrual structures with immutable audit logs [CONFIRM external GoBD attestation status].',
+          'MYFUNDBOX works with Stripe, GoCardless, Mollie, PayPal and Checkout.com. Depending on the gateway, customers can pay by card, SEPA Direct Debit, ACH, bank transfer or open banking.',
       },
       {
-        question: 'Where is customer financial data hosted?',
+        question: 'What happens when a customer’s payment fails?',
         answer:
-          'MYFUNDBOX operates with EU-first GDPR compliance and EU data residency [CONFIRM: Frankfurt am Main, Germany]. No third-party trackers load before explicit cookie consent.',
+          'Smart dunning retries the payment automatically and sends reminder emails on the schedule you set, so customers can update their payment details before the subscription lapses.',
       },
       {
-        question: 'How does MYFUNDBOX handle EU VAT in revenue reports?',
+        question: 'Can customers manage their own subscriptions?',
         answer:
-          'EU VAT (USt/TVA) is stripped from gross invoiced totals before calculating recognized revenue, deferred revenue liabilities, MRR, and ARR.',
+          'Yes. The customer portal lets customers update their card, change plans and view invoices without contacting your team.',
       },
       {
-        question: 'Which accounting and ERP systems can receive exports?',
+        question: 'Where is my data stored?',
         answer:
-          'MYFUNDBOX supports structured journal exports and connectors for European and global ERPs including DATEV, SAP, Exact, Xero, and NetSuite [CONFIRM exact active connectors].',
+          'MYFUNDBOX stores data in Frankfurt, Germany, and offers a Data Processing Agreement for GDPR. Accounts can be protected with two-factor authentication.',
       },
       {
-        question: 'What currency and date formats are used by default?',
+        question: 'Is there a free plan?',
         answer:
-          'EUR is the default reporting currency alongside European date and number formatting, with multi-currency contract conversion supported.',
+          'Yes. The Free plan covers up to 25 subscribers. Paid plans add more subscribers and features; see the pricing page for current plans.',
+      },
+      {
+        question: 'Does MYFUNDBOX have an API?',
+        answer:
+          'Yes. A REST API and webhooks are available, with documentation at docs.myfundbox.com.',
+      },
+    ],
+  },
+
+  // 1b. PRODUCT OVERVIEW
+  {
+    path: '/product',
+    category: 'product',
+    locale: 'en',
+    title: 'Product Overview | MYFUNDBOX Subscription Billing Platform',
+    description:
+      'Explore the full MYFUNDBOX platform: subscription management, multi-gateway payments, hosted checkout, pay links, smart dunning, and customer self-service.',
+    h1: 'Everything you need to launch, bill, and retain subscriptions',
+    aeoSummary:
+      'The MYFUNDBOX product suite combines subscription lifecycle management, multi-gateway payment processing across Stripe, GoCardless, Mollie, and PayPal, hosted checkout, shareable pay links, automated dunning, customer self-service, and European accounting sync into one unified platform with zero revenue fees.',
+    breadcrumbs: [
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product' },
+    ],
+    lastUpdated: '2026-11-19',
+    authorId: DEFAULT_AUTHOR,
+    priority: 0.95,
+    atAGlance: {
+      whatItIs: 'Unified European subscription billing and multi-gateway payment management platform.',
+      whoItIsFor: 'SaaS companies, digital subscription businesses, agencies, and membership organizations.',
+      keyCapabilities: [
+        'Multi-gateway payment orchestration (Stripe, GoCardless, Mollie, PayPal)',
+        'Subscription plan builder, trials, discount coupons, and add-ons',
+        'Mobile-optimized hosted checkout and instant shareable Pay Links',
+        'Smart dunning with automated retry schedules and card recovery',
+        'White-labeled customer self-service portal (My Portal)',
+        'European VAT ID validation and accounting sync (sevDesk, Lexware, Xero, QBO)',
+      ],
+      pricingModel: 'Free tier up to 25 subscribers; Professional €199/mo; Advanced €399/mo. 0% volume cut.',
+      regionAndCompliance: 'Frankfurt am Maln, Germany · GDPR Data Processing Agreement · 3DS2 & 2FA',
+      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevDesk, Lexware, Avalara, REST API & Webhooks',
+    },
+    sections: [
+      {
+        heading: 'How do the MYFUNDBOX platform modules connect together?',
+        directAnswer:
+          'MYFUNDBOX coordinates the entire subscription lifecycle: customer signup via hosted checkout or Pay Links, recurring charge execution across your chosen payment gateway, automated invoice generation with EU VAT validation, and self-service account management through the customer portal.',
+        bullets: [
+          'Choose your payment gateway for each currency or payment rail (cards, SEPA, iDEAL).',
+          'Automate recurring billing schedules with prorated upgrades, downgrades, and trial conversions.',
+          'Protect recurring revenue with automated card expiration reminders and smart retries.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: 'Can I connect multiple payment gateways simultaneously?',
+        answer:
+          'Yes. MYFUNDBOX lets you run Stripe, GoCardless (SEPA), Mollie, and PayPal side-by-side on the same account, routing customers to the best local payment rail.',
+      },
+      {
+        question: 'Does MYFUNDBOX hold or delay customer funds?',
+        answer:
+          'No. Payments process directly through your connected merchant accounts and deposit into your corporate bank account according to your standard processor schedule.',
+      },
+      {
+        question: 'How does the customer self-service portal work?',
+        answer:
+          'Subscribers receive a secure link or portal login where they can update payment cards, view billing history, download VAT invoices, and manage plan tiers without contacting support.',
       },
     ],
   },
 
   // 2. PRODUCT PAGES (5)
   {
-    path: '/en/product/revenue-recognition',
+    path: '/product/revenue-recognition',
     category: 'product',
     locale: 'en',
     title: 'IFRS 15 Revenue Recognition Software | MYFUNDBOX',
@@ -175,9 +244,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX Revenue Recognition translates raw subscription, contract, and credit note events into IFRS 15 and HGB-compliant recognition schedules. Finance controllers configure rule-based performance obligations once and generate immutable monthly journal entries without manual spreadsheet waterfalls.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Product', href: '/en/product/revenue-recognition' },
-      { label: 'Revenue Recognition', href: '/en/product/revenue-recognition' },
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product/revenue-recognition' },
+      { label: 'Revenue Recognition', href: '/product/revenue-recognition' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -252,7 +321,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/product/revenue-reporting',
+    path: '/product/revenue-reporting',
     category: 'product',
     locale: 'en',
     title: 'Recurring Revenue Reporting & MRR/ARR Analytics | MYFUNDBOX',
@@ -262,9 +331,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX Revenue Reporting unifies board-level SaaS KPIs—MRR, ARR, Net Revenue Retention, churn, and cohorts—with your GAAP/IFRS recognized revenue sub-ledger. Unlike standalone dashboard tools, every movement traces down to verified invoices, contract dates, and net-of-VAT amounts.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Product', href: '/en/product/revenue-reporting' },
-      { label: 'Revenue Reporting & Analytics', href: '/en/product/revenue-reporting' },
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product/revenue-reporting' },
+      { label: 'Revenue Reporting & Analytics', href: '/product/revenue-reporting' },
     ],
     lastUpdated: '2026-11-18',
     authorId: TECH_AUTHOR,
@@ -323,7 +392,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/product/revenue-forecasting',
+    path: '/product/revenue-forecasting',
     category: 'product',
     locale: 'en',
     title: 'SaaS & Subscription Revenue Forecasting Software | MYFUNDBOX',
@@ -333,9 +402,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX Revenue Forecasting projects future recognized revenue, deferred revenue burn-down, and renewal cash inflows directly from active customer contracts. Finance teams model conservative, base, and expansion scenarios without rebuilding fragile multi-tab spreadsheet forecasts every month.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Product', href: '/en/product/revenue-forecasting' },
-      { label: 'Revenue Forecasting', href: '/en/product/revenue-forecasting' },
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product/revenue-forecasting' },
+      { label: 'Revenue Forecasting', href: '/product/revenue-forecasting' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -403,7 +472,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/product/deferred-revenue-accruals',
+    path: '/product/deferred-revenue-accruals',
     category: 'product',
     locale: 'en',
     title: 'Deferred Revenue & Accruals Automation Software | MYFUNDBOX',
@@ -413,9 +482,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX automates deferred revenue (passive Rechnungsabgrenzungsposten / PRAP) and accrued unbilled revenue schedules at customer and contract level. Controllers eliminate manual month-end cutoff spreadsheets and reconcile opening-to-closing balance sheet movements down to every individual invoice.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Product', href: '/en/product/deferred-revenue-accruals' },
-      { label: 'Deferred Revenue & Accruals', href: '/en/product/deferred-revenue-accruals' },
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product/deferred-revenue-accruals' },
+      { label: 'Deferred Revenue & Accruals', href: '/product/deferred-revenue-accruals' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -474,7 +543,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/product/integrations-api',
+    path: '/product/integrations-api',
     category: 'product',
     locale: 'en',
     title: 'Revenue Management Integrations & REST API | MYFUNDBOX',
@@ -484,9 +553,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX connects in read-only mode to your upstream billing and CRM tools while exporting balanced revenue journals to your European accounting or ERP system. Keep your existing payment gateways and invoicing workflows intact while unifying revenue accounting through native connectors, webhooks, and REST APIs.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Product', href: '/en/product/integrations-api' },
-      { label: 'Integrations & API', href: '/en/product/integrations-api' },
+      { label: 'Home', href: '/' },
+      { label: 'Product', href: '/product/integrations-api' },
+      { label: 'Integrations & API', href: '/product/integrations-api' },
     ],
     lastUpdated: '2026-11-18',
     authorId: TECH_AUTHOR,
@@ -552,7 +621,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
 
   // 3. SOLUTIONS PAGES (5)
   {
-    path: '/en/solutions/saas',
+    path: '/solutions/saas',
     category: 'solution',
     locale: 'en',
     title: 'Revenue Management Software for B2B SaaS | MYFUNDBOX',
@@ -562,9 +631,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'European B2B SaaS companies use MYFUNDBOX to reconcile self-serve subscription billing with sales-led annual SEPA contracts in one sub-ledger. Automate IFRS 15 recognition across seat upgrades, ramp deals, and multi-year prepayments while tracking unified MRR, ARR, and Net Revenue Retention.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Solutions', href: '/en/solutions/saas' },
-      { label: 'B2B SaaS', href: '/en/solutions/saas' },
+      { label: 'Home', href: '/' },
+      { label: 'Solutions', href: '/solutions/saas' },
+      { label: 'B2B SaaS', href: '/solutions/saas' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -610,7 +679,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/solutions/digital-services',
+    path: '/solutions/digital-services',
     category: 'solution',
     locale: 'en',
     title: 'Revenue Management for Digital Services & Media | MYFUNDBOX',
@@ -620,9 +689,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Digital publishers, software marketplaces, and media platforms rely on MYFUNDBOX to amortize prepaid annual passes, isolate cross-border EU VAT rates before recognizing revenue, and track subscriber cohort retention across European markets without touching checkout or payment processing.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Solutions', href: '/en/solutions/digital-services' },
-      { label: 'Digital Services & Media', href: '/en/solutions/digital-services' },
+      { label: 'Home', href: '/' },
+      { label: 'Solutions', href: '/solutions/digital-services' },
+      { label: 'Digital Services & Media', href: '/solutions/digital-services' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -668,7 +737,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/solutions/memberships',
+    path: '/solutions/memberships',
     category: 'solution',
     locale: 'en',
     title: 'Deferred Revenue Software for Memberships & Associations | MYFUNDBOX',
@@ -678,9 +747,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Membership organizations, B2B networks, and professional associations collect annual dues upfront while delivering member benefits over twelve months. MYFUNDBOX automates straight-line dues recognition, tracks deferred liabilities cleanly for year-end audits, and forecasts member renewal retention.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Solutions', href: '/en/solutions/memberships' },
-      { label: 'Memberships', href: '/en/solutions/memberships' },
+      { label: 'Home', href: '/' },
+      { label: 'Solutions', href: '/solutions/memberships' },
+      { label: 'Memberships', href: '/solutions/memberships' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -726,7 +795,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/solutions/agencies',
+    path: '/solutions/agencies',
     category: 'solution',
     locale: 'en',
     title: 'Retainer & Milestone Revenue Management for Agencies | MYFUNDBOX',
@@ -736,9 +805,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Digital, consulting, and creative agencies run on a blend of monthly retainers, quarterly prepayments, and milestone-based projects. MYFUNDBOX gives agency finance leads accurate recognized revenue schedules, accrued unbilled tracking, and forward-looking retainer forecasts without spreadsheet reconciliation.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Solutions', href: '/en/solutions/agencies' },
-      { label: 'Agencies', href: '/en/solutions/agencies' },
+      { label: 'Home', href: '/' },
+      { label: 'Solutions', href: '/solutions/agencies' },
+      { label: 'Agencies', href: '/solutions/agencies' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -784,7 +853,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/solutions/finance-teams-cfo',
+    path: '/solutions/finance-teams-cfo',
     category: 'solution',
     locale: 'en',
     title: 'Revenue Management for CFOs & Controllers | MYFUNDBOX',
@@ -794,9 +863,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'CFOs and controllers face growing audit scrutiny over deferred revenue, EU VAT separation, and SaaS KPI accuracy. MYFUNDBOX delivers an immutable, role-governed revenue sub-ledger in EUR that cuts manual close time, satisfies external auditors, and aligns finance with RevOps.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Solutions', href: '/en/solutions/finance-teams-cfo' },
-      { label: 'Finance Teams & CFOs', href: '/en/solutions/finance-teams-cfo' },
+      { label: 'Home', href: '/' },
+      { label: 'Solutions', href: '/solutions/finance-teams-cfo' },
+      { label: 'Finance Teams & CFOs', href: '/solutions/finance-teams-cfo' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -844,70 +913,70 @@ const CORE_PAGES: PageMetadataEntry[] = [
 
   // 4. PRICING
   {
-    path: '/en/pricing',
+    path: '/pricing',
     category: 'pricing',
     locale: 'en',
-    title: 'Pricing & Plans | MYFUNDBOX Revenue Management',
+    title: 'Pricing & Plans | MYFUNDBOX Subscription Billing',
     description:
-      'Transparent EUR revenue management pricing tailored to your recurring revenue volume and ERP stack—with zero payment processing fees.',
-    h1: 'Transparent EUR pricing built around revenue complexity—never payment volume',
+      'Predictable flat EUR pricing for subscription businesses. Free up to 25 subscribers, €199/mo Professional, €399/mo Advanced. Zero percentage cut of your revenue.',
+    h1: 'Predictable flat pricing with 0% revenue cut',
     aeoSummary:
-      'MYFUNDBOX prices strictly as dedicated revenue management software in EUR, never taking a percentage of payment processing volume. Plans scale with annual recurring revenue (ARR) managed, entity count, and ERP integration depth. [ADD: Final tier EUR figures or confirm custom quote policy].',
+      'MYFUNDBOX offers transparent, flat EUR pricing based on active subscriber count—never taking a percentage of your gross revenue or transaction volume. Start free with up to 25 subscribers, scale to Professional (€199/mo billed annually) or Advanced (€399/mo billed annually) with unlimited subscribers.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Pricing', href: '/en/pricing' },
+      { label: 'Home', href: '/' },
+      { label: 'Pricing', href: '/pricing' },
     ],
-    lastUpdated: '2026-11-18',
+    lastUpdated: '2026-11-19',
     authorId: DEFAULT_AUTHOR,
     priority: 0.95,
     sections: [
       {
-        heading: 'How do MYFUNDBOX plans compare across growth stages?',
+        heading: 'Why does MYFUNDBOX use flat subscriber pricing instead of percentage fees?',
         directAnswer:
-          'Every tier includes core IFRS 15 / HGB revenue recognition, deferred revenue roll-forwards, EU VAT separation, and GDPR-compliant EU hosting. Higher tiers expand multi-entity consolidation, custom ERP connectors, and dedicated accounting onboarding.',
+          'Most subscription billing platforms charge 0.7% to 5.0% of your gross billing volume, which functions as an increasing tax on your growth. MYFUNDBOX charges a flat rate based on active subscribers so your software costs remain predictable as your revenue scales.',
         table: {
-          caption: 'MYFUNDBOX Plan Matrix [ADD: Confirm exact EUR monthly/annual pricing figures]',
-          headers: ['Capability / Limit', 'Growth', 'Scale', 'Enterprise'],
+          caption: 'MYFUNDBOX Plan Matrix — Flat EUR Pricing by Subscriber Count',
+          headers: ['Plan Feature', 'Free Tier', 'Professional Tier', 'Advanced Tier'],
           rows: [
-            ['Target Profile', 'Seed – Series A SaaS & Agencies', 'Series B+ & Multi-Source Teams', 'Multi-Entity European Groups'],
-            ['Indicative Pricing (EUR)', '[ADD: € / month billed annually]', '[ADD: € / month billed annually]', 'Custom Quote'],
-            ['Payment Processing Cut', '0% (Not a payment processor)', '0% (Not a payment processor)', '0% (Not a payment processor)'],
-            ['IFRS 15 & HGB Recognition Engine', 'Included', 'Included', 'Included'],
-            ['Deferred Revenue & Accruals', 'Included', 'Included (+ Multi-Year Split)', 'Included (+ Custom Rules)'],
-            ['MRR / ARR / Cohort Analytics', 'Included', 'Included', 'Included'],
-            ['Revenue Forecasting', 'Baseline Backlog Forecast', 'Scenario & Cohort Modeling', 'Multi-Entity Rolling Scenarios'],
-            ['Accounting / ERP Exports', 'CSV / DATEV-ready Export', 'Native ERP Connectors [CONFIRM]', 'Custom ERP & Multi-Book API'],
-            ['Entity Count', '1 Legal Entity', 'Up to [ADD: N] Entities', 'Unlimited Entities'],
-            ['Support & SLA', 'Email & Onboarding Guide', 'Priority EU Finance Support', 'Dedicated Account Manager & SLA'],
+            ['Active Subscribers', 'Up to 25 subscribers', 'Up to 500 subscribers', 'Unlimited subscribers'],
+            ['Annual Price (Billed Annually)', '0 € / month', '199 € / month', '399 € / month'],
+            ['Monthly Price (Billed Monthly)', '0 € / month', '249 € / month', '499 € / month'],
+            ['Platform Revenue Cut', '0% (Keep 100% of revenue)', '0% (Keep 100% of revenue)', '0% (Keep 100% of revenue)'],
+            ['Multi-Gateway Rails', 'Stripe, GoCardless, Mollie, PayPal', 'Stripe, GoCardless, Mollie, PayPal', 'All Gateways + Checkout.com'],
+            ['Hosted Checkout & Pay Links', 'Included', 'Included (+ Custom Domain)', 'Included (+ Custom Domain)'],
+            ['Smart Dunning & Card Recovery', 'Standard', 'Included', 'Included (+ Advanced Schedules)'],
+            ['Customer Self-Service Portal', 'Standard', 'Included', 'Included (+ Custom Styling)'],
+            ['Accounting Sync', 'PDF & CSV Export', 'sevDesk, Lexware, Xero, QBO', 'All Connectors + Custom Webhooks'],
+            ['Support Level', 'Standard Email Support', 'Priority Email & Chat', 'Dedicated Onboarding Specialist & SLA'],
           ],
         },
       },
     ],
     faqs: [
       {
-        question: 'Does MYFUNDBOX charge a percentage of our GMV or payment volume?',
+        question: 'Does MYFUNDBOX charge a percentage of my transaction volume (GMV)?',
         answer:
-          'No. Because MYFUNDBOX does not process payments or act as a billing gateway, pricing is never a hidden tax on your transaction volume.',
+          'No. MYFUNDBOX takes 0% of your transaction volume. You pay only the flat monthly or annual fee for your subscriber tier plus the standard merchant processing fees charged by your gateway (e.g. Stripe, GoCardless).',
       },
       {
-        question: 'Are prices quoted in EUR excluding VAT?',
+        question: 'What happens when I exceed 25 or 500 subscribers?',
         answer:
-          'Yes. Standard commercial pricing is denominated in EUR excluding statutory VAT (with reverse-charge handling for eligible EU B2B entities).',
+          'When your subscriber count grows past your tier limit, you can upgrade seamlessly to the next plan from your dashboard. We never interrupt your customer billing or cancel active subscriptions.',
       },
       {
-        question: 'Is onboarding or historical migration included?',
+        question: 'Are gateway processing fees included in MYFUNDBOX pricing?',
         answer:
-          'Guided historical deferred-balance migration and rule validation are scoped during your demo [ADD: confirm whether included or one-time fee].',
+          'No. You connect your own merchant accounts (Stripe, GoCardless, Mollie, PayPal), and standard processor interchange fees are settled directly with those providers with zero markup from MYFUNDBOX.',
       },
       {
-        question: 'Can we add read-only seats for auditors or board members?',
+        question: 'Can I cancel or switch my plan at any time?',
         answer:
-          'Yes [ADD: confirm exact read-only/auditor seat allowance per tier].',
+          'Yes. Monthly plans can be cancelled at any time before the next billing cycle. Annual plans include a 20% discount (2 months free) and remain active through the prepaid annual term.',
       },
       {
-        question: 'Do you offer a trial or guided sandbox evaluation?',
+        question: 'Is there a free trial for the paid plans?',
         answer:
-          'Book a demo to walk through your sample contract structures inside a dedicated evaluation environment.',
+          'You can start immediately on our Free plan with up to 25 real, paying subscribers to test all core billing and payment features before upgrading to Professional.',
       },
     ],
   },
@@ -915,7 +984,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
   // 5. COMPETITOR & ALTERNATIVES PAGES (generated from COMPETITORS)
   ...COMPETITORS.flatMap((comp): PageMetadataEntry[] => [
     {
-      path: `/en/compare/${comp.slug}`,
+      path: `/compare/${comp.slug}`,
       category: 'compare',
       locale: 'en',
       title: `MYFUNDBOX vs ${comp.competitorName} (2026) | Comparison`,
@@ -923,9 +992,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
       h1: `MYFUNDBOX vs ${comp.competitorName}: Revenue Management Comparison`,
       aeoSummary: comp.twoSentenceSummary,
       breadcrumbs: [
-        { label: 'Home', href: '/en' },
-        { label: 'Compare', href: '/en/compare/myfundbox-vs-chargebee-revrec' },
-        { label: `vs ${comp.competitorName}`, href: `/en/compare/${comp.slug}` },
+        { label: 'Home', href: '/' },
+        { label: 'Compare', href: '/compare/myfundbox-vs-chargebee-revrec' },
+        { label: `vs ${comp.competitorName}`, href: `/compare/${comp.slug}` },
       ],
       lastUpdated: comp.lastReviewed,
       authorId: DEFAULT_AUTHOR,
@@ -936,7 +1005,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
       faqs: comp.faqs,
     },
     {
-      path: `/en/alternatives/${comp.altSlug}`,
+      path: `/alternatives/${comp.altSlug}`,
       category: 'alternatives',
       locale: 'en',
       title: `Top ${comp.competitorName} Alternatives in Europe (2026) | MYFUNDBOX`,
@@ -944,9 +1013,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
       h1: `${comp.competitorName} alternatives for European revenue management`,
       aeoSummary: comp.twoSentenceSummary,
       breadcrumbs: [
-        { label: 'Home', href: '/en' },
-        { label: 'Alternatives', href: `/en/alternatives/${comp.altSlug}` },
-        { label: `${comp.competitorName} Alternatives`, href: `/en/alternatives/${comp.altSlug}` },
+        { label: 'Home', href: '/' },
+        { label: 'Alternatives', href: `/alternatives/${comp.altSlug}` },
+        { label: `${comp.competitorName} Alternatives`, href: `/alternatives/${comp.altSlug}` },
       ],
       lastUpdated: comp.lastReviewed,
       authorId: DEFAULT_AUTHOR,
@@ -960,7 +1029,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
 
   // 6. RESOURCES HUB, BLOG, 5 PILLAR GUIDES, GLOSSARY, CASE STUDIES
   {
-    path: '/en/resources',
+    path: '/resources',
     category: 'resources',
     locale: 'en',
     title: 'Revenue Management Resources, Guides & Glossary | MYFUNDBOX',
@@ -970,8 +1039,8 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Explore technical finance guides, statutory IFRS 15 and HGB explainers, glossary definitions, and customer workflow benchmarks authored for European CFOs, controllers, and RevOps leaders.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1006,7 +1075,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/blog',
+    path: '/blog',
     category: 'blog',
     locale: 'en',
     title: 'Finance & Revenue Accounting Blog | MYFUNDBOX',
@@ -1016,9 +1085,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Read concise, practitioner-written briefs on European recurring revenue accounting, GoBD audit readiness, DATEV journal workflows, and unifying RevOps metrics with statutory general ledgers.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Blog', href: '/en/blog' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Blog', href: '/blog' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1047,7 +1116,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/guides/what-is-revenue-management-software',
+    path: '/guides/what-is-revenue-management-software',
     category: 'guide',
     locale: 'en',
     title: 'What Is Revenue Management Software? | MYFUNDBOX Guide',
@@ -1057,9 +1126,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Revenue management software is a specialized financial sub-ledger that tracks, recognizes, forecasts, and reports earned revenue under standards like IFRS 15 and HGB. Unlike payment processors or billing tools, it sits between commercial systems and your general ledger to automate deferred revenue, accruals, and recurring revenue analytics.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'What Is Revenue Management Software?', href: '/en/guides/what-is-revenue-management-software' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'What Is Revenue Management Software?', href: '/guides/what-is-revenue-management-software' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1110,7 +1179,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/guides/revenue-recognition-saas-ifrs-15',
+    path: '/guides/revenue-recognition-saas-ifrs-15',
     category: 'guide',
     locale: 'en',
     title: 'Revenue Recognition for SaaS Under IFRS 15 | MYFUNDBOX',
@@ -1120,9 +1189,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Under IFRS 15, SaaS providers recognize subscription revenue over time as the customer simultaneously receives and consumes access to the software. Upfront annual payments create a contract liability (deferred revenue), while distinct onboarding services, discounts, and contract modifications follow the IFRS Foundation five-step allocation framework.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'SaaS Revenue Recognition (IFRS 15)', href: '/en/guides/revenue-recognition-saas-ifrs-15' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'SaaS Revenue Recognition (IFRS 15)', href: '/guides/revenue-recognition-saas-ifrs-15' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1170,7 +1239,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/guides/how-to-calculate-deferred-revenue',
+    path: '/guides/how-to-calculate-deferred-revenue',
     category: 'guide',
     locale: 'en',
     title: 'How to Calculate Deferred Revenue (Formula & Example) | MYFUNDBOX',
@@ -1180,9 +1249,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Deferred revenue equals upfront cash billed or collected for goods or services not yet delivered. Calculate ending deferred revenue using the roll-forward formula: Beginning Deferred Revenue + New Billings (net of VAT) − Recognized Revenue = Ending Deferred Revenue. Under IFRS 15 and HGB, it sits as a liability on the balance sheet.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'How to Calculate Deferred Revenue', href: '/en/guides/how-to-calculate-deferred-revenue' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'How to Calculate Deferred Revenue', href: '/guides/how-to-calculate-deferred-revenue' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1233,7 +1302,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/guides/mrr-vs-arr-vs-recognized-revenue',
+    path: '/guides/mrr-vs-arr-vs-recognized-revenue',
     category: 'guide',
     locale: 'en',
     title: 'MRR vs ARR vs Recognized Revenue Explained | MYFUNDBOX',
@@ -1243,9 +1312,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MRR and ARR are non-GAAP operational run-rate metrics measuring active recurring subscription value at a point in time, whereas Recognized Revenue is the statutory accounting revenue earned during a period under IFRS 15 or HGB. Confusing run-rate metrics with P&L revenue causes board and audit discrepancies.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'MRR vs ARR vs Recognized Revenue', href: '/en/guides/mrr-vs-arr-vs-recognized-revenue' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'MRR vs ARR vs Recognized Revenue', href: '/guides/mrr-vs-arr-vs-recognized-revenue' },
     ],
     lastUpdated: '2026-11-18',
     authorId: TECH_AUTHOR,
@@ -1296,7 +1365,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/guides/revenue-forecasting-methods-subscription',
+    path: '/guides/revenue-forecasting-methods-subscription',
     category: 'guide',
     locale: 'en',
     title: 'Revenue Forecasting Methods for Subscription Businesses | MYFUNDBOX',
@@ -1306,9 +1375,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Accurate subscription revenue forecasting combines three distinct layers: deterministic burn-down of existing deferred revenue backlog, cohort-based renewal and expansion modeling on active contracts, and probability-weighted new business from the CRM pipeline—projected separately for recognized P&L revenue and cash billings.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Revenue Forecasting Methods', href: '/en/guides/revenue-forecasting-methods-subscription' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Revenue Forecasting Methods', href: '/guides/revenue-forecasting-methods-subscription' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1354,7 +1423,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/glossary',
+    path: '/glossary',
     category: 'glossary',
     locale: 'en',
     title: 'Revenue Management & IFRS 15 Glossary | MYFUNDBOX',
@@ -1364,9 +1433,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'A concise, audit-grounded glossary defining essential European recurring-revenue accounting and FP&A terms—from IFRS 15 performance obligations and German HGB Rechnungsabgrenzungsposten to MRR, ARR, NRR, and churn.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Glossary', href: '/en/glossary' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Glossary', href: '/glossary' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1397,7 +1466,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/case-studies',
+    path: '/case-studies',
     category: 'case-studies',
     locale: 'en',
     title: 'Customer Case Studies [Placeholders] | MYFUNDBOX',
@@ -1407,9 +1476,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'In accordance with strict accuracy standards, verified customer names, quotes, and quantified outcomes are not fabricated. Below are structured case-study slots prepared for [ADD: Approved Customer Stories] across European SaaS, membership, and agency finance teams.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Case Studies', href: '/en/case-studies' },
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Case Studies', href: '/case-studies' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1441,7 +1510,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
 
   // 7. ABOUT, SECURITY, CONTACT, CHANGELOG, HELP
   {
-    path: '/en/about',
+    path: '/about',
     category: 'about',
     locale: 'en',
     title: 'About MYFUNDBOX | EU Revenue Management Software',
@@ -1451,8 +1520,8 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX is a German-based software company dedicated exclusively to revenue management for recurring-revenue businesses. Founded in [ADD: Founding Year], MYFUNDBOX focuses solely on helping CFOs and controllers track, recognize, forecast, and audit revenue—never competing as a payment gateway or billing tool.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'About', href: '/en/about' },
+      { label: 'Home', href: '/' },
+      { label: 'About', href: '/about' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1473,7 +1542,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/security',
+    path: '/security',
     category: 'security',
     locale: 'en',
     title: 'Security, GDPR & EU Compliance | MYFUNDBOX',
@@ -1483,8 +1552,8 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX is engineered for European regulatory expectations: EU data residency [CONFIRM: Frankfurt, Germany], signed GDPR Data Processing Agreements (DPA), granular role-based permissions, immutable audit logging, and strict zero-tracker defaults prior to cookie consent.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Security & Compliance', href: '/en/security' },
+      { label: 'Home', href: '/' },
+      { label: 'Security & Compliance', href: '/security' },
     ],
     lastUpdated: '2026-11-18',
     authorId: TECH_AUTHOR,
@@ -1499,7 +1568,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
           headers: ['Control Area', 'Implementation / Posture', 'Verification / Document'],
           rows: [
             ['EU Data Residency', SITE_CONFIG.euDataResidency, 'Confirm region in signed DPA'],
-            ['GDPR & DPA', 'Standard Art. 28 GDPR Data Processing Agreement available', 'View /en/legal/dpa'],
+            ['GDPR & DPA', 'Standard Art. 28 GDPR Data Processing Agreement available', 'View /dpa'],
             ['Audit Trail & Immutability', 'Timestamped, user-attributed logs on rule changes & period closes', 'Built into sub-ledger'],
             ['Encryption & Access', 'TLS 1.2+/1.3 in transit, AES-256 at rest, RBAC & SSO [CONFIRM SSO tier]', '[ADD: Pen-test / SOC 2 / ISO 27001 report status]'],
             ['Pre-Consent Tracking', 'Zero third-party analytics or advertising scripts load before consent', 'Enforced by CMP'],
@@ -1536,27 +1605,69 @@ const CORE_PAGES: PageMetadataEntry[] = [
     ],
   },
   {
-    path: '/en/contact',
+    path: '/book-a-demo',
     category: 'contact',
     locale: 'en',
-    title: 'Book a Demo & Contact Sales | MYFUNDBOX',
+    title: 'Book a Demo | MYFUNDBOX Subscription Billing',
     description:
-      'Schedule a tailored walkthrough of MYFUNDBOX IFRS 15 revenue recognition, deferred revenue schedules, and forecasting with our EU team.',
-    h1: 'Book a tailored MYFUNDBOX walkthrough',
+      'Schedule a 30-minute tailored walkthrough of MYFUNDBOX. See how to connect your payment gateways, launch subscription plans, and automate EU invoicing.',
+    h1: 'Book a tailored walkthrough of MYFUNDBOX',
     aeoSummary:
-      'Schedule a 30-minute session with our European revenue specialists to review your subscription and contract models, IFRS 15 / HGB recognition rules, and DATEV or ERP export requirements. Your request is processed strictly under GDPR with zero third-party data sharing.',
+      'Schedule a 30-minute one-on-one session with our European subscription billing specialists. We will review your current payment gateways, subscription plans, and European tax requirements, and demonstrate how MYFUNDBOX eliminates revenue fees and automates recurring billing.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Book a demo', href: '/en/contact' },
+      { label: 'Home', href: '/' },
+      { label: 'Book a demo', href: '/book-a-demo' },
     ],
-    lastUpdated: '2026-11-18',
+    lastUpdated: '2026-11-19',
     authorId: DEFAULT_AUTHOR,
     priority: 0.9,
     sections: [],
-    faqs: [],
+    faqs: [
+      {
+        question: 'What happens during the demo?',
+        answer:
+          'We walk through a live screen-share tailored to your business model: connecting your gateways (Stripe, GoCardless, Mollie, PayPal), configuring your plans, setting up EU VAT rules, and reviewing your migration timeline.',
+      },
+      {
+        question: 'How long does the session take?',
+        answer:
+          'A typical session takes approximately 30 minutes, with plenty of time reserved for your specific technical and billing questions.',
+      },
+    ],
   },
   {
-    path: '/en/changelog',
+    path: '/contact',
+    category: 'contact',
+    locale: 'en',
+    title: 'Contact Sales & Support | MYFUNDBOX',
+    description:
+      'Get in touch with the MYFUNDBOX team for sales consultations, customer support, partnership inquiries, or custom enterprise requirements.',
+    h1: 'Get in touch with the MYFUNDBOX team',
+    aeoSummary:
+      'Connect directly with MYFUNDBOX sales, technical support, and partnership teams. Located in Germany with European cloud infrastructure, we help subscription businesses launch recurring billing in under 30 minutes with zero percentage-based transaction fees.',
+    breadcrumbs: [
+      { label: 'Home', href: '/' },
+      { label: 'Contact', href: '/contact' },
+    ],
+    lastUpdated: '2026-11-19',
+    authorId: DEFAULT_AUTHOR,
+    priority: 0.85,
+    sections: [],
+    faqs: [
+      {
+        question: 'How quickly does MYFUNDBOX support respond?',
+        answer:
+          'Our European support team responds to sales inquiries and customer tickets within one business day during standard European business hours (CET).',
+      },
+      {
+        question: 'Where can I find developer documentation and API guides?',
+        answer:
+          'Complete developer documentation, REST endpoint references, and webhook payloads are available at docs.myfundbox.com.',
+      },
+    ],
+  },
+  {
+    path: '/changelog',
     category: 'changelog',
     locale: 'en',
     title: 'Product Changelog & Releases | MYFUNDBOX',
@@ -1566,8 +1677,8 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Track verified product releases across the MYFUNDBOX revenue sub-ledger, forecasting engine, ERP exports, and audit controls. [ADD: Connect live release feed or confirm historical release milestones].',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Changelog', href: '/en/changelog' },
+      { label: 'Home', href: '/' },
+      { label: 'Changelog', href: '/changelog' },
     ],
     lastUpdated: '2026-11-18',
     authorId: TECH_AUTHOR,
@@ -1587,7 +1698,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/help',
+    path: '/help',
     category: 'help',
     locale: 'en',
     title: 'Help Center & Frequently Asked Questions | MYFUNDBOX',
@@ -1597,8 +1708,8 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Find direct answers on connecting billing and CRM sources, configuring IFRS 15 and HGB revenue recognition rules, migrating opening deferred balances, and managing GDPR compliance inside MYFUNDBOX.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Help & FAQ', href: '/en/help' },
+      { label: 'Home', href: '/' },
+      { label: 'Help & FAQ', href: '/help' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1635,7 +1746,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
 
   // 8. LEGAL PAGES (5)
   {
-    path: '/en/legal/imprint',
+    path: '/imprint',
     category: 'legal',
     locale: 'en',
     title: 'Imprint (Impressum) | MYFUNDBOX',
@@ -1644,9 +1755,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Statutory corporate disclosures pursuant to § 5 DDG (Digitale-Dienste-Gesetz) and § 18 MStV for MYFUNDBOX. Replace all bracketed [ADD: ...] fields with verified German Handelsregister and USt-IdNr. details prior to public production launch.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Legal', href: '/en/legal/imprint' },
-      { label: 'Imprint', href: '/en/legal/imprint' },
+      { label: 'Home', href: '/' },
+      { label: 'Legal', href: '/imprint' },
+      { label: 'Imprint', href: '/imprint' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1668,7 +1779,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/legal/privacy',
+    path: '/privacy-policy',
     category: 'legal',
     locale: 'en',
     title: 'Privacy Policy (GDPR / DSGVO) | MYFUNDBOX',
@@ -1677,9 +1788,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX processes personal data strictly in compliance with the EU General Data Protection Regulation (GDPR) and German BDSG. No third-party analytics or marketing scripts are activated before explicit user consent.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Legal', href: '/en/legal/privacy' },
-      { label: 'Privacy Policy', href: '/en/legal/privacy' },
+      { label: 'Home', href: '/' },
+      { label: 'Legal', href: '/privacy-policy' },
+      { label: 'Privacy Policy', href: '/privacy-policy' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1700,7 +1811,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/legal/terms',
+    path: '/terms-of-service',
     category: 'legal',
     locale: 'en',
     title: 'Terms of Service | MYFUNDBOX',
@@ -1709,9 +1820,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'B2B Software-as-a-Service terms governing access to the MYFUNDBOX revenue management platform. Replace placeholder clauses with counsel-approved German/EU B2B commercial terms before customer onboarding.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Legal', href: '/en/legal/terms' },
-      { label: 'Terms', href: '/en/legal/terms' },
+      { label: 'Home', href: '/' },
+      { label: 'Legal', href: '/terms-of-service' },
+      { label: 'Terms', href: '/terms-of-service' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1732,7 +1843,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/legal/cookies',
+    path: '/cookies',
     category: 'legal',
     locale: 'en',
     title: 'Cookie Policy (GDPR & TDDDG) | MYFUNDBOX',
@@ -1741,9 +1852,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'MYFUNDBOX respects EU ePrivacy and German TDDDG (§ 25) requirements: strictly necessary local storage saves only your theme and consent preferences, and zero third-party cookies or analytics beacons execute prior to opt-in.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Legal', href: '/en/legal/cookies' },
-      { label: 'Cookie Policy', href: '/en/legal/cookies' },
+      { label: 'Home', href: '/' },
+      { label: 'Legal', href: '/cookies' },
+      { label: 'Cookie Policy', href: '/cookies' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1766,7 +1877,7 @@ const CORE_PAGES: PageMetadataEntry[] = [
     faqs: [],
   },
   {
-    path: '/en/legal/dpa',
+    path: '/dpa',
     category: 'legal',
     locale: 'en',
     title: 'Data Processing Agreement (DPA / AVV) | MYFUNDBOX',
@@ -1775,9 +1886,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
     aeoSummary:
       'Every MYFUNDBOX commercial customer receives an Art. 28 GDPR Data Processing Agreement (Auftragsverarbeitungsvertrag / AVV) documenting EU hosting residency, technical and organizational measures (TOMs), and authorized sub-processors.',
     breadcrumbs: [
-      { label: 'Home', href: '/en' },
-      { label: 'Legal', href: '/en/legal/dpa' },
-      { label: 'DPA', href: '/en/legal/dpa' },
+      { label: 'Home', href: '/' },
+      { label: 'Legal', href: '/dpa' },
+      { label: 'DPA', href: '/dpa' },
     ],
     lastUpdated: '2026-11-18',
     authorId: DEFAULT_AUTHOR,
@@ -1799,74 +1910,147 @@ const CORE_PAGES: PageMetadataEntry[] = [
   },
 ];
 
-// Localized Home mirror entries for /de, /fr, /es so hreflang & multilingual routing resolve cleanly!
+// German pages. English lives at the root and German under /de (matches the live
+// myfundbox.com URL scheme). FR/ES were dropped for launch, see docs/02-sitemap-and-roadmap.md.
+// A /de URL only resolves when a German entry exists here: we never serve English
+// content under a German URL, because that creates duplicate, mislabelled pages.
 const LOCALIZED_HOME_PAGES: PageMetadataEntry[] = [
   {
     ...CORE_PAGES[0],
     path: '/de',
     locale: 'de',
-    title: 'MYFUNDBOX | EU-Revenue-Management & IFRS 15 Software',
+    title: 'MYFUNDBOX | Abo-Abrechnung & Revenue-Management-Plattform',
     description:
-      'Revenue-Management-Software aus Deutschland für IFRS 15 & HGB Umsatzrealisierung, Abgrenzungsposten (PRAP), MRR/ARR-Reporting und Forecasting.',
-    h1: 'Revenue-Management-Software für europäische Finanzteams',
+      'Abonnements, wiederkehrende Abrechnung, Zahlungen, Mahnwesen und Umsatz-Reporting auf einer Plattform. Mit Stripe, GoCardless, Mollie, PayPal und Checkout.com.',
+    h1: 'Behalten Sie Ihren Umsatz im Griff. Konzentrieren Sie sich auf Ihr Wachstum.',
     aeoSummary:
-      'MYFUNDBOX ist eine in Deutschland entwickelte Revenue-Management-Software für CFOs, Controller und RevOps-Teams. Die Plattform automatisiert Umsatzrealisierung nach IFRS 15 und HGB/GoBD, Abgrenzungsposten, MRR/ARR-Analysen und Prognosen – ohne Zahlungsabwicklung oder Rechnungsstellung zu ersetzen.',
+      'MYFUNDBOX ist eine Revenue-Management-Plattform für Abo-Unternehmen. Tarife, einmalige und wiederkehrende Abrechnung, Zahlungen über Stripe, GoCardless, Mollie, PayPal und Checkout.com, automatisches Mahnwesen, ein Self-Service-Kundenportal und Umsatz-Reporting – an einem Ort, mit Datenspeicherung in Frankfurt.',
     breadcrumbs: [{ label: 'Startseite', href: '/de' }],
-  },
-  {
-    ...CORE_PAGES[0],
-    path: '/fr',
-    locale: 'fr',
-    title: 'MYFUNDBOX | Gestion des revenus IFRS 15 en Europe',
-    description:
-      'Logiciel européen de gestion des revenus basé en Allemagne : reconnaissance IFRS 15, produits constatés d’avance, MRR/ARR et prévisions.',
-    h1: 'Logiciel de gestion des revenus conçu pour les directions financières européennes',
-    aeoSummary:
-      'MYFUNDBOX est un logiciel européen de gestion des revenus conçu en Allemagne pour les CFO et contrôleurs de gestion. Il automatise la reconnaissance IFRS 15, les produits constatés d’avance (PCA), le reporting MRR/ARR et les prévisions sans traiter les paiements.',
-    breadcrumbs: [{ label: 'Accueil', href: '/fr' }],
-  },
-  {
-    ...CORE_PAGES[0],
-    path: '/es',
-    locale: 'es',
-    title: 'MYFUNDBOX | Software de gestión de ingresos IFRS 15 en la UE',
-    description:
-      'Software europeo de gestión de ingresos desarrollado en Alemania: reconocimiento IFRS 15, ingresos diferidos, MRR/ARR y previsión.',
-    h1: 'Software de gestión de ingresos diseñado para equipos financieros europeos',
-    aeoSummary:
-      'MYFUNDBOX es un software europeo de gestión de ingresos desarrollado en Alemania para CFOs y controllers. Automatiza el reconocimiento de ingresos bajo IFRS 15, los ingresos diferidos, métricas MRR/ARR y previsiones sin sustituir su pasarela de pagos.',
-    breadcrumbs: [{ label: 'Inicio', href: '/es' }],
+    atAGlance: {
+      whatItIs: 'Eine Plattform für Abo-Abrechnung und Revenue Management: Tarife, Abrechnung, Zahlungen, Mahnwesen, Kundenportal und Reporting an einem Ort.',
+      whoItIsFor: 'SaaS-Unternehmen, Abo- und Mitgliedschaftsmodelle, digitale Unternehmen und Agenturen mit wiederkehrenden Umsätzen.',
+      keyCapabilities: [
+        'Einmalige und wiederkehrende Abrechnung mit Tarifen, Add-ons, Gutscheinen und Testphasen',
+        'Zahlungen über mehrere Anbieter und Zahlungsarten',
+        'Smartes Mahnwesen mit automatischen Wiederholungen und Erinnerungen',
+        'Gehosteter Checkout, Zahlungslinks und Kundenportal',
+      ],
+      pricingModel: 'Kostenloser Tarif für bis zu 25 Abonnenten; kostenpflichtige Tarife monatlich oder jährlich. Aktuelle Tarife auf der Preisseite.',
+      regionAndCompliance: 'Datenspeicherung in Frankfurt · Auftragsverarbeitungsvertrag nach DSGVO · Zwei-Faktor-Authentifizierung',
+      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevdesk, Lexware, Avalara, REST-API & Webhooks',
+    },
+    sections: [
+      {
+        heading: 'Warum wird die Verwaltung von Abo-Umsätzen so schnell kompliziert?',
+        directAnswer:
+          'Mit dem Wachstum verteilen sich Tarife, Rechnungen, Zahlungen und Kundenänderungen auf viele Tools. Fehlgeschlagene Zahlungen gehen unter, Kunden warten auf den Support und Umsatzzahlen entstehen in Handarbeit. MYFUNDBOX bündelt alles auf einer Plattform.',
+        bullets: [
+          'Tarife, Abrechnung und Zahlungen an einem Ort statt in mehreren Tools.',
+          'Fehlgeschlagene Zahlungen werden automatisch wiederholt und nachverfolgt.',
+          'Kunden ändern Karte, Tarif und Daten selbst im Kundenportal.',
+        ],
+      },
+      {
+        heading: 'Wie funktioniert MYFUNDBOX?',
+        directAnswer:
+          'Tarife anlegen, vorhandene Zahlungsanbieter verbinden – ab dann laufen Abrechnung, Zahlungseinzug und Reporting automatisch.',
+        numberedSteps: [
+          {
+            title: 'Tarife und Checkout erstellen',
+            detail: 'Einmalige oder wiederkehrende Produkte mit Add-ons, Gutscheinen und Testphasen anlegen und als Checkout oder Zahlungslink veröffentlichen.',
+          },
+          {
+            title: 'Zahlungsanbieter verbinden',
+            detail: 'Stripe, GoCardless, Mollie, PayPal oder Checkout.com verknüpfen und Karte, SEPA, ACH, Überweisung oder Open Banking anbieten.',
+          },
+          {
+            title: 'Abrechnung automatisieren, Umsatz verfolgen',
+            detail: 'Verlängerungen, Rechnungen und Mahnwesen laufen automatisch, während Sie Umsatz, Abos und Zahlungen live verfolgen.',
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: 'Was ist MYFUNDBOX?',
+        answer:
+          'MYFUNDBOX ist eine Revenue-Management-Plattform für Abo-Unternehmen: Tarife, einmalige und wiederkehrende Abrechnung, Zahlungen, Mahnwesen, Kundenportal und Umsatz-Reporting an einem Ort.',
+      },
+      {
+        question: 'Mit welchen Zahlungsanbietern funktioniert MYFUNDBOX?',
+        answer:
+          'MYFUNDBOX funktioniert mit Stripe, GoCardless, Mollie, PayPal und Checkout.com. Je nach Anbieter zahlen Kunden per Karte, SEPA-Lastschrift, ACH, Überweisung oder Open Banking.',
+      },
+      {
+        question: 'Was passiert, wenn eine Zahlung fehlschlägt?',
+        answer:
+          'Das Mahnwesen wiederholt die Zahlung automatisch und versendet Erinnerungen nach Ihrem Zeitplan, damit Kunden ihre Zahlungsdaten aktualisieren können.',
+      },
+      {
+        question: 'Können Kunden ihre Abos selbst verwalten?',
+        answer:
+          'Ja. Im Kundenportal ändern Kunden ihre Karte, wechseln den Tarif und sehen ihre Rechnungen ein – ohne Ihr Team zu kontaktieren.',
+      },
+      {
+        question: 'Wo werden meine Daten gespeichert?',
+        answer:
+          'MYFUNDBOX speichert Daten in Frankfurt und bietet einen Auftragsverarbeitungsvertrag nach DSGVO. Konten lassen sich per Zwei-Faktor-Authentifizierung schützen.',
+      },
+      {
+        question: 'Gibt es einen kostenlosen Tarif?',
+        answer:
+          'Ja. Der kostenlose Tarif umfasst bis zu 25 Abonnenten. Kostenpflichtige Tarife bieten mehr Abonnenten und Funktionen; aktuelle Tarife finden Sie auf der Preisseite.',
+      },
+      {
+        question: 'Hat MYFUNDBOX eine API?',
+        answer:
+          'Ja. Eine REST-API und Webhooks stehen zur Verfügung, dokumentiert unter docs.myfundbox.com.',
+      },
+    ],
   },
 ];
 
 export const ALL_PAGES: PageMetadataEntry[] = [...CORE_PAGES, ...LOCALIZED_HOME_PAGES];
 
+const PAGES_BY_PATH = new Map(ALL_PAGES.map((p) => [p.path, p]));
+
+/** Strips query, hash and trailing slashes. The root stays '/'. */
 export function normalizeRoutePath(pathname: string): string {
-  const clean = pathname.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
-  if (clean === '/') return '/en';
-  return clean;
+  return pathname.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
 }
 
 export function resolvePageByPath(pathname: string): PageMetadataEntry | undefined {
-  const normalized = normalizeRoutePath(pathname);
-  // Exact match first
-  const exact = ALL_PAGES.find((p) => p.path === normalized);
-  if (exact) return exact;
+  return PAGES_BY_PATH.get(normalizeRoutePath(pathname));
+}
 
-  // Support /de/*, /fr/*, /es/* fallback to structured English page content while preserving locale indicator
-  // so multilingual URL structure /de/pricing etc. works seamlessly and keeps hreflang coherent
-  const localeMatch = normalized.match(/^\/(de|fr|es)(\/.+)$/);
-  if (localeMatch) {
-    const targetLocale = localeMatch[1] as LocaleCode;
-    const subPath = `/en${localeMatch[2]}`;
-    const enPage = ALL_PAGES.find((p) => p.path === subPath);
-    if (enPage) {
-      return {
-        ...enPage,
-        path: normalized,
-        locale: targetLocale,
-      };
-    }
-  }
-  return undefined;
+export function pageExists(pathname: string): boolean {
+  return PAGES_BY_PATH.has(normalizeRoutePath(pathname));
+}
+
+/** Splits '/de/pricing' into { locale: 'de', suffix: '/pricing' } and '/pricing' into { locale: 'en', suffix: '/pricing' }. */
+export function splitLocale(pathname: string): { locale: LocaleCode; suffix: string } {
+  const clean = normalizeRoutePath(pathname);
+  const m = clean.match(/^\/de(\/.*)?$/);
+  if (m) return { locale: 'de', suffix: m[1] || '/' };
+  return { locale: 'en', suffix: clean };
+}
+
+/** Builds the URL of an English canonical path for a locale. English is at the root, German under /de. */
+export function pathForLocale(locale: LocaleCode, suffix: string): string {
+  const clean = normalizeRoutePath(suffix);
+  if (locale === 'en') return clean;
+  return clean === '/' ? `/${locale}` : `/${locale}${clean}`;
+}
+
+/**
+ * Link target for an English canonical path, seen from a page in `locale`.
+ * Uses the localized page when one exists, otherwise falls back to English,
+ * so a link never points to a German URL that has no page.
+ */
+export function localizeHref(locale: LocaleCode, englishPath: string): string {
+  if (locale === 'en') return englishPath;
+  const [pathPart, hash] = englishPath.split('#');
+  const localized = pathForLocale(locale, pathPart);
+  const target = pageExists(localized) ? localized : pathPart;
+  return hash ? `${target}#${hash}` : target;
 }

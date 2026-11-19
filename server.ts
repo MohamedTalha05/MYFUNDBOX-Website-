@@ -5,7 +5,9 @@ import { fileURLToPath } from 'url';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createServer as createViteServer, type ViteDevServer } from 'vite';
-import { resolvePageByPath } from './src/data/pagesRegistry';
+import { pageExists, resolvePageByPath } from './src/data/pagesRegistry';
+import { APP_HANDOFF_PATHS, appendQuery, resolveRedirect } from './src/data/redirects';
+import { APP_LINKS } from './src/data/siteConfig';
 import {
   generateLlmsFullTxt,
   generateLlmsTxt,
@@ -87,6 +89,27 @@ async function startServer() {
     }
     const baseUrl = resolveRequestBaseUrl(req);
     res.type('text/markdown; charset=utf-8').send(generatePageMarkdown(page, baseUrl));
+  });
+
+  // 301s for legacy /en|/fr|/es prefixes, moved live-site URLs and trailing slashes.
+  // Placed after the machine-readable endpoints and before SSR; query strings are kept.
+  app.use((req, res, next) => {
+    if ((req.method !== 'GET' && req.method !== 'HEAD') || req.path.startsWith('/api/') || req.path.includes('.')) {
+      return next();
+    }
+    const queryIndex = req.originalUrl.indexOf('?');
+    const query = queryIndex >= 0 ? req.originalUrl.slice(queryIndex) : '';
+
+    // Live-site log-in / sign-up paths hand off to the app (temporary, so 302).
+    const handoff = APP_HANDOFF_PATHS[req.path.replace(/\/+$/, '')];
+    if (handoff) {
+      res.redirect(302, appendQuery(APP_LINKS[handoff], query));
+      return;
+    }
+
+    const target = resolveRedirect(req.path, pageExists);
+    if (!target) return next();
+    res.redirect(301, target + query);
   });
 
   // GDPR-validated demo request endpoint

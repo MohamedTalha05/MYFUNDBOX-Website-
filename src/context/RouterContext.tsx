@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { normalizeRoutePath, resolvePageByPath } from '../data/pagesRegistry';
+import { normalizeRoutePath, pageExists, pathForLocale, resolvePageByPath, splitLocale } from '../data/pagesRegistry';
 import { SITE_CONFIG } from '../data/siteConfig';
 import type { LocaleCode } from '../utils/formatting';
-import { getLocaleSuffix } from '../utils/seoGenerators';
 
 export type ThemeMode = 'light' | 'dark';
 export type CookieConsentState = 'pending' | 'essential' | 'all';
@@ -101,12 +100,15 @@ export function RouterProvider({
   }, []);
 
   const currentPage = resolvePageByPath(pathname);
-  const locale: LocaleCode = currentPage?.locale ?? 'en';
+  const locale: LocaleCode = currentPage?.locale ?? splitLocale(pathname).locale;
 
+  // Go to the same page in the other language, or to that language's home page if
+  // the page hasn't been translated yet.
   const switchLocale = useCallback(
     (nextLocale: LocaleCode) => {
-      const suffix = getLocaleSuffix(pathname);
-      navigate(`/${nextLocale}${suffix}`);
+      const { suffix } = splitLocale(pathname);
+      const sameTarget = pathForLocale(nextLocale, suffix);
+      navigate(pageExists(sameTarget) ? sameTarget : pathForLocale(nextLocale, '/'));
     },
     [pathname, navigate]
   );

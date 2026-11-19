@@ -1,11 +1,13 @@
-export type LocaleCode = 'en' | 'de' | 'fr' | 'es';
+// English is served at the root and German under /de, matching the live myfundbox.com.
+// FR/ES were dropped for launch (see docs/02-sitemap-and-roadmap.md).
+export type LocaleCode = 'en' | 'de';
 
-export const SUPPORTED_LOCALES: readonly LocaleCode[] = ['en', 'de', 'fr', 'es'];
+export const SUPPORTED_LOCALES: readonly LocaleCode[] = ['en', 'de'];
+
+const INTL_LOCALE: Record<LocaleCode, string> = { en: 'en-IE', de: 'de-DE' };
 
 export function formatEUR(amount: number, locale: LocaleCode = 'en', decimals = 0): string {
-  const intlLocale =
-    locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'es' ? 'es-ES' : 'en-IE';
-  return new Intl.NumberFormat(intlLocale, {
+  return new Intl.NumberFormat(INTL_LOCALE[locale], {
     style: 'currency',
     currency: 'EUR',
     minimumFractionDigits: decimals,
@@ -14,9 +16,7 @@ export function formatEUR(amount: number, locale: LocaleCode = 'en', decimals = 
 }
 
 export function formatEUNumber(value: number, locale: LocaleCode = 'en', decimals = 0): string {
-  const intlLocale =
-    locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'es' ? 'es-ES' : 'en-IE';
-  return new Intl.NumberFormat(intlLocale, {
+  return new Intl.NumberFormat(INTL_LOCALE[locale], {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(value);

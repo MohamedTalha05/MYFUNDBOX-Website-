@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
 import { validateDemoRequest, type DemoRequestPayload } from '../utils/validation';
 import { SITE_CONFIG } from '../data/siteConfig';
 import { AppLink } from './ReusableBlocks';
+import { useLocalHref } from '../utils/navLinks';
 import { useRouter } from '../context/RouterContext';
 
 const INITIAL_FORM: DemoRequestPayload = {
@@ -10,14 +11,15 @@ const INITIAL_FORM: DemoRequestPayload = {
   workEmail: '',
   companyName: '',
   country: 'Germany',
-  arrBand: '€1M – €5M',
-  primaryUseCase: 'IFRS 15 / HGB Revenue Recognition',
+  arrBand: '100 – 500 subscribers (€5k – €25k MRR)',
+  primaryUseCase: 'Multi-Gateway Subscription Billing',
   notes: '',
   gdprConsent: false,
 };
 
 export function DemoRequestForm() {
   const { locale } = useRouter();
+  const localHref = useLocalHref();
   const [form, setForm] = useState<DemoRequestPayload>(INITIAL_FORM);
   const [errors, setErrors] = useState<Partial<Record<keyof DemoRequestPayload, string>>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted' | 'serverError'>('idle');
@@ -45,14 +47,20 @@ export function DemoRequestForm() {
       const data = await res.json();
       if (!res.ok) {
         if (data?.errors) setErrors(data.errors);
-        setServerErrorMsg(data?.message || 'Unable to submit request. Please review highlighted fields.');
+        setServerErrorMsg(
+          data?.message || (locale === 'de' ? 'Überprüfung fehlgeschlagen. Bitte prüfen Sie die markierten Felder.' : 'Unable to submit request. Please review highlighted fields.')
+        );
         setStatus('serverError');
         return;
       }
-      setReferenceId(data.referenceId || 'REQ-CONFIRMED');
+      setReferenceId(data.referenceId || 'DEMO-REQ-CONFIRMED');
       setStatus('submitted');
     } catch {
-      setServerErrorMsg('Network error while submitting your demo request. Please try again.');
+      setServerErrorMsg(
+        locale === 'de'
+          ? 'Netzwerkfehler beim Absenden Ihrer Anfrage. Bitte versuchen Sie es erneut.'
+          : 'Network error while submitting your demo request. Please try again.'
+      );
       setStatus('serverError');
     }
   }
@@ -61,33 +69,45 @@ export function DemoRequestForm() {
     return (
       <div
         role="status"
-        className="rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/70 dark:bg-emerald-950/30 p-6 md:p-8"
+        className="rounded-2xl border border-line bg-surface p-6 sm:p-8 md:p-10 shadow-sm"
       >
-        <div className="flex items-start gap-3">
-          <CheckCircle2 className="h-6 w-6 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" aria-hidden="true" />
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-              Demo request received
+        <div className="flex items-start gap-4">
+          <CheckCircle2 className="h-7 w-7 text-positive shrink-0 mt-0.5" aria-hidden="true" />
+          <div className="space-y-3">
+            <h2 className="text-xl font-display font-bold text-ink">
+              {locale === 'de' ? 'Demo-Anfrage erfolgreich erhalten' : 'Demo walkthrough request received'}
             </h2>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-              Thank you, {form.fullName}. Our EU revenue management team will contact{' '}
-              <span className="font-medium">{form.workEmail}</span> to schedule a tailored walkthrough for{' '}
-              <span className="font-medium">{form.companyName}</span>.
+            <p className="text-sm text-muted leading-relaxed">
+              {locale === 'de' ? (
+                <>
+                  Vielen Dank, <strong>{form.fullName}</strong>. Unser deutsches Subscription-Team wird sich unter{' '}
+                  <span className="font-medium text-ink">{form.workEmail}</span> melden, um einen individuellen Termin für{' '}
+                  <span className="font-medium text-ink">{form.companyName}</span> zu vereinbaren.
+                </>
+              ) : (
+                <>
+                  Thank you, <strong>{form.fullName}</strong>. Our European subscription billing team will reach out at{' '}
+                  <span className="font-medium text-ink">{form.workEmail}</span> to schedule your 30-minute tailored walkthrough for{' '}
+                  <span className="font-medium text-ink">{form.companyName}</span>.
+                </>
+              )}
             </p>
-            <p className="mt-3 text-xs font-mono text-slate-600 dark:text-slate-400">
-              Reference: {referenceId} · GDPR third-party sharing: Disabled
+            <p className="text-xs font-mono text-subtle">
+              Referenz: {referenceId} · DSGVO-konforme Verarbeitung · 0% Weitergabe an Dritte
             </p>
-            <button
-              type="button"
-              onClick={() => {
-                setForm(INITIAL_FORM);
-                setStatus('idle');
-                setReferenceId(null);
-              }}
-              className="mt-5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
-            >
-              Submit another inquiry
-            </button>
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setForm(INITIAL_FORM);
+                  setStatus('idle');
+                  setReferenceId(null);
+                }}
+                className="btn-secondary px-4 py-2 text-xs"
+              >
+                {locale === 'de' ? 'Weitere Anfrage stellen' : 'Submit another inquiry'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -98,207 +118,220 @@ export function DemoRequestForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 space-y-5"
+      className="rounded-2xl border border-line bg-surface p-6 sm:p-8 md:p-10 shadow-sm space-y-6"
     >
-      <div>
-        <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-          Book a demo with our EU team
+      <div className="border-b border-line pb-4">
+        <h2 className="text-xl font-display font-bold text-ink">
+          {locale === 'de' ? 'Persönliche Produktdemo vereinbaren' : 'Schedule a tailored walkthrough'}
         </h2>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-          Endpoint configured: <code className="font-mono text-xs">{SITE_CONFIG.demoEndpoint}</code> [ADD: Wire CRM webhook URL for production]
+        <p className="mt-1 text-sm text-muted">
+          {locale === 'de'
+            ? '30 Minuten mit einem Abrechnungsexperten. Kein Verkaufsdruck, pure Produktpraxis.'
+            : '30 minutes with a subscription billing specialist. No high-pressure sales, just pure product walkthrough.'}
         </p>
       </div>
 
-      {status === 'serverError' && serverErrorMsg && (
-        <div role="alert" className="rounded-lg border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 px-4 py-3 text-xs text-rose-800 dark:text-rose-200">
+      {serverErrorMsg && (
+        <div role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-700">
           {serverErrorMsg}
         </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="demo-fullname" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-            Full name *
+          <label htmlFor="demo-name" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+            {locale === 'de' ? 'Vollständiger Name *' : 'Full name *'}
           </label>
           <input
-            id="demo-fullname"
-            name="fullName"
+            id="demo-name"
             type="text"
             required
+            autoComplete="name"
             value={form.fullName}
-            onChange={(e) => setForm((p) => ({ ...p, fullName: e.target.value }))}
-            aria-invalid={Boolean(errors.fullName)}
+            onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+            className={`w-full rounded-lg border px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface ${
+              errors.fullName ? 'border-red-500' : 'border-line-strong'
+            }`}
             placeholder="Katrin Weber"
-            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
           />
-          {errors.fullName && (
-            <p role="alert" className="mt-1 text-xs text-rose-600 dark:text-rose-400">
-              {errors.fullName}
-            </p>
-          )}
+          {errors.fullName && <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>}
         </div>
 
         <div>
-          <label htmlFor="demo-email" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-            Work email *
+          <label htmlFor="demo-email" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+            {locale === 'de' ? 'Geschäftliche E-Mail *' : 'Work email *'}
           </label>
           <input
             id="demo-email"
-            name="workEmail"
             type="email"
             required
+            autoComplete="email"
             value={form.workEmail}
-            onChange={(e) => setForm((p) => ({ ...p, workEmail: e.target.value }))}
-            aria-invalid={Boolean(errors.workEmail)}
-            placeholder="katrin@company.de"
-            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
+            onChange={(e) => setForm({ ...form, workEmail: e.target.value })}
+            className={`w-full rounded-lg border px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface ${
+              errors.workEmail ? 'border-red-500' : 'border-line-strong'
+            }`}
+            placeholder="katrin@unternehmen.de"
           />
-          {errors.workEmail && (
-            <p role="alert" className="mt-1 text-xs text-rose-600 dark:text-rose-400">
-              {errors.workEmail}
-            </p>
-          )}
+          {errors.workEmail && <p className="mt-1 text-xs text-red-600">{errors.workEmail}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="demo-company" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-            Company / legal entity *
+          <label htmlFor="demo-company" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+            {locale === 'de' ? 'Unternehmensname *' : 'Company name *'}
           </label>
           <input
             id="demo-company"
-            name="companyName"
             type="text"
             required
+            autoComplete="organization"
             value={form.companyName}
-            onChange={(e) => setForm((p) => ({ ...p, companyName: e.target.value }))}
-            aria-invalid={Boolean(errors.companyName)}
-            placeholder="NordicCloud GmbH"
-            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
+            onChange={(e) => setForm({ ...form, companyName: e.target.value })}
+            className={`w-full rounded-lg border px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface ${
+              errors.companyName ? 'border-red-500' : 'border-line-strong'
+            }`}
+            placeholder="Nordic SaaS GmbH"
           />
-          {errors.companyName && (
-            <p role="alert" className="mt-1 text-xs text-rose-600 dark:text-rose-400">
-              {errors.companyName}
-            </p>
-          )}
+          {errors.companyName && <p className="mt-1 text-xs text-red-600">{errors.companyName}</p>}
         </div>
 
         <div>
-          <label htmlFor="demo-country" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-            Primary jurisdiction *
+          <label htmlFor="demo-country" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+            {locale === 'de' ? 'Land / Region *' : 'Country / Region *'}
           </label>
           <select
             id="demo-country"
-            name="country"
             value={form.country}
-            onChange={(e) => setForm((p) => ({ ...p, country: e.target.value }))}
-            aria-invalid={Boolean(errors.country)}
-            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
+            onChange={(e) => setForm({ ...form, country: e.target.value })}
+            className={`w-full rounded-lg border px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface ${
+              errors.country ? 'border-red-500' : 'border-line-strong'
+            }`}
           >
-            <option value="Germany">Germany</option>
-            <option value="Austria">Austria</option>
-            <option value="Switzerland">Switzerland</option>
+            <option value="Germany">Germany (Deutschland)</option>
+            <option value="Austria">Austria (Österreich)</option>
+            <option value="Switzerland">Switzerland (Schweiz)</option>
+            <option value="Netherlands">Netherlands (Nederland)</option>
             <option value="France">France</option>
-            <option value="Netherlands">Netherlands</option>
-            <option value="Spain">Spain</option>
-            <option value="Nordics / Other EU">Nordics / Other EU</option>
-            <option value="UK / Global">UK / Global</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Other EU / EEA">Other EU / EEA</option>
+            <option value="Global / Rest of World">Global / Rest of World</option>
           </select>
-          {errors.country && (
-            <p role="alert" className="mt-1 text-xs text-rose-600 dark:text-rose-400">
-              {errors.country}
-            </p>
-          )}
+          {errors.country && <p className="mt-1 text-xs text-red-600">{errors.country}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="demo-arr" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-            Annual recurring revenue (EUR) *
+          <label htmlFor="demo-arr" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+            {locale === 'de' ? 'Abonnentenanzahl / MRR *' : 'Subscriber volume / MRR *'}
           </label>
           <select
             id="demo-arr"
-            name="arrBand"
             value={form.arrBand}
-            onChange={(e) => setForm((p) => ({ ...p, arrBand: e.target.value }))}
-            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
+            onChange={(e) => setForm({ ...form, arrBand: e.target.value })}
+            className={`w-full rounded-lg border px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface ${
+              errors.arrBand ? 'border-red-500' : 'border-line-strong'
+            }`}
           >
-            <option value="Under €1M">Under €1M</option>
-            <option value="€1M – €5M">€1M – €5M</option>
-            <option value="€5M – €20M">€5M – €20M</option>
-            <option value="€20M – €100M">€20M – €100M</option>
-            <option value="€100M+">€100M+</option>
+            <option value="< 100 subscribers (< €5k MRR)">&lt; 100 subscribers (&lt; €5k MRR)</option>
+            <option value="100 – 500 subscribers (€5k – €25k MRR)">100 – 500 subscribers (€5k – €25k MRR)</option>
+            <option value="500 – 2,500 subscribers (€25k – €100k MRR)">500 – 2,500 subscribers (€25k – €100k MRR)</option>
+            <option value="2,500+ subscribers (€100k+ MRR)">2,500+ subscribers (€100k+ MRR)</option>
+            <option value="New Launch / Migration evaluation">New Launch / Migration evaluation</option>
           </select>
+          {errors.arrBand && <p className="mt-1 text-xs text-red-600">{errors.arrBand}</p>}
         </div>
 
         <div>
-          <label htmlFor="demo-usecase" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-            Primary focus
+          <label htmlFor="demo-usecase" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+            {locale === 'de' ? 'Haupt-Anwendungsfall' : 'Primary use case'}
           </label>
           <select
             id="demo-usecase"
-            name="primaryUseCase"
             value={form.primaryUseCase}
-            onChange={(e) => setForm((p) => ({ ...p, primaryUseCase: e.target.value }))}
-            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
+            onChange={(e) => setForm({ ...form, primaryUseCase: e.target.value })}
+            className="w-full rounded-lg border border-line-strong px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface"
           >
-            <option value="IFRS 15 / HGB Revenue Recognition">IFRS 15 / HGB Revenue Recognition</option>
-            <option value="Deferred Revenue & DATEV / ERP Export">Deferred Revenue &amp; DATEV / ERP Export</option>
-            <option value="MRR / ARR Reporting & Cohorts">MRR / ARR Reporting &amp; Cohorts</option>
-            <option value="Revenue Forecasting">Revenue Forecasting</option>
+            <option value="Multi-Gateway Subscription Billing">Multi-Gateway Subscription Billing</option>
+            <option value="SEPA Direct Debit & Recurring Invoicing">SEPA Direct Debit &amp; Recurring Invoicing</option>
+            <option value="Pay Links & Hosted Checkout">Pay Links &amp; Hosted Checkout</option>
+            <option value="Smart Dunning & Failed Payment Recovery">Smart Dunning &amp; Failed Payment Recovery</option>
+            <option value="Replacing Percentage-Fee Billing (Stripe/Paddle/Recurly)">Replacing Percentage Fees (Stripe / Paddle / Recurly)</option>
+            <option value="European Tax & Accounting Sync (sevDesk/Xero)">European Tax &amp; Accounting Sync (sevDesk/Xero)</option>
           </select>
         </div>
       </div>
 
       <div>
-        <label htmlFor="demo-notes" className="block text-xs font-medium text-slate-800 dark:text-slate-200 mb-1.5">
-          Current billing &amp; accounting stack (optional)
+        <label htmlFor="demo-notes" className="block text-xs font-semibold text-ink uppercase tracking-wider font-ui mb-1">
+          {locale === 'de' ? 'Zusätzliche Notizen (optional)' : 'Additional questions or requirements (optional)'}
         </label>
         <textarea
           id="demo-notes"
-          name="notes"
           rows={3}
           value={form.notes}
-          onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))}
-          placeholder="e.g., Stripe Billing + HubSpot + DATEV / Exact Online"
-          className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3.5 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-rose-700 focus:outline-none"
+          onChange={(e) => setForm({ ...form, notes: e.target.value })}
+          className="w-full rounded-lg border border-line-strong px-3 py-2 text-sm text-ink bg-canvas transition-colors focus:bg-surface"
+          placeholder={
+            locale === 'de'
+              ? 'z. B. Wir nutzen aktuell Stripe Billing und möchten GoCardless SEPA und sevDesk ergänzen...'
+              : 'e.g. Currently on Stripe Billing, looking to add GoCardless SEPA and eliminate percentage-based fees...'
+          }
         />
       </div>
 
-      <div>
-        <label className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+      <div className="rounded-xl border border-line bg-soft/50 p-4">
+        <label className="flex items-start gap-3 cursor-pointer">
           <input
-            id="demo-gdpr"
             type="checkbox"
             checked={form.gdprConsent}
-            onChange={(e) => setForm((p) => ({ ...p, gdprConsent: e.target.checked }))}
-            aria-invalid={Boolean(errors.gdprConsent)}
-            className="mt-0.5 h-4 w-4 rounded border-slate-300 accent-rose-700"
+            onChange={(e) => setForm({ ...form, gdprConsent: e.target.checked })}
+            className="mt-0.5 h-4 w-4 rounded border-line-strong text-ink focus:ring-accent"
           />
-          <span>
-            I consent to MYFUNDBOX processing my request under GDPR (Art. 6(1)(a) &amp; (b)). Your data is stored in the EU and never shared with third-party data brokers. See our{' '}
-            <AppLink href={`/${locale}/legal/privacy`} className="text-rose-700 dark:text-rose-400 underline">
-              Privacy Policy
-            </AppLink>
-            . *
+          <span className="text-xs text-muted leading-relaxed">
+            {locale === 'de' ? (
+              <>
+                Ich willige ein, dass MYFUNDBOX meine Angaben zur Kontaktaufnahme und Terminvereinbarung gemäß der{' '}
+                <AppLink href={localHref('/privacy-policy')} className="underline hover:text-ink">
+                  Datenschutzerklärung
+                </AppLink>{' '}
+                verarbeitet. Keine Weitergabe an Werbedritte.
+              </>
+            ) : (
+              <>
+                I consent to MYFUNDBOX processing my contact details to schedule this walkthrough in accordance with the{' '}
+                <AppLink href={localHref('/privacy-policy')} className="underline hover:text-ink">
+                  Privacy Policy
+                </AppLink>
+                . Data is stored in Frankfurt, Germany with zero third-party advertising tracking.
+              </>
+            )}
           </span>
         </label>
-        {errors.gdprConsent && (
-          <p role="alert" className="mt-1.5 text-xs text-rose-600 dark:text-rose-400">
-            {errors.gdprConsent}
-          </p>
-        )}
+        {errors.gdprConsent && <p className="mt-2 text-xs text-red-600">{errors.gdprConsent}</p>}
       </div>
 
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        className="btn-gradient-primary w-full sm:w-auto rounded-lg px-6 py-3 text-sm font-semibold disabled:opacity-60 cursor-pointer whitespace-nowrap"
-      >
-        {status === 'submitting' ? 'Submitting request...' : 'Book a demo'}
-      </button>
+      <div>
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className="btn-primary w-full justify-center py-3 text-sm font-semibold cursor-pointer"
+        >
+          <span>
+            {status === 'submitting'
+              ? (locale === 'de' ? 'Wird gesendet...' : 'Sending request...')
+              : (locale === 'de' ? 'Demo anfordern' : 'Request tailored walkthrough')}
+          </span>
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </button>
+      </div>
+
+      <div className="flex items-center justify-center gap-2 text-xs text-subtle pt-1">
+        <ShieldCheck className="h-4 w-4 text-positive" aria-hidden="true" />
+        <span>Hosted in Frankfurt am Main · DSGVO-konform · 0% Datenschnitt</span>
+      </div>
     </form>
   );
 }

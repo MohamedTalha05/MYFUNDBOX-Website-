@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
   brandName: 'MYFUNDBOX',
   legalEntityName: '[ADD: MYFUNDBOX Legal Entity GmbH]',
   oneLineDescription:
-    'MYFUNDBOX is EU-based revenue management software built in Germany for CFOs, controllers, and RevOps teams to track, recognize, forecast, and report recurring revenue.',
+    'MYFUNDBOX is a revenue management platform for subscription businesses: recurring billing, payments across multiple gateways, dunning, customer self-service and revenue reporting in one place.',
   headquartersLocation: 'Germany [ADD: City & Street Address]',
   foundingYear: '[ADD: Founding Year]',
   euDataResidency: '[CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)]',
@@ -21,12 +21,14 @@ export const SITE_CONFIG = {
   dpoEmail: '[ADD: privacy@myfundbox.example]',
   demoEndpoint: '/api/demo-request',
   lastUpdatedIso: '2026-11-18',
+  // Official profiles linked from the live myfundbox.com footer (checked 2026-11-19).
+  // Review-site profiles (G2 etc.) are left out until their exact URLs are confirmed.
   sameAs: [
-    '[ADD: https://www.linkedin.com/company/myfundbox]',
-    '[ADD: https://www.g2.com/products/myfundbox]',
-    '[ADD: https://www.capterra.com/p/myfundbox]',
-    '[ADD: https://www.trustpilot.com/review/myfundbox]',
-    '[ADD: https://www.crunchbase.com/organization/myfundbox]',
+    'https://www.linkedin.com/company/myfundbox',
+    'https://twitter.com/MYFUNDBOX_Subs',
+    'https://www.facebook.com/myfundbox',
+    'https://www.instagram.com/myfundbox',
+    'https://www.youtube.com/channel/UCd3Q_JlwprHHhA4JsNdxccw',
   ],
   supportedIntegrations: [
     { name: 'DATEV', category: 'German Accounting & Tax', status: '[CONFIRM: Export / API]' },
@@ -65,73 +67,393 @@ export const SITE_CONFIG = {
   ] satisfies AuthorProfile[],
 };
 
+// ---------------------------------------------------------------------------
+// External destinations
+// ---------------------------------------------------------------------------
+
+/**
+ * Log-in and sign-up live in the existing MYFUNDBOX app, not on this site, so current
+ * accounts and their flows keep working unchanged.
+ * Both point at the app entry point, as instructed by the MYFUNDBOX team on 2026-11-19 ("for now").
+ * The live-site paths /login-mfb and /sign-up are also redirected there (see redirects.ts).
+ */
+export const APP_LINKS = {
+  login: 'https://app.subscriptionbilling.eu/?app=1',
+  signUp: 'https://app.subscriptionbilling.eu/?app=1',
+  docs: 'https://docs.myfundbox.com/',
+} as const;
+
+// ---------------------------------------------------------------------------
+// Navigation. All hrefs are English canonical paths. Components localize them
+// with localizeHref(), and hide internal links whose page doesn't exist yet,
+// so the menus never link to a 404 while pages are being built.
+// ---------------------------------------------------------------------------
+
 export interface NavDropdownItem {
   label: string;
   description: string;
   href: string;
 }
 
+export interface NavLinkItem {
+  label: string;
+  href: string;
+  /** Used when `href` is an internal page that doesn't exist yet. */
+  fallbackHref?: string;
+  /** Key into LOCALE_UI_COPY[locale].nav for a translated label. */
+  copyKey?: 'pricing' | 'developers' | 'resources';
+}
+
 export const MEGA_MENU_PRODUCT: NavDropdownItem[] = [
   {
-    label: 'Revenue Recognition',
-    description: 'IFRS 15 and HGB-compliant recognition rules across subscriptions and contracts.',
-    href: '/en/product/revenue-recognition',
+    label: 'Overview',
+    description: 'Explore the full subscription billing platform architecture.',
+    href: '/product',
   },
   {
-    label: 'Deferred Revenue & Accruals',
-    description: 'Automated roll-forward schedules, unbilled receivables, and period-end cutoffs.',
-    href: '/en/product/deferred-revenue-accruals',
+    label: 'Subscription management',
+    description: 'Plans, renewals, upgrades and cancellations in one place.',
+    href: '/subscription-management',
   },
   {
-    label: 'Revenue Reporting & Analytics',
-    description: 'Audit-ready MRR, ARR, NRR, churn, expansion, and cohort reporting in EUR.',
-    href: '/en/product/revenue-reporting',
+    label: 'Recurring billing',
+    description: 'One-time and recurring charges, billed automatically.',
+    href: '/recurring-billing',
   },
   {
-    label: 'Revenue Forecasting',
-    description: 'Contract-level backlog projections and cash vs. recognized revenue scenarios.',
-    href: '/en/product/revenue-forecasting',
+    label: 'Payment management',
+    description: 'Stripe, GoCardless, Mollie, PayPal and more, side by side.',
+    href: '/payment-management',
   },
   {
-    label: 'Integrations & API',
-    description: 'Connect billing, CRM, and European accounting/ERP exports including DATEV.',
-    href: '/en/product/integrations-api',
+    label: 'Pay links',
+    description: 'Send a link and get paid, no website needed.',
+    href: '/pay-links',
+  },
+  {
+    label: 'Dunning management',
+    description: 'Automatic retries and reminders for failed payments.',
+    href: '/dunning-management',
+  },
+  {
+    label: 'Customer portal',
+    description: 'Customers update cards, plans and details themselves.',
+    href: '/customer-portal',
+  },
+  {
+    label: 'Revenue analytics',
+    description: 'Revenue, subscriptions and failed payments at a glance.',
+    href: '/revenue-analytics',
+  },
+  {
+    label: 'Integrations',
+    description: 'Payment gateways, accounting and tax tools.',
+    href: '/integrations/payments',
   },
 ];
 
 export const MEGA_MENU_SOLUTIONS: NavDropdownItem[] = [
   {
-    label: 'B2B SaaS Companies',
-    description: 'Multi-year contracts, seat upgrades, and IFRS 15 waterfall automation.',
-    href: '/en/solutions/saas',
+    label: 'SaaS businesses',
+    description: 'Plans, trials and upgrades for software products.',
+    href: '/solutions/saas',
   },
   {
-    label: 'Finance Teams & CFOs',
-    description: 'Immutable audit trails, board-ready SaaS KPIs, and faster month-end close.',
-    href: '/en/solutions/finance-teams-cfo',
+    label: 'Subscription businesses',
+    description: 'Boxes, services and memberships billed every cycle.',
+    href: '/solutions/subscription-businesses',
   },
   {
-    label: 'Digital Services & Media',
-    description: 'Prepaid annual subscriptions, usage tiers, and EU VAT net-revenue separation.',
-    href: '/en/solutions/digital-services',
+    label: 'Digital businesses',
+    description: 'Courses, content and downloads sold worldwide.',
+    href: '/solutions/digital-businesses',
   },
   {
-    label: 'Memberships & Associations',
-    description: 'Prorated annual dues, deferred liability tracking, and cohort retention.',
-    href: '/en/solutions/memberships',
+    label: 'Memberships',
+    description: 'Recurring dues for clubs, communities and associations.',
+    href: '/solutions/memberships',
   },
   {
-    label: 'Agencies & Retainers',
-    description: 'Milestone-based and recurring retainer recognition with accrued revenue visibility.',
-    href: '/en/solutions/agencies',
+    label: 'Agencies',
+    description: 'Retainers and recurring client billing.',
+    href: '/solutions/agencies',
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Header navigation (premium navbar, 2026-11-19).
+// Each item points at its own canonical page. While that page is unbuilt, `fallbackHref`
+// sends visitors to the closest existing page instead of a 404; once the page exists the
+// nav switches to it automatically (see resolveNavHref). Items with neither are hidden.
+// ---------------------------------------------------------------------------
+
+export type NavIconKey =
+  | 'revenue' | 'subscriptions' | 'billing' | 'payments' | 'dunning' | 'analytics'
+  | 'saas' | 'subscriptionBusiness' | 'digital'
+  | 'paymentIntegrations' | 'accounting' | 'tax'
+  | 'blog' | 'guides' | 'docs' | 'faq'
+  | 'about' | 'contact';
+
+export interface NavMenuItem {
+  label: string;
+  description: string;
+  href: string;
+  fallbackHref?: string;
+  icon: NavIconKey;
+  de?: { label: string; description: string };
+}
+
+export interface NavMenu {
+  key: 'product' | 'solutions' | 'integrations' | 'resources' | 'company';
+  items: NavMenuItem[];
+}
+
+export const NAV_MENUS: NavMenu[] = [
+  {
+    key: 'product',
+    items: [
+      {
+        label: 'Revenue Management',
+        description: 'The complete platform for recurring revenue.',
+        href: '/product',
+        icon: 'revenue',
+        de: { label: 'Revenue Management', description: 'Die komplette Plattform für wiederkehrende Umsätze.' },
+      },
+      {
+        label: 'Subscription Management',
+        description: 'Plans, trials, upgrades and renewals.',
+        href: '/subscription-management',
+        fallbackHref: '/product',
+        icon: 'subscriptions',
+        de: { label: 'Abo-Verwaltung', description: 'Tarife, Testphasen, Upgrades und Verlängerungen.' },
+      },
+      {
+        label: 'Billing Management',
+        description: 'One-time and recurring invoicing, automated.',
+        href: '/recurring-billing',
+        fallbackHref: '/product',
+        icon: 'billing',
+        de: { label: 'Abrechnung', description: 'Einmalige und wiederkehrende Rechnungen, automatisiert.' },
+      },
+      {
+        label: 'Payment Management',
+        description: 'Multiple gateways and payment methods.',
+        href: '/payment-management',
+        fallbackHref: '/product',
+        icon: 'payments',
+        de: { label: 'Zahlungsmanagement', description: 'Mehrere Zahlungsanbieter und Zahlungsarten.' },
+      },
+      {
+        label: 'Dunning Management',
+        description: 'Recover failed payments automatically.',
+        href: '/dunning-management',
+        fallbackHref: '/product',
+        icon: 'dunning',
+        de: { label: 'Mahnwesen', description: 'Fehlgeschlagene Zahlungen automatisch zurückholen.' },
+      },
+      {
+        label: 'Revenue Analytics',
+        description: 'MRR, subscriptions and payments at a glance.',
+        href: '/revenue-analytics',
+        fallbackHref: '/product',
+        icon: 'analytics',
+        de: { label: 'Umsatzanalysen', description: 'MRR, Abos und Zahlungen auf einen Blick.' },
+      },
+    ],
+  },
+  {
+    key: 'solutions',
+    items: [
+      {
+        label: 'SaaS Businesses',
+        description: 'Plans, trials and upgrades for software.',
+        href: '/solutions/saas',
+        icon: 'saas',
+        de: { label: 'SaaS-Unternehmen', description: 'Tarife, Testphasen und Upgrades für Software.' },
+      },
+      {
+        label: 'Subscription Businesses',
+        description: 'Boxes, services and memberships.',
+        href: '/solutions/subscription-businesses',
+        fallbackHref: '/solutions/memberships',
+        icon: 'subscriptionBusiness',
+        de: { label: 'Abo-Unternehmen', description: 'Boxen, Services und Mitgliedschaften.' },
+      },
+      {
+        label: 'Digital Businesses',
+        description: 'Courses, content and downloads.',
+        href: '/solutions/digital-businesses',
+        fallbackHref: '/solutions/digital-services',
+        icon: 'digital',
+        de: { label: 'Digitale Unternehmen', description: 'Kurse, Inhalte und Downloads.' },
+      },
+    ],
+  },
+  {
+    key: 'integrations',
+    items: [
+      {
+        label: 'Payment Integrations',
+        description: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com.',
+        href: '/integrations/payments',
+        fallbackHref: '/product/integrations-api',
+        icon: 'paymentIntegrations',
+        de: { label: 'Zahlungsintegrationen', description: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com.' },
+      },
+      {
+        label: 'Accounting Integrations',
+        description: 'QuickBooks, Xero, sevdesk, Lexware.',
+        href: '/integrations/accounting',
+        fallbackHref: '/product/integrations-api',
+        icon: 'accounting',
+        de: { label: 'Buchhaltungsintegrationen', description: 'QuickBooks, Xero, sevdesk, Lexware.' },
+      },
+      {
+        label: 'Tax Integrations',
+        description: 'Automated tax calculation with Avalara.',
+        href: '/integrations/tax',
+        fallbackHref: '/product/integrations-api',
+        icon: 'tax',
+        de: { label: 'Steuerintegrationen', description: 'Automatische Steuerberechnung mit Avalara.' },
+      },
+    ],
+  },
+  {
+    key: 'resources',
+    items: [
+      {
+        label: 'Blog',
+        description: 'Insights on billing and recurring revenue.',
+        href: '/blog',
+        icon: 'blog',
+        de: { label: 'Blog', description: 'Wissen rund um Abrechnung und wiederkehrende Umsätze.' },
+      },
+      {
+        label: 'Guides',
+        description: 'In-depth guides for subscription businesses.',
+        href: '/guides',
+        fallbackHref: '/resources',
+        icon: 'guides',
+        de: { label: 'Leitfäden', description: 'Ausführliche Leitfäden für Abo-Unternehmen.' },
+      },
+      {
+        label: 'Documentation',
+        description: 'API reference, webhooks and setup.',
+        href: APP_LINKS.docs,
+        icon: 'docs',
+        de: { label: 'Dokumentation', description: 'API-Referenz, Webhooks und Einrichtung.' },
+      },
+      {
+        label: 'FAQs',
+        description: 'Answers to common questions.',
+        href: '/help',
+        icon: 'faq',
+        de: { label: 'FAQs', description: 'Antworten auf häufige Fragen.' },
+      },
+    ],
+  },
+  {
+    key: 'company',
+    items: [
+      {
+        label: 'About Us',
+        description: 'Who we are and what we build.',
+        href: '/about',
+        icon: 'about',
+        de: { label: 'Über uns', description: 'Wer wir sind und was wir bauen.' },
+      },
+      {
+        label: 'Contact',
+        description: 'Talk to our team.',
+        href: '/contact',
+        icon: 'contact',
+        de: { label: 'Kontakt', description: 'Sprechen Sie mit unserem Team.' },
+      },
+    ],
+  },
+];
+
+/** Top-level links after the Product and Solutions menus. (Used by tests; the header now uses NAV_MENUS.) */
+export const NAV_LINKS: NavLinkItem[] = [
+  { label: 'Pricing', href: '/pricing', copyKey: 'pricing' },
+  { label: 'Developers', href: '/developers', fallbackHref: APP_LINKS.docs, copyKey: 'developers' },
+  { label: 'Resources', href: '/resources', copyKey: 'resources' },
+];
+
+export interface FooterColumn {
+  title: string;
+  links: NavLinkItem[];
+}
+
+export const FOOTER_COLUMNS: FooterColumn[] = [
+  {
+    title: 'Product',
+    links: [
+      ...MEGA_MENU_PRODUCT.map(({ label, href }) => ({ label, href })),
+      { label: 'Pricing', href: '/pricing' },
+    ],
+  },
+  {
+    title: 'Solutions',
+    links: MEGA_MENU_SOLUTIONS.map(({ label, href }) => ({ label, href })),
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Resources', href: '/resources' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Glossary', href: '/glossary' },
+      { label: 'Help centre', href: '/help' },
+      { label: 'Changelog', href: '/changelog' },
+      { label: 'Developer docs', href: APP_LINKS.docs },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About us', href: '/about' },
+      { label: 'Security', href: '/security' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Imprint', href: '/imprint' },
+      { label: 'Privacy policy', href: '/privacy-policy' },
+      { label: 'Terms of service', href: '/terms-of-service' },
+      { label: 'Cookie policy', href: '/cookies' },
+      { label: 'Data processing (DPA)', href: '/dpa' },
+    ],
+  },
+];
+
+export const SOCIAL_LINKS = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/myfundbox' },
+  { label: 'X (Twitter)', href: 'https://twitter.com/MYFUNDBOX_Subs' },
+  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCd3Q_JlwprHHhA4JsNdxccw' },
+] as const;
+
+// ---------------------------------------------------------------------------
+// UI copy per locale
+// ---------------------------------------------------------------------------
 
 export const LOCALE_UI_COPY: Record<
   LocaleCode,
   {
     languageName: string;
-    nav: { product: string; solutions: string; compare: string; pricing: string; resources: string; bookDemo: string };
+    nav: {
+      product: string;
+      solutions: string;
+      pricing: string;
+      developers: string;
+      resources: string;
+      integrations: string;
+      company: string;
+      login: string;
+      getStarted: string;
+      bookDemo: string;
+    };
     heroEyebrow: string;
     heroTitle: string;
     heroSubtitle: string;
@@ -148,19 +470,24 @@ export const LOCALE_UI_COPY: Record<
     nav: {
       product: 'Product',
       solutions: 'Solutions',
-      compare: 'Compare',
       pricing: 'Pricing',
+      developers: 'Developers',
       resources: 'Resources',
+      integrations: 'Integrations',
+      company: 'Company',
+      login: 'Log in',
+      getStarted: 'Get started',
       bookDemo: 'Book a demo',
     },
-    heroEyebrow: 'EU-Based Revenue Management Software · Built in Germany',
-    heroTitle: 'Audit-ready revenue recognition and forecasting for European finance teams',
+    // Homepage copy now lives in src/data/homeContent.ts; these remain for other consumers.
+    heroEyebrow: 'Subscription billing · Payments · Revenue insights',
+    heroTitle: 'Take Control of Your Revenue. Focus on Growing Your Business.',
     heroSubtitle:
-      'MYFUNDBOX helps CFOs, controllers, and RevOps teams track, recognize, forecast, and report recurring revenue under IFRS 15 and HGB/GoBD—without replacing your billing or payment stack.',
-    secondaryCta: 'Estimate deferred revenue',
-    cookieBannerTitle: 'Privacy & Cookie Preferences (GDPR / ePrivacy)',
+      'Take control of subscriptions, billing, payments, and revenue performance with one intelligent revenue management platform.',
+    secondaryCta: 'Explore the platform',
+    cookieBannerTitle: 'Privacy & cookie preferences',
     cookieBannerText:
-      'MYFUNDBOX loads zero third-party analytics or marketing trackers before your explicit consent. Strictly necessary cookies store only your theme and consent choice.',
+      'MYFUNDBOX loads no third-party analytics or marketing trackers before you consent. Strictly necessary storage keeps only your theme and consent choice.',
     acceptEssential: 'Essential only',
     acceptAll: 'Accept analytics',
     cookieSettings: 'Preferences',
@@ -170,65 +497,25 @@ export const LOCALE_UI_COPY: Record<
     nav: {
       product: 'Produkt',
       solutions: 'Lösungen',
-      compare: 'Vergleich',
       pricing: 'Preise',
+      developers: 'Entwickler',
       resources: 'Ressourcen',
+      integrations: 'Integrationen',
+      company: 'Unternehmen',
+      login: 'Anmelden',
+      getStarted: 'Kostenlos starten',
       bookDemo: 'Demo buchen',
     },
-    heroEyebrow: 'EU-Revenue-Management-Software · Entwickelt in Deutschland',
-    heroTitle: 'Prüfungssichere Umsatzabgrenzung und Prognosen für Finanzteams',
+    heroEyebrow: 'Abo-Abrechnung · Zahlungen · Umsatz-Insights',
+    heroTitle: 'Behalten Sie Ihren Umsatz im Griff. Konzentrieren Sie sich auf Ihr Wachstum.',
     heroSubtitle:
-      'MYFUNDBOX unterstützt CFOs, Controller und Buchhaltung bei Umsatzrealisierung (IFRS 15 & HGB/GoBD), Abgrenzungsposten, MRR/ARR-Reporting und Forecasting – unabhängig von Ihrem Zahlungsanbieter.',
-    secondaryCta: 'Abgrenzung berechnen',
-    cookieBannerTitle: 'Datenschutz & Cookie-Einstellungen (DSGVO / TTDSG)',
+      'Behalten Sie Abonnements, Abrechnung, Zahlungen und Umsatzentwicklung im Griff – mit einer intelligenten Revenue-Management-Plattform.',
+    secondaryCta: 'Plattform entdecken',
+    cookieBannerTitle: 'Datenschutz- & Cookie-Einstellungen',
     cookieBannerText:
-      'MYFUNDBOX lädt vor Ihrer ausdrücklichen Einwilligung keine Drittanbieter-Tracker. Technisch notwendige Cookies speichern ausschließlich Ihre Auswahl.',
+      'MYFUNDBOX lädt vor Ihrer Einwilligung keine Drittanbieter-Tracker. Technisch notwendiger Speicher sichert nur Ihr Farbschema und Ihre Einwilligung.',
     acceptEssential: 'Nur notwendige',
     acceptAll: 'Analyse akzeptieren',
     cookieSettings: 'Einstellungen',
-  },
-  fr: {
-    languageName: 'Français',
-    nav: {
-      product: 'Produit',
-      solutions: 'Solutions',
-      compare: 'Comparer',
-      pricing: 'Tarifs',
-      resources: 'Ressources',
-      bookDemo: 'Réserver une démo',
-    },
-    heroEyebrow: 'Logiciel européen de gestion des revenus · Basé en Allemagne',
-    heroTitle: 'Reconnaissance des revenus conforme IFRS 15 et prévisions financières',
-    heroSubtitle:
-      'MYFUNDBOX aide les directions financières et contrôleurs européens à suivre, reconnaître, prévoir et auditer leurs revenus récurrents—sans remplacer votre outil de facturation.',
-    secondaryCta: 'Estimer les PCA',
-    cookieBannerTitle: 'Confidentialité et gestion des cookies (RGPD)',
-    cookieBannerText:
-      'MYFUNDBOX ne déclenche aucun traceur tiers avant votre consentement explicite. Les cookies essentiels mémorisent uniquement vos préférences.',
-    acceptEssential: 'Essentiels uniquement',
-    acceptAll: 'Accepter la mesure',
-    cookieSettings: 'Préférences',
-  },
-  es: {
-    languageName: 'Español',
-    nav: {
-      product: 'Producto',
-      solutions: 'Soluciones',
-      compare: 'Comparar',
-      pricing: 'Precios',
-      resources: 'Recursos',
-      bookDemo: 'Solicitar demo',
-    },
-    heroEyebrow: 'Software europeo de gestión de ingresos · Con sede en Alemania',
-    heroTitle: 'Reconocimiento de ingresos IFRS 15 y previsión para equipos financieros',
-    heroSubtitle:
-      'MYFUNDBOX permite a CFOs y controllers europeos contabilizar ingresos diferidos, analizar MRR/ARR y generar cierres auditables sin sustituir su pasarela de pagos.',
-    secondaryCta: 'Estimar ingresos diferidos',
-    cookieBannerTitle: 'Preferencias de privacidad y cookies (RGPD)',
-    cookieBannerText:
-      'MYFUNDBOX no carga rastreadores de terceros sin su consentimiento explícito. Las cookies esenciales solo guardan sus preferencias locales.',
-    acceptEssential: 'Solo esenciales',
-    acceptAll: 'Aceptar analítica',
-    cookieSettings: 'Configurar',
   },
 };

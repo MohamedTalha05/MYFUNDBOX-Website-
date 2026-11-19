@@ -1,146 +1,113 @@
 import React from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { ArrowRight, Moon, Sun } from 'lucide-react';
 import { useRouter } from '../context/RouterContext';
-import { SITE_CONFIG } from '../data/siteConfig';
-import { COMPETITORS } from '../data/competitorsData';
-import { SUPPORTED_LOCALES, type LocaleCode } from '../utils/formatting';
+import { APP_LINKS, FOOTER_COLUMNS, LOCALE_UI_COPY, SITE_CONFIG, SOCIAL_LINKS } from '../data/siteConfig';
+import { SUPPORTED_LOCALES } from '../utils/formatting';
+import { isExternalHref, resolveNavHref, useLocalHref } from '../utils/navLinks';
 import { AppLink } from './ReusableBlocks';
+import { BrandLogo } from './BrandLogo';
 
 export function Footer() {
   const { locale, switchLocale, theme, toggleTheme, openCookiePreferences } = useRouter();
-  const prefix = `/${locale}`;
+  const localHref = useLocalHref();
+  const copy = LOCALE_UI_COPY[locale] ?? LOCALE_UI_COPY.en;
+
+  // Drop links to pages that don't exist yet, then drop columns left empty.
+  const columns = FOOTER_COLUMNS.map((col) => ({
+    title: col.title,
+    links: col.links
+      .map((l) => ({ label: l.label, href: resolveNavHref(l) }))
+      .filter((l): l is { label: string; href: string } => l.href !== null),
+  })).filter((col) => col.links.length > 0);
 
   return (
-    <footer className="border-t border-slate-800/80 bg-[#0b0f17] text-slate-300">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-2">
-            <AppLink href={prefix} aria-label="MYFUNDBOX Home" className="inline-flex items-center">
-              <img
-                src="/assets/aistudio/logo_mfb_2225b714.png"
-                alt="MYFUNDBOX"
-                className="h-10 w-auto object-contain"
-              />
+    // `dark` keeps the footer navy in both themes.
+    <footer className="dark relative overflow-hidden bg-[#0b0d1f] text-muted">
+      <div className="hairline-top" aria-hidden="true" />
+      <div className="orb orb-violet -left-40 -top-40 h-80 w-80 opacity-30" aria-hidden="true" />
+
+      <div className="container-x relative py-16">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-12">
+          <div className="col-span-2 md:col-span-4 lg:col-span-4">
+            <AppLink href={localHref('/')} aria-label="MYFUNDBOX home" className="inline-flex">
+              <BrandLogo className="h-5" />
             </AppLink>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-300">
-              {SITE_CONFIG.oneLineDescription}
-            </p>
-            <p className="mt-4 text-xs text-amber-300/90">
-              Built in Germany · EU Data Residency · EUR Default · GDPR &amp; IFRS 15
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xs font-semibold text-white mb-3">Product &amp; Solutions</h3>
-            <ul className="space-y-2 text-sm">
-              <li><AppLink href={`${prefix}/product/revenue-recognition`} className="hover:text-rose-300 transition-colors">Revenue Recognition</AppLink></li>
-              <li><AppLink href={`${prefix}/product/deferred-revenue-accruals`} className="hover:text-rose-300 transition-colors">Deferred Revenue &amp; Accruals</AppLink></li>
-              <li><AppLink href={`${prefix}/product/revenue-reporting`} className="hover:text-rose-300 transition-colors">Reporting &amp; Analytics</AppLink></li>
-              <li><AppLink href={`${prefix}/product/revenue-forecasting`} className="hover:text-rose-300 transition-colors">Revenue Forecasting</AppLink></li>
-              <li><AppLink href={`${prefix}/product/integrations-api`} className="hover:text-rose-300 transition-colors">Integrations &amp; API</AppLink></li>
-              <li><AppLink href={`${prefix}/solutions/saas`} className="hover:text-rose-300 transition-colors">B2B SaaS</AppLink></li>
-              <li><AppLink href={`${prefix}/solutions/finance-teams-cfo`} className="hover:text-rose-300 transition-colors">Finance Teams &amp; CFOs</AppLink></li>
-              <li><AppLink href={`${prefix}/solutions/digital-services`} className="hover:text-rose-300 transition-colors">Digital Services</AppLink></li>
-              <li><AppLink href={`${prefix}/solutions/memberships`} className="hover:text-rose-300 transition-colors">Memberships</AppLink></li>
-              <li><AppLink href={`${prefix}/solutions/agencies`} className="hover:text-rose-300 transition-colors">Agencies</AppLink></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xs font-semibold text-white mb-3">Compare &amp; Guides</h3>
-            <ul className="space-y-2 text-sm">
-              {COMPETITORS.slice(0, 5).map((comp) => (
-                <li key={comp.slug}>
-                  <AppLink href={`${prefix}/compare/${comp.slug}`} className="hover:text-rose-300 transition-colors">
-                    vs {comp.competitorName.split(' ')[0]}
-                  </AppLink>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed">{SITE_CONFIG.oneLineDescription}</p>
+            <div className="mt-6 flex flex-wrap gap-2.5 font-ui">
+              <a href={APP_LINKS.signUp} className="btn-primary px-4 py-2 text-sm">
+                {copy.nav.getStarted}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <AppLink href={localHref('/book-a-demo')} className="btn-ghost px-4 py-2 text-sm">
+                {copy.nav.bookDemo}
+              </AppLink>
+            </div>
+            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              {SOCIAL_LINKS.map((s) => (
+                <li key={s.href}>
+                  <a href={s.href} rel="noopener noreferrer" target="_blank" className="hover:text-ink transition-colors">
+                    {s.label}
+                  </a>
                 </li>
               ))}
-              <li><AppLink href={`${prefix}/resources`} className="hover:text-rose-300 transition-colors">All Guides &amp; Alternatives</AppLink></li>
-              <li><AppLink href={`${prefix}/guides/revenue-recognition-saas-ifrs-15`} className="hover:text-rose-300 transition-colors">IFRS 15 SaaS Guide</AppLink></li>
-              <li><AppLink href={`${prefix}/glossary`} className="hover:text-rose-300 transition-colors">Finance Glossary</AppLink></li>
-              <li><AppLink href={`${prefix}/blog`} className="hover:text-rose-300 transition-colors">Blog</AppLink></li>
-              <li><AppLink href={`${prefix}/case-studies`} className="hover:text-rose-300 transition-colors">Case Studies</AppLink></li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-xs font-semibold text-white mb-3">Company &amp; Legal</h3>
-            <ul className="space-y-2 text-sm">
-              <li><AppLink href={`${prefix}/pricing`} className="hover:text-rose-300 transition-colors">Pricing</AppLink></li>
-              <li><AppLink href={`${prefix}/about`} className="hover:text-rose-300 transition-colors">About MYFUNDBOX</AppLink></li>
-              <li><AppLink href={`${prefix}/security`} className="hover:text-rose-300 transition-colors">Security &amp; GDPR</AppLink></li>
-              <li><AppLink href={`${prefix}/contact`} className="hover:text-rose-300 transition-colors">Book a Demo</AppLink></li>
-              <li><AppLink href={`${prefix}/changelog`} className="hover:text-rose-300 transition-colors">Changelog</AppLink></li>
-              <li><AppLink href={`${prefix}/help`} className="hover:text-rose-300 transition-colors">Help &amp; FAQ Hub</AppLink></li>
-              <li><AppLink href={`${prefix}/legal/imprint`} className="hover:text-rose-300 transition-colors">Imprint (Impressum)</AppLink></li>
-              <li><AppLink href={`${prefix}/legal/privacy`} className="hover:text-rose-300 transition-colors">Privacy Policy</AppLink></li>
-              <li><AppLink href={`${prefix}/legal/terms`} className="hover:text-rose-300 transition-colors">Terms of Service</AppLink></li>
-              <li><AppLink href={`${prefix}/legal/cookies`} className="hover:text-rose-300 transition-colors">Cookie Policy</AppLink></li>
-              <li><AppLink href={`${prefix}/legal/dpa`} className="hover:text-rose-300 transition-colors">DPA (Art. 28 GDPR)</AppLink></li>
-            </ul>
-          </div>
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title} className="lg:col-span-2">
+              <h2 className="mb-4 font-ui text-[13px] font-semibold uppercase tracking-[0.08em] text-ink">{col.title}</h2>
+              <ul className="space-y-2.5 text-sm">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    {isExternalHref(l.href) ? (
+                      <a href={l.href} className="hover:text-ink transition-colors">
+                        {l.label}
+                      </a>
+                    ) : (
+                      <AppLink href={localHref(l.href)} className="hover:text-ink transition-colors">
+                        {l.label}
+                      </AppLink>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
-        {/* Utility Row: Language Switcher, Dark Mode Toggle, Cookie Settings, Machine-Readable Specs */}
-        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
-            <span>© 2026 {SITE_CONFIG.legalEntityName}</span>
-            <span aria-hidden="true">·</span>
-            <a href="/llms.txt" className="hover:text-white">llms.txt</a>
-            <a href="/sitemap.xml" className="hover:text-white">sitemap.xml</a>
-            <a href="/robots.txt" className="hover:text-white">robots.txt</a>
-            <button
-              type="button"
-              onClick={openCookiePreferences}
-              className="hover:text-white underline underline-offset-2 cursor-pointer"
-            >
-              Cookie Preferences
+        <div className="mt-14 flex flex-col items-start justify-between gap-5 border-t border-line pt-6 text-sm md:flex-row md:items-center">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-subtle">
+            <span>© {new Date().getFullYear()} {SITE_CONFIG.brandName}</span>
+            <button type="button" onClick={openCookiePreferences} className="hover:text-ink transition-colors cursor-pointer">
+              {copy.cookieSettings}
             </button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
-            {/* Locale Segmented Switcher */}
-            <div
-              role="group"
-              aria-label="Language selector"
-              className="inline-flex items-center rounded-lg border border-slate-700/80 bg-[#111827] p-0.5"
-            >
-              {SUPPORTED_LOCALES.map((loc: LocaleCode) => (
+          <div className="flex items-center gap-3 font-ui">
+            <div role="group" aria-label="Language" className="inline-flex rounded-lg border border-line p-0.5">
+              {SUPPORTED_LOCALES.map((loc) => (
                 <button
                   key={loc}
                   type="button"
+                  lang={loc}
                   onClick={() => switchLocale(loc)}
                   aria-pressed={locale === loc}
-                  className={`px-2.5 py-1 text-xs font-medium rounded-md uppercase transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
-                    locale === loc
-                      ? 'bg-rose-700 text-white shadow-sm'
-                      : 'text-slate-300 hover:text-white'
+                  aria-label={LOCALE_UI_COPY[loc].languageName}
+                  className={`rounded-md px-2.5 py-1 text-xs font-semibold uppercase transition-colors cursor-pointer ${
+                    locale === loc ? 'bg-ink text-on-ink' : 'text-muted hover:text-ink'
                   }`}
                 >
                   {loc}
                 </button>
               ))}
             </div>
-
-            {/* Light / Dark Mode Switch */}
             <button
               type="button"
               onClick={toggleTheme}
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-700/80 bg-[#111827] px-3 py-1.5 text-xs font-medium text-slate-100 hover:bg-slate-800 transition-colors cursor-pointer whitespace-nowrap shrink-0"
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              className="inline-flex items-center justify-center rounded-lg border border-line p-1.5 text-muted hover:text-ink transition-colors cursor-pointer"
             >
-              {theme === 'dark' ? (
-                <>
-                  <Sun className="h-3.5 w-3.5 text-amber-300" aria-hidden="true" />
-                  <span>Light mode</span>
-                </>
-              ) : (
-                <>
-                  <Moon className="h-3.5 w-3.5 text-rose-300" aria-hidden="true" />
-                  <span>Dark mode</span>
-                </>
-              )}
+              {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
             </button>
           </div>
         </div>
