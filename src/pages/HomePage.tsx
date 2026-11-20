@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-  CreditCard,
-  Globe2,
-  Lock,
-  ShieldCheck,
-  Sparkles,
-  Receipt,
-} from 'lucide-react';
 import { useRouter } from '../context/RouterContext';
 import { resolveNavHref, useLocalHref } from '../utils/navLinks';
 import { HOME_COPY } from '../data/homeContent';
@@ -17,12 +9,17 @@ import { ProblemSection } from '../components/ProblemSection';
 import { PlatformIntro } from '../components/PlatformIntro';
 import { CapabilitiesSection } from '../components/CapabilitiesSection';
 import { ProductShowcase } from '../components/ProductShowcase';
+import { HowItWorks } from '../components/HowItWorks';
+import { GlobalPayments } from '../components/GlobalPayments';
+import { SolutionsSection } from '../components/SolutionsSection';
+import { PortalShowcase } from '../components/PortalShowcase';
+import { SecuritySection } from '../components/SecuritySection';
+import { CustomerStories } from '../components/CustomerStories';
 import type { PageMetadataEntry } from '../data/pagesRegistry';
 import { APP_LINKS, SITE_CONFIG } from '../data/siteConfig';
 import { COMPETITORS } from '../data/competitorsData';
 import {
   AppLink,
-  AtAGlanceCard,
   FAQSection,
 } from '../components/ReusableBlocks';
 import { SubscriptionSavingsCalculator } from '../components/SubscriptionSavingsCalculator';
@@ -32,9 +29,9 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
   const localHref = useLocalHref();
   const heroCopy = (HOME_COPY[locale] ?? HOME_COPY.en).hero;
   // "Explore the Platform" follows the existing product navigation (product overview page);
-  // if that page isn't available it scrolls to the at-a-glance summary below the hero.
+  // if that page isn't available it scrolls to the platform introduction (#solution).
   const productHref = resolveNavHref({ href: '/product' });
-  const exploreHref = productHref ? localHref(productHref) : '#at-a-glance-heading';
+  const exploreHref = productHref ? localHref(productHref) : '#solution';
 
   return (
     <div className="space-y-16 md:space-y-24 pb-20">
@@ -50,16 +47,6 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
         visual={<RevenueDashboardPreview previewLabel={heroCopy.previewLabel} />}
       />
 
-      {/* 2. Integrations & technology ecosystem strip (full width, flush with the hero) */}
-      <IntegrationsStrip className="-mt-16 md:-mt-24" />
-
-      {/* 3. At A Glance GEO Fact Box */}
-      {page.atAGlance && (
-        <section className="mx-auto max-w-6xl px-4 sm:px-6">
-          <AtAGlanceCard data={page.atAGlance} />
-        </section>
-      )}
-
       {/* 4. Problem section — leads into the solution section (#solution) */}
       <ProblemSection solutionAnchor="#solution" />
 
@@ -72,188 +59,31 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
       {/* 5b. Product showcase — tabbed illustrative interface */}
       <ProductShowcase exploreHref={exploreHref} />
 
-      {/* 6. How It Works (3 Fast Steps) */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
-            {locale === 'de' ? 'In 3 Schritten live' : 'Fast Setup'}
-          </p>
-          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
-            {locale === 'de'
-              ? 'Startklar in unter 30 Minuten'
-              : 'Live in under 30 minutes without developer headaches'}
-          </h2>
-          <p className="mt-3 text-base text-muted">
-            {locale === 'de'
-              ? 'Verbinden Sie Ihre Zahlungsdienste und starten Sie ohne wochenlange Integration.'
-              : 'Connect your existing merchant gateways and start billing subscribers today.'}
-          </p>
-        </div>
+      {/* 5c. Integrations & technology ecosystem — dark logo wall */}
+      <IntegrationsStrip />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-3">
-            <div className="font-mono text-xs font-bold text-accent">01</div>
-            <h3 className="text-lg font-display font-bold text-ink">
-              {locale === 'de' ? 'Gateways verknüpfen' : 'Connect Your Gateways'}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">
-              {locale === 'de'
-                ? 'Verbinden Sie Ihre Konten bei Stripe, GoCardless, Mollie oder PayPal mit wenigen Klicks.'
-                : 'Connect your existing accounts at Stripe, GoCardless, Mollie, or PayPal in a couple of clicks. No new bank accounts required.'}
-            </p>
-          </div>
+      {/* 6. How it works — four connected steps on cloud white */}
+      <HowItWorks ctaHref={APP_LINKS.signUp} />
 
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-3">
-            <div className="font-mono text-xs font-bold text-accent">02</div>
-            <h3 className="text-lg font-display font-bold text-ink">
-              {locale === 'de' ? 'Pläne & Checkout erstellen' : 'Create Plans & Checkout'}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">
-              {locale === 'de'
-                ? 'Legen Sie Abostufen fest, definieren Sie Testphasen und generieren Sie Pay Links oder Hosted Checkout.'
-                : 'Define pricing tiers, configure free trials and coupon codes, and generate embeddable checkout or instant Pay Links.'}
-            </p>
-          </div>
+      {/* 6b. Global payments — dark section with globe (no unverified country/currency counts) */}
+      <GlobalPayments />
 
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-3">
-            <div className="font-mono text-xs font-bold text-accent">03</div>
-            <h3 className="text-lg font-display font-bold text-ink">
-              {locale === 'de' ? 'Abrechnung automatisieren' : 'Automate & Collect'}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">
-              {locale === 'de'
-                ? 'MYFUNDBOX übernimmt Verlängerungen, Dunning-Retries, MwSt.-Rechnungen und Kunden-Self-Service.'
-                : 'MYFUNDBOX handles renewals, card retries, VAT invoices, and customer portal self-service automatically.'}
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* 6c. Industry solutions — three large cards with abstract previews */}
+      <SolutionsSection />
+
+      {/* 6d. Customer self-service (My Portal) showcase */}
+      <PortalShowcase />
 
       {/* 7. Interactive Savings Calculator */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
         <SubscriptionSavingsCalculator />
       </section>
 
-      {/* 8. EU Compliance, Security & Data Sovereignty */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-positive">
-                <ShieldCheck className="h-4 w-4" />
-                <span>{locale === 'de' ? 'Deutsches Hosting & DSGVO' : 'Frankfurt Hosting & GDPR'}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight">
-                {locale === 'de'
-                  ? 'Höchste europäische Sicherheits- und Datenschutzstandards'
-                  : 'European security, compliance, and data residency by design'}
-              </h2>
-              <p className="text-sm sm:text-base text-muted leading-relaxed">
-                {locale === 'de'
-                  ? 'Alle Kundendaten werden ausschließlich in nach ISO 27001 zertifizierten Rechenzentren in Frankfurt am Main gehostet. Volle DSGVO-Konformität, Auftragsverarbeitungsvertrag (AVV) auf Knopfdruck und Unterstützung für 3D Secure 2 sowie Zwei-Faktor-Authentifizierung (2FA).'
-                  : 'Customer and payment token records are hosted strictly in ISO-certified data centers in Frankfurt am Main, Germany. Full GDPR compliance, automated Data Processing Agreements (DPA), and 2-Factor Authentication (2FA) with 3D Secure 2 (3DS2) protection.'}
-              </p>
-            </div>
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4 text-xs">
-              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
-                <div className="font-semibold text-ink">Frankfurt am Main</div>
-                <div className="text-subtle">ISO 27001 Cloud</div>
-              </div>
-              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
-                <div className="font-semibold text-ink">DSGVO / GDPR</div>
-                <div className="text-subtle">AVV / DPA inklusive</div>
-              </div>
-              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
-                <div className="font-semibold text-ink">3D Secure 2</div>
-                <div className="text-subtle">SCA-konforme Karten</div>
-              </div>
-              <div className="rounded-xl border border-line bg-canvas p-4 space-y-1">
-                <div className="font-semibold text-ink">2FA Schutz</div>
-                <div className="text-subtle">Zwei-Faktor-Login</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 8. Security & reliability — dark section, verified capabilities only (see SECURITY_COPY) */}
+      <SecuritySection />
 
-      {/* 9. Integrations Matrix */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
-            {locale === 'de' ? 'Offenes Ökosystem' : 'Integrations'}
-          </p>
-          <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight">
-            {locale === 'de'
-              ? 'Verbindet Zahlungs-Gateways und Buchhaltungssoftware'
-              : 'Connected with your payment processors and accounting tools'}
-          </h2>
-          <p className="mt-3 text-base text-muted">
-            {locale === 'de'
-              ? 'Kein Austausch Ihrer bestehenden Bankverbindungen erforderlich. Nutzen Sie Ihre gewohnten Gateways.'
-              : 'Bring your existing processor accounts. Funds settle directly to your corporate bank account.'}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
-            <h3 className="text-base font-semibold text-ink flex items-center gap-2">
-              <CreditCard className="h-4 w-4 text-accent" />
-              <span>{locale === 'de' ? 'Zahlungs-Gateways' : 'Payment Gateways'}</span>
-            </h3>
-            <div className="space-y-3 text-xs sm:text-sm">
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">Stripe</span>
-                <span className="text-muted">Kreditkarten, Apple Pay, Google Pay</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">GoCardless</span>
-                <span className="text-muted">SEPA Lastschrift, Bacs, ACH</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">Mollie</span>
-                <span className="text-muted">iDEAL, Bancontact, EPS, Cartes Bancaires</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">PayPal</span>
-                <span className="text-muted">Weltweite PayPal-Zahlungen</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="font-medium text-ink">Checkout.com</span>
-                <span className="text-muted">Enterprise Card Processing</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
-            <h3 className="text-base font-semibold text-ink flex items-center gap-2">
-              <Receipt className="h-4 w-4 text-accent" />
-              <span>{locale === 'de' ? 'Buchhaltung & Steuern' : 'Accounting & Invoicing'}</span>
-            </h3>
-            <div className="space-y-3 text-xs sm:text-sm">
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">QuickBooks Online</span>
-                <span className="text-muted">Automatischer Rechnungsabgleich</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">Xero</span>
-                <span className="text-muted">Synchronisation von Debitoren &amp; Zahlungen</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">sevDesk</span>
-                <span className="text-muted">Deutsche Rechnungsstellung &amp; GoBD</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-line">
-                <span className="font-medium text-ink">Lexware</span>
-                <span className="text-muted">Buchungssätze für die DACH-Finanz</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="font-medium text-ink">Avalara</span>
-                <span className="text-muted">Automatisierte globale Steuerberechnung</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 9. Customer stories — approved testimonials only; example workflows until enough exist */}
+      <CustomerStories />
 
       {/* 10. Transparent Flat Pricing Teaser */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6">

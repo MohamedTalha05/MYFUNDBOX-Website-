@@ -651,6 +651,118 @@
   animation-play-state: paused;
 }
 
+/* ---------- Solutions cards: violet→cyan gradient border (shown on hover) ---------- */
+.sol-border {
+  padding: 1.5px;
+  background: linear-gradient(140deg, #9a68ff, #39d5e8 55%, rgba(57, 213, 232, 0) 85%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* ---------- Global payments globe ---------- */
+@keyframes mfb-ring {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.globe-pulse { stroke-dasharray: 0.07 1; stroke-dashoffset: 0.07; opacity: 0; }
+.globe-ring, .globe-pin { transform-box: fill-box; transform-origin: center; }
+
+/* Pins light up, arcs draw out from Frankfurt, labels settle, then a few pulses travel. */
+.reveal-ready .globe .globe-pin { opacity: 0; }
+.reveal-ready .globe .globe-arc { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.reveal-ready .globe .globe-label { opacity: 0; transform: translate3d(0, 6px, 0); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); transition-delay: calc(1400ms + var(--i, 0) * 160ms); }
+
+.is-visible .globe .globe-pin { animation: mfb-node-in 600ms var(--ease-out) forwards; animation-delay: calc(300ms + var(--i, 0) * 160ms); }
+.is-visible .globe .globe-arc { animation: mfb-draw 1.4s var(--ease-out) forwards; animation-delay: calc(700ms + var(--i, 0) * 260ms); }
+.is-visible .globe .globe-pulse { animation: mfb-pulse-travel 2.8s var(--ease-in-out) 4; animation-delay: calc(2400ms + var(--i, 0) * 500ms); }
+.is-visible .globe .globe-ring { animation: mfb-ring 2.6s var(--ease-out) 3; animation-delay: calc(600ms + var(--i, 0) * 220ms); }
+.reveal-ready .is-visible .globe .globe-label { opacity: 1; transform: none; }
+
+/* ---------- Security section: shield illustration ---------- */
+@keyframes mfb-sec-scan {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate3d(0, 330px, 0); opacity: 0; }
+}
+@keyframes mfb-sec-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+@keyframes mfb-sec-dot {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.sec-breathe { transform-box: fill-box; transform-origin: center; animation: mfb-sec-breathe 7s var(--ease-in-out) infinite; }
+.sec-orbit { animation: mfb-spin-slow 90s linear infinite; }
+.sec-orbit-rev { animation: mfb-spin-slow 70s linear infinite reverse; }
+.sec-scan { animation: mfb-sec-scan 5.5s var(--ease-in-out) 1.8s infinite; opacity: 0; }
+.sec-code-dot { animation: mfb-sec-dot 2.4s var(--ease-in-out) infinite; animation-delay: calc(var(--i, 0) * 160ms); }
+.sec-node, .sec-lock { transform-box: fill-box; transform-origin: center; }
+
+/* Entrance: shield outline draws, then nodes and lock settle in. */
+.reveal-ready .sec-art .sec-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.reveal-ready .sec-art .sec-node,
+.reveal-ready .sec-art .sec-lock { opacity: 0; }
+.is-visible .sec-art .sec-draw { animation: mfb-draw 1.6s var(--ease-out) 250ms forwards; }
+.is-visible .sec-art .sec-draw-late { animation-delay: 650ms; }
+.is-visible .sec-art .sec-lock { animation: mfb-node-in 700ms var(--ease-out) 900ms forwards; }
+.is-visible .sec-art .sec-node { animation: mfb-node-in 500ms var(--ease-out) forwards; animation-delay: calc(1100ms + var(--i, 0) * 140ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-scan { display: none; }
+  .sec-orbit, .sec-orbit-rev, .sec-breathe, .sec-code-dot { animation: none !important; }
+  .sec-art .sec-draw { stroke-dashoffset: 0 !important; }
+  .sec-art .sec-node, .sec-art .sec-lock { opacity: 1 !important; }
+}
+
+/* ---------- Customer stories carousel ---------- */
+.stories-track { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.stories-track::-webkit-scrollbar { display: none; }
+@keyframes mfb-story-pulse {
+  0% { left: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+.story-pulse { left: 0; opacity: 0; }
+.reveal-ready .stories .story-line { transform: scaleX(0); transition: transform 1.2s var(--ease-out) 400ms; }
+.reveal-ready .stories.is-visible .story-line { transform: none; }
+.reveal-ready .stories .story-node { transform: scale(0.4); opacity: 0; transition: transform 500ms var(--ease-out), opacity 500ms var(--ease-out); transition-delay: calc(350ms + var(--i, 0) * 350ms); }
+.reveal-ready .stories.is-visible .story-node { transform: none; opacity: 1; }
+.stories.is-visible .story-pulse { animation: mfb-story-pulse 3.2s var(--ease-in-out) 1.8s 4; }
+@media (prefers-reduced-motion: reduce) {
+  .story-pulse { display: none; }
+  .stories .story-line, .stories .story-node { transform: none !important; opacity: 1 !important; }
+}
+
+/* ---------- How it works: line draws, then indicators + cards follow ---------- */
+.reveal-ready .steps-track .steps-line-h { transform: scaleX(0); transform-origin: left; }
+.reveal-ready .steps-track .steps-line-h { transition: transform 1.4s var(--ease-out) 150ms; }
+.reveal-ready .steps-track.is-visible .steps-line-h { transform: none; }
+
+.reveal-ready .steps-track .step-dot { transform: scale(0.4); opacity: 0; }
+.reveal-ready .steps-track .step-dot {
+  transition: transform 600ms var(--ease-out), opacity 600ms var(--ease-out);
+  transition-delay: calc(250ms + var(--i, 0) * 260ms);
+}
+/* Cards: staggered entrance on transform/opacity only; hover properties stay instant */
+.reveal-ready .steps-track .step-card {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition-property: transform, opacity, translate, border-color, box-shadow;
+  transition-duration: 600ms, 600ms, 300ms, 300ms, 300ms;
+  transition-timing-function: var(--ease-out);
+  transition-delay: calc(350ms + var(--i, 0) * 260ms), calc(350ms + var(--i, 0) * 260ms), 0s, 0s, 0s;
+}
+.reveal-ready .steps-track.is-visible .step-dot { transform: none; opacity: 1; }
+.reveal-ready .steps-track.is-visible .step-card { opacity: 1; transform: none; }
+/* Vertical segments between steps (below lg) */
+.reveal-ready .steps-track .steps-seg { transform: scaleY(0); transform-origin: top; transition: transform 700ms var(--ease-out); transition-delay: calc(300ms + var(--i, 0) * 260ms); }
+.reveal-ready .steps-track.is-visible .steps-seg { transform: none; }
+
 /* ---------- Product showcase tab transition ---------- */
 @keyframes mfb-panel-in {
   from { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.995); }

@@ -16,12 +16,406 @@ export const HOME_INTEGRATIONS = {
 } as const;
 
 /**
- * Verified customer testimonials only. Empty until real, attributable quotes with the
- * customer's written permission are supplied; the testimonials section stays hidden while empty.
+ * Approved customer testimonials ONLY. Each entry must be a real, verbatim quote from a named
+ * customer who gave written permission to publish it (and, separately, to use their logo/video).
+ * `approval` is required so every entry can be traced; it is never rendered.
+ *
+ * Checked 2026-11-20: no approved testimonials, case studies or customer videos exist in this repo
+ * or on myfundbox.com (the live logo strip is unlabelled and has no recorded permission; the G2
+ * rating and member/volume figures are unverified). So this list is empty and the customer
+ * stories section shows example workflows instead. Never add placeholder or invented entries.
  */
-export const VERIFIED_TESTIMONIALS: { quote: string; name: string; role: string; company: string }[] = [];
+export type ApprovedTestimonial = {
+  id: string;
+  /** Verbatim quote, in the language the customer gave it. Do not translate or edit. */
+  quote: string;
+  quoteLang: LocaleCode;
+  name: string;
+  role?: string;
+  company: string;
+  /** Only with the company's permission to use its logo. Path under /public. */
+  logo?: { src: string; alt: string };
+  /** Optional customer video; opened on the hosting site (no embed before cookie consent). */
+  video?: { url: string; thumbnail: string; title: string };
+  /** Optional link to an approved, published case study. */
+  caseStudyHref?: string;
+  approval: { approvedBy: string; approvedOn: string; source: string };
+};
+
+export const APPROVED_TESTIMONIALS: ApprovedTestimonial[] = [];
+
+/** Testimonial cards replace the example workflows once at least this many are approved. */
+export const MIN_TESTIMONIALS_FOR_CAROUSEL = 2;
+
+/**
+ * Homepage customer stories section. Until approved testimonials exist, it shows example
+ * workflows built only from capabilities listed on the live site (docs/PROJECT_PROGRESS.md §3).
+ * They carry no customer names, logos, quotes, ratings or results, and are labelled as examples.
+ */
+export type WorkflowStoryKey = 'launch' | 'recover' | 'portal' | 'connect' | 'invoicing';
+
+export const CUSTOMER_STORIES_COPY: Record<
+  LocaleCode,
+  {
+    heading: string;
+    body: string;
+    eyebrowTestimonials: string;
+    eyebrowWorkflows: string;
+    workflowKicker: string;
+    workflowNote: string;
+    workflows: { key: WorkflowStoryKey; title: string; body: string; steps: [string, string, string]; tags: string[] }[];
+    ui: { carousel: string; prev: string; next: string; slideOf: string; goTo: string; watchVideo: string; external: string; readCaseStudy: string };
+  }
+> = {
+  en: {
+    heading: 'Helping Businesses Simplify Their Revenue Operations.',
+    body: 'Discover how businesses use MYFUNDBOX to manage their subscription and payment workflows.',
+    eyebrowTestimonials: 'Customer stories',
+    eyebrowWorkflows: 'How businesses use MYFUNDBOX',
+    workflowKicker: 'Example workflow',
+    workflowNote: 'Example workflows built from MYFUNDBOX features. They are not individual customer results.',
+    workflows: [
+      {
+        key: 'launch',
+        title: 'Launch subscription offers',
+        body: 'Create plans with add-ons, coupons and trials, then sell through a hosted checkout or a Pay Link.',
+        steps: ['Create plan', 'Share checkout', 'Start billing'],
+        tags: ['Plans & trials', 'Hosted checkout', 'Pay Links'],
+      },
+      {
+        key: 'recover',
+        title: 'Follow up on failed payments',
+        body: 'Smart Dunning retries failed card payments automatically, so follow-up runs without manual steps.',
+        steps: ['Payment fails', 'Automatic retry', 'Status updated'],
+        tags: ['Smart Dunning', 'Card retries'],
+      },
+      {
+        key: 'portal',
+        title: 'Let customers serve themselves',
+        body: 'Customers view their subscriptions and invoices, and update payment details where supported, in My Portal.',
+        steps: ['Customer signs in', 'Views invoices', 'Updates details'],
+        tags: ['My Portal', 'Invoices'],
+      },
+      {
+        key: 'connect',
+        title: 'Connect payments and accounting',
+        body: 'Use supported gateways such as Stripe, GoCardless, Mollie and PayPal with accounting tools like QuickBooks, Xero, sevdesk and Lexware.',
+        steps: ['Connect gateway', 'Collect payments', 'Connect accounting'],
+        tags: ['Payment gateways', 'Accounting integrations'],
+      },
+      {
+        key: 'invoicing',
+        title: 'Keep invoicing and VAT in order',
+        body: 'Issue invoices with EU VAT validation and handle refunds in the same place you manage subscriptions.',
+        steps: ['Validate VAT', 'Issue invoice', 'Handle refunds'],
+        tags: ['Invoicing', 'EU VAT validation', 'Refunds'],
+      },
+    ],
+    ui: {
+      carousel: 'Customer stories',
+      prev: 'Previous',
+      next: 'Next',
+      slideOf: 'of',
+      goTo: 'Go to slide',
+      watchVideo: 'Watch video',
+      external: 'opens on an external site',
+      readCaseStudy: 'Read the case study',
+    },
+  },
+  de: {
+    heading: 'Wir helfen Unternehmen, ihre Umsatzprozesse zu vereinfachen.',
+    body: 'Erfahren Sie, wie Unternehmen ihre Abo- und Zahlungsabläufe mit MYFUNDBOX verwalten.',
+    eyebrowTestimonials: 'Kundenstimmen',
+    eyebrowWorkflows: 'So nutzen Unternehmen MYFUNDBOX',
+    workflowKicker: 'Beispiel-Ablauf',
+    workflowNote: 'Beispielabläufe auf Basis der MYFUNDBOX-Funktionen. Es handelt sich nicht um Ergebnisse einzelner Kunden.',
+    workflows: [
+      {
+        key: 'launch',
+        title: 'Abo-Angebote starten',
+        body: 'Erstellen Sie Tarife mit Add-ons, Gutscheinen und Testphasen und verkaufen Sie über einen gehosteten Checkout oder einen Pay Link.',
+        steps: ['Tarif anlegen', 'Checkout teilen', 'Abrechnung starten'],
+        tags: ['Tarife & Testphasen', 'Gehosteter Checkout', 'Pay Links'],
+      },
+      {
+        key: 'recover',
+        title: 'Fehlgeschlagene Zahlungen nachverfolgen',
+        body: 'Smart Dunning wiederholt fehlgeschlagene Kartenzahlungen automatisch, ohne manuelle Zwischenschritte.',
+        steps: ['Zahlung schlägt fehl', 'Automatischer Neuversuch', 'Status aktualisiert'],
+        tags: ['Smart Dunning', 'Karten-Neuversuche'],
+      },
+      {
+        key: 'portal',
+        title: 'Kunden-Self-Service ermöglichen',
+        body: 'Kunden sehen ihre Abonnements und Rechnungen ein und aktualisieren Zahlungsdaten, sofern unterstützt, in My Portal.',
+        steps: ['Kunde meldet sich an', 'Rechnungen ansehen', 'Daten aktualisieren'],
+        tags: ['My Portal', 'Rechnungen'],
+      },
+      {
+        key: 'connect',
+        title: 'Zahlungen und Buchhaltung verbinden',
+        body: 'Nutzen Sie unterstützte Gateways wie Stripe, GoCardless, Mollie und PayPal zusammen mit Buchhaltungstools wie QuickBooks, Xero, sevdesk und Lexware.',
+        steps: ['Gateway verbinden', 'Zahlungen einziehen', 'Buchhaltung anbinden'],
+        tags: ['Zahlungsanbieter', 'Buchhaltungs-Integrationen'],
+      },
+      {
+        key: 'invoicing',
+        title: 'Rechnungen und Umsatzsteuer im Griff',
+        body: 'Stellen Sie Rechnungen mit EU-USt-Prüfung aus und wickeln Sie Erstattungen dort ab, wo Sie auch Ihre Abos verwalten.',
+        steps: ['USt prüfen', 'Rechnung stellen', 'Erstattung abwickeln'],
+        tags: ['Rechnungen', 'EU-USt-Prüfung', 'Erstattungen'],
+      },
+    ],
+    ui: {
+      carousel: 'Kundenstimmen',
+      prev: 'Zurück',
+      next: 'Weiter',
+      slideOf: 'von',
+      goTo: 'Gehe zu Folie',
+      watchVideo: 'Video ansehen',
+      external: 'öffnet eine externe Website',
+      readCaseStudy: 'Fallstudie lesen',
+    },
+  },
+};
 
 export type FeatureVisual = 'billing' | 'payments' | 'checkout' | 'dunning';
+
+/**
+ * Homepage customer self-service portal showcase ("My Portal").
+ * Marketing mock-up only: it illustrates the existing My Portal, contains no forms or login,
+ * and is not a separate account system. Capability list as confirmed by the MYFUNDBOX team.
+ */
+export type PortalFeatureKey = 'subscriptions' | 'billing' | 'invoices' | 'account' | 'payment' | 'actions';
+
+export const PORTAL_SHOWCASE_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    features: { key: PortalFeatureKey; title: string; body: string }[];
+    cta: string;
+    previewLabel: string;
+  }
+> = {
+  en: {
+    eyebrow: 'My Portal',
+    heading: 'Give Your Customers More Control.',
+    body: 'Make it easier for customers to access their subscription and payment information through a convenient self-service experience.',
+    features: [
+      { key: 'subscriptions', title: 'View subscriptions', body: 'Plans, status and next payment dates.' },
+      { key: 'billing', title: 'Access billing history', body: 'Past payments, whenever they need them.' },
+      { key: 'invoices', title: 'View available invoices', body: 'Open and download invoices.' },
+      { key: 'account', title: 'Manage account details', body: 'Keep contact and billing details current.' },
+      { key: 'payment', title: 'Update payment information', body: 'Change payment details, where supported.' },
+      { key: 'actions', title: 'Manage subscription actions', body: 'Use the actions you make available.' },
+    ],
+    cta: 'Explore Customer Portal',
+    previewLabel: 'Illustrative preview',
+  },
+  de: {
+    eyebrow: 'My Portal',
+    heading: 'Geben Sie Ihren Kunden mehr Kontrolle.',
+    body: 'Ihre Kunden greifen bequem per Self-Service auf ihre Abonnement- und Zahlungsinformationen zu.',
+    features: [
+      { key: 'subscriptions', title: 'Abonnements ansehen', body: 'Tarife, Status und nächste Zahlungstermine.' },
+      { key: 'billing', title: 'Zahlungshistorie abrufen', body: 'Vergangene Zahlungen jederzeit einsehen.' },
+      { key: 'invoices', title: 'Verfügbare Rechnungen ansehen', body: 'Rechnungen öffnen und herunterladen.' },
+      { key: 'account', title: 'Kontodaten verwalten', body: 'Kontakt- und Rechnungsdaten aktuell halten.' },
+      { key: 'payment', title: 'Zahlungsdaten aktualisieren', body: 'Zahlungsdaten ändern, sofern unterstützt.' },
+      { key: 'actions', title: 'Abo-Aktionen verwalten', body: 'Die Aktionen nutzen, die Sie freigeben.' },
+    ],
+    cta: 'Kundenportal entdecken',
+    previewLabel: 'Illustrative Vorschau',
+  },
+};
+
+/**
+ * Homepage industry solutions section. Card links come from the Solutions entries in
+ * NAV_MENUS (siteConfig.ts), so each card goes to its own planned SEO landing page and
+ * falls back to the closest existing page until that page is built.
+ */
+export type SolutionKey = 'saas' | 'subscriptionBusiness' | 'digital';
+
+export const SOLUTIONS_SECTION_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    linkLabel: string;
+    cards: { key: SolutionKey; title: string; body: string }[];
+  }
+> = {
+  en: {
+    eyebrow: 'Solutions',
+    heading: 'Revenue Management That Adapts to Your Business.',
+    body: 'Whether you run a SaaS company, subscription service or digital business, manage your revenue operations with greater clarity.',
+    linkLabel: 'Explore Solution',
+    cards: [
+      { key: 'saas', title: 'For SaaS Companies', body: 'Manage recurring revenue, flexible plans, subscription billing and payment operations.' },
+      { key: 'subscriptionBusiness', title: 'For Subscription Businesses', body: 'Simplify recurring payments, renewals, customer management and billing workflows.' },
+      { key: 'digital', title: 'For Digital Businesses', body: 'Manage flexible payment models, customers and recurring revenue operations.' },
+    ],
+  },
+  de: {
+    eyebrow: 'Lösungen',
+    heading: 'Revenue Management, das sich Ihrem Geschäft anpasst.',
+    body: 'Ob SaaS-Unternehmen, Abo-Service oder digitales Geschäft: Steuern Sie Ihre Umsatzprozesse mit mehr Klarheit.',
+    linkLabel: 'Lösung entdecken',
+    cards: [
+      { key: 'saas', title: 'Für SaaS-Unternehmen', body: 'Wiederkehrende Umsätze, flexible Tarife, Abo-Abrechnung und Zahlungen verwalten.' },
+      { key: 'subscriptionBusiness', title: 'Für Abo-Unternehmen', body: 'Wiederkehrende Zahlungen, Verlängerungen, Kundenverwaltung und Abrechnung vereinfachen.' },
+      { key: 'digital', title: 'Für digitale Unternehmen', body: 'Flexible Zahlungsmodelle, Kunden und wiederkehrende Umsätze verwalten.' },
+    ],
+  },
+};
+
+/**
+ * Homepage global payments section.
+ * The live site's "40+ countries" and "135+ currencies" claims are NOT shown: they could not be
+ * verified against product documentation (docs.myfundbox.com returned no content on 2026-11-20),
+ * and the live site itself is inconsistent (homepage says 135+ currencies, /other says 100+).
+ * Map pins show only examples backed by the live site: Frankfurt hosting, SEPA/iDEAL (Europe),
+ * ACH (US) and Instamojo (India). They are not a coverage map.
+ */
+export type GlobalCapabilityIcon = 'gateways' | 'methods' | 'currencies' | 'global' | 'central';
+
+export const GLOBAL_PAYMENTS_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    capabilities: { icon: GlobalCapabilityIcon; title: string; body: string }[];
+    gatewaysLabel: string;
+    andMore: string;
+    pins: { frankfurt: string; europe: string; us: string; india: string };
+    note: string;
+    mapCaption: string;
+  }
+> = {
+  en: {
+    eyebrow: 'Global payments',
+    heading: 'Built for Businesses That Think Beyond Borders.',
+    body: 'Manage international subscription payments with flexible payment gateway connections and multi-currency capabilities.',
+    capabilities: [
+      { icon: 'gateways', title: 'Multiple payment gateways', body: 'Connect the supported gateways your business uses.' },
+      { icon: 'methods', title: 'International payment methods', body: 'Cards and wallets, SEPA, iDEAL, ACH and open banking.' },
+      { icon: 'currencies', title: 'Multi-currency support', body: 'Bill subscriptions in more than one currency.' },
+      { icon: 'global', title: 'Global subscription operations', body: 'Run recurring billing for customers in different markets.' },
+      { icon: 'central', title: 'Centralised payment management', body: 'Follow payments from every gateway in one place.' },
+    ],
+    gatewaysLabel: 'Supported gateways include',
+    andMore: 'and more',
+    pins: { frankfurt: 'Data hosted in Frankfurt', europe: 'SEPA · iDEAL', us: 'ACH', india: 'Instamojo' },
+    note: 'Currencies, payment methods and availability depend on your payment gateway and region.',
+    mapCaption: 'Illustrative. Pins show examples, not a coverage map.',
+  },
+  de: {
+    eyebrow: 'Globale Zahlungen',
+    heading: 'Für Unternehmen, die über Grenzen hinaus denken.',
+    body: 'Verwalten Sie internationale Abo-Zahlungen mit flexiblen Gateway-Anbindungen und Mehrwährungsfunktionen.',
+    capabilities: [
+      { icon: 'gateways', title: 'Mehrere Zahlungsanbieter', body: 'Verbinden Sie die unterstützten Gateways, die Ihr Unternehmen nutzt.' },
+      { icon: 'methods', title: 'Internationale Zahlarten', body: 'Karten und Wallets, SEPA, iDEAL, ACH und Open Banking.' },
+      { icon: 'currencies', title: 'Mehrwährungsfähig', body: 'Abonnements in mehr als einer Währung abrechnen.' },
+      { icon: 'global', title: 'Globale Abo-Abwicklung', body: 'Wiederkehrende Abrechnung für Kunden in verschiedenen Märkten.' },
+      { icon: 'central', title: 'Zentrales Zahlungsmanagement', body: 'Zahlungen aller Gateways an einem Ort verfolgen.' },
+    ],
+    gatewaysLabel: 'Unterstützte Gateways, u. a.',
+    andMore: 'und weitere',
+    pins: { frankfurt: 'Datenspeicherung in Frankfurt', europe: 'SEPA · iDEAL', us: 'ACH', india: 'Instamojo' },
+    note: 'Währungen, Zahlarten und Verfügbarkeit hängen von Ihrem Zahlungsanbieter und Ihrer Region ab.',
+    mapCaption: 'Illustrativ. Die Punkte zeigen Beispiele, keine Abdeckungskarte.',
+  },
+};
+
+/**
+ * Homepage security & reliability section.
+ * Lists ONLY the security capabilities confirmed by the MYFUNDBOX team (2026-11-20):
+ * two-factor authentication, 3D Secure, secure payment gateway integrations, protected
+ * customer information and security-conscious payment workflows.
+ * Deliberately contains no certifications (ISO 27001, SOC 2, PCI DSS), audit results,
+ * uptime figures, encryption specifics or regulatory compliance claims. Add them only once
+ * they are verified and documented (see docs/PROJECT_PROGRESS.md §3).
+ */
+export type SecurityFeatureIcon = 'twoFactor' | 'threeDS' | 'gateways' | 'customerData' | 'workflows';
+
+export const SECURITY_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    features: { icon: SecurityFeatureIcon; title: string; body: string }[];
+    note: string;
+    chips: { twoFactor: string; threeDS: string; threeDSDetail: string };
+  }
+> = {
+  en: {
+    eyebrow: 'Security & reliability',
+    heading: 'Built With Security at Every Step.',
+    body: 'Protect payment experiences and support secure revenue operations with established security measures.',
+    features: [
+      { icon: 'twoFactor', title: 'Two-factor authentication', body: 'An extra verification step when signing in.' },
+      { icon: 'threeDS', title: '3D Secure', body: 'Cardholder authentication for card payments.' },
+      { icon: 'gateways', title: 'Secure payment gateway integrations', body: 'Connect the supported gateways your business uses.' },
+      { icon: 'customerData', title: 'Protected customer information', body: 'Customer details handled with care in your account.' },
+      { icon: 'workflows', title: 'Security-conscious payment workflows', body: 'Payment processes designed with security in mind.' },
+    ],
+    note: 'Availability of 3D Secure and other payment authentication depends on your payment gateway, card issuer and configuration.',
+    chips: { twoFactor: 'Two-factor sign-in', threeDS: '3D Secure', threeDSDetail: 'Cardholder authentication' },
+  },
+  de: {
+    eyebrow: 'Sicherheit & Zuverlässigkeit',
+    heading: 'Sicherheit in jedem Schritt.',
+    body: 'Schützen Sie Ihre Zahlungserlebnisse und unterstützen Sie sichere Umsatzprozesse mit bewährten Sicherheitsmaßnahmen.',
+    features: [
+      { icon: 'twoFactor', title: 'Zwei-Faktor-Authentifizierung', body: 'Ein zusätzlicher Bestätigungsschritt bei der Anmeldung.' },
+      { icon: 'threeDS', title: '3D Secure', body: 'Karteninhaber-Authentifizierung bei Kartenzahlungen.' },
+      { icon: 'gateways', title: 'Sichere Gateway-Anbindungen', body: 'Verbinden Sie die unterstützten Zahlungsanbieter, die Sie nutzen.' },
+      { icon: 'customerData', title: 'Geschützte Kundendaten', body: 'Sorgfältiger Umgang mit Kundendaten in Ihrem Konto.' },
+      { icon: 'workflows', title: 'Sicherheitsbewusste Zahlungsabläufe', body: 'Zahlungsprozesse, bei denen Sicherheit mitgedacht ist.' },
+    ],
+    note: 'Die Verfügbarkeit von 3D Secure und weiterer Zahlungsauthentifizierung hängt von Zahlungsanbieter, kartenausgebender Bank und Konfiguration ab.',
+    chips: { twoFactor: 'Zwei-Faktor-Login', threeDS: '3D Secure', threeDSDetail: 'Karteninhaber-Authentifizierung' },
+  },
+};
+
+/** Homepage how-it-works section (four connected steps with mini UI previews). */
+export type HowStepKey = 'connect' | 'plans' | 'manage' | 'monitor';
+
+export const HOW_IT_WORKS_COPY: Record<
+  LocaleCode,
+  { eyebrow: string; heading: string; steps: { key: HowStepKey; title: string; body: string }[]; cta: string; sample: string }
+> = {
+  en: {
+    eyebrow: 'How it works',
+    heading: 'From Setup to Revenue Management in a Few Simple Steps.',
+    steps: [
+      { key: 'connect', title: 'Connect Your Payment Infrastructure', body: 'Configure the payment gateways supported by your business.' },
+      { key: 'plans', title: 'Create Products and Plans', body: 'Set up pricing, subscription intervals and payment models.' },
+      { key: 'manage', title: 'Manage Customers and Payments', body: 'Organise customer subscriptions, billing and payment operations.' },
+      { key: 'monitor', title: 'Monitor Your Revenue', body: 'Access reporting and insights to understand your business performance.' },
+    ],
+    cta: 'Get Started',
+    sample: 'Sample',
+  },
+  de: {
+    eyebrow: 'So funktioniert’s',
+    heading: 'Von der Einrichtung zum Revenue Management – in wenigen Schritten.',
+    steps: [
+      { key: 'connect', title: 'Zahlungsinfrastruktur verbinden', body: 'Konfigurieren Sie die Zahlungsanbieter, die Ihr Unternehmen nutzt.' },
+      { key: 'plans', title: 'Produkte und Tarife erstellen', body: 'Preise, Abo-Intervalle und Zahlungsmodelle festlegen.' },
+      { key: 'manage', title: 'Kunden und Zahlungen verwalten', body: 'Abonnements, Abrechnung und Zahlungen Ihrer Kunden organisieren.' },
+      { key: 'monitor', title: 'Umsatz im Blick behalten', body: 'Reports und Insights zur Entwicklung Ihres Unternehmens nutzen.' },
+    ],
+    cta: 'Jetzt starten',
+    sample: 'Beispiel',
+  },
+};
 
 /**
  * Homepage product showcase (tabbed, illustrative interface). No real app screenshots exist
