@@ -99,3 +99,12 @@ test('llms.txt describes the billing platform, not the retired revenue-recogniti
   const jsonLd = buildJsonLdGraph(home, BASE);
   assert.ok(Array.isArray(jsonLd['@graph']));
 });
+
+test('no FAQPage structured data is emitted while the site is not eligible for FAQ rich results', () => {
+  const home = resolvePageByPath('/');
+  assert.ok(home && home.faqs.length > 0, 'homepage FAQ content should exist');
+  for (const page of ALL_PAGES) {
+    const json = JSON.stringify(buildJsonLdGraph(page, BASE));
+    assert.equal(json.includes('"FAQPage"'), false, `FAQPage emitted on ${page.path}`);
+  }
+});

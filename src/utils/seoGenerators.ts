@@ -57,6 +57,15 @@ export function buildHreflangLinks(path: string, baseUrl: string): Array<{ hrefl
   return links;
 }
 
+/**
+ * FAQPage structured data is OFF. Since August 2023, Google shows FAQ rich results only for
+ * well-known, authoritative government and health websites; a commercial software site is not
+ * eligible. FAQ content stays fully in the server-rendered HTML (and in the .md / llms exports),
+ * which is what search engines index. Re-enable only if MYFUNDBOX becomes eligible under the
+ * search engines' current guidelines.
+ */
+export const FAQ_RICH_RESULTS_ELIGIBLE = false;
+
 export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Record<string, unknown> {
   const author = SITE_CONFIG.authors.find((a) => a.id === page.authorId) ?? SITE_CONFIG.authors[0];
   const canonicalUrl = absolute(baseUrl, page.path);
@@ -133,7 +142,7 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
     });
   }
 
-  if (page.faqs.length > 0) {
+  if (FAQ_RICH_RESULTS_ELIGIBLE && page.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
       mainEntity: page.faqs.map((faq) => ({

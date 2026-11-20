@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { APP_LINKS, FOOTER_COLUMNS, MEGA_MENU_PRODUCT, MEGA_MENU_SOLUTIONS, NAV_LINKS, NAV_MENUS } from '../data/siteConfig';
+import { APP_LINKS, FOOTER_COLUMNS, LEGAL_LINKS, MEGA_MENU_PRODUCT, MEGA_MENU_SOLUTIONS, NAV_LINKS, NAV_MENUS } from '../data/siteConfig';
 import { localizeHref, pageExists, pathForLocale, splitLocale } from '../data/pagesRegistry';
 import { isExternalHref, resolveNavHref } from './navLinks';
 
@@ -10,7 +10,23 @@ const ALL_NAV_ITEMS = [
   ...NAV_LINKS,
   ...NAV_MENUS.flatMap((m) => m.items),
   ...FOOTER_COLUMNS.flatMap((c) => c.links),
+  ...LEGAL_LINKS,
 ];
+
+test('footer: every column link is reachable and all existing legal URLs are kept', () => {
+  for (const col of FOOTER_COLUMNS) {
+    for (const link of col.links) {
+      assert.notEqual(resolveNavHref(link), null, `footer › ${col.title} › ${link.label} is unreachable`);
+    }
+  }
+  for (const path of ['/privacy-policy', '/terms-of-service', '/cookies', '/imprint', '/dpa']) {
+    const link = LEGAL_LINKS.find((l) => l.href === path);
+    assert.ok(link, `legal link ${path} missing from footer`);
+    assert.ok(pageExists(path), `legal page ${path} does not exist`);
+  }
+  const login = FOOTER_COLUMNS.flatMap((c) => c.links).find((l) => l.label === 'Login');
+  assert.equal(login?.href, APP_LINKS.login, 'footer Login must use the existing app flow');
+});
 
 test('header menus: every item is reachable (own page, fallback page or external)', () => {
   for (const menu of NAV_MENUS) {

@@ -129,41 +129,33 @@ const CORE_PAGES: PageMetadataEntry[] = [
         ],
       },
     ],
+    // Homepage FAQ. Every answer uses only capabilities verified on the live site or confirmed
+    // by the MYFUNDBOX team (docs/PROJECT_PROGRESS.md §3). Keep the DE entry (/de) in sync.
     faqs: [
       {
         question: 'What is MYFUNDBOX?',
         answer:
-          'MYFUNDBOX is a revenue management platform for subscription businesses. It handles plans, one-time and recurring billing, payments, failed-payment recovery, a customer portal and revenue reporting in one place.',
+          'MYFUNDBOX is a subscription billing and revenue management platform. It brings plans, one-time and recurring billing, payments through your connected gateways, failed-payment recovery, invoicing and a customer self-service portal together in one place. Data is stored in Frankfurt, Germany.',
       },
       {
-        question: 'Which payment gateways does MYFUNDBOX work with?',
+        question: 'Which payment gateways does MYFUNDBOX support?',
         answer:
-          'MYFUNDBOX works with Stripe, GoCardless, Mollie, PayPal and Checkout.com. Depending on the gateway, customers can pay by card, SEPA Direct Debit, ACH, bank transfer or open banking.',
+          'MYFUNDBOX supports Stripe, GoCardless, Mollie, PayPal and Checkout.com, and you can connect more than one. Through them you can offer cards, SEPA Direct Debit, iDEAL, ACH, bank transfer and open banking, and bill in more than one currency. Available methods and currencies depend on your gateway and region.',
       },
       {
-        question: 'What happens when a customer’s payment fails?',
+        question: 'Does MYFUNDBOX support failed payment recovery?',
         answer:
-          'Smart dunning retries the payment automatically and sends reminder emails on the schedule you set, so customers can update their payment details before the subscription lapses.',
+          'Yes. Smart Dunning automatically retries failed card payments, so failed payments are followed up without manual work.',
       },
       {
         question: 'Can customers manage their own subscriptions?',
         answer:
-          'Yes. The customer portal lets customers update their card, change plans and view invoices without contacting your team.',
+          'Yes. In My Portal, the customer self-service portal, customers can view their subscriptions, billing history and invoices, keep their account details up to date, update payment information where supported, and use the subscription actions you make available.',
       },
       {
-        question: 'Where is my data stored?',
+        question: 'Does MYFUNDBOX integrate with accounting software?',
         answer:
-          'MYFUNDBOX stores data in Frankfurt, Germany, and offers a Data Processing Agreement for GDPR. Accounts can be protected with two-factor authentication.',
-      },
-      {
-        question: 'Is there a free plan?',
-        answer:
-          'Yes. The Free plan covers up to 25 subscribers. Paid plans add more subscribers and features; see the pricing page for current plans.',
-      },
-      {
-        question: 'Does MYFUNDBOX have an API?',
-        answer:
-          'Yes. A REST API and webhooks are available, with documentation at docs.myfundbox.com.',
+          'Yes. MYFUNDBOX integrates with QuickBooks, Xero, sevdesk and Lexware, and with Avalara for tax. A REST API and webhooks are also available for connecting other systems.',
       },
     ],
   },
@@ -2016,37 +2008,27 @@ const LOCALIZED_HOME_PAGES: PageMetadataEntry[] = [
       {
         question: 'Was ist MYFUNDBOX?',
         answer:
-          'MYFUNDBOX ist eine Revenue-Management-Plattform für Abo-Unternehmen: Tarife, einmalige und wiederkehrende Abrechnung, Zahlungen, Mahnwesen, Kundenportal und Umsatz-Reporting an einem Ort.',
+          'MYFUNDBOX ist eine Plattform für Abo-Abrechnung und Revenue Management. Sie vereint Tarife, einmalige und wiederkehrende Abrechnung, Zahlungen über Ihre verbundenen Zahlungsanbieter, die Nachverfolgung fehlgeschlagener Zahlungen, Rechnungsstellung und ein Self-Service-Kundenportal an einem Ort. Die Daten werden in Frankfurt gespeichert.',
       },
       {
-        question: 'Mit welchen Zahlungsanbietern funktioniert MYFUNDBOX?',
+        question: 'Welche Zahlungsanbieter unterstützt MYFUNDBOX?',
         answer:
-          'MYFUNDBOX funktioniert mit Stripe, GoCardless, Mollie, PayPal und Checkout.com. Je nach Anbieter zahlen Kunden per Karte, SEPA-Lastschrift, ACH, Überweisung oder Open Banking.',
+          'MYFUNDBOX unterstützt Stripe, GoCardless, Mollie, PayPal und Checkout.com, und Sie können mehrere davon verbinden. Darüber bieten Sie Karte, SEPA-Lastschrift, iDEAL, ACH, Überweisung und Open Banking an und rechnen in mehr als einer Währung ab. Verfügbare Zahlarten und Währungen hängen von Ihrem Anbieter und Ihrer Region ab.',
       },
       {
-        question: 'Was passiert, wenn eine Zahlung fehlschlägt?',
+        question: 'Unterstützt MYFUNDBOX die Nachverfolgung fehlgeschlagener Zahlungen?',
         answer:
-          'Das Mahnwesen wiederholt die Zahlung automatisch und versendet Erinnerungen nach Ihrem Zeitplan, damit Kunden ihre Zahlungsdaten aktualisieren können.',
+          'Ja. Smart Dunning wiederholt fehlgeschlagene Kartenzahlungen automatisch, sodass fehlgeschlagene Zahlungen ohne manuellen Aufwand nachverfolgt werden.',
       },
       {
-        question: 'Können Kunden ihre Abos selbst verwalten?',
+        question: 'Können Kunden ihre Abonnements selbst verwalten?',
         answer:
-          'Ja. Im Kundenportal ändern Kunden ihre Karte, wechseln den Tarif und sehen ihre Rechnungen ein – ohne Ihr Team zu kontaktieren.',
+          'Ja. In My Portal, dem Self-Service-Kundenportal, sehen Kunden ihre Abonnements, Zahlungshistorie und Rechnungen ein, halten ihre Kontodaten aktuell, aktualisieren Zahlungsdaten, sofern unterstützt, und nutzen die Abo-Aktionen, die Sie freigeben.',
       },
       {
-        question: 'Wo werden meine Daten gespeichert?',
+        question: 'Lässt sich MYFUNDBOX mit Buchhaltungssoftware verbinden?',
         answer:
-          'MYFUNDBOX speichert Daten in Frankfurt und bietet einen Auftragsverarbeitungsvertrag nach DSGVO. Konten lassen sich per Zwei-Faktor-Authentifizierung schützen.',
-      },
-      {
-        question: 'Gibt es einen kostenlosen Tarif?',
-        answer:
-          'Ja. Der kostenlose Tarif umfasst bis zu 25 Abonnenten. Kostenpflichtige Tarife bieten mehr Abonnenten und Funktionen; aktuelle Tarife finden Sie auf der Preisseite.',
-      },
-      {
-        question: 'Hat MYFUNDBOX eine API?',
-        answer:
-          'Ja. Eine REST-API und Webhooks stehen zur Verfügung, dokumentiert unter docs.myfundbox.com.',
+          'Ja. MYFUNDBOX lässt sich mit QuickBooks, Xero, sevdesk und Lexware sowie mit Avalara für Steuern verbinden. Für weitere Systeme stehen eine REST-API und Webhooks zur Verfügung.',
       },
     ],
   },

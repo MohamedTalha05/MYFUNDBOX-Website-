@@ -182,8 +182,8 @@ export function AtAGlanceCard({ data, heading = 'MYFUNDBOX at a glance' }: { dat
 }
 
 /**
- * FAQ accordion. Answers always stay in the HTML (crawlable and matching the FAQPage
- * schema); collapsed panels are only visually closed and made inert.
+ * FAQ accordion. Answers always stay in the HTML (crawlable); collapsed panels are only
+ * visually closed and made inert. FAQPage JSON-LD is off (see FAQ_RICH_RESULTS_ELIGIBLE).
  */
 export function FAQSection({
   heading = 'Frequently asked questions',

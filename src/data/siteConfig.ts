@@ -380,58 +380,88 @@ export const NAV_LINKS: NavLinkItem[] = [
   { label: 'Resources', href: '/resources', copyKey: 'resources' },
 ];
 
-export interface FooterColumn {
-  title: string;
-  links: NavLinkItem[];
+// ---------------------------------------------------------------------------
+// Footer (2026-11-20). Columns reuse the header menu items (same pages, fallbacks and German
+// labels), plus a few footer-only links. Internal links resolve through resolveNavHref, so an
+// unbuilt page uses its fallback or is hidden; app links use APP_LINKS (existing app flow).
+// ---------------------------------------------------------------------------
+
+export interface FooterLink {
+  label: string;
+  de?: string;
+  href: string;
+  fallbackHref?: string;
 }
 
+export interface FooterColumn {
+  key: 'product' | 'solutions' | 'integrations' | 'resources' | 'company';
+  title: string;
+  titleDe: string;
+  links: FooterLink[];
+}
+
+const menuLinks = (key: NavMenu['key']): FooterLink[] =>
+  (NAV_MENUS.find((m) => m.key === key)?.items ?? []).map((i) => ({
+    label: i.label,
+    de: i.de?.label,
+    href: i.href,
+    fallbackHref: i.fallbackHref,
+  }));
+
 export const FOOTER_COLUMNS: FooterColumn[] = [
+  { key: 'product', title: 'Product', titleDe: 'Produkt', links: menuLinks('product') },
+  { key: 'solutions', title: 'Solutions', titleDe: 'Lösungen', links: menuLinks('solutions') },
   {
-    title: 'Product',
+    key: 'integrations',
+    title: 'Integrations',
+    titleDe: 'Integrationen',
     links: [
-      ...MEGA_MENU_PRODUCT.map(({ label, href }) => ({ label, href })),
-      { label: 'Pricing', href: '/pricing' },
+      ...menuLinks('integrations'),
+      { label: 'Developer Resources', de: 'Entwickler-Ressourcen', href: '/developers', fallbackHref: APP_LINKS.docs },
     ],
   },
+  { key: 'resources', title: 'Resources', titleDe: 'Ressourcen', links: menuLinks('resources') },
   {
-    title: 'Solutions',
-    links: MEGA_MENU_SOLUTIONS.map(({ label, href }) => ({ label, href })),
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'Resources', href: '/resources' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Glossary', href: '/glossary' },
-      { label: 'Help centre', href: '/help' },
-      { label: 'Changelog', href: '/changelog' },
-      { label: 'Developer docs', href: APP_LINKS.docs },
-    ],
-  },
-  {
+    key: 'company',
     title: 'Company',
+    titleDe: 'Unternehmen',
     links: [
-      { label: 'About us', href: '/about' },
-      { label: 'Security', href: '/security' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Imprint', href: '/imprint' },
-      { label: 'Privacy policy', href: '/privacy-policy' },
-      { label: 'Terms of service', href: '/terms-of-service' },
-      { label: 'Cookie policy', href: '/cookies' },
-      { label: 'Data processing (DPA)', href: '/dpa' },
+      ...menuLinks('company'),
+      { label: 'Book a Demo', de: 'Demo buchen', href: '/book-a-demo' },
+      { label: 'Login', de: 'Anmelden', href: APP_LINKS.login },
     ],
   },
 ];
 
+/** Legal pages. All existing legal URLs are kept (Imprint/DPA included; Impressum is mandatory in Germany). */
+export const LEGAL_LINKS: FooterLink[] = [
+  { label: 'Privacy Policy', de: 'Datenschutz', href: '/privacy-policy' },
+  { label: 'Terms and Conditions', de: 'AGB', href: '/terms-of-service' },
+  { label: 'Cookie Policy', de: 'Cookie-Richtlinie', href: '/cookies' },
+  { label: 'Imprint', de: 'Impressum', href: '/imprint' },
+  { label: 'Data Processing Agreement', de: 'Auftragsverarbeitung (AVV)', href: '/dpa' },
+];
+
+export const FOOTER_COPY: Record<LocaleCode, { description: string; rights: string; followUs: string; legal: string }> = {
+  en: {
+    description: 'Your complete revenue management platform for subscriptions, billing and payments.',
+    rights: 'All rights reserved.',
+    followUs: 'Follow MYFUNDBOX',
+    legal: 'Legal',
+  },
+  de: {
+    description: 'Ihre komplette Revenue-Management-Plattform für Abonnements, Abrechnung und Zahlungen.',
+    rights: 'Alle Rechte vorbehalten.',
+    followUs: 'MYFUNDBOX folgen',
+    legal: 'Rechtliches',
+  },
+};
+
+/** Approved social profiles shown in the footer (unchanged; from the live myfundbox.com footer). */
 export const SOCIAL_LINKS = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/myfundbox' },
-  { label: 'X (Twitter)', href: 'https://twitter.com/MYFUNDBOX_Subs' },
-  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCd3Q_JlwprHHhA4JsNdxccw' },
+  { key: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/company/myfundbox' },
+  { key: 'x', label: 'X (Twitter)', href: 'https://twitter.com/MYFUNDBOX_Subs' },
+  { key: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/channel/UCd3Q_JlwprHHhA4JsNdxccw' },
 ] as const;
 
 // ---------------------------------------------------------------------------

@@ -384,6 +384,181 @@ export const SECURITY_COPY: Record<
   },
 };
 
+/**
+ * Homepage differentiation section ("More than billing"). Describes MYFUNDBOX's own
+ * capabilities only: no comparisons with, or superiority claims over, named competitors.
+ * NOTE: instalment plans are in the brief but were not found on the live site
+ * (docs/PROJECT_PROGRESS.md §3). Confirm them in the app before launch, or remove them from
+ * the `models` body and tags.
+ */
+export type DifferentiatorKey = 'unified' | 'models' | 'global' | 'customer';
+
+export const DIFFERENTIATION_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: [string, string];
+    body: string;
+    hubLabel: string;
+    items: { key: DifferentiatorKey; short: string; title: string; body: string; tags: string[] }[];
+  }
+> = {
+  en: {
+    eyebrow: 'Why MYFUNDBOX',
+    heading: ['More Than Billing.', 'A Better Way to Manage Revenue.'],
+    body: 'Bring essential revenue operations together in one platform designed to simplify the way businesses manage subscriptions, payments and customers.',
+    hubLabel: 'One platform',
+    items: [
+      {
+        key: 'unified',
+        short: 'Operations',
+        title: 'Unified Revenue Operations',
+        body: 'Manage connected billing, payment and subscription workflows.',
+        tags: ['Billing', 'Payments', 'Subscriptions'],
+      },
+      {
+        key: 'models',
+        short: 'Models',
+        title: 'Flexible Business Models',
+        body: 'Support different payment structures, from one-time to recurring and instalment plans.',
+        tags: ['One-time', 'Recurring', 'Instalments'],
+      },
+      {
+        key: 'global',
+        short: 'Payments',
+        title: 'Global Payment Infrastructure',
+        body: 'Work with supported gateways and international payment methods.',
+        tags: ['Supported gateways', 'International methods', 'Multi-currency'],
+      },
+      {
+        key: 'customer',
+        short: 'Customers',
+        title: 'Connected Customer Experience',
+        body: 'Bring customer information, payment activity and self-service together.',
+        tags: ['Customer records', 'Payment activity', 'My Portal'],
+      },
+    ],
+  },
+  de: {
+    eyebrow: 'Warum MYFUNDBOX',
+    heading: ['Mehr als Abrechnung.', 'Ein besserer Weg, Umsatz zu managen.'],
+    body: 'Führen Sie zentrale Umsatzprozesse auf einer Plattform zusammen, die die Verwaltung von Abonnements, Zahlungen und Kunden vereinfacht.',
+    hubLabel: 'Eine Plattform',
+    items: [
+      {
+        key: 'unified',
+        short: 'Prozesse',
+        title: 'Vereinte Umsatzprozesse',
+        body: 'Verwalten Sie verbundene Abrechnungs-, Zahlungs- und Abo-Abläufe.',
+        tags: ['Abrechnung', 'Zahlungen', 'Abonnements'],
+      },
+      {
+        key: 'models',
+        short: 'Modelle',
+        title: 'Flexible Geschäftsmodelle',
+        body: 'Unterstützen Sie verschiedene Zahlungsstrukturen, von Einmalzahlungen bis zu wiederkehrenden Zahlungen und Ratenplänen.',
+        tags: ['Einmalig', 'Wiederkehrend', 'Raten'],
+      },
+      {
+        key: 'global',
+        short: 'Zahlungen',
+        title: 'Globale Zahlungsinfrastruktur',
+        body: 'Arbeiten Sie mit unterstützten Gateways und internationalen Zahlarten.',
+        tags: ['Unterstützte Gateways', 'Internationale Zahlarten', 'Mehrwährungsfähig'],
+      },
+      {
+        key: 'customer',
+        short: 'Kunden',
+        title: 'Vernetztes Kundenerlebnis',
+        body: 'Führen Sie Kundendaten, Zahlungsaktivitäten und Self-Service zusammen.',
+        tags: ['Kundendaten', 'Zahlungsaktivität', 'My Portal'],
+      },
+    ],
+  },
+};
+
+/**
+ * Homepage resources & insights section. Articles come from the live blog via
+ * `npm run sync:blog` (see src/data/blogArticles.ts); this is only the surrounding copy.
+ */
+export const RESOURCES_COPY: Record<
+  LocaleCode,
+  {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    readArticle: string;
+    viewAll: string;
+    latest: string;
+    fallbackCategory: string;
+    published: string;
+    updated: string;
+  }
+> = {
+  en: {
+    eyebrow: 'Resources & insights',
+    heading: 'Insights to Help You Manage Revenue Better.',
+    body: 'Explore practical insights, guides and resources for subscription businesses and growing companies.',
+    readArticle: 'Read Article',
+    viewAll: 'View All Resources',
+    latest: 'Latest',
+    fallbackCategory: 'Blog',
+    published: 'Published',
+    updated: 'Updated',
+  },
+  de: {
+    eyebrow: 'Ressourcen & Insights',
+    heading: 'Insights für ein besseres Umsatzmanagement.',
+    body: 'Entdecken Sie praxisnahe Insights, Leitfäden und Ressourcen für Abo-Unternehmen und wachsende Firmen.',
+    readArticle: 'Artikel lesen',
+    viewAll: 'Alle Ressourcen ansehen',
+    latest: 'Neu',
+    fallbackCategory: 'Blog',
+    published: 'Veröffentlicht',
+    updated: 'Aktualisiert',
+  },
+};
+
+/** Homepage FAQ section copy. The questions and answers live in the page entry (pagesRegistry.ts). */
+export const HOME_FAQ_COPY: Record<
+  LocaleCode,
+  { eyebrow: string; heading: string; body: string; contactPrompt: string; contactCta: string }
+> = {
+  en: {
+    eyebrow: 'FAQ',
+    heading: 'Frequently Asked Questions.',
+    body: 'Find answers to common questions about revenue management, subscriptions, billing and payments.',
+    contactPrompt: 'Still have a question?',
+    contactCta: 'Contact our team',
+  },
+  de: {
+    eyebrow: 'FAQ',
+    heading: 'Häufig gestellte Fragen.',
+    body: 'Antworten auf häufige Fragen zu Revenue Management, Abonnements, Abrechnung und Zahlungen.',
+    contactPrompt: 'Noch eine Frage offen?',
+    contactCta: 'Kontaktieren Sie unser Team',
+  },
+};
+
+/** Homepage final conversion section. "Get Started" uses APP_LINKS.signUp (existing app flow). */
+export const FINAL_CTA_COPY: Record<
+  LocaleCode,
+  { heading: [string, string]; body: string; primary: string; secondary: string }
+> = {
+  en: {
+    heading: ['Ready to Take Control', 'of Your Revenue?'],
+    body: 'Bring subscriptions, billing, payments and revenue management together with MYFUNDBOX.',
+    primary: 'Get Started',
+    secondary: 'Book a Demo',
+  },
+  de: {
+    heading: ['Bereit, Ihren Umsatz', 'in den Griff zu bekommen?'],
+    body: 'Bringen Sie Abonnements, Abrechnung, Zahlungen und Revenue Management mit MYFUNDBOX zusammen.',
+    primary: 'Jetzt starten',
+    secondary: 'Demo buchen',
+  },
+};
+
 /** Homepage how-it-works section (four connected steps with mini UI previews). */
 export type HowStepKey = 'connect' | 'plans' | 'manage' | 'monitor';
 

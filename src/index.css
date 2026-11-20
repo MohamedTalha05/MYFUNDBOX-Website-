@@ -718,6 +718,74 @@
   .sec-art .sec-node, .sec-art .sec-lock { opacity: 1 !important; }
 }
 
+/* ---------- Differentiation section (editorial list + hub) ---------- */
+.diff-num-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(178, 157, 255, 0.38);
+}
+.diff-num-fill {
+  background: linear-gradient(135deg, #d4c8ff 0%, #9a68ff 45%, #39d5e8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.reveal-ready [data-reveal] .diff-rule { transform: scaleX(0); transform-origin: left; }
+.reveal-ready [data-reveal].is-visible .diff-rule { transform: none; transition: transform 1.3s var(--ease-out) 250ms, opacity 500ms ease; }
+.diff-pulse { stroke-dasharray: 0.08 1; stroke-dashoffset: 0.08; opacity: 0; }
+.diff-link.is-active .diff-pulse { animation: mfb-pulse-travel 2.4s var(--ease-in-out) 400ms infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .diff-pulse { display: none; }
+  .diff-rule { transform: none !important; }
+}
+
+/* ---------- Final CTA: signal rings ---------- */
+@keyframes mfb-cta-ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.95); opacity: 0; }
+}
+.cta-ring-spin { animation: mfb-spin-slow 120s linear infinite; }
+.cta-ripple { transform-box: fill-box; transform-origin: center; animation: mfb-cta-ripple 7s var(--ease-out) infinite; }
+.cta-ripple-2 { animation-delay: 3.5s; }
+@media (prefers-reduced-motion: reduce) {
+  .cta-ring-spin, .cta-ripple { animation: none !important; }
+  .cta-ripple { opacity: 0; }
+}
+
+/* ---------- Homepage FAQ: question index + answer stage ---------- */
+/* Mobile: accordion (answer under its question). */
+.hfaq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 450ms var(--ease-out), opacity 350ms var(--ease-out);
+}
+.hfaq-a.is-open { grid-template-rows: 1fr; opacity: 1; }
+.hfaq-a-inner { min-height: 0; overflow: hidden; padding-bottom: 1.25rem; }
+.hfaq h3:last-of-type button { border-bottom: 1px solid #e7e8f0; }
+.dark .hfaq h3:last-of-type button { border-bottom-color: var(--color-line, rgba(255, 255, 255, 0.1)); }
+
+/* Desktop: questions in column 1; every answer shares one cell in column 2 and cross-fades. */
+@media (min-width: 1024px) {
+  .hfaq {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: repeat(var(--n), auto) 1fr;
+    column-gap: 3.5rem;
+  }
+  .hfaq-q { grid-column: 1; grid-row: var(--row); }
+  .hfaq-a {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    grid-template-rows: 1fr;
+    transform: translate3d(0, 10px, 0);
+    pointer-events: none;
+    transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out);
+  }
+  .hfaq-a.is-open { transform: none; pointer-events: auto; }
+  .hfaq-a-inner { padding-bottom: 0; height: 100%; }
+  .hfaq-a-inner > div { min-height: 22rem; }
+}
+
 /* ---------- Customer stories carousel ---------- */
 .stories-track { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .stories-track::-webkit-scrollbar { display: none; }

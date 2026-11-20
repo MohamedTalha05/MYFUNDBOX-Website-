@@ -203,3 +203,10 @@ This compares the brief with the public website only. Neither column has been ch
 - **German Homepage (`/de`)**: Complete German translation of the subscription billing value proposition.
 - **Routing & Navigation**: `App.tsx` routes all 5 core pages to dedicated components; Navbar and Footer updated so "Book a demo" links to `/book-a-demo` and the Product dropdown reveals the `/product` overview.
 - **Tests**: 30/30 unit tests passing cleanly (`npm test`); `tsc --noEmit` clean; production build OK; all 5 pages verified returning HTTP 200 on the live dev server with correct SSR titles and metadata.
+
+## Blog & resources (2026-11-20)
+
+- **Homepage "Resources & insights"** (`ResourcesSection.tsx`) shows the 3 latest articles from the live Webflow blog (`myfundbox.com/blog-myfundbox`, posts under `/post/…` and `/de/post/…`). Run `npm run sync:blog` to refresh `src/data/blogArticles.generated.ts` from the live sitemap and post metadata. Links are absolute URLs to the live posts and are server-rendered.
+- **No publication dates exist on the live blog** (no visible date, no `article:published_time`, no JSON-LD). Cards show the sitemap last-modified date labelled "Updated". When the CMS exposes a publication date, the sync script picks it up automatically and cards switch to "Published".
+- **Before cutover:** the new site has no `/post/*` routes. If this site replaces myfundbox.com, keep the blog's `/post/*` and `/blog-myfundbox` URLs live (or 301 them to their new homes), or these links and their rankings break.
+- **Content backlog (suggested topics, not yet written):** What Is Revenue Management Software? · Subscription Billing vs Revenue Management · How to Reduce Failed Subscription Payments · Understanding MRR and ARR · How Subscription Businesses Can Improve Revenue Operations · Choosing the Right Subscription Billing Platform. Publish them on the blog; the homepage picks them up on the next sync.

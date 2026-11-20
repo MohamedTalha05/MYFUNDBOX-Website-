@@ -319,7 +319,7 @@ export function CapabilitiesSection() {
   const copy = CAPABILITIES_COPY[locale];
 
   return (
-    <section aria-labelledby="capabilities-heading" className="container-x">
+    <section aria-labelledby="capabilities-heading" className="container-x py-20 md:py-28">
       <Reveal className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">{copy.eyebrow}</p>
         <h2

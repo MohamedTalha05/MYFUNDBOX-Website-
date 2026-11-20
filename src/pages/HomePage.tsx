@@ -14,18 +14,19 @@ import { GlobalPayments } from '../components/GlobalPayments';
 import { SolutionsSection } from '../components/SolutionsSection';
 import { PortalShowcase } from '../components/PortalShowcase';
 import { SecuritySection } from '../components/SecuritySection';
+import { DifferentiationSection } from '../components/DifferentiationSection';
 import { CustomerStories } from '../components/CustomerStories';
+import { ResourcesSection } from '../components/ResourcesSection';
+import { HomeFAQ } from '../components/HomeFAQ';
+import { FinalCTA } from '../components/FinalCTA';
 import type { PageMetadataEntry } from '../data/pagesRegistry';
 import { APP_LINKS, SITE_CONFIG } from '../data/siteConfig';
 import { COMPETITORS } from '../data/competitorsData';
-import {
-  AppLink,
-  FAQSection,
-} from '../components/ReusableBlocks';
+import { AppLink } from '../components/ReusableBlocks';
 import { SubscriptionSavingsCalculator } from '../components/SubscriptionSavingsCalculator';
 
 export function HomePage({ page }: { page: PageMetadataEntry }) {
-  const { locale, navigate } = useRouter();
+  const { locale } = useRouter();
   const localHref = useLocalHref();
   const heroCopy = (HOME_COPY[locale] ?? HOME_COPY.en).hero;
   // "Explore the Platform" follows the existing product navigation (product overview page);
@@ -34,7 +35,9 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
   const exploreHref = productHref ? localHref(productHref) : '#solution';
 
   return (
-    <div className="space-y-16 md:space-y-24 pb-20">
+    // Sections sit flush against each other; each one owns its vertical padding, so there are
+    // no blank bands between full-bleed backgrounds. Don't reintroduce a space-y gap here.
+    <div>
       {/* 1. Hero — dark midnight canvas, revenue dashboard preview */}
       <HomeHero
         eyebrow={heroCopy.eyebrow}
@@ -51,7 +54,7 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
       <ProblemSection solutionAnchor="#solution" />
 
       {/* 4b. Platform introduction — the "solution": hub of six connected modules (flush with the problem bridge) */}
-      <PlatformIntro id="solution" exploreHref={exploreHref} className="-mt-16 md:-mt-24" />
+      <PlatformIntro id="solution" exploreHref={exploreHref} />
 
       {/* 5. Core capabilities — six feature cards with mini previews */}
       <CapabilitiesSection />
@@ -71,11 +74,14 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
       {/* 6c. Industry solutions — three large cards with abstract previews */}
       <SolutionsSection />
 
+      {/* 6c+. Differentiation ("More than billing") — dark editorial list with a pinned platform hub */}
+      <DifferentiationSection />
+
       {/* 6d. Customer self-service (My Portal) showcase */}
       <PortalShowcase />
 
       {/* 7. Interactive Savings Calculator */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
         <SubscriptionSavingsCalculator />
       </section>
 
@@ -85,84 +91,10 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
       {/* 9. Customer stories — approved testimonials only; example workflows until enough exist */}
       <CustomerStories />
 
-      {/* 10. Transparent Flat Pricing Teaser */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-line pb-8">
-            <div>
-              <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
-                {locale === 'de' ? 'Transparente Tarife' : 'Predictable Flat Pricing'}
-              </p>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-display font-bold text-ink tracking-tight">
-                {locale === 'de'
-                  ? 'Feste Preise. Keine versteckten Umsatzabzüge.'
-                  : 'Flat pricing by subscriber count. Zero percentage fees.'}
-              </h2>
-            </div>
-            <AppLink href={localHref('/pricing')} className="btn-secondary px-5 py-2.5 text-sm shrink-0">
-              {locale === 'de' ? 'Alle Tarife & Details ansehen' : 'View full pricing & feature matrix'}
-            </AppLink>
-          </div>
-
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-xl border border-line bg-canvas p-6 space-y-4">
-              <div>
-                <h3 className="font-display font-bold text-lg text-ink">Free</h3>
-                <p className="text-xs text-muted mt-1">
-                  {locale === 'de' ? 'Bis zu 25 Abonnenten' : 'Up to 25 active subscribers'}
-                </p>
-                <div className="mt-4 text-3xl font-display font-extrabold text-ink">0 €</div>
-              </div>
-              <ul className="space-y-2 text-xs text-muted">
-                <li>✓ Multi-Gateway Unterstützung</li>
-                <li>✓ Hosted Checkout &amp; Pay Links</li>
-                <li>✓ Standard Support</li>
-              </ul>
-            </div>
-
-            <div className="rounded-xl border-2 border-accent bg-surface p-6 space-y-4 relative shadow-sm">
-              <span className="absolute -top-3 right-4 rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
-                Beliebt
-              </span>
-              <div>
-                <h3 className="font-display font-bold text-lg text-ink">Professional</h3>
-                <p className="text-xs text-muted mt-1">
-                  {locale === 'de' ? 'Bis zu 500 Abonnenten' : 'Up to 500 active subscribers'}
-                </p>
-                <div className="mt-4 text-3xl font-display font-extrabold text-ink">
-                  199 € <span className="text-xs font-normal text-muted">/ Monat</span>
-                </div>
-              </div>
-              <ul className="space-y-2 text-xs text-ink">
-                <li>✓ Eigene Checkout-Domain</li>
-                <li>✓ Smart Dunning &amp; Mahnwesen</li>
-                <li>✓ Kunden-Self-Service-Portal</li>
-                <li>✓ Prioritäts-Support</li>
-              </ul>
-            </div>
-
-            <div className="rounded-xl border border-line bg-canvas p-6 space-y-4">
-              <div>
-                <h3 className="font-display font-bold text-lg text-ink">Advanced</h3>
-                <p className="text-xs text-muted mt-1">
-                  {locale === 'de' ? 'Unbegrenzte Abonnenten' : 'Unlimited active subscribers'}
-                </p>
-                <div className="mt-4 text-3xl font-display font-extrabold text-ink">
-                  399 € <span className="text-xs font-normal text-muted">/ Monat</span>
-                </div>
-              </div>
-              <ul className="space-y-2 text-xs text-muted">
-                <li>✓ Alle Buchhaltungs-Integrationen</li>
-                <li>✓ Umfassender API- &amp; Webhook-Zugang</li>
-                <li>✓ Dedizierter Onboarding-Support</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 10. Pricing teaser removed for now (2026-11-20); pricing presentation to be decided. */}
 
       {/* 11. Competitor Comparison Directory Strip */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 pb-16 pt-16 sm:px-6 md:pb-24 md:pt-24">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <p className="font-ui text-xs font-semibold uppercase tracking-wider text-accent">
             {locale === 'de' ? 'Marktvergleich' : 'Comparisons'}
@@ -191,52 +123,14 @@ export function HomePage({ page }: { page: PageMetadataEntry }) {
         </div>
       </section>
 
-      {/* 12. FAQ Section */}
-      <section className="mx-auto max-w-4xl px-4 sm:px-6">
-        <FAQSection
-          heading={locale === 'de' ? 'Häufig gestellte Fragen zu MYFUNDBOX' : 'Frequently asked questions'}
-          intro={
-            locale === 'de'
-              ? 'Transparente Antworten zu Gateways, Gebühren, Datenhosting und Kündigungsfristen.'
-              : 'Direct answers about gateway connections, fees, data hosting, and migration.'
-          }
-          faqs={page.faqs}
-        />
-      </section>
+      {/* 11b. Resources & insights — latest live blog articles (npm run sync:blog) */}
+      <ResourcesSection />
 
-      {/* 13. Final CTA Banner */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="rounded-3xl border border-line bg-surface p-8 sm:p-12 md:p-16 text-center space-y-6 shadow-sm">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-ink tracking-tight max-w-2xl mx-auto">
-            {locale === 'de'
-              ? 'Bereit für vollautomatisierte Abrechnung ohne Umsatzabzug?'
-              : 'Ready to automate subscription billing without giving up a cut of your revenue?'}
-          </h2>
-          <p className="max-w-xl mx-auto text-base text-muted">
-            {locale === 'de'
-              ? 'Starten Sie heute kostenlos mit bis zu 25 Abonnenten oder vereinbaren Sie eine geführte 30-Minuten-Demo.'
-              : 'Start free with up to 25 subscribers or book a guided 30-minute product tour with our European team.'}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a
-              href={APP_LINKS.signUp}
-              className="btn-primary px-6 py-3 text-sm font-semibold"
-            >
-              {locale === 'de' ? 'Kostenlos starten (bis 25 Kunden)' : 'Start free with up to 25 subscribers'}
-            </a>
-            <button
-              type="button"
-              onClick={() => navigate(localHref('/book-a-demo'))}
-              className="btn-secondary px-6 py-3 text-sm font-semibold cursor-pointer"
-            >
-              {locale === 'de' ? 'Produkttour anfordern' : 'Schedule a walkthrough'}
-            </button>
-          </div>
-          <div className="pt-2 text-xs text-subtle">
-            Keine Kreditkarte erforderlich · In 30 Minuten startklar · DSGVO-konform in Frankfurt gehostet
-          </div>
-        </div>
-      </section>
+      {/* 12. FAQ — lavender band, intro + accessible accordion; answers always in the HTML */}
+      <HomeFAQ faqs={page.faqs} />
+
+      {/* 13. Final conversion section — midnight canvas, Get Started (app sign-up) + Book a Demo */}
+      <FinalCTA />
     </div>
   );
 }
