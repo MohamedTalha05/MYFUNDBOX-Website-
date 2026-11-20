@@ -66,6 +66,14 @@ export function buildHreflangLinks(path: string, baseUrl: string): Array<{ hrefl
  */
 export const FAQ_RICH_RESULTS_ELIGIBLE = false;
 
+/** Brand assets generated from the official logo (public/assets/aistudio/logo_mfb_2225b714.png). */
+export const BRAND_ASSETS = {
+  /** 1200×630 social share image: full logo on midnight navy. */
+  ogImage: '/assets/brand/og-image.png',
+  /** Full stacked logo with a charcoal wordmark, readable on white (search engines show logos on white). */
+  logoOnLight: '/assets/brand/logo-mfb-dark.png',
+} as const;
+
 export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Record<string, unknown> {
   const author = SITE_CONFIG.authors.find((a) => a.id === page.authorId) ?? SITE_CONFIG.authors[0];
   const canonicalUrl = absolute(baseUrl, page.path);
@@ -78,6 +86,12 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
       legalName: SITE_CONFIG.legalEntityName,
       url: baseUrl,
       description: SITE_CONFIG.oneLineDescription,
+      logo: {
+        '@type': 'ImageObject',
+        url: absolute(baseUrl, BRAND_ASSETS.logoOnLight),
+        width: 492,
+        height: 196,
+      },
       foundingDate: SITE_CONFIG.foundingYear,
       address: {
         '@type': 'PostalAddress',
@@ -176,6 +190,11 @@ export function renderHeadTagsHtml(page: PageMetadataEntry, baseUrl: string): st
     ${alternateTags}
     <meta property="og:url" content="${escapeHtmlAttr(canonical)}" />
     <meta property="og:locale" content="${escapeHtmlAttr(page.locale)}" />
+    <meta property="og:image" content="${escapeHtmlAttr(absolute(baseUrl, BRAND_ASSETS.ogImage))}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MYFUNDBOX logo" />
+    <meta name="twitter:image" content="${escapeHtmlAttr(absolute(baseUrl, BRAND_ASSETS.ogImage))}" />
     <script type="application/ld+json">${jsonLd}</script>
   `;
 }

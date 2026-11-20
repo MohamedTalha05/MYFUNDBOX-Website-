@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 // LazyMotion + `m` + domAnimation keeps Framer Motion's footprint small (no layout/drag features).
 import { LazyMotion, domAnimation, m as motion, useReducedMotion } from 'motion/react';
+import { BrandMark } from './BrandLogo';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -183,8 +184,8 @@ export function RevenueDashboardPreview({ previewLabel }: { previewLabel: string
             <div className="flex">
               {/* App sidebar */}
               <nav className="hidden w-12 shrink-0 flex-col items-center gap-1.5 border-r border-white/[0.06] py-4 sm:flex">
-                <span className="mb-2 flex h-7 w-7 items-center justify-center rounded-lg bg-[image:var(--grad-button)] font-display text-[11px] font-bold text-white shadow-[0_6px_16px_-6px_rgba(118,87,246,0.9)]">
-                  M
+                <span className="mb-2 flex h-7 w-7 items-center justify-center rounded-lg bg-white shadow-[0_6px_16px_-6px_rgba(118,87,246,0.9)]">
+                  <BrandMark className="h-[18px] w-[18px]" />
                 </span>
                 {[LayoutDashboard, Users, Repeat, CreditCard, BarChart3, Settings].map((Icon, i) => (
                   <span

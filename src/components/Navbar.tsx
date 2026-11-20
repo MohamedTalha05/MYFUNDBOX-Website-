@@ -35,7 +35,7 @@ import {
 } from '../data/siteConfig';
 import { resolvePageByPath } from '../data/pagesRegistry';
 import { AppLink } from './ReusableBlocks';
-import { BrandLogo } from './BrandLogo';
+import { BrandLogoStacked } from './BrandLogo';
 import { isExternalHref, resolveNavHref, useLocalHref } from '../utils/navLinks';
 
 type MenuKey = NavMenu['key'];
@@ -271,7 +271,8 @@ export function Navbar() {
       <div className="container-x grid h-16 grid-cols-[1fr_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
         {/* Logo */}
         <AppLink href={localHref('/')} aria-label="MYFUNDBOX home" className="inline-flex shrink-0 items-center justify-self-start">
-          <BrandLogo />
+          {/* Full official logo, uncropped (white artwork; the bar is always dark) */}
+          <BrandLogoStacked tone="light" className="h-10 w-auto md:h-11" />
         </AppLink>
 
         {/* Centre navigation (desktop) */}

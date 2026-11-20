@@ -5,7 +5,7 @@ import { FOOTER_COLUMNS, FOOTER_COPY, LEGAL_LINKS, LOCALE_UI_COPY, SITE_CONFIG, 
 import { SUPPORTED_LOCALES } from '../utils/formatting';
 import { isExternalHref, resolveNavHref, useLocalHref } from '../utils/navLinks';
 import { AppLink } from './ReusableBlocks';
-import { BrandLogo } from './BrandLogo';
+import { BrandLogoStacked } from './BrandLogo';
 
 /*
  * Site footer: brand + five link columns, then a legal/utility bar.
@@ -91,7 +91,7 @@ export function Footer() {
           {/* 1. Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:pr-6">
             <AppLink href={localHref('/')} aria-label="MYFUNDBOX home" className="inline-flex">
-              <BrandLogo className="h-5" />
+              <BrandLogoStacked tone="light" className="h-[4.5rem] w-auto" />
             </AppLink>
             <p className="mt-5 max-w-xs text-[14.5px] leading-relaxed text-[#c3c0dc]">{copy.description}</p>
             <ul className="mt-7 flex items-center gap-2.5" aria-label={copy.followUs}>

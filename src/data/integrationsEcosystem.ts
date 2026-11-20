@@ -27,23 +27,36 @@ export interface EcosystemItem {
   show?: boolean;
 }
 
+/*
+ * Logos (public/assets/integrations/, original brand colours, 2026-11-20):
+ * - Stripe, PayPal, Mollie, GoCardless, Checkout.com, QuickBooks, Xero, sevdesk, Lexware, Avalara,
+ *   Google Cloud: the icons MYFUNDBOX already publishes on myfundbox.com, resized to 128px.
+ * - Instamojo: the official site icon from instamojo.com.
+ * - Microsoft Azure: Microsoft's official Azure icon (Wikimedia Commons, Microsoft_Azure.svg).
+ * - Zapier: the official Zapier logomark (Simple Icons) in Zapier orange #FF4F00.
+ */
+const LOGO = (file: string) => `/assets/integrations/${file}`;
+
 export const ECOSYSTEM_ITEMS: EcosystemItem[] = [
   // Payments
-  { name: 'Stripe', group: 'payments', mark: 'stripe', role: { en: 'Payment gateway', de: 'Zahlungsanbieter' } },
-  { name: 'PayPal', group: 'payments', mark: 'paypal', role: { en: 'PayPal payments', de: 'PayPal-Zahlungen' } },
-  { name: 'Mollie', group: 'payments', role: { en: 'Payment gateway · EU', de: 'Zahlungsanbieter · EU' } },
-  { name: 'GoCardless', group: 'payments', role: { en: 'Direct debit', de: 'Lastschrift' } },
-  { name: 'Instamojo', group: 'payments', role: { en: 'Payment gateway · India', de: 'Zahlungsanbieter · Indien' } },
+  { name: 'Stripe', group: 'payments', mark: 'stripe', logoSrc: LOGO('stripe.png'), role: { en: 'Payment gateway', de: 'Zahlungsanbieter' } },
+  { name: 'PayPal', group: 'payments', mark: 'paypal', logoSrc: LOGO('paypal.png'), role: { en: 'PayPal payments', de: 'PayPal-Zahlungen' } },
+  { name: 'Mollie', group: 'payments', logoSrc: LOGO('mollie.png'), role: { en: 'Payment gateway · EU', de: 'Zahlungsanbieter · EU' } },
+  { name: 'GoCardless', group: 'payments', logoSrc: LOGO('gocardless.png'), role: { en: 'Direct debit', de: 'Lastschrift' } },
+  { name: 'Checkout.com', group: 'payments', logoSrc: LOGO('checkout.png'), role: { en: 'Payment gateway', de: 'Zahlungsanbieter' } },
+  { name: 'Instamojo', group: 'payments', logoSrc: LOGO('instamojo.png'), role: { en: 'Payment gateway · India', de: 'Zahlungsanbieter · Indien' } },
 
   // Business tools
-  { name: 'QuickBooks', group: 'business', mark: 'quickbooks', role: { en: 'Accounting', de: 'Buchhaltung' } },
-  { name: 'sevdesk', group: 'business', role: { en: 'Accounting', de: 'Buchhaltung' } },
-  { name: 'Avalara', group: 'business', role: { en: 'Tax calculation', de: 'Steuerberechnung' } },
-  { name: 'Zapier', group: 'business', mark: 'zapier', role: { en: 'Workflow automation', de: 'Workflow-Automatisierung' } },
+  { name: 'QuickBooks', group: 'business', mark: 'quickbooks', logoSrc: LOGO('quickbooks.png'), role: { en: 'Accounting', de: 'Buchhaltung' } },
+  { name: 'Xero', group: 'business', logoSrc: LOGO('xero.png'), role: { en: 'Accounting', de: 'Buchhaltung' } },
+  { name: 'sevdesk', group: 'business', logoSrc: LOGO('sevdesk.png'), role: { en: 'Accounting', de: 'Buchhaltung' } },
+  { name: 'Lexware', group: 'business', logoSrc: LOGO('lexware.png'), role: { en: 'Accounting', de: 'Buchhaltung' } },
+  { name: 'Avalara', group: 'business', logoSrc: LOGO('avalara.png'), role: { en: 'Tax calculation', de: 'Steuerberechnung' } },
+  { name: 'Zapier', group: 'business', mark: 'zapier', logoSrc: LOGO('zapier.svg'), role: { en: 'Workflow automation', de: 'Workflow-Automatisierung' } },
 
   // Platform & infrastructure
-  { name: 'Microsoft Azure', group: 'platform', role: { en: 'Azure Marketplace', de: 'Azure Marketplace' } },
-  { name: 'Google Cloud', group: 'platform', mark: 'googlecloud', role: { en: 'Hosting · Frankfurt', de: 'Hosting · Frankfurt' } },
+  { name: 'Microsoft Azure', group: 'platform', logoSrc: LOGO('azure.svg'), role: { en: 'Azure Marketplace', de: 'Azure Marketplace' } },
+  { name: 'Google Cloud', group: 'platform', mark: 'googlecloud', logoSrc: LOGO('googlecloud.png'), role: { en: 'Hosting · Frankfurt', de: 'Hosting · Frankfurt' } },
 
   // Ready but hidden: their role (hosting, code, marketplace, …) still needs confirming,
   // so we don't put them on the page with a guessed caption.

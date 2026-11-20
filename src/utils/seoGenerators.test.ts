@@ -108,3 +108,14 @@ test('no FAQPage structured data is emitted while the site is not eligible for F
     assert.equal(json.includes('"FAQPage"'), false, `FAQPage emitted on ${page.path}`);
   }
 });
+
+test('every page has a social share image and the Organization carries the official logo', () => {
+  for (const page of ALL_PAGES) {
+    const head = renderHeadTagsHtml(page, BASE);
+    assert.match(head, /<meta property="og:image" content="https:\/\/www\.myfundbox\.com\/assets\/brand\/og-image\.png"/, `og:image missing on ${page.path}`);
+    assert.match(head, /<meta name="twitter:image"/, `twitter:image missing on ${page.path}`);
+  }
+  const graph = buildJsonLdGraph(ALL_PAGES[0], BASE)['@graph'] as Record<string, any>[];
+  const org = graph.find((n) => n['@type'] === 'Organization');
+  assert.equal(org?.logo?.url, `${BASE}/assets/brand/logo-mfb-dark.png`);
+});

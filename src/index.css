@@ -718,24 +718,19 @@
   .sec-art .sec-node, .sec-art .sec-lock { opacity: 1 !important; }
 }
 
-/* ---------- Differentiation section (editorial list + hub) ---------- */
-.diff-num-outline {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(178, 157, 255, 0.38);
+/* ---------- Differentiation section: 1 / 2 / 4 columns divided by hairlines ---------- */
+.diff-grid > li + li { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+@media (min-width: 640px) {
+  .diff-grid > li { padding-inline: 1.5rem; }
+  .diff-grid > li + li { border-top: 0; }
+  .diff-grid > li:nth-child(odd) { padding-left: 0; }
+  .diff-grid > li:nth-child(even) { border-left: 1px solid rgba(255, 255, 255, 0.08); }
+  .diff-grid > li:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.08); }
 }
-.diff-num-fill {
-  background: linear-gradient(135deg, #d4c8ff 0%, #9a68ff 45%, #39d5e8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.reveal-ready [data-reveal] .diff-rule { transform: scaleX(0); transform-origin: left; }
-.reveal-ready [data-reveal].is-visible .diff-rule { transform: none; transition: transform 1.3s var(--ease-out) 250ms, opacity 500ms ease; }
-.diff-pulse { stroke-dasharray: 0.08 1; stroke-dashoffset: 0.08; opacity: 0; }
-.diff-link.is-active .diff-pulse { animation: mfb-pulse-travel 2.4s var(--ease-in-out) 400ms infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .diff-pulse { display: none; }
-  .diff-rule { transform: none !important; }
+@media (min-width: 1024px) {
+  .diff-grid > li:nth-child(n + 3) { border-top: 0; }
+  .diff-grid > li:nth-child(n + 2) { border-left: 1px solid rgba(255, 255, 255, 0.08); padding-left: 1.5rem; }
+  .diff-grid > li:last-child { padding-right: 0; }
 }
 
 /* ---------- Final CTA: signal rings ---------- */

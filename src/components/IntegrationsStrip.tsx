@@ -14,16 +14,19 @@ import { Reveal } from './motion';
  * that every integration offers the same functionality or availability.
  */
 
-/** Monochrome lockup: official wordmark file → official mark + name → name only. */
+/**
+ * Original-colour brand logo on a white plate (so every logo reads the same on the dark wall).
+ * The integration name stays available as alt text and tooltip. Falls back to mark + name.
+ */
 function LogoLockup({ item }: { item: EcosystemItem }) {
   if (item.logoSrc) {
     return (
-      <img
-        src={item.logoSrc}
-        alt={item.name}
-        loading="lazy"
-        className="h-6 w-auto max-w-[8.5rem] object-contain opacity-70 brightness-0 invert transition-opacity duration-300 group-hover/tile:opacity-100"
-      />
+      <span
+        className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-white p-1 shadow-[0_6px_18px_-8px_rgba(0,0,0,0.6)] ring-1 ring-white/20 transition-transform duration-300 group-hover/tile:scale-105"
+        title={item.name}
+      >
+        <img src={item.logoSrc} alt={item.name} width={128} height={128} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-contain" />
+      </span>
     );
   }
   const mark = item.mark ? BRAND_MARKS[item.mark] : null;
@@ -155,7 +158,7 @@ export function IntegrationsStrip({ className = '' }: { className?: string }) {
               style={{ background: 'radial-gradient(360px circle at var(--spot-x) var(--spot-y), rgba(118,87,246,0.16), transparent 65%)' }}
               aria-hidden="true"
             />
-            <div className="relative grid grid-cols-4 gap-3 lg:grid-cols-6">{tiles}</div>
+            <div className="relative grid grid-cols-5 gap-3">{tiles}</div>
           </div>
         </Reveal>
 
@@ -163,8 +166,8 @@ export function IntegrationsStrip({ className = '' }: { className?: string }) {
         <div className="marquee -mx-4 mt-8 md:hidden">
           {/* Trailing padding equals the gap so the -50% loop is seamless */}
           <div className="marquee-track gap-3 pr-3">
-            <div className="flex shrink-0 gap-3 [&>*]:w-44">{tiles}</div>
-            <div className="marquee-duplicate flex shrink-0 gap-3 [&>*]:w-44" aria-hidden="true" inert>
+            <div className="flex shrink-0 gap-3 [&>*]:w-40">{tiles}</div>
+            <div className="marquee-duplicate flex shrink-0 gap-3 [&>*]:w-40" aria-hidden="true" inert>
               {tiles}
             </div>
           </div>

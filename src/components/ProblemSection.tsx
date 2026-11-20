@@ -3,6 +3,7 @@ import { ChartLine, ChevronDown, CreditCard, EyeOff, Layers, RefreshCw, Unplug, 
 import { useRouter } from '../context/RouterContext';
 import { PROBLEM_SECTION_COPY, type ProblemIcon } from '../data/homeContent';
 import { Reveal } from './motion';
+import { BrandMark } from './BrandLogo';
 
 /**
  * Each problem icon pairs a main symbol (violet) with a small badge (cyan) that names the
@@ -85,8 +86,8 @@ export function ProblemSection({ solutionAnchor }: { solutionAnchor: string }) {
             href={solutionAnchor}
             className="group/bridge relative inline-flex items-center gap-2.5 rounded-full border border-[#7657f6]/25 bg-white py-1.5 pl-1.5 pr-4 font-ui text-[13.5px] font-medium text-[#242638] shadow-[0_8px_24px_-12px_rgba(118,87,246,0.45)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#7657f6]/50 hover:shadow-[0_12px_30px_-12px_rgba(118,87,246,0.6)] dark:bg-surface dark:text-ink"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[image:var(--grad-button)] font-display text-[11px] font-bold text-white" aria-hidden="true">
-              M
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white ring-1 ring-[#7657f6]/20" aria-hidden="true">
+              <BrandMark className="h-[18px] w-[18px]" />
             </span>
             {copy.transition}
             <ChevronDown className="h-4 w-4 text-[#7657f6] transition-transform duration-300 group-hover/bridge:translate-y-0.5 dark:text-[#b29dff]" aria-hidden="true" />
