@@ -19,7 +19,10 @@ export const SITE_CONFIG = {
   defaultCurrency: 'EUR' as const,
   contactEmail: '[ADD: finance-team@myfundbox.example]',
   dpoEmail: '[ADD: privacy@myfundbox.example]',
-  demoEndpoint: '/api/demo-request',
+  // On a static host (GitHub Pages) there is no /api, so set VITE_DEMO_ENDPOINT at build time
+  // to a form service that accepts JSON POSTs (e.g. https://formspree.io/f/xxxx).
+  demoEndpoint:
+    ((import.meta as { env?: Record<string, string | undefined> }).env?.VITE_DEMO_ENDPOINT) || '/api/demo-request',
   lastUpdatedIso: '2026-11-18',
   // Official profiles linked from the live myfundbox.com footer (checked 2026-11-19).
   // Review-site profiles (G2 etc.) are left out until their exact URLs are confirmed.
