@@ -546,20 +546,24 @@ export const FINAL_CTA_COPY: Record<
   { heading: [string, string]; body: string; primary: string; secondary: string }
 > = {
   en: {
-    heading: ['Ready to Take Control', 'of Your Revenue?'],
-    body: 'Bring subscriptions, billing, payments and revenue management together with MYFUNDBOX.',
+    heading: ['Ready to simplify', 'your revenue operations?'],
+    body: 'Bring your subscription and payment operations together with MYFUNDBOX.',
     primary: 'Get Started',
     secondary: 'Book a Demo',
   },
   de: {
-    heading: ['Bereit, Ihren Umsatz', 'in den Griff zu bekommen?'],
-    body: 'Bringen Sie Abonnements, Abrechnung, Zahlungen und Revenue Management mit MYFUNDBOX zusammen.',
+    heading: ['Bereit, Ihre Umsatzprozesse', 'zu vereinfachen?'],
+    body: 'Führen Sie Ihre Abo- und Zahlungsprozesse mit MYFUNDBOX zusammen.',
     primary: 'Jetzt starten',
     secondary: 'Demo buchen',
   },
 };
 
-/** Homepage how-it-works section (four connected steps with mini UI previews). */
+/**
+ * Homepage how-it-works section (four connected steps with mini UI previews).
+ * Phase 3A journey: Configure → Connect Payments → Manage Billing → Track Revenue.
+ * Deliberately not presented as a complete Quote-to-Cash workflow.
+ */
 export type HowStepKey = 'connect' | 'plans' | 'manage' | 'monitor';
 
 export const HOW_IT_WORKS_COPY: Record<
@@ -568,24 +572,24 @@ export const HOW_IT_WORKS_COPY: Record<
 > = {
   en: {
     eyebrow: 'How it works',
-    heading: 'From Setup to Revenue Management in a Few Simple Steps.',
+    heading: 'From setup to revenue, in four steps.',
     steps: [
-      { key: 'connect', title: 'Connect Your Payment Infrastructure', body: 'Configure the payment gateways supported by your business.' },
-      { key: 'plans', title: 'Create Products and Plans', body: 'Set up pricing, subscription intervals and payment models.' },
-      { key: 'manage', title: 'Manage Customers and Payments', body: 'Organise customer subscriptions, billing and payment operations.' },
-      { key: 'monitor', title: 'Monitor Your Revenue', body: 'Access reporting and insights to understand your business performance.' },
+      { key: 'plans', title: 'Configure', body: 'Set up products, plans, prices and billing intervals: recurring, one-time or quantity-based.' },
+      { key: 'connect', title: 'Connect Payments', body: 'Connect the supported payment gateways and payment methods your business uses.' },
+      { key: 'manage', title: 'Manage Billing', body: 'Run subscriptions, invoices and failed-payment follow-up from one place.' },
+      { key: 'monitor', title: 'Track Revenue', body: 'Follow revenue, subscription and payment activity as your business grows.' },
     ],
     cta: 'Get Started',
     sample: 'Sample',
   },
   de: {
     eyebrow: 'So funktioniert’s',
-    heading: 'Von der Einrichtung zum Revenue Management – in wenigen Schritten.',
+    heading: 'Von der Einrichtung zum Umsatz – in vier Schritten.',
     steps: [
-      { key: 'connect', title: 'Zahlungsinfrastruktur verbinden', body: 'Konfigurieren Sie die Zahlungsanbieter, die Ihr Unternehmen nutzt.' },
-      { key: 'plans', title: 'Produkte und Tarife erstellen', body: 'Preise, Abo-Intervalle und Zahlungsmodelle festlegen.' },
-      { key: 'manage', title: 'Kunden und Zahlungen verwalten', body: 'Abonnements, Abrechnung und Zahlungen Ihrer Kunden organisieren.' },
-      { key: 'monitor', title: 'Umsatz im Blick behalten', body: 'Reports und Insights zur Entwicklung Ihres Unternehmens nutzen.' },
+      { key: 'plans', title: 'Konfigurieren', body: 'Produkte, Tarife, Preise und Abrechnungsintervalle anlegen: wiederkehrend, einmalig oder mengenbasiert.' },
+      { key: 'connect', title: 'Zahlungen verbinden', body: 'Die unterstützten Zahlungsanbieter und Zahlarten verbinden, die Ihr Unternehmen nutzt.' },
+      { key: 'manage', title: 'Abrechnung steuern', body: 'Abonnements, Rechnungen und die Nachverfolgung fehlgeschlagener Zahlungen an einem Ort.' },
+      { key: 'monitor', title: 'Umsatz verfolgen', body: 'Umsatz, Abos und Zahlungsaktivität im Blick behalten, während Ihr Unternehmen wächst.' },
     ],
     cta: 'Jetzt starten',
     sample: 'Beispiel',
@@ -841,15 +845,16 @@ export interface HomeCopy {
 
 export const HOME_COPY: Record<LocaleCode, HomeCopy> = {
   en: {
+    // Phase 3A positioning (2026-11-25). The H1 lives in pagesRegistry.ts.
     hero: {
-      eyebrow: 'Revenue management, simplified.',
-      highlight: 'Your Revenue',
+      eyebrow: 'The Revenue Infrastructure for Modern Businesses',
+      highlight: 'One Powerful Platform.',
       subtitle:
-        'Manage subscriptions, automate billing, simplify payments, and gain complete visibility into your revenue — all from one powerful platform.',
+        'Manage subscriptions, recurring payments and revenue operations with MYFUNDBOX. One flexible platform designed to support the way modern businesses grow.',
       primaryCta: 'Get Started',
-      secondaryCta: 'Explore the Platform',
-      note: 'Everything you need to manage your recurring revenue, in one place.',
-      previewLabel: 'Product preview · sample data',
+      secondaryCta: 'Book a Demo',
+      note: 'Connect, monetise, automate and grow: subscriptions, recurring payments, billing operations and revenue workflows in one place.',
+      previewLabel: 'Illustrative · sample data',
     },
     trust: {
       label: 'Works with the payment and finance tools you already use',
@@ -989,14 +994,14 @@ export const HOME_COPY: Record<LocaleCode, HomeCopy> = {
   },
   de: {
     hero: {
-      eyebrow: 'Revenue Management, ganz einfach.',
-      highlight: 'Ihren Umsatz',
+      eyebrow: 'Die Revenue-Infrastruktur für moderne Unternehmen',
+      highlight: 'Eine starke Plattform.',
       subtitle:
-        'Verwalten Sie Abonnements, automatisieren Sie die Abrechnung, vereinfachen Sie Zahlungen und behalten Sie Ihren Umsatz jederzeit im Blick – alles auf einer leistungsstarken Plattform.',
+        'Verwalten Sie Abonnements, wiederkehrende Zahlungen und Umsatzprozesse mit MYFUNDBOX. Eine flexible Plattform, die mit Ihrem Unternehmen wächst.',
       primaryCta: 'Jetzt starten',
-      secondaryCta: 'Plattform entdecken',
-      note: 'Alles, was Sie für Ihre wiederkehrenden Umsätze brauchen – an einem Ort.',
-      previewLabel: 'Produktvorschau · Beispieldaten',
+      secondaryCta: 'Demo buchen',
+      note: 'Verbinden, monetarisieren, automatisieren und wachsen: Abonnements, wiederkehrende Zahlungen, Abrechnung und Umsatzprozesse an einem Ort.',
+      previewLabel: 'Illustrativ · Beispieldaten',
     },
     trust: {
       label: 'Funktioniert mit den Zahlungs- und Finanztools, die Sie bereits nutzen',

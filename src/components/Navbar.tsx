@@ -4,8 +4,10 @@ import {
   ArrowUpRight,
   BarChart3,
   BookOpen,
+  Blocks,
   Boxes,
   Building2,
+  CalendarDays,
   ChevronDown,
   CircleHelp,
   Code2,
@@ -60,16 +62,19 @@ const ICONS: Record<NavIconKey, LucideIcon> = {
   faq: CircleHelp,
   about: Building2,
   contact: Mail,
+  integrations: Blocks,
+  demo: CalendarDays,
 };
 
-/** Product is the only wide (two-column) panel. */
+/** Platform and Integrations are the wide (two-column) panels. */
 const PANEL_WIDTH: Record<MenuKey, string> = {
-  product: 'w-[38rem]',
+  platform: 'w-[38rem]',
   solutions: 'w-[21rem]',
-  integrations: 'w-[22rem]',
+  integrations: 'w-[34rem]',
   resources: 'w-[21rem]',
-  company: 'w-[19rem]',
+  company: 'w-[20rem]',
 };
+const TWO_COLUMN: ReadonlySet<MenuKey> = new Set<MenuKey>(['platform', 'integrations']);
 
 const OPEN_DELAY = 70;
 const CLOSE_DELAY = 160;
@@ -98,16 +103,26 @@ function NavItemLink({
   }`;
   const body = (
     <>
-      <span
-        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
-          active
-            ? 'border-transparent bg-[image:var(--grad-button)] text-white'
-            : 'border-white/[0.08] bg-white/[0.04] text-[#b29dff] group-hover/item:border-transparent group-hover/item:bg-[image:var(--grad-button)] group-hover/item:text-white group-hover/item:shadow-[0_6px_18px_-6px_rgba(118,87,246,0.8)]'
-        }`}
-        aria-hidden="true"
-      >
-        <Icon className="h-4 w-4" />
-      </span>
+      {item.logoSrc ? (
+        // Partner logo on a white plate (same treatment as the homepage integrations wall).
+        <span
+          className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white p-1 ring-1 ring-white/20 transition-transform duration-300 group-hover/item:scale-105"
+          aria-hidden="true"
+        >
+          <img src={item.logoSrc} alt="" width={28} height={28} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+        </span>
+      ) : (
+        <span
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
+            active
+              ? 'border-transparent bg-[image:var(--grad-button)] text-white'
+              : 'border-white/[0.08] bg-white/[0.04] text-[#b29dff] group-hover/item:border-transparent group-hover/item:bg-[image:var(--grad-button)] group-hover/item:text-white group-hover/item:shadow-[0_6px_18px_-6px_rgba(118,87,246,0.8)]'
+          }`}
+          aria-hidden="true"
+        >
+          <Icon className="h-4 w-4" />
+        </span>
+      )}
       <span className="min-w-0">
         <span className="flex items-center gap-1 text-[14px] font-medium text-white">
           {label}
@@ -148,9 +163,11 @@ export function Navbar() {
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
   const [hoverKey, setHoverKey] = useState<MenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileSection, setMobileSection] = useState<MenuKey | null>('product');
+  const [mobileSection, setMobileSection] = useState<MenuKey | null>('platform');
   const [scrolled, setScrolled] = useState(false);
   const [pill, setPill] = useState<{ x: number; w: number } | null>(null);
+  const [pricingHover, setPricingHover] = useState(false);
+  const pricingRef = useRef<HTMLLIElement | null>(null);
 
   const headerRef = useRef<HTMLElement>(null);
   const triggerRefs = useRef<Partial<Record<MenuKey, HTMLButtonElement | null>>>({});
@@ -168,8 +185,11 @@ export function Navbar() {
   })).filter((m) => m.items.length > 0);
 
   const text = (item: ResolvedItem) => (de && item.de ? item.de : { label: item.label, description: item.description });
-  const hrefFor = (item: ResolvedItem) => (isExternalHref(item.resolved) ? item.resolved : localHref(item.resolved));
+  const hrefFor = (item: ResolvedItem) =>
+    isExternalHref(item.resolved) ? (de && item.deHref ? item.deHref : item.resolved) : localHref(item.resolved);
   const isActivePath = (href: string) => !isExternalHref(href) && href !== '/' && (pathname === href || pathname.startsWith(`${href}/`));
+  const pricingHref = resolveNavHref({ href: '/pricing' });
+  const pricingActive = pricingHref !== null && isActivePath(pricingHref);
 
   const clearTimers = () => {
     window.clearTimeout(openTimer.current);
@@ -239,12 +259,12 @@ export function Navbar() {
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
-  // Sliding highlight behind the hovered (or open) top-level item.
+  // Sliding highlight behind the hovered (or open) top-level item, including the Pricing link.
   const pillKey = hoverKey ?? openMenu;
   useLayoutEffect(() => {
-    const li = pillKey ? itemRefs.current[pillKey] : null;
+    const li = pricingHover ? pricingRef.current : pillKey ? itemRefs.current[pillKey] : null;
     setPill(li ? { x: li.offsetLeft, w: li.offsetWidth } : null);
-  }, [pillKey]);
+  }, [pillKey, pricingHover]);
 
   const solid = scrolled || mobileOpen || openMenu !== null || !resolvePageByPath(pathname);
 
@@ -356,7 +376,7 @@ export function Navbar() {
                       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#9a68ff]/60 to-transparent" aria-hidden="true" />
                       <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#7657f6]/20 blur-3xl" aria-hidden="true" />
 
-                      <ul className={`relative grid gap-0.5 ${m.key === 'product' ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                      <ul className={`relative grid gap-0.5 ${TWO_COLUMN.has(m.key) ? 'grid-cols-2' : 'grid-cols-1'}`}>
                         {m.items.map((item) => {
                           const t = text(item);
                           const href = hrefFor(item);
@@ -375,28 +395,57 @@ export function Navbar() {
                         })}
                       </ul>
 
-                      {m.key === 'product' && (
+                      {m.key === 'platform' && (
                         <div className="relative mt-1.5 flex items-center justify-between gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] px-4 py-3 text-[13px]">
                           <span className="text-[#9195ae]">
-                            {de ? 'Transparente Tarife, kostenlos starten.' : 'Transparent plans. Start for free.'}
+                            {de ? 'Die Revenue-Infrastruktur für moderne Unternehmen.' : 'The revenue infrastructure for modern businesses.'}
                           </span>
-                          <span className="flex items-center gap-4">
-                            <AppLink href={localHref('/pricing')} className="link-arrow" onClick={() => setOpenMenu(null)}>
-                              {copy.nav.pricing}
-                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                            </AppLink>
-                            <AppLink href={localHref('/book-a-demo')} className="link-arrow" onClick={() => setOpenMenu(null)}>
-                              {copy.nav.bookDemo}
-                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                            </AppLink>
-                          </span>
+                          <AppLink href={localHref('/book-a-demo')} className="link-arrow shrink-0" onClick={() => setOpenMenu(null)}>
+                            {copy.nav.bookDemo}
+                            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </AppLink>
                         </div>
+                      )}
+                      {m.key === 'integrations' && (
+                        <p className="relative mt-1.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#9195ae]">
+                          {de
+                            ? 'Funktionen und Verfügbarkeit unterscheiden sich je nach Integration und Region.'
+                            : 'Capabilities and availability differ by integration and region.'}
+                        </p>
                       )}
                     </div>
                   </div>
                 </li>
               );
             })}
+            {pricingHref && (
+              <li
+                ref={(el) => {
+                  pricingRef.current = el;
+                }}
+                className="relative"
+                onPointerEnter={(e) => {
+                  if (e.pointerType !== 'mouse') return;
+                  setHoverKey(null);
+                  setPricingHover(true);
+                  scheduleClose();
+                }}
+                onPointerLeave={() => setPricingHover(false)}
+              >
+                <AppLink
+                  href={localHref(pricingHref)}
+                  aria-current={pricingActive ? 'page' : undefined}
+                  className={`relative inline-flex items-center rounded-lg px-3.5 py-2 transition-colors duration-200 ${
+                    pricingActive ? 'text-white' : 'text-[#b9bcd2] hover:text-white'
+                  }`}
+                >
+                  {copy.nav.pricing}
+                  {pricingActive && (
+                    <span className="absolute inset-x-3.5 -bottom-[13px] h-px bg-gradient-to-r from-[#9a68ff] to-[#39d5e8]" aria-hidden="true" />
+                  )}
+                </AppLink>
+              </li>
+            )}
           </ul>
         </nav>
 
@@ -508,6 +557,22 @@ export function Navbar() {
                 </li>
               );
             })}
+            {pricingHref && (
+              <li
+                className={`transition-[opacity,translate] duration-500 ease-out ${mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
+                style={{ transitionDelay: mobileOpen ? `${80 + menus.length * 50}ms` : '0ms' }}
+              >
+                <AppLink
+                  href={localHref(pricingHref)}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={pricingActive ? 'page' : undefined}
+                  className="flex w-full items-center justify-between py-4 font-display text-[17px] font-semibold text-white"
+                >
+                  {copy.nav.pricing}
+                  <ArrowRight className="h-4 w-4 text-[#9195ae]" aria-hidden="true" />
+                </AppLink>
+              </li>
+            )}
           </ul>
 
           <div

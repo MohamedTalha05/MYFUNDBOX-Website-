@@ -75,67 +75,71 @@ const CORE_PAGES: PageMetadataEntry[] = [
     path: '/',
     category: 'home',
     locale: 'en',
-    title: 'MYFUNDBOX | Subscription Billing & Revenue Management Platform',
+    // Phase 3A positioning (2026-11-25). Claims follow the truth rules in src/data/homepageContent.ts.
+    title: 'MYFUNDBOX | Revenue Infrastructure for Modern Businesses',
     description:
-      'Manage subscriptions, recurring billing, payments, dunning and revenue reporting in one platform. Works with Stripe, GoCardless, Mollie, PayPal and Checkout.com.',
-    h1: 'Take Control of Your Revenue. Focus on Growing Your Business.',
+      'Manage subscriptions, recurring billing, quantity-based pricing, payments and revenue reporting in one platform. Works with Stripe, GoCardless, Mollie, PayPal and Checkout.com.',
+    h1: 'Your Business. Your Revenue Models. One Powerful Platform.',
     aeoSummary:
-      'MYFUNDBOX is a revenue management platform for subscription businesses. It brings plans, one-time and recurring billing, payments through Stripe, GoCardless, Mollie, PayPal and Checkout.com, automatic failed-payment recovery, a customer self-service portal and revenue reporting into one place, with data stored in Frankfurt.',
+      'MYFUNDBOX is a revenue management platform for modern businesses, including SaaS, AI, digital and industrial companies. It brings subscription management, one-time and recurring billing, quantity-based subscriptions, payments through Stripe, GoCardless, Mollie, PayPal and Checkout.com, automatic retries for failed card payments and revenue reporting into one place.',
     breadcrumbs: [{ label: 'Home', href: '/' }],
-    lastUpdated: '2026-11-19',
+    lastUpdated: '2026-11-25',
     authorId: DEFAULT_AUTHOR,
     priority: 1.0,
     atAGlance: {
-      whatItIs: 'A subscription billing and revenue management platform: plans, billing, payments, dunning, customer portal and reporting in one place.',
-      whoItIsFor: 'SaaS companies, subscription and membership businesses, digital businesses and agencies with recurring revenue.',
+      whatItIs: 'A revenue management platform: subscriptions, recurring billing, quantity-based pricing, payments, failed-payment recovery and revenue reporting in one place.',
+      whoItIsFor: 'SaaS, AI, digital and industrial or equipment-based businesses, and the finance and revenue operations teams that run their billing.',
       keyCapabilities: [
-        'One-time and recurring billing with plans, add-ons, coupons and trials',
-        'Payments through multiple gateways and methods',
-        'Smart dunning with automatic retries and reminders',
-        'Hosted checkout, pay links and a customer portal',
+        'Subscription management with plans, add-ons, coupons and trials',
+        'One-time and recurring billing with automatic invoicing',
+        'Quantity-based subscriptions: per seat, licence, unit or site',
+        'Payments through several gateways, with automatic retries for failed card payments',
       ],
       pricingModel: 'Free plan for up to 25 subscribers; paid plans billed monthly or annually. See the pricing page for current plans.',
-      regionAndCompliance: 'Data stored in Frankfurt, Germany · GDPR Data Processing Agreement · Two-factor authentication',
-      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevdesk, Lexware, Avalara, REST API & webhooks',
+      regionAndCompliance: 'Data stored in Frankfurt, Germany · Two-factor authentication · 3D Secure where supported by the gateway and card issuer',
+      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevdesk, Lexware Office, Avalara, Zapier',
     },
     sections: [
       {
-        heading: 'Why does subscription revenue get hard to manage?',
+        heading: 'Why does revenue get hard to manage?',
         directAnswer:
-          'As a subscription business grows, plans, invoices, payments and customer changes end up spread across separate tools. Failed payments slip through, customers wait on support for simple changes, and revenue figures have to be rebuilt by hand. MYFUNDBOX brings all of it into one platform.',
+          'As a business adds revenue models, payment methods and customers, subscriptions, invoices, payments and failed-payment follow-up end up spread across separate tools. MYFUNDBOX brings them into one platform.',
         bullets: [
-          'Plans, billing and payments are managed in one place instead of several tools.',
-          'Failed payments are retried and followed up automatically.',
-          'Customers update cards, plans and details themselves in a self-service portal.',
+          'Several revenue models (monthly, annual, one-time and per-seat) managed in one place.',
+          'Failed card payments are retried automatically.',
+          'Revenue, subscription and payment activity visible without rebuilding reports by hand.',
         ],
       },
       {
         heading: 'How does MYFUNDBOX work?',
         directAnswer:
-          'Set up your plans, connect the payment gateways you already use, and MYFUNDBOX runs billing, collection and reporting automatically from then on.',
+          'Configure your products and plans, connect the payment gateways you use, then manage billing and track revenue from one place.',
         numberedSteps: [
-          {
-            title: 'Create your plans and checkout',
-            detail: 'Define one-time or recurring products with add-ons, coupons and trials, then publish a hosted checkout or pay link.',
-          },
-          {
-            title: 'Connect your payment gateways',
-            detail: 'Link Stripe, GoCardless, Mollie, PayPal or Checkout.com and offer cards, SEPA, ACH, bank transfer or open banking.',
-          },
-          {
-            title: 'Automate billing and track revenue',
-            detail: 'Renewals, invoices and failed-payment recovery run on their own while you follow revenue, subscriptions and payments live.',
-          },
+          { title: 'Configure', detail: 'Set up products, plans, prices and billing intervals: recurring, one-time or quantity-based.' },
+          { title: 'Connect payments', detail: 'Connect Stripe, GoCardless, Mollie, PayPal or Checkout.com and the payment methods they offer.' },
+          { title: 'Manage billing', detail: 'Run subscriptions, invoices and failed-payment follow-up from one place.' },
+          { title: 'Track revenue', detail: 'Follow revenue, subscription and payment activity as the business grows.' },
         ],
       },
     ],
-    // Homepage FAQ. Every answer uses only capabilities verified on the live site or confirmed
-    // by the MYFUNDBOX team (docs/PROJECT_PROGRESS.md §3). Keep the DE entry (/de) in sync.
+    // Homepage FAQ. Every answer uses only capabilities verified on the live site, confirmed by the
+    // MYFUNDBOX team (docs/PROJECT_PROGRESS.md §3) or documented (quantity-based subscriptions).
+    // Keep the DE entry (/de) in sync.
     faqs: [
       {
         question: 'What is MYFUNDBOX?',
         answer:
-          'MYFUNDBOX is a subscription billing and revenue management platform. It brings plans, one-time and recurring billing, payments through your connected gateways, failed-payment recovery, invoicing and a customer self-service portal together in one place. Data is stored in Frankfurt, Germany.',
+          'MYFUNDBOX is a revenue management platform for modern businesses. It brings subscription management, one-time and recurring billing, quantity-based subscriptions, payments through your connected gateways, failed-payment recovery, invoicing and revenue reporting together in one place.',
+      },
+      {
+        question: 'Which businesses is MYFUNDBOX for?',
+        answer:
+          'MYFUNDBOX is built for businesses with recurring revenue: SaaS companies, AI businesses selling subscription plans, digital businesses selling courses, content or services, and industrial or equipment-based businesses that bill recurring service contracts per machine or per site.',
+      },
+      {
+        question: 'Does MYFUNDBOX support quantity-based subscriptions?',
+        answer:
+          'Yes. You can price a subscription by quantity, such as seats, licences, units, machines or sites, so the amount billed follows the quantity each customer subscribes to.',
       },
       {
         question: 'Which payment gateways does MYFUNDBOX support?',
@@ -148,14 +152,9 @@ const CORE_PAGES: PageMetadataEntry[] = [
           'Yes. Smart Dunning automatically retries failed card payments, so failed payments are followed up without manual work.',
       },
       {
-        question: 'Can customers manage their own subscriptions?',
-        answer:
-          'Yes. In My Portal, the customer self-service portal, customers can view their subscriptions, billing history and invoices, keep their account details up to date, update payment information where supported, and use the subscription actions you make available.',
-      },
-      {
         question: 'Does MYFUNDBOX integrate with accounting software?',
         answer:
-          'Yes. MYFUNDBOX integrates with QuickBooks, Xero, sevdesk and Lexware, and with Avalara for tax. A REST API and webhooks are also available for connecting other systems.',
+          'Yes. MYFUNDBOX integrates with QuickBooks, Xero, sevdesk and Lexware Office, with Avalara for tax and with Zapier for workflow automation. Capabilities differ by integration.',
       },
     ],
   },
@@ -1953,54 +1952,46 @@ const LOCALIZED_HOME_PAGES: PageMetadataEntry[] = [
     ...CORE_PAGES[0],
     path: '/de',
     locale: 'de',
-    title: 'MYFUNDBOX | Abo-Abrechnung & Revenue-Management-Plattform',
+    title: 'MYFUNDBOX | Revenue-Infrastruktur für moderne Unternehmen',
     description:
-      'Abonnements, wiederkehrende Abrechnung, Zahlungen, Mahnwesen und Umsatz-Reporting auf einer Plattform. Mit Stripe, GoCardless, Mollie, PayPal und Checkout.com.',
-    h1: 'Behalten Sie Ihren Umsatz im Griff. Konzentrieren Sie sich auf Ihr Wachstum.',
+      'Abonnements, wiederkehrende Abrechnung, mengenbasierte Preise, Zahlungen und Umsatz-Reporting auf einer Plattform. Mit Stripe, GoCardless, Mollie, PayPal und Checkout.com.',
+    h1: 'Ihr Unternehmen. Ihre Umsatzmodelle. Eine starke Plattform.',
     aeoSummary:
-      'MYFUNDBOX ist eine Revenue-Management-Plattform für Abo-Unternehmen. Tarife, einmalige und wiederkehrende Abrechnung, Zahlungen über Stripe, GoCardless, Mollie, PayPal und Checkout.com, automatisches Mahnwesen, ein Self-Service-Kundenportal und Umsatz-Reporting – an einem Ort, mit Datenspeicherung in Frankfurt.',
+      'MYFUNDBOX ist eine Revenue-Management-Plattform für moderne Unternehmen, darunter SaaS-, KI-, digitale und Industrieunternehmen. Sie vereint Abo-Verwaltung, einmalige und wiederkehrende Abrechnung, mengenbasierte Abonnements, Zahlungen über Stripe, GoCardless, Mollie, PayPal und Checkout.com, die automatische Wiederholung fehlgeschlagener Kartenzahlungen und Umsatz-Reporting an einem Ort.',
     breadcrumbs: [{ label: 'Startseite', href: '/de' }],
     atAGlance: {
-      whatItIs: 'Eine Plattform für Abo-Abrechnung und Revenue Management: Tarife, Abrechnung, Zahlungen, Mahnwesen, Kundenportal und Reporting an einem Ort.',
-      whoItIsFor: 'SaaS-Unternehmen, Abo- und Mitgliedschaftsmodelle, digitale Unternehmen und Agenturen mit wiederkehrenden Umsätzen.',
+      whatItIs: 'Eine Revenue-Management-Plattform: Abonnements, wiederkehrende Abrechnung, mengenbasierte Preise, Zahlungen, Zahlungswiederherstellung und Umsatz-Reporting an einem Ort.',
+      whoItIsFor: 'SaaS-, KI-, digitale sowie Industrie- und Anlagenunternehmen und die Finanz- und Revenue-Operations-Teams, die ihre Abrechnung steuern.',
       keyCapabilities: [
-        'Einmalige und wiederkehrende Abrechnung mit Tarifen, Add-ons, Gutscheinen und Testphasen',
-        'Zahlungen über mehrere Anbieter und Zahlungsarten',
-        'Smartes Mahnwesen mit automatischen Wiederholungen und Erinnerungen',
-        'Gehosteter Checkout, Zahlungslinks und Kundenportal',
+        'Abo-Verwaltung mit Tarifen, Add-ons, Gutscheinen und Testphasen',
+        'Einmalige und wiederkehrende Abrechnung mit automatischen Rechnungen',
+        'Mengenbasierte Abonnements: pro Nutzer, Lizenz, Einheit oder Standort',
+        'Zahlungen über mehrere Anbieter, mit automatischer Wiederholung fehlgeschlagener Kartenzahlungen',
       ],
       pricingModel: 'Kostenloser Tarif für bis zu 25 Abonnenten; kostenpflichtige Tarife monatlich oder jährlich. Aktuelle Tarife auf der Preisseite.',
-      regionAndCompliance: 'Datenspeicherung in Frankfurt · Auftragsverarbeitungsvertrag nach DSGVO · Zwei-Faktor-Authentifizierung',
-      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevdesk, Lexware, Avalara, REST-API & Webhooks',
+      regionAndCompliance: 'Datenspeicherung in Frankfurt · Zwei-Faktor-Authentifizierung · 3D Secure, sofern von Zahlungsanbieter und kartenausgebender Bank unterstützt',
+      integrations: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com, QuickBooks, Xero, sevdesk, Lexware Office, Avalara, Zapier',
     },
     sections: [
       {
-        heading: 'Warum wird die Verwaltung von Abo-Umsätzen so schnell kompliziert?',
+        heading: 'Warum wird Umsatz so schnell kompliziert?',
         directAnswer:
-          'Mit dem Wachstum verteilen sich Tarife, Rechnungen, Zahlungen und Kundenänderungen auf viele Tools. Fehlgeschlagene Zahlungen gehen unter, Kunden warten auf den Support und Umsatzzahlen entstehen in Handarbeit. MYFUNDBOX bündelt alles auf einer Plattform.',
+          'Mit neuen Umsatzmodellen, Zahlarten und Kunden verteilen sich Abonnements, Rechnungen, Zahlungen und die Nachverfolgung fehlgeschlagener Zahlungen auf viele Tools. MYFUNDBOX bündelt alles auf einer Plattform.',
         bullets: [
-          'Tarife, Abrechnung und Zahlungen an einem Ort statt in mehreren Tools.',
-          'Fehlgeschlagene Zahlungen werden automatisch wiederholt und nachverfolgt.',
-          'Kunden ändern Karte, Tarif und Daten selbst im Kundenportal.',
+          'Mehrere Umsatzmodelle (monatlich, jährlich, einmalig, pro Nutzer) an einem Ort.',
+          'Fehlgeschlagene Kartenzahlungen werden automatisch wiederholt.',
+          'Umsatz, Abos und Zahlungen im Blick, ohne Berichte von Hand zu bauen.',
         ],
       },
       {
         heading: 'Wie funktioniert MYFUNDBOX?',
         directAnswer:
-          'Tarife anlegen, vorhandene Zahlungsanbieter verbinden – ab dann laufen Abrechnung, Zahlungseinzug und Reporting automatisch.',
+          'Produkte und Tarife konfigurieren, Zahlungsanbieter verbinden, dann Abrechnung steuern und Umsatz an einem Ort verfolgen.',
         numberedSteps: [
-          {
-            title: 'Tarife und Checkout erstellen',
-            detail: 'Einmalige oder wiederkehrende Produkte mit Add-ons, Gutscheinen und Testphasen anlegen und als Checkout oder Zahlungslink veröffentlichen.',
-          },
-          {
-            title: 'Zahlungsanbieter verbinden',
-            detail: 'Stripe, GoCardless, Mollie, PayPal oder Checkout.com verknüpfen und Karte, SEPA, ACH, Überweisung oder Open Banking anbieten.',
-          },
-          {
-            title: 'Abrechnung automatisieren, Umsatz verfolgen',
-            detail: 'Verlängerungen, Rechnungen und Mahnwesen laufen automatisch, während Sie Umsatz, Abos und Zahlungen live verfolgen.',
-          },
+          { title: 'Konfigurieren', detail: 'Produkte, Tarife, Preise und Abrechnungsintervalle anlegen: wiederkehrend, einmalig oder mengenbasiert.' },
+          { title: 'Zahlungen verbinden', detail: 'Stripe, GoCardless, Mollie, PayPal oder Checkout.com und deren Zahlarten verbinden.' },
+          { title: 'Abrechnung steuern', detail: 'Abonnements, Rechnungen und die Nachverfolgung fehlgeschlagener Zahlungen an einem Ort.' },
+          { title: 'Umsatz verfolgen', detail: 'Umsatz, Abos und Zahlungsaktivität im Blick behalten, während das Unternehmen wächst.' },
         ],
       },
     ],
@@ -2008,7 +1999,17 @@ const LOCALIZED_HOME_PAGES: PageMetadataEntry[] = [
       {
         question: 'Was ist MYFUNDBOX?',
         answer:
-          'MYFUNDBOX ist eine Plattform für Abo-Abrechnung und Revenue Management. Sie vereint Tarife, einmalige und wiederkehrende Abrechnung, Zahlungen über Ihre verbundenen Zahlungsanbieter, die Nachverfolgung fehlgeschlagener Zahlungen, Rechnungsstellung und ein Self-Service-Kundenportal an einem Ort. Die Daten werden in Frankfurt gespeichert.',
+          'MYFUNDBOX ist eine Revenue-Management-Plattform für moderne Unternehmen. Sie vereint Abo-Verwaltung, einmalige und wiederkehrende Abrechnung, mengenbasierte Abonnements, Zahlungen über Ihre verbundenen Zahlungsanbieter, die Nachverfolgung fehlgeschlagener Zahlungen, Rechnungsstellung und Umsatz-Reporting an einem Ort.',
+      },
+      {
+        question: 'Für welche Unternehmen ist MYFUNDBOX gedacht?',
+        answer:
+          'MYFUNDBOX ist für Unternehmen mit wiederkehrenden Umsätzen gebaut: SaaS-Unternehmen, KI-Unternehmen mit Abo-Tarifen, digitale Unternehmen mit Kursen, Inhalten oder Services sowie Industrie- und Anlagenunternehmen, die Serviceverträge pro Maschine oder Standort abrechnen.',
+      },
+      {
+        question: 'Unterstützt MYFUNDBOX mengenbasierte Abonnements?',
+        answer:
+          'Ja. Sie können ein Abonnement nach Menge bepreisen, etwa nach Nutzern, Lizenzen, Einheiten, Maschinen oder Standorten, sodass der abgerechnete Betrag der abonnierten Menge jedes Kunden folgt.',
       },
       {
         question: 'Welche Zahlungsanbieter unterstützt MYFUNDBOX?',
@@ -2021,14 +2022,9 @@ const LOCALIZED_HOME_PAGES: PageMetadataEntry[] = [
           'Ja. Smart Dunning wiederholt fehlgeschlagene Kartenzahlungen automatisch, sodass fehlgeschlagene Zahlungen ohne manuellen Aufwand nachverfolgt werden.',
       },
       {
-        question: 'Können Kunden ihre Abonnements selbst verwalten?',
-        answer:
-          'Ja. In My Portal, dem Self-Service-Kundenportal, sehen Kunden ihre Abonnements, Zahlungshistorie und Rechnungen ein, halten ihre Kontodaten aktuell, aktualisieren Zahlungsdaten, sofern unterstützt, und nutzen die Abo-Aktionen, die Sie freigeben.',
-      },
-      {
         question: 'Lässt sich MYFUNDBOX mit Buchhaltungssoftware verbinden?',
         answer:
-          'Ja. MYFUNDBOX lässt sich mit QuickBooks, Xero, sevdesk und Lexware sowie mit Avalara für Steuern verbinden. Für weitere Systeme stehen eine REST-API und Webhooks zur Verfügung.',
+          'Ja. MYFUNDBOX lässt sich mit QuickBooks, Xero, sevdesk und Lexware Office verbinden, mit Avalara für Steuern und mit Zapier für Workflow-Automatisierung. Die Funktionen unterscheiden sich je nach Integration.',
       },
     ],
   },

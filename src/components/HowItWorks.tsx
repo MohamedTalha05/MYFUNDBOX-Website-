@@ -78,6 +78,7 @@ function PlansPreview({ locale }: { locale: LocaleCode }) {
       <div className="flex gap-1.5">
         <span className="rounded-full bg-[#7657f6]/10 px-2 py-0.5 text-[10px] font-medium text-[#5f43e9]">{de ? 'Wiederkehrend' : 'Recurring'}</span>
         <span className="rounded-full border border-[#e7e8f0] bg-white px-2 py-0.5 text-[10px] text-[#6b6f86]">{de ? 'Einmalig' : 'One-time'}</span>
+        <span className="rounded-full border border-[#e7e8f0] bg-white px-2 py-0.5 text-[10px] text-[#6b6f86]">{de ? 'Pro Nutzer' : 'Per seat'}</span>
       </div>
     </div>
   );
@@ -88,7 +89,7 @@ function ManagePreview({ locale }: { locale: LocaleCode }) {
   const rows = [
     { i: 'AS', name: 'Acme Studio', amt: 159, s: de ? 'Bezahlt' : 'Paid', cls: 'text-[#12865f] bg-[#20b486]/10' },
     { i: 'NC', name: 'Northwind Club', amt: 29, s: de ? 'Bezahlt' : 'Paid', cls: 'text-[#12865f] bg-[#20b486]/10' },
-    { i: 'LA', name: 'Lumen Academy', amt: 149, s: de ? 'Testphase' : 'Trial', cls: 'text-[#5f43e9] bg-[#7657f6]/10' },
+    { i: 'LA', name: 'Lumen Academy', amt: 149, s: de ? 'Neuer Versuch' : 'Retrying', cls: 'text-[#b86e0e] bg-[#f4ae52]/15' },
   ];
   return (
     <ul className="space-y-1.5 font-ui text-[11px]">
@@ -116,11 +117,8 @@ function MonitorPreview({ locale }: { locale: LocaleCode }) {
   return (
     <div className="font-ui">
       <div className="flex items-baseline justify-between">
-        <span className="text-[10px] text-[#6b6f86]">MRR</span>
-        <span className="inline-flex items-center gap-0.5 text-[10px] font-medium text-[#12865f]">
-          <ArrowUpRight className="h-3 w-3" />
-          5.6%
-        </span>
+        <span className="text-[10px] text-[#6b6f86]">{locale === 'de' ? 'Wiederkehrender Umsatz' : 'Recurring revenue'}</span>
+        <ArrowUpRight className="h-3 w-3 text-[#12865f]" />
       </div>
       <div className="text-[15px] font-semibold tracking-tight text-[#101329] tabular-nums">{formatEUR(48920, locale)}</div>
       <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="mt-1.5 h-11 w-full overflow-visible">
@@ -143,6 +141,7 @@ export function HowItWorks({ ctaHref }: { ctaHref: string }) {
   const { locale } = useRouter();
   const copy = HOW_IT_WORKS_COPY[locale];
 
+  // Steps render in copy order: Configure (plans) → Connect Payments → Manage Billing → Track Revenue.
   const preview = (key: HowStepKey) => {
     switch (key) {
       case 'connect':

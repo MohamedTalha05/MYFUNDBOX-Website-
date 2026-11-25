@@ -1,4 +1,5 @@
 import type { LocaleCode } from '../utils/formatting';
+import { CONFIRMED_INTEGRATIONS, liveIntegrationUrl, type ConfirmedIntegration } from './liveSite';
 
 export interface AuthorProfile {
   id: string;
@@ -11,8 +12,10 @@ export interface AuthorProfile {
 export const SITE_CONFIG = {
   brandName: 'MYFUNDBOX',
   legalEntityName: '[ADD: MYFUNDBOX Legal Entity GmbH]',
+  /** Positioning approved for Phase 3A (2026-11-25). Used in structured data and llms.txt. */
+  tagline: 'The Revenue Infrastructure for Modern Businesses.',
   oneLineDescription:
-    'MYFUNDBOX is a revenue management platform for subscription businesses: recurring billing, payments across multiple gateways, dunning, customer self-service and revenue reporting in one place.',
+    'MYFUNDBOX is a revenue management platform for modern businesses: subscription management, recurring billing, quantity-based subscriptions, payments across multiple gateways, failed-payment recovery and revenue reporting in one place.',
   headquartersLocation: 'Germany [ADD: City & Street Address]',
   foundingYear: '[ADD: Founding Year]',
   euDataResidency: '[CONFIRM: Frankfurt am Main, Germany (AWS eu-central-1 / EU ISO-27001 region)]',
@@ -193,34 +196,71 @@ export const MEGA_MENU_SOLUTIONS: NavDropdownItem[] = [
 export type NavIconKey =
   | 'revenue' | 'subscriptions' | 'billing' | 'payments' | 'dunning' | 'analytics'
   | 'saas' | 'subscriptionBusiness' | 'digital'
-  | 'paymentIntegrations' | 'accounting' | 'tax'
+  | 'paymentIntegrations' | 'accounting' | 'tax' | 'integrations'
   | 'blog' | 'guides' | 'docs' | 'faq'
-  | 'about' | 'contact';
+  | 'about' | 'contact' | 'demo';
 
 export interface NavMenuItem {
   label: string;
   description: string;
   href: string;
   fallbackHref?: string;
+  /** German destination for external links (e.g. the live /de/integrations/* pages). */
+  deHref?: string;
   icon: NavIconKey;
+  /** Partner logo shown instead of the icon (integrations menu). */
+  logoSrc?: string;
   de?: { label: string; description: string };
 }
 
 export interface NavMenu {
-  key: 'product' | 'solutions' | 'integrations' | 'resources' | 'company';
+  key: 'platform' | 'solutions' | 'integrations' | 'resources' | 'company';
   items: NavMenuItem[];
 }
 
+const CATEGORY_DESC: Record<ConfirmedIntegration['category'], { en: string; de: string }> = {
+  payments: { en: 'Payment gateway', de: 'Zahlungsanbieter' },
+  accounting: { en: 'Accounting', de: 'Buchhaltung' },
+  tax: { en: 'Tax calculation', de: 'Steuerberechnung' },
+  automation: { en: 'Workflow automation', de: 'Workflow-Automatisierung' },
+};
+
+/**
+ * Integrations menu: only team-confirmed integrations that have a live page on myfundbox.com
+ * (src/data/liveSite.ts). They link to those existing pages; this repo has no /integrations routes.
+ */
+const INTEGRATION_MENU_ITEMS: NavMenuItem[] = [
+  ...CONFIRMED_INTEGRATIONS.map(
+    (i): NavMenuItem => ({
+      label: i.name,
+      description: CATEGORY_DESC[i.category].en,
+      href: liveIntegrationUrl(i.slug, 'en'),
+      deHref: liveIntegrationUrl(i.slug, 'de'),
+      icon: i.category === 'payments' ? 'paymentIntegrations' : i.category === 'tax' ? 'tax' : 'accounting',
+      logoSrc: i.logoSrc,
+      de: { label: i.name, description: CATEGORY_DESC[i.category].de },
+    })
+  ),
+  {
+    label: 'All integrations',
+    description: 'Browse the full integrations directory.',
+    href: liveIntegrationUrl(null, 'en'),
+    deHref: liveIntegrationUrl(null, 'de'),
+    icon: 'integrations',
+    de: { label: 'Alle Integrationen', description: 'Das vollständige Integrationsverzeichnis.' },
+  },
+];
+
 export const NAV_MENUS: NavMenu[] = [
   {
-    key: 'product',
+    key: 'platform',
     items: [
       {
-        label: 'Revenue Management',
-        description: 'The complete platform for recurring revenue.',
+        label: 'Platform Overview',
+        description: 'One connected platform for recurring revenue.',
         href: '/product',
         icon: 'revenue',
-        de: { label: 'Revenue Management', description: 'Die komplette Plattform für wiederkehrende Umsätze.' },
+        de: { label: 'Plattform-Überblick', description: 'Eine vernetzte Plattform für wiederkehrende Umsätze.' },
       },
       {
         label: 'Subscription Management',
@@ -231,12 +271,12 @@ export const NAV_MENUS: NavMenu[] = [
         de: { label: 'Abo-Verwaltung', description: 'Tarife, Testphasen, Upgrades und Verlängerungen.' },
       },
       {
-        label: 'Billing Management',
+        label: 'Recurring Billing',
         description: 'One-time and recurring invoicing, automated.',
         href: '/recurring-billing',
         fallbackHref: '/product',
         icon: 'billing',
-        de: { label: 'Abrechnung', description: 'Einmalige und wiederkehrende Rechnungen, automatisiert.' },
+        de: { label: 'Wiederkehrende Abrechnung', description: 'Einmalige und wiederkehrende Rechnungen, automatisiert.' },
       },
       {
         label: 'Payment Management',
@@ -247,20 +287,20 @@ export const NAV_MENUS: NavMenu[] = [
         de: { label: 'Zahlungsmanagement', description: 'Mehrere Zahlungsanbieter und Zahlungsarten.' },
       },
       {
-        label: 'Dunning Management',
-        description: 'Recover failed payments automatically.',
+        label: 'Payment Recovery',
+        description: 'Automatic retries for failed card payments.',
         href: '/dunning-management',
         fallbackHref: '/product',
         icon: 'dunning',
-        de: { label: 'Mahnwesen', description: 'Fehlgeschlagene Zahlungen automatisch zurückholen.' },
+        de: { label: 'Zahlungswiederherstellung', description: 'Automatische Wiederholung fehlgeschlagener Kartenzahlungen.' },
       },
       {
-        label: 'Revenue Analytics',
-        description: 'MRR, subscriptions and payments at a glance.',
+        label: 'Revenue Reporting',
+        description: 'Revenue, subscriptions and payments at a glance.',
         href: '/revenue-analytics',
         fallbackHref: '/product',
         icon: 'analytics',
-        de: { label: 'Umsatzanalysen', description: 'MRR, Abos und Zahlungen auf einen Blick.' },
+        de: { label: 'Umsatz-Reporting', description: 'Umsatz, Abos und Zahlungen auf einen Blick.' },
       },
     ],
   },
@@ -269,10 +309,10 @@ export const NAV_MENUS: NavMenu[] = [
     items: [
       {
         label: 'SaaS Businesses',
-        description: 'Plans, trials and upgrades for software.',
+        description: 'Plans, seats, trials and upgrades for software.',
         href: '/solutions/saas',
         icon: 'saas',
-        de: { label: 'SaaS-Unternehmen', description: 'Tarife, Testphasen und Upgrades für Software.' },
+        de: { label: 'SaaS-Unternehmen', description: 'Tarife, Lizenzen, Testphasen und Upgrades für Software.' },
       },
       {
         label: 'Subscription Businesses',
@@ -284,43 +324,15 @@ export const NAV_MENUS: NavMenu[] = [
       },
       {
         label: 'Digital Businesses',
-        description: 'Courses, content and downloads.',
+        description: 'Courses, content and digital services.',
         href: '/solutions/digital-businesses',
         fallbackHref: '/solutions/digital-services',
         icon: 'digital',
-        de: { label: 'Digitale Unternehmen', description: 'Kurse, Inhalte und Downloads.' },
+        de: { label: 'Digitale Unternehmen', description: 'Kurse, Inhalte und digitale Services.' },
       },
     ],
   },
-  {
-    key: 'integrations',
-    items: [
-      {
-        label: 'Payment Integrations',
-        description: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com.',
-        href: '/integrations/payments',
-        fallbackHref: '/product/integrations-api',
-        icon: 'paymentIntegrations',
-        de: { label: 'Zahlungsintegrationen', description: 'Stripe, GoCardless, Mollie, PayPal, Checkout.com.' },
-      },
-      {
-        label: 'Accounting Integrations',
-        description: 'QuickBooks, Xero, sevdesk, Lexware.',
-        href: '/integrations/accounting',
-        fallbackHref: '/product/integrations-api',
-        icon: 'accounting',
-        de: { label: 'Buchhaltungsintegrationen', description: 'QuickBooks, Xero, sevdesk, Lexware.' },
-      },
-      {
-        label: 'Tax Integrations',
-        description: 'Automated tax calculation with Avalara.',
-        href: '/integrations/tax',
-        fallbackHref: '/product/integrations-api',
-        icon: 'tax',
-        de: { label: 'Steuerintegrationen', description: 'Automatische Steuerberechnung mit Avalara.' },
-      },
-    ],
-  },
+  { key: 'integrations', items: INTEGRATION_MENU_ITEMS },
   {
     key: 'resources',
     items: [
@@ -340,19 +352,14 @@ export const NAV_MENUS: NavMenu[] = [
         de: { label: 'Leitfäden', description: 'Ausführliche Leitfäden für Abo-Unternehmen.' },
       },
       {
-        label: 'Documentation',
-        description: 'API reference, webhooks and setup.',
-        href: APP_LINKS.docs,
-        icon: 'docs',
-        de: { label: 'Dokumentation', description: 'API-Referenz, Webhooks und Einrichtung.' },
-      },
-      {
         label: 'FAQs',
         description: 'Answers to common questions.',
         href: '/help',
         icon: 'faq',
         de: { label: 'FAQs', description: 'Antworten auf häufige Fragen.' },
       },
+      // "Documentation" (docs.myfundbox.com) removed 2026-11-25: the docs site serves an empty
+      // placeholder page. Re-add it once the documentation is published.
     ],
   },
   {
@@ -372,6 +379,13 @@ export const NAV_MENUS: NavMenu[] = [
         icon: 'contact',
         de: { label: 'Kontakt', description: 'Sprechen Sie mit unserem Team.' },
       },
+      {
+        label: 'Book a Demo',
+        description: 'A walkthrough tailored to your business.',
+        href: '/book-a-demo',
+        icon: 'demo',
+        de: { label: 'Demo buchen', description: 'Eine Tour, zugeschnitten auf Ihr Geschäft.' },
+      },
     ],
   },
 ];
@@ -384,20 +398,23 @@ export const NAV_LINKS: NavLinkItem[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Footer (2026-11-20). Columns reuse the header menu items (same pages, fallbacks and German
-// labels), plus a few footer-only links. Internal links resolve through resolveNavHref, so an
-// unbuilt page uses its fallback or is hidden; app links use APP_LINKS (existing app flow).
+// Footer (rebuilt 2026-11-25). Columns reuse the header menu items (same pages, fallbacks and
+// German labels). Internal links resolve through resolveNavHref, so an unbuilt page uses its
+// fallback or is hidden; app links use APP_LINKS (existing app flow); integration links go to
+// the existing live integration pages.
 // ---------------------------------------------------------------------------
 
 export interface FooterLink {
   label: string;
   de?: string;
   href: string;
+  /** German destination for external links. */
+  deHref?: string;
   fallbackHref?: string;
 }
 
 export interface FooterColumn {
-  key: 'product' | 'solutions' | 'integrations' | 'resources' | 'company';
+  key: 'platform' | 'solutions' | 'integrations' | 'resources' | 'company';
   title: string;
   titleDe: string;
   links: FooterLink[];
@@ -408,31 +425,33 @@ const menuLinks = (key: NavMenu['key']): FooterLink[] =>
     label: i.label,
     de: i.de?.label,
     href: i.href,
+    deHref: i.deHref,
     fallbackHref: i.fallbackHref,
   }));
 
 export const FOOTER_COLUMNS: FooterColumn[] = [
-  { key: 'product', title: 'Product', titleDe: 'Produkt', links: menuLinks('product') },
+  {
+    key: 'platform',
+    title: 'Platform',
+    titleDe: 'Plattform',
+    links: [...menuLinks('platform'), { label: 'Pricing', de: 'Preise', href: '/pricing' }],
+  },
   { key: 'solutions', title: 'Solutions', titleDe: 'Lösungen', links: menuLinks('solutions') },
   {
     key: 'integrations',
     title: 'Integrations',
     titleDe: 'Integrationen',
-    links: [
-      ...menuLinks('integrations'),
-      { label: 'Developer Resources', de: 'Entwickler-Ressourcen', href: '/developers', fallbackHref: APP_LINKS.docs },
-    ],
+    // Payment gateways + the directory; the full confirmed list is in the header menu.
+    links: menuLinks('integrations').filter(
+      (l) => CONFIRMED_INTEGRATIONS.some((i) => i.name === l.label && i.category === 'payments') || l.label === 'All integrations'
+    ),
   },
   { key: 'resources', title: 'Resources', titleDe: 'Ressourcen', links: menuLinks('resources') },
   {
     key: 'company',
     title: 'Company',
     titleDe: 'Unternehmen',
-    links: [
-      ...menuLinks('company'),
-      { label: 'Book a Demo', de: 'Demo buchen', href: '/book-a-demo' },
-      { label: 'Login', de: 'Anmelden', href: APP_LINKS.login },
-    ],
+    links: [...menuLinks('company'), { label: 'Login', de: 'Anmelden', href: APP_LINKS.login }],
   },
 ];
 
@@ -447,13 +466,13 @@ export const LEGAL_LINKS: FooterLink[] = [
 
 export const FOOTER_COPY: Record<LocaleCode, { description: string; rights: string; followUs: string; legal: string }> = {
   en: {
-    description: 'Your complete revenue management platform for subscriptions, billing and payments.',
+    description: 'The revenue infrastructure for modern businesses: subscriptions, recurring billing, payments and revenue operations in one platform.',
     rights: 'All rights reserved.',
     followUs: 'Follow MYFUNDBOX',
     legal: 'Legal',
   },
   de: {
-    description: 'Ihre komplette Revenue-Management-Plattform für Abonnements, Abrechnung und Zahlungen.',
+    description: 'Die Revenue-Infrastruktur für moderne Unternehmen: Abonnements, wiederkehrende Abrechnung, Zahlungen und Umsatzprozesse auf einer Plattform.',
     rights: 'Alle Rechte vorbehalten.',
     followUs: 'MYFUNDBOX folgen',
     legal: 'Rechtliches',
@@ -477,6 +496,7 @@ export const LOCALE_UI_COPY: Record<
     languageName: string;
     nav: {
       product: string;
+      platform: string;
       solutions: string;
       pricing: string;
       developers: string;
@@ -502,21 +522,22 @@ export const LOCALE_UI_COPY: Record<
     languageName: 'English',
     nav: {
       product: 'Product',
+      platform: 'Platform',
       solutions: 'Solutions',
       pricing: 'Pricing',
       developers: 'Developers',
       resources: 'Resources',
       integrations: 'Integrations',
       company: 'Company',
-      login: 'Log in',
-      getStarted: 'Get started',
-      bookDemo: 'Book a demo',
+      login: 'Login',
+      getStarted: 'Get Started',
+      bookDemo: 'Book a Demo',
     },
     // Homepage copy now lives in src/data/homeContent.ts; these remain for other consumers.
-    heroEyebrow: 'Subscription billing · Payments · Revenue insights',
-    heroTitle: 'Take Control of Your Revenue. Focus on Growing Your Business.',
+    heroEyebrow: 'The Revenue Infrastructure for Modern Businesses',
+    heroTitle: 'Your Business. Your Revenue Models. One Powerful Platform.',
     heroSubtitle:
-      'Take control of subscriptions, billing, payments, and revenue performance with one intelligent revenue management platform.',
+      'Manage subscriptions, recurring payments and revenue operations with MYFUNDBOX. One flexible platform designed to support the way modern businesses grow.',
     secondaryCta: 'Explore the platform',
     cookieBannerTitle: 'Privacy & cookie preferences',
     cookieBannerText:
@@ -529,6 +550,7 @@ export const LOCALE_UI_COPY: Record<
     languageName: 'Deutsch',
     nav: {
       product: 'Produkt',
+      platform: 'Plattform',
       solutions: 'Lösungen',
       pricing: 'Preise',
       developers: 'Entwickler',
@@ -539,10 +561,10 @@ export const LOCALE_UI_COPY: Record<
       getStarted: 'Kostenlos starten',
       bookDemo: 'Demo buchen',
     },
-    heroEyebrow: 'Abo-Abrechnung · Zahlungen · Umsatz-Insights',
-    heroTitle: 'Behalten Sie Ihren Umsatz im Griff. Konzentrieren Sie sich auf Ihr Wachstum.',
+    heroEyebrow: 'Die Revenue-Infrastruktur für moderne Unternehmen',
+    heroTitle: 'Ihr Unternehmen. Ihre Umsatzmodelle. Eine starke Plattform.',
     heroSubtitle:
-      'Behalten Sie Abonnements, Abrechnung, Zahlungen und Umsatzentwicklung im Griff – mit einer intelligenten Revenue-Management-Plattform.',
+      'Verwalten Sie Abonnements, wiederkehrende Zahlungen und Umsatzprozesse mit MYFUNDBOX. Eine flexible Plattform, die mit Ihrem Unternehmen wächst.',
     secondaryCta: 'Plattform entdecken',
     cookieBannerTitle: 'Datenschutz- & Cookie-Einstellungen',
     cookieBannerText:

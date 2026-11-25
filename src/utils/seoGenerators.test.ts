@@ -109,6 +109,22 @@ test('no FAQPage structured data is emitted while the site is not eligible for F
   }
 });
 
+test('structured data, robots.txt and llms files never publish placeholders or invented company facts', () => {
+  for (const page of ALL_PAGES) {
+    const json = JSON.stringify(buildJsonLdGraph(page, BASE));
+    assert.doesNotMatch(json, /\[(ADD|CONFIRM)\b/i, `placeholder in JSON-LD on ${page.path}`);
+  }
+  const graph = buildJsonLdGraph(ALL_PAGES[0], BASE)['@graph'] as Record<string, any>[];
+  const org = graph.find((n) => n['@type'] === 'Organization');
+  assert.equal(org?.slogan, 'The Revenue Infrastructure for Modern Businesses.');
+  assert.equal(graph.some((n) => n['@type'] === 'Person'), false, 'no Person node while authors are placeholders');
+  assert.doesNotMatch(generateRobotsTxt(BASE), /\[(ADD|CONFIRM)\b/i);
+  // The product-facts header (legacy inner pages listed under "Key Pages" are rebuilt in later phases).
+  const facts = generateLlmsTxt(BASE).split('## Key Pages')[0];
+  assert.ok(facts.includes('quantity-based subscriptions'));
+  assert.doesNotMatch(facts, /docs\.myfundbox\.com|DATEV|XRechnung|ZUGFeRD|usage-based|\[(ADD|CONFIRM)/i);
+});
+
 test('every page has a social share image and the Organization carries the official logo', () => {
   for (const page of ALL_PAGES) {
     const head = renderHeadTagsHtml(page, BASE);

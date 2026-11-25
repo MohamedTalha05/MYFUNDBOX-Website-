@@ -3,16 +3,29 @@ import { SITE_CONFIG } from '../data/siteConfig';
 import { COMPETITORS, COMPETITOR_DISCLAIMER } from '../data/competitorsData';
 import { SUPPORTED_LOCALES } from './formatting';
 
-/** Factual product summary shared by llms.txt and llms-full.txt. Sourced from the live myfundbox.com (2026-11-19). */
+/**
+ * Factual product summary shared by llms.txt and llms-full.txt. Sourced from the live myfundbox.com
+ * (2026-11-19), team confirmations (docs/PROJECT_PROGRESS.md §3) and the Phase 3A brief (2026-11-25).
+ * Not listed until evidence exists (docs/PHASE-3A-outstanding-evidence.md): API scope and developer
+ * docs (docs.myfundbox.com serves an empty page), usage-based metering, DATEV, XRechnung/ZUGFeRD,
+ * AI-driven payment features, end-to-end Quote-to-Cash, certifications.
+ */
 const PRODUCT_FACTS = [
+  `- Positioning: ${SITE_CONFIG.tagline}`,
   '- Category: Subscription billing and revenue management platform (SaaS, web-based)',
-  '- Core capabilities: one-time and recurring billing, subscription and plan management (add-ons, coupons, trials), hosted checkout and embeddable iFrame, pay links, smart dunning and automated card retries, customer self-service portal, invoicing, tax management with EU VAT validation, refunds, custom domain, multi-language checkout, REST API and webhooks',
-  '- Payment gateways: Stripe, GoCardless, Mollie, PayPal, Checkout.com; payment methods include cards, SEPA and ACH direct debit, bank transfer and open banking',
-  '- Accounting and tax integrations: QuickBooks, Xero, sevDesk, Lexware, Avalara',
+  '- Built for: SaaS businesses, AI businesses, digital businesses, industrial and equipment-based businesses, finance and revenue operations teams',
+  '- Core capabilities: subscription and plan management (add-ons, coupons, trials), one-time and recurring billing, quantity-based subscriptions (per seat, licence, unit or site), hosted checkout and embeddable iFrame, pay links, Smart Dunning with automatic retries for failed card payments, customer self-service portal, invoicing, tax handling with EU VAT validation, refunds, revenue reporting',
+  '- Payment gateways: Stripe, GoCardless, Mollie, PayPal, Checkout.com; payment methods include cards, SEPA and ACH direct debit, bank transfer and open banking (availability depends on gateway and region)',
+  '- Accounting, tax and automation integrations: QuickBooks, Xero, sevdesk, Lexware Office, Avalara, Zapier',
+  '- Security: two-factor authentication; 3D Secure where supported by the gateway and card issuer',
   '- Data location: Frankfurt, EU',
   '- Pricing: Free plan (up to 25 active subscribers), Professional and Advanced plans in EUR; see the pricing page',
-  '- Developer documentation: https://docs.myfundbox.com/',
 ].join('\n');
+
+/** True when a config value is still an internal placeholder ("[ADD: …]", "[CONFIRM: …]") or empty. */
+export function isPlaceholder(value: string | undefined | null): boolean {
+  return !value || /\[(ADD|CONFIRM)\b/i.test(value);
+}
 
 function escapeXml(str: string): string {
   return str
@@ -76,30 +89,35 @@ export const BRAND_ASSETS = {
 
 export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Record<string, unknown> {
   const author = SITE_CONFIG.authors.find((a) => a.id === page.authorId) ?? SITE_CONFIG.authors[0];
+  // Placeholder authors ("[ADD: Author Name …]") are never published as a Person.
+  const verifiedAuthor = isPlaceholder(author.name) || isPlaceholder(author.credentials) ? null : author;
   const canonicalUrl = absolute(baseUrl, page.path);
 
-  const graph: Record<string, unknown>[] = [
-    {
-      '@type': 'Organization',
-      '@id': `${baseUrl}/#organization`,
-      name: SITE_CONFIG.brandName,
-      legalName: SITE_CONFIG.legalEntityName,
-      url: baseUrl,
-      description: SITE_CONFIG.oneLineDescription,
-      logo: {
-        '@type': 'ImageObject',
-        url: absolute(baseUrl, BRAND_ASSETS.logoOnLight),
-        width: 492,
-        height: 196,
-      },
-      foundingDate: SITE_CONFIG.foundingYear,
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'DE',
-        streetAddress: SITE_CONFIG.headquartersLocation,
-      },
-      sameAs: SITE_CONFIG.sameAs,
+  // Organization: verified facts only. Legal name, founding date and address are omitted while
+  // siteConfig still holds placeholders for them (see docs/PHASE-3A-outstanding-evidence.md).
+  const organization: Record<string, unknown> = {
+    '@type': 'Organization',
+    '@id': `${baseUrl}/#organization`,
+    name: SITE_CONFIG.brandName,
+    url: baseUrl,
+    slogan: SITE_CONFIG.tagline,
+    description: SITE_CONFIG.oneLineDescription,
+    logo: {
+      '@type': 'ImageObject',
+      url: absolute(baseUrl, BRAND_ASSETS.logoOnLight),
+      width: 492,
+      height: 196,
     },
+    sameAs: SITE_CONFIG.sameAs,
+  };
+  if (!isPlaceholder(SITE_CONFIG.legalEntityName)) organization.legalName = SITE_CONFIG.legalEntityName;
+  if (!isPlaceholder(SITE_CONFIG.foundingYear)) organization.foundingDate = SITE_CONFIG.foundingYear;
+  if (!isPlaceholder(SITE_CONFIG.headquartersLocation)) {
+    organization.address = { '@type': 'PostalAddress', addressCountry: 'DE', streetAddress: SITE_CONFIG.headquartersLocation };
+  }
+
+  const graph: Record<string, unknown>[] = [
+    organization,
     {
       '@type': 'WebSite',
       '@id': `${baseUrl}/#website`,
@@ -133,15 +151,18 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
         item: absolute(baseUrl, crumb.href),
       })),
     },
-    {
-      '@type': 'Person',
-      '@id': `${baseUrl}/#author-${author.id}`,
-      name: author.name,
-      jobTitle: author.role,
-      description: `${author.credentials} — ${author.bio}`,
-      worksFor: { '@id': `${baseUrl}/#organization` },
-    },
   ];
+
+  if (verifiedAuthor) {
+    graph.push({
+      '@type': 'Person',
+      '@id': `${baseUrl}/#author-${verifiedAuthor.id}`,
+      name: verifiedAuthor.name,
+      jobTitle: verifiedAuthor.role,
+      description: `${verifiedAuthor.credentials} — ${verifiedAuthor.bio}`,
+      worksFor: { '@id': `${baseUrl}/#organization` },
+    });
+  }
 
   if (page.category === 'guide' || page.category === 'blog' || page.category === 'compare' || page.category === 'alternatives') {
     graph.push({
@@ -151,7 +172,8 @@ export function buildJsonLdGraph(page: PageMetadataEntry, baseUrl: string): Reco
       dateModified: page.lastUpdated,
       datePublished: page.lastUpdated,
       mainEntityOfPage: canonicalUrl,
-      author: { '@id': `${baseUrl}/#author-${author.id}` },
+      // No invented authors: attribute to the organization until a verified author exists.
+      author: verifiedAuthor ? { '@id': `${baseUrl}/#author-${verifiedAuthor.id}` } : { '@id': `${baseUrl}/#organization` },
       publisher: { '@id': `${baseUrl}/#organization` },
     });
   }
@@ -225,7 +247,9 @@ ${urls}
 }
 
 export function generateRobotsTxt(baseUrl: string): string {
-  return `# MYFUNDBOX robots.txt — LLM & Search Crawler Policy [CONFIRM crawler policy before production]
+  // Crawler policy still to be confirmed by MYFUNDBOX before production (tracked in
+  // docs/PHASE-3A-outstanding-evidence.md; kept out of the public file).
+  return `# MYFUNDBOX robots.txt — search and AI crawler policy
 User-agent: *
 Allow: /
 

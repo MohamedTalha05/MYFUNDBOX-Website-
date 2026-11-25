@@ -8,9 +8,11 @@ import { AppLink } from './ReusableBlocks';
 import { BrandLogoStacked } from './BrandLogo';
 
 /*
- * Site footer: brand + five link columns, then a legal/utility bar.
- * Links resolve through resolveNavHref (own page → fallback page → hidden), so nothing points at
- * a 404. App links (Login) use APP_LINKS unchanged. Social links are the approved SOCIAL_LINKS only.
+ * Site footer: brand + five link columns (Platform, Solutions, Integrations, Resources, Company),
+ * then a legal/utility bar. Links resolve through resolveNavHref (own page → fallback page →
+ * hidden), so nothing points at a 404. Integration links go to the existing live integration
+ * pages (German twins on /de). App links (Login) use APP_LINKS unchanged. Social links are the
+ * approved SOCIAL_LINKS only.
  */
 
 /** Simple Icons paths (CC0) for the approved social profiles. */
@@ -59,7 +61,7 @@ function FooterAnchor({ href, children, className = LINK }: { href: string; chil
 
 function resolveLinks(links: FooterLink[], de: boolean) {
   return links
-    .map((l) => ({ label: de && l.de ? l.de : l.label, href: resolveNavHref(l) }))
+    .map((l) => ({ label: de && l.de ? l.de : l.label, href: de && l.deHref ? l.deHref : resolveNavHref(l) }))
     .filter((l): l is { label: string; href: string } => l.href !== null);
 }
 

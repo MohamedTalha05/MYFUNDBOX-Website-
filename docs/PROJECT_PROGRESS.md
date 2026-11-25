@@ -113,6 +113,16 @@ This compares the brief with the public website only. Neither column has been ch
 | 2026-11-19 | Demo-request destination **on hold**. The user will advise; the Book a demo form work waits for it | User |
 | 2026-11-19 | Design direction changed from Direction A (white/red) to **"Midnight Violet"**: navy/indigo/violet/cyan palette, Sora + Inter + Geist, dark hero bands, motion. Supersedes the Direction A decision | User |
 
+## 9. Phase 3A: foundation, navigation, footer & homepage (2026-11-25)
+
+Positioning: **"The Revenue Infrastructure for Modern Businesses."** Not deployed. Evidence gaps and open decisions: [PHASE-3A-outstanding-evidence.md](PHASE-3A-outstanding-evidence.md).
+
+- **Navigation:** Platform · Solutions · Integrations · Resources · Company · Pricing (top-level link), plus Login / Get Started (unchanged `APP_LINKS`). The Integrations menu shows the 11 confirmed integrations with logos and links to the existing live myfundbox.com integration pages (German twins on /de). The Documentation link is removed (docs site is an empty placeholder).
+- **Footer:** Platform, Solutions, Integrations, Resources, Company columns; legal row unchanged.
+- **Homepage:** Hero (new H1 / CTAs: Get Started → app sign-up, Book a Demo) → Problem (six challenges, "fragmented stack" board) → Platform hub (7 capabilities) → Capability showcase (7 tabbed interactive previews; quantity calculator) → Business models (SaaS / AI / Industrial / Digital, distinct treatments) → How it works (Configure → Connect Payments → Manage Billing → Track Revenue) → Integrations wall (light) → Global payments → Trust & security → FAQ → Final CTA. EN + DE.
+- **SEO:** new home title, description, H1, AEO summary, at-a-glance and FAQs (EN + DE); JSON-LD omits placeholder company fields and placeholder authors; Organization `slogan`; llms product facts updated (no API or unverified claims); robots marker removed.
+- **Tests:** 50 (was 38). New: live-integration URL preservation, rendered-homepage truth / heading / link checks, structured-data placeholder check.
+
 ## 7. Visual redesign "Midnight Violet": done 2026-11-19
 
 - **Design system** (`src/index.css`): brand palette and 4 gradients as CSS variables; light and dark token sets; type scale (`display-xl/lg/md`, `lead`, `eyebrow`); buttons (`btn-primary` violet gradient, `btn-secondary`, `btn-light`, `btn-ghost`); cards (`card`, `card-interactive`, `card-glow`, `glass`); backgrounds (`bg-midnight-strong`, `bg-lavender-wash`, grid patterns, ambient `orb`s); motion tokens and keyframes. Any element with the `dark` class renders its subtree in the dark tokens, which keeps the hero bands, "Why" section, CTA and footer navy in both themes.

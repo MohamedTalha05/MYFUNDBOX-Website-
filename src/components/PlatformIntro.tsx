@@ -1,63 +1,68 @@
 import React, { useState } from 'react';
-import { ArrowRight, BarChart3, CreditCard, Receipt, RefreshCw, Repeat, Users, type LucideIcon } from 'lucide-react';
+import { ArrowRight, BarChart3, Blocks, CreditCard, Hash, Receipt, RefreshCw, Repeat, type LucideIcon } from 'lucide-react';
 import { useRouter } from '../context/RouterContext';
-import { PLATFORM_INTRO_COPY, type PlatformModuleKey } from '../data/homeContent';
+import { PLATFORM_COPY, type PlatformKey } from '../data/homepageContent';
 import { BrandLogo } from './BrandLogo';
 import { AppLink } from './ReusableBlocks';
 import { Reveal } from './motion';
 
 /*
- * Platform introduction: MYFUNDBOX core in the centre, six modules around it, joined by
- * violet→cyan connection lines that draw in on scroll, followed by a few soft data pulses.
+ * Platform overview (Phase 3A): the MYFUNDBOX core in the centre and seven capabilities around
+ * it: three on each side and Integrations below. Violet→cyan connection lines draw in on
+ * scroll, followed by a few soft data pulses (CSS in index.css; off for reduced motion).
  *
- * Geometry lives in a 1000×560 coordinate space. From lg up, the SVG lines and the
+ * Geometry lives in a 1000×640 coordinate space. From lg up, the SVG lines and the
  * absolutely-positioned module cards share it; below lg, the same list becomes a grid.
  */
 
 const W = 1000;
-const H = 560;
+const H = 640;
 const CX = 500;
-const CY = 280;
+const CY = 270;
 const LEFT_EDGE = 262; // right edge of the left-hand cards
 const RIGHT_EDGE = 738; // left edge of the right-hand cards
+const BOTTOM_EDGE = 548; // top edge of the bottom card
+const CORE_BOTTOM = CY + 120; // core is 24% of the width (240 units) tall
 
-const LAYOUT: Record<PlatformModuleKey, { side: 'left' | 'right'; y: number }> = {
-  subscriptions: { side: 'left', y: 85 },
-  billing: { side: 'left', y: 280 },
-  payments: { side: 'left', y: 475 },
-  customers: { side: 'right', y: 85 },
-  dunning: { side: 'right', y: 280 },
-  analytics: { side: 'right', y: 475 },
+type Side = 'left' | 'right' | 'bottom';
+
+const LAYOUT: Record<PlatformKey, { side: Side; y: number }> = {
+  subscriptions: { side: 'left', y: 80 },
+  billing: { side: 'left', y: 270 },
+  quantity: { side: 'left', y: 460 },
+  orchestration: { side: 'right', y: 80 },
+  recovery: { side: 'right', y: 270 },
+  reporting: { side: 'right', y: 460 },
+  integrations: { side: 'bottom', y: 590 },
 };
 
-const ICONS: Record<PlatformModuleKey, LucideIcon> = {
+const ICONS: Record<PlatformKey, LucideIcon> = {
   subscriptions: Repeat,
   billing: Receipt,
-  payments: CreditCard,
-  customers: Users,
-  dunning: RefreshCw,
-  analytics: BarChart3,
+  quantity: Hash,
+  orchestration: CreditCard,
+  recovery: RefreshCw,
+  reporting: BarChart3,
+  integrations: Blocks,
 };
 
-function connector(key: PlatformModuleKey): { d: string; end: [number, number] } {
+function connector(key: PlatformKey): { d: string; end: [number, number] } {
   const { side, y } = LAYOUT[key];
+  if (side === 'bottom') return { d: `M${CX},${CORE_BOTTOM} L${CX},${BOTTOM_EDGE}`, end: [CX, BOTTOM_EDGE] };
   const ex = side === 'left' ? LEFT_EDGE : RIGHT_EDGE;
   const mx = side === 'left' ? 375 : 625;
   return { d: `M${CX},${CY} C${mx},${CY} ${mx},${y} ${ex},${y}`, end: [ex, y] };
 }
 
-export function PlatformIntro({
-  id,
-  exploreHref,
-  className = '',
-}: {
-  id?: string;
-  exploreHref: string;
-  className?: string;
-}) {
+function cardPosition(side: Side, y: number, i: number): React.CSSProperties {
+  const x = side === 'left' ? '13.5%' : side === 'right' ? '86.5%' : '50%';
+  return { ['--x' as string]: x, ['--y' as string]: `${(y / H) * 100}%`, ['--i' as string]: i } as React.CSSProperties;
+}
+
+export function PlatformIntro({ id, exploreHref, className = '' }: { id?: string; exploreHref: string; className?: string }) {
   const { locale } = useRouter();
-  const copy = PLATFORM_INTRO_COPY[locale];
-  const [active, setActive] = useState<PlatformModuleKey | null>(null);
+  const copy = PLATFORM_COPY[locale];
+  const [active, setActive] = useState<PlatformKey | null>(null);
 
   return (
     <section
@@ -66,7 +71,7 @@ export function PlatformIntro({
       className={`dark relative scroll-mt-16 overflow-hidden text-ink ${className}`}
       style={{
         background:
-          'radial-gradient(60% 55% at 50% 55%, rgba(118,87,246,0.22) 0%, transparent 70%), radial-gradient(40% 40% at 85% 10%, rgba(57,213,232,0.10) 0%, transparent 70%), linear-gradient(180deg, #0d1024 0%, #15143d 55%, #1b1850 100%)',
+          'radial-gradient(60% 55% at 50% 50%, rgba(118,87,246,0.22) 0%, transparent 70%), radial-gradient(40% 40% at 85% 10%, rgba(57,213,232,0.10) 0%, transparent 70%), linear-gradient(180deg, #101329 0%, #1a1849 55%, #24215a 100%)',
       }}
     >
       <div className="pointer-events-none absolute inset-0 grid-pattern opacity-60" aria-hidden="true" />
@@ -84,7 +89,7 @@ export function PlatformIntro({
         </Reveal>
 
         {/* Hub diagram */}
-        <Reveal index={1} className="platform-hub relative mx-auto mt-14 max-w-5xl lg:mt-16 lg:aspect-[1000/560]">
+        <Reveal index={1} className="platform-hub relative mx-auto mt-14 max-w-5xl lg:mt-16 lg:aspect-[1000/640]">
           {/* Connection lines (lg+) */}
           <svg
             viewBox={`0 0 ${W} ${H}`}
@@ -101,6 +106,10 @@ export function PlatformIntro({
                 <stop offset="0%" stopColor="#9a68ff" />
                 <stop offset="100%" stopColor="#39d5e8" />
               </linearGradient>
+              <linearGradient id="pl-grad-bottom" gradientUnits="userSpaceOnUse" x1="0" y1={CORE_BOTTOM} x2="0" y2={BOTTOM_EDGE}>
+                <stop offset="0%" stopColor="#9a68ff" />
+                <stop offset="100%" stopColor="#39d5e8" />
+              </linearGradient>
               <filter id="pl-glow" x="-200%" y="-200%" width="500%" height="500%">
                 <feGaussianBlur stdDeviation="4" />
               </filter>
@@ -108,12 +117,12 @@ export function PlatformIntro({
 
             {copy.modules.map((m, i) => {
               const { d, end } = connector(m.key);
-              const grad = LAYOUT[m.key].side === 'left' ? 'url(#pl-grad-left)' : 'url(#pl-grad-right)';
+              const side = LAYOUT[m.key].side;
+              const grad = `url(#pl-grad-${side})`;
               const isActive = active === m.key;
               const style = { ['--i' as string]: i } as React.CSSProperties;
               return (
                 <g key={m.key}>
-                  {/* base line */}
                   <path
                     d={d}
                     pathLength={1}
@@ -125,7 +134,6 @@ export function PlatformIntro({
                     className="platform-line transition-[stroke-opacity,stroke-width] duration-300"
                     style={style}
                   />
-                  {/* travelling pulse */}
                   <path
                     d={d}
                     pathLength={1}
@@ -137,7 +145,6 @@ export function PlatformIntro({
                     className="platform-pulse"
                     style={style}
                   />
-                  {/* glowing end node */}
                   <g className="platform-node" style={style}>
                     <circle cx={end[0]} cy={end[1]} r={isActive ? 9 : 7} fill="#39d5e8" opacity={0.45} filter="url(#pl-glow)" />
                     <circle cx={end[0]} cy={end[1]} r={3.5} fill="#e6fbff" />
@@ -148,8 +155,10 @@ export function PlatformIntro({
           </svg>
 
           {/* Core */}
-          <div className="relative mx-auto mb-10 flex h-52 w-52 items-center justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:mb-0 lg:h-auto lg:w-[24%] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:aspect-square">
-            {/* slowly rotating orbit */}
+          <div
+            className="relative mx-auto mb-10 flex h-52 w-52 items-center justify-center lg:absolute lg:left-1/2 lg:top-[var(--core-top)] lg:mb-0 lg:h-auto lg:w-[24%] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:aspect-square"
+            style={{ ['--core-top' as string]: `${(CY / H) * 100}%` } as React.CSSProperties}
+          >
             <svg viewBox="0 0 100 100" className="platform-orbit absolute inset-0 h-full w-full" aria-hidden="true">
               <circle cx="50" cy="50" r="48" fill="none" stroke="url(#pl-orbit-grad)" strokeWidth="0.6" strokeDasharray="1.5 3" />
               <defs>
@@ -175,31 +184,24 @@ export function PlatformIntro({
             {copy.modules.map((m, i) => {
               const Icon = ICONS[m.key];
               const { side, y } = LAYOUT[m.key];
-              const pos = {
-                ['--x' as string]: side === 'left' ? '13.5%' : '86.5%',
-                ['--y' as string]: `${(y / H) * 100}%`,
-                ['--i' as string]: i,
-              } as React.CSSProperties;
               return (
                 <li
                   key={m.key}
-                  style={pos}
-                  className="platform-module lg:absolute lg:left-[var(--x)] lg:top-[var(--y)] lg:w-[25%] lg:-translate-x-1/2 lg:-translate-y-1/2"
+                  style={cardPosition(side, y, i)}
+                  className={`platform-module lg:absolute lg:left-[var(--x)] lg:top-[var(--y)] lg:-translate-x-1/2 lg:-translate-y-1/2 ${
+                    side === 'bottom' ? 'sm:col-span-2 sm:mx-auto sm:w-1/2 lg:w-[30%]' : 'lg:w-[25%]'
+                  }`}
                   onPointerEnter={() => setActive(m.key)}
                   onPointerLeave={() => setActive(null)}
                 >
                   <div
-                    className={`group/mod flex items-start gap-3 rounded-2xl border bg-[#141739]/85 p-4 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-300 ${
-                      active === m.key
-                        ? '-translate-y-0.5 border-[#9a68ff]/50 shadow-[0_16px_40px_-16px_rgba(118,87,246,0.75)]'
-                        : 'border-white/[0.09]'
+                    className={`flex items-start gap-3 rounded-2xl border bg-[#141739]/85 p-4 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-300 ${
+                      active === m.key ? '-translate-y-0.5 border-[#9a68ff]/50 shadow-[0_16px_40px_-16px_rgba(118,87,246,0.75)]' : 'border-white/[0.09]'
                     }`}
                   >
                     <span
                       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 ${
-                        active === m.key
-                          ? 'border-transparent bg-[image:var(--grad-button)] text-white'
-                          : 'border-white/10 bg-white/[0.05] text-[#b29dff]'
+                        active === m.key ? 'border-transparent bg-[image:var(--grad-button)] text-white' : 'border-white/10 bg-white/[0.05] text-[#b29dff]'
                       }`}
                       aria-hidden="true"
                     >
@@ -207,7 +209,7 @@ export function PlatformIntro({
                     </span>
                     <div className="min-w-0">
                       <h3 className="font-display text-[15px] font-semibold tracking-[-0.015em] text-white">{m.title}</h3>
-                      <p className="mt-0.5 text-[13px] leading-snug text-[#9195ae]">{m.body}</p>
+                      <p className="mt-0.5 text-[13px] leading-snug text-[#a9acc4]">{m.body}</p>
                     </div>
                   </div>
                 </li>
@@ -216,7 +218,7 @@ export function PlatformIntro({
           </ul>
         </Reveal>
 
-        <Reveal index={2} className="mt-14 flex justify-center lg:mt-16">
+        <Reveal index={2} className="mt-14 flex justify-center lg:mt-12">
           <AppLink href={exploreHref} className="btn-light hero-cta-primary px-6 py-3.5 font-ui text-[15px]">
             {copy.cta}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

@@ -585,7 +585,8 @@
 .hero-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.25rem, 1.35rem + 3.2vw, 3.5rem);
+  /* Max 3.125rem keeps each of the three H1 sentences on one line in the desktop hero column. */
+  font-size: clamp(2.25rem, 1.1rem + 2.6vw, 3.125rem);
   line-height: 1.08;
   letter-spacing: -0.035em;
   text-wrap: balance;

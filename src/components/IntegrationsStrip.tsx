@@ -1,89 +1,77 @@
 import React, { useRef } from 'react';
-import { ArrowRight, ArrowUpRight, Code2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Blocks } from 'lucide-react';
 import { useRouter } from '../context/RouterContext';
-import { BRAND_MARKS } from '../data/brandMarks';
-import { APP_LINKS } from '../data/siteConfig';
-import { ECOSYSTEM_COPY, ECOSYSTEM_ITEMS, type EcosystemItem } from '../data/integrationsEcosystem';
-import { resolveNavHref, useLocalHref } from '../utils/navLinks';
-import { AppLink } from './ReusableBlocks';
+import { ECOSYSTEM_COPY } from '../data/integrationsEcosystem';
+import {
+  CONFIRMED_INTEGRATIONS,
+  INTEGRATION_CATEGORY_LABELS,
+  liveIntegrationUrl,
+  type ConfirmedIntegration,
+} from '../data/liveSite';
 import { Reveal } from './motion';
 
 /*
- * "Dark logo wall": a midnight band that continues from the hero, with glass tiles that
- * light up on hover. Each tile names the integration's role, so the wall never implies
- * that every integration offers the same functionality or availability.
+ * Integrations showcase (light logo wall). Phase 3A (2026-11-25):
+ * - Shows only team-confirmed integrations that have a live page on myfundbox.com, and links
+ *   each tile to that existing page (German twin on /de). No new /integrations routes are created.
+ * - Each tile names its category, so the wall never implies identical functionality, and the
+ *   note says integrations are not official partnerships unless stated.
+ * - The former "REST API" tile is removed: the API is not documented sufficiently to advertise
+ *   (docs.myfundbox.com serves an empty page).
  */
-
-/**
- * Original-colour brand logo on a white plate (so every logo reads the same on the dark wall).
- * The integration name stays available as alt text and tooltip. Falls back to mark + name.
- */
-function LogoLockup({ item }: { item: EcosystemItem }) {
-  if (item.logoSrc) {
-    return (
-      <span
-        className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-white p-1 shadow-[0_6px_18px_-8px_rgba(0,0,0,0.6)] ring-1 ring-white/20 transition-transform duration-300 group-hover/tile:scale-105"
-        title={item.name}
-      >
-        <img src={item.logoSrc} alt={item.name} width={128} height={128} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-contain" />
-      </span>
-    );
-  }
-  const mark = item.mark ? BRAND_MARKS[item.mark] : null;
-  return (
-    <span className="inline-flex min-w-0 items-center gap-2 text-[#c9cbe0] transition-colors duration-300 group-hover/tile:text-white">
-      {mark && (
-        <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] shrink-0 fill-current">
-          <path d={mark.path} />
-        </svg>
-      )}
-      <span className="truncate font-display text-[15.5px] font-semibold tracking-[-0.02em]">{item.name}</span>
-    </span>
-  );
-}
 
 const TILE =
-  'group/tile relative flex h-[6.5rem] flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4 transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-[#9a68ff]/40 hover:bg-white/[0.05] hover:shadow-[0_18px_40px_-18px_rgba(118,87,246,0.7)]';
+  'group/tile relative flex h-[6.75rem] flex-col justify-between overflow-hidden rounded-2xl border border-[#e7e8f0] bg-white p-4 outline-none shadow-[0_1px_2px_rgba(16,19,41,0.04)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-[#7657f6]/35 hover:shadow-[0_18px_40px_-22px_rgba(36,33,90,0.45)] focus-visible:border-[#7657f6]/60 focus-visible:ring-2 focus-visible:ring-[#7657f6]/40 dark:border-line dark:bg-surface';
 
 /** Gradient hairline + corner glow that fade in on hover. */
 function TileGlow() {
   return (
     <>
       <span
-        className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-[#b29dff]/70 to-transparent opacity-0 transition-opacity duration-300 group-hover/tile:opacity-100"
+        className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-[#7657f6]/60 to-transparent opacity-0 transition-opacity duration-300 group-hover/tile:opacity-100"
         aria-hidden="true"
       />
       <span
-        className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-[#7657f6]/30 opacity-0 blur-2xl transition-opacity duration-500 group-hover/tile:opacity-100"
+        className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-[#7657f6]/15 opacity-0 blur-2xl transition-opacity duration-500 group-hover/tile:opacity-100"
         aria-hidden="true"
       />
     </>
   );
 }
 
-function LogoTile({ item, role }: { item: EcosystemItem; role: string }) {
+function LogoTile({ item, href, role }: { item: ConfirmedIntegration; href: string; role: string }) {
   return (
-    <div className={TILE}>
+    <a href={href} className={TILE} aria-label={`${item.name}: ${role}`}>
       <TileGlow />
-      <LogoLockup item={item} />
-      <span className="relative font-ui text-[11.5px] font-medium text-[#9195ae] transition-colors duration-300 group-hover/tile:text-[#b9bcd2]">
-        {role}
+      <span className="flex items-center justify-between gap-2">
+        <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-white p-1 ring-1 ring-[#eceef5] transition-transform duration-300 group-hover/tile:scale-105">
+          <img src={item.logoSrc} alt="" width={128} height={128} loading="lazy" decoding="async" className="h-full w-full rounded-lg object-contain" />
+        </span>
+        <ArrowUpRight
+          className="h-3.5 w-3.5 text-[#9a9db2] transition-all duration-300 group-hover/tile:-translate-y-px group-hover/tile:translate-x-px group-hover/tile:text-[#5f43e9]"
+          aria-hidden="true"
+        />
       </span>
-    </div>
+      <span className="relative min-w-0">
+        <span className="block truncate font-display text-[14px] font-semibold tracking-[-0.015em] text-[#101329] dark:text-ink">{item.name}</span>
+        <span className="block truncate font-ui text-[11.5px] font-medium text-[#6b6f86] dark:text-subtle">
+          {role}
+        </span>
+      </span>
+    </a>
   );
 }
 
-function ApiTile({ title, role }: { title: string; role: string }) {
+function DirectoryTile({ href, title }: { href: string; title: string }) {
   return (
-    <a href={APP_LINKS.docs} className={`${TILE} border-dashed hover:border-solid`}>
+    <a href={href} className={`${TILE} border-dashed hover:border-solid`}>
       <TileGlow />
-      <span className="inline-flex items-center gap-2 text-[#c9cbe0] transition-colors duration-300 group-hover/tile:text-white">
-        <Code2 className="h-[18px] w-[18px] shrink-0 text-[#b29dff]" aria-hidden="true" />
-        <span className="font-display text-[15.5px] font-semibold tracking-[-0.02em]">{title}</span>
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#7657f6]/15 bg-[#eae6ff] text-[#5f43e9]">
+        <Blocks className="h-5 w-5" aria-hidden="true" />
       </span>
-      <span className="relative inline-flex items-center gap-1 font-ui text-[11.5px] font-medium text-[#b29dff]">
-        {role}
-        <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover/tile:-translate-y-px group-hover/tile:translate-x-px" aria-hidden="true" />
+      <span className="relative inline-flex items-center gap-1 font-display text-[14px] font-semibold text-[#101329] dark:text-ink">
+        {title}
+        <ArrowRight className="h-3.5 w-3.5 text-[#5f43e9] transition-transform duration-300 group-hover/tile:translate-x-0.5" aria-hidden="true" />
       </span>
     </a>
   );
@@ -91,10 +79,9 @@ function ApiTile({ title, role }: { title: string; role: string }) {
 
 export function IntegrationsStrip({ className = '' }: { className?: string }) {
   const { locale } = useRouter();
-  const localHref = useLocalHref();
   const copy = ECOSYSTEM_COPY[locale];
-  const items = ECOSYSTEM_ITEMS.filter((i) => i.show !== false);
-  const detailsHref = resolveNavHref({ href: '/integrations/payments', fallbackHref: '/product/integrations-api' });
+  const labels = INTEGRATION_CATEGORY_LABELS[locale];
+  const directoryHref = liveIntegrationUrl(null, locale);
   const wallRef = useRef<HTMLDivElement>(null);
 
   // Soft spotlight that follows the pointer across the wall (CSS variables only, no re-render).
@@ -108,75 +95,54 @@ export function IntegrationsStrip({ className = '' }: { className?: string }) {
 
   const tiles = (
     <>
-      {items.map((item) => (
-        <LogoTile key={item.name} item={item} role={item.role[locale]} />
+      {CONFIRMED_INTEGRATIONS.map((item) => (
+        <LogoTile key={item.slug} item={item} href={liveIntegrationUrl(item.slug, locale)} role={labels[item.category]} />
       ))}
-      <ApiTile title={copy.apiTitle} role={copy.apiRole} />
+      <DirectoryTile href={directoryHref} title={copy.detailsCta} />
     </>
   );
 
   return (
-    <section
-      aria-labelledby="ecosystem-heading"
-      className={`dark relative overflow-hidden bg-[#0d1024] text-ink ${className}`}
-    >
-      {/* Ambient light, continuing the hero */}
+    <section aria-labelledby="ecosystem-heading" className={`relative overflow-hidden bg-white dark:bg-canvas ${className}`}>
+      {/* Soft lavender light + fine grid (light section between How it works and Global payments) */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_50%_0%,rgba(36,33,90,0.65),transparent_70%)]" />
-        <div className="orb orb-violet animate-drift-slow -left-32 top-1/3 h-80 w-80 opacity-25" />
-        <div className="orb orb-cyan animate-drift -right-24 bottom-0 h-72 w-72 opacity-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(55%_70%_at_85%_0%,rgba(118,87,246,0.08),transparent_70%),radial-gradient(45%_60%_at_0%_100%,rgba(57,213,232,0.07),transparent_70%)]" />
+        <div className="grid-pattern-light absolute inset-0 opacity-60" />
       </div>
 
-      <div className="container-x relative py-16 md:py-20">
+      <div className="container-x relative py-20 md:py-24">
         <Reveal className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
           <div>
             <p className="eyebrow">{copy.eyebrow}</p>
             <h2
               id="ecosystem-heading"
-              className="mt-3 max-w-2xl font-display text-[1.625rem] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[2.125rem]"
+              className="mt-3 max-w-2xl font-display text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.03em] text-[#242638] md:text-[2.25rem] dark:text-ink"
             >
               {copy.heading}
             </h2>
           </div>
-          {detailsHref && (
-            <AppLink href={localHref(detailsHref)} className="link-arrow shrink-0 font-ui text-sm">
-              {copy.detailsCta}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </AppLink>
-          )}
+          <a href={directoryHref} className="link-arrow shrink-0 font-ui text-sm">
+            {copy.detailsCta}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </a>
         </Reveal>
 
-        {/* Tablet & desktop: logo wall */}
-        <Reveal index={1} className="mt-10 hidden md:block">
-          <div
-            ref={wallRef}
-            onPointerMove={onPointerMove}
-            className="group/wall relative [--spot-x:50%] [--spot-y:50%]"
-          >
+        {/* Logo wall: 2 columns on phones, 4 on tablets, 6 on desktop */}
+        <Reveal index={1} className="mt-10">
+          <div ref={wallRef} onPointerMove={onPointerMove} className="group/wall relative [--spot-x:50%] [--spot-y:50%]">
             <div
               className="pointer-events-none absolute -inset-6 opacity-0 transition-opacity duration-500 group-hover/wall:opacity-100"
-              style={{ background: 'radial-gradient(360px circle at var(--spot-x) var(--spot-y), rgba(118,87,246,0.16), transparent 65%)' }}
+              style={{ background: 'radial-gradient(360px circle at var(--spot-x) var(--spot-y), rgba(118,87,246,0.08), transparent 65%)' }}
               aria-hidden="true"
             />
-            <div className="relative grid grid-cols-5 gap-3">{tiles}</div>
+            <div className="relative grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">{tiles}</div>
           </div>
         </Reveal>
 
-        {/* Phones: gentle horizontal movement (pauses on touch/focus, static for reduced motion) */}
-        <div className="marquee -mx-4 mt-8 md:hidden">
-          {/* Trailing padding equals the gap so the -50% loop is seamless */}
-          <div className="marquee-track gap-3 pr-3">
-            <div className="flex shrink-0 gap-3 [&>*]:w-40">{tiles}</div>
-            <div className="marquee-duplicate flex shrink-0 gap-3 [&>*]:w-40" aria-hidden="true" inert>
-              {tiles}
-            </div>
-          </div>
-        </div>
-
-        <p className="mt-6 font-ui text-[12px] text-[#9195ae]">{copy.note}</p>
+        <p className="mt-6 font-ui text-[12px] text-[#6b6f86] dark:text-subtle">{copy.note}</p>
       </div>
 
-      <div className="hairline-top absolute inset-x-0 bottom-0" aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 h-px bg-[#e7e8f0] dark:bg-line" aria-hidden="true" />
     </section>
   );
 }

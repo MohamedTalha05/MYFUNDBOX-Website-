@@ -3,8 +3,6 @@ import React, { useRef } from 'react';
 import { LazyMotion, domAnimation, m as motion, useReducedMotion } from 'motion/react';
 import { BrandMark } from './BrandLogo';
 import {
-  ArrowDownRight,
-  ArrowUpRight,
   BarChart3,
   Check,
   CreditCard,
@@ -20,9 +18,11 @@ import { formatEUR, formatEUNumber } from '../utils/formatting';
 import { AreaChart } from './ProductVisuals';
 
 /*
- * Hero product preview: an HTML/SVG mock-up of the MYFUNDBOX revenue dashboard.
- * All figures are illustrative sample data and the window carries a visible
- * "Product preview · sample data" label. Swap for a real app screenshot when available.
+ * Hero product preview: an HTML/SVG mock-up of a revenue dashboard.
+ * All figures are illustrative sample data for a fictional business, and the window carries a
+ * visible "Illustrative · sample data" label. Phase 3A: no growth percentages, ARR or other
+ * metric claims are shown. Fixed aspect inside the hero, so it causes no layout shift.
+ * Swap for a real app screenshot when one is approved.
  */
 
 const MRR_TREND = [31200, 32400, 33100, 34800, 35600, 37900, 39200, 40400, 42700, 44100, 46300, 48920];
@@ -36,8 +36,8 @@ const T = {
     window: 'Revenue overview',
     range12: '12M',
     range30: '30D',
-    mrr: 'MRR',
-    arr: 'ARR',
+    mrr: 'Recurring revenue',
+    arr: 'Payments this month',
     active: 'Active subscriptions',
     trend: 'Revenue trend',
     vsLastMonth: 'vs last month',
@@ -53,19 +53,19 @@ const T = {
     retrying: 'Retrying',
     payments: [
       { who: 'Pro · annual', via: 'Card', amount: 1908, status: 'paid' as const },
-      { who: 'Team · monthly', via: 'SEPA', amount: 237, status: 'recovered' as const },
+      { who: 'Team · 12 seats', via: 'SEPA', amount: 180, status: 'recovered' as const },
       { who: 'Starter · monthly', via: 'PayPal', amount: 19, status: 'retrying' as const },
     ],
     toastTitle: 'Payment received',
     toastSub: 'Pro · annual · SEPA',
-    label: 'Product preview of the MYFUNDBOX revenue dashboard with illustrative sample data: monthly recurring revenue, annual recurring revenue, active subscriptions, a 12-month revenue trend, payment activity and subscription performance.',
+    label: 'Illustrative preview of a MYFUNDBOX revenue dashboard with sample data: recurring revenue, active subscriptions, payments, a 12-month revenue trend, payment activity and subscription changes.',
   },
   de: {
     window: 'Umsatzübersicht',
     range12: '12M',
     range30: '30T',
-    mrr: 'MRR',
-    arr: 'ARR',
+    mrr: 'Wiederkehrender Umsatz',
+    arr: 'Zahlungen diesen Monat',
     active: 'Aktive Abonnements',
     trend: 'Umsatzentwicklung',
     vsLastMonth: 'ggü. Vormonat',
@@ -81,26 +81,16 @@ const T = {
     retrying: 'Neuer Versuch',
     payments: [
       { who: 'Pro · jährlich', via: 'Karte', amount: 1908, status: 'paid' as const },
-      { who: 'Team · monatlich', via: 'SEPA', amount: 237, status: 'recovered' as const },
+      { who: 'Team · 12 Nutzer', via: 'SEPA', amount: 180, status: 'recovered' as const },
       { who: 'Starter · monatlich', via: 'PayPal', amount: 19, status: 'retrying' as const },
     ],
     toastTitle: 'Zahlung erhalten',
     toastSub: 'Pro · jährlich · SEPA',
-    label: 'Produktvorschau des MYFUNDBOX-Umsatz-Dashboards mit Beispieldaten: MRR, ARR, aktive Abonnements, 12-Monats-Umsatzentwicklung, Zahlungsaktivität und Abo-Entwicklung.',
+    label: 'Illustrative Vorschau eines MYFUNDBOX-Umsatz-Dashboards mit Beispieldaten: wiederkehrender Umsatz, aktive Abonnements, Zahlungen, 12-Monats-Umsatzentwicklung, Zahlungsaktivität und Abo-Änderungen.',
   },
 };
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-
-function Delta({ value, down = false }: { value: string; down?: boolean }) {
-  const Icon = down ? ArrowDownRight : ArrowUpRight;
-  return (
-    <span className={`inline-flex items-center gap-0.5 font-ui text-[11px] font-medium ${down ? 'text-[#f4ae52]' : 'text-[#3ed3a0]'}`}>
-      <Icon className="h-3 w-3" aria-hidden="true" />
-      {value}
-    </span>
-  );
-}
 
 export function RevenueDashboardPreview({ previewLabel }: { previewLabel: string }) {
   const { locale } = useRouter();
@@ -211,17 +201,17 @@ export function RevenueDashboardPreview({ previewLabel }: { previewLabel: string
 
                 {/* KPI strip */}
                 <div className="mt-4 grid grid-cols-3 divide-x divide-white/[0.07] rounded-xl border border-white/[0.07] bg-white/[0.02]">
+                  {/* Sample values only; no growth percentages or metric claims (Phase 3A truth rules). */}
                   {[
-                    { label: t.mrr, value: formatEUR(48920, locale), delta: '5.6%' },
-                    { label: t.arr, value: formatEUR(587040, locale), delta: '5.6%' },
-                    { label: t.active, value: formatEUNumber(1284, locale), delta: '3.1%' },
+                    { label: t.mrr, value: formatEUR(48920, locale) },
+                    { label: t.active, value: formatEUNumber(1284, locale) },
+                    { label: t.arr, value: formatEUNumber(1312, locale) },
                   ].map((k) => (
                     <div key={k.label} className="min-w-0 px-3 py-2.5 transition-colors duration-300 hover:bg-white/[0.03] sm:px-3.5 sm:py-3">
                       <div className="truncate font-ui text-[10.5px] text-[#9195ae]">{k.label}</div>
                       <div className="mt-1 truncate font-ui text-[13px] font-semibold tracking-tight text-white tabular-nums sm:text-base">
                         {k.value}
                       </div>
-                      <Delta value={k.delta} />
                     </div>
                   ))}
                 </div>
@@ -230,9 +220,7 @@ export function RevenueDashboardPreview({ previewLabel }: { previewLabel: string
                 <div className="mt-3 rounded-xl border border-white/[0.07] bg-white/[0.02] p-3.5">
                   <div className="mb-2 flex items-baseline justify-between gap-2">
                     <span className="font-ui text-[11.5px] font-medium text-[#d9dcec]">{t.trend}</span>
-                    <span className="font-ui text-[10.5px] text-[#9195ae]">
-                      <span className="text-[#3ed3a0]">+{formatEUR(2620, locale)}</span> {t.vsLastMonth}
-                    </span>
+                    <span className="font-ui text-[10.5px] text-[#9195ae]">{t.range12}</span>
                   </div>
                   <AreaChart values={MRR_TREND} labels={MONTHS[locale]} height={112} format={(n) => formatEUR(n, locale)} />
                 </div>
